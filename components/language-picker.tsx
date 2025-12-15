@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "motion/react"
 import styles from "./language-picker.module.css"
 import { cn } from "@/lib/utils"
 import { Button } from "./ui/button"
+import Image from "next/image"
 
 const LanguagePicker = ({ className }: { className?: string }) => {
     type Language = "fr" | "gb" | "de"
@@ -24,8 +25,8 @@ const LanguagePicker = ({ className }: { className?: string }) => {
             <Languages className="w-9 h-9 p-2"/>
         </FloatingPanelTrigger>   
       <FloatingPanelContent className={styles.content}>
-        <FloatingPanelBody>
-          <div className="grid grid-cols-3 gap-2">
+        <FloatingPanelBody className="mb-2">
+          <div className="flex flex-row flex-nowrap gap-4 justify-around items-center">
             <AnimatePresence>
               {languages.map((l) => (
                 // <motion.button
@@ -42,7 +43,7 @@ const LanguagePicker = ({ className }: { className?: string }) => {
                   // />
                 <motion.button
                   key={l}
-                  className="w-12 h-12 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                  className="flex flex-col items-center w-12 h-12 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                 //   style={{ backgroundColor: l }}
                   onClick={() => console.log(`Selected language: ${languageFull[l]}`)}
                   whileHover={{ scale: 1.1 }}
@@ -51,7 +52,10 @@ const LanguagePicker = ({ className }: { className?: string }) => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.2 }}
-                >{languageFull[l]}</motion.button>                  
+                  >
+                      {languageFull[l]} 
+                      <Image src={`/${l}-flag.png`} alt={`${l} flag`} width={64} height={64} />
+                  </motion.button>                  
               ))}
             </AnimatePresence>
           </div>
