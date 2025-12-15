@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, use } from "react"
 import { Image as ImageIcon, Paintbrush, Plus, Languages } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
 import ThemeToggler from "./theme-toggler";
@@ -21,6 +21,7 @@ import {
   FloatingPanelTrigger,
 } from "./ui/floating-panel"
 import Logo from "./site-logo"
+import { ThemeContext } from "../contexts/ThemeContext"
 
 function FloatingPanelInput() {
   const handleSubmit = (note: string) => {
@@ -199,28 +200,22 @@ const ImagePreviewFloatingPanel = () => {
 }
 
 export function ComponentExample() {
-        const [theme, setTheme] = useState("light");
-    const toggleTheme = () => {
-        setTheme(theme === "light" ? "dark" : "light");
-    }
-    useEffect(() => {
-        document.documentElement.classList.remove("light", "dark");
-        document.documentElement.classList.add(theme);
-    }, [theme]);
-  return (
-    <div className="p-8 space-y-8">
-      {/* <h1 className="text-3xl font-bold mb-4">FloatingPanel Examples</h1> */}
-        <div className="flex flex-col md:justify-between md:flex-row flex-wrap gap-4">
-            {/* <FloatingPanelInput /> */}
-              <Logo theme={theme}/>
-            <div className="flex flex-col md:flex-row flex-wrap gap-4">
-                {/* <ColorPickerFloatingPanel /> */}
-                <ContactPicker className="w-9 h-9 aspect-square rounded-full"/>
-                <LanguagePicker className="w-9 h-9 aspect-square rounded-full"/>
-                <ThemeToggler theme={theme} toggleTheme={toggleTheme}/>
-                {/* <ImagePreviewFloatingPanel /> */}
+    const {theme, toggleTheme } = use(ThemeContext);
+
+    return (
+        <div className="p-8 space-y-8">
+            {/* <h1 className="text-3xl font-bold mb-4">FloatingPanel Examples</h1> */}
+            <div className="flex flex-col md:justify-between md:flex-row flex-wrap gap-4">
+                {/* <FloatingPanelInput /> */}
+                    <Logo theme={theme}/>
+                <div className="flex flex-col md:flex-row flex-wrap gap-4">
+                    {/* <ColorPickerFloatingPanel /> */}
+                    <ContactPicker className="w-9 h-9 aspect-square rounded-full"/>
+                    <LanguagePicker className="w-9 h-9 aspect-square rounded-full"/>
+                    <ThemeToggler theme={theme} toggleTheme={toggleTheme}/>
+                    {/* <ImagePreviewFloatingPanel /> */}
+                </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }

@@ -1,5 +1,8 @@
 import { ComponentExample } from "@/components/component-example";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 
 export default function Page() {
-return <ComponentExample />;
+    return <ThemeProvider>
+        <ComponentExample />
+    </ThemeProvider>
 }
