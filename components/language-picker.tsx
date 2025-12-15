@@ -21,10 +21,8 @@ const LanguagePicker = ({ className }: { className?: string }) => {
             title="Choose language"
             className={cn(styles.trigger)}
           >
-            <Button size="icon" variant="outline" onClick={() => {}}>
-                <Languages />
-            </Button>
-      </FloatingPanelTrigger>
+            <Languages className="w-9 h-9 p-2"/>
+        </FloatingPanelTrigger>   
       <FloatingPanelContent className="w-64">
         <FloatingPanelBody>
           <div className="grid grid-cols-3 gap-2">
