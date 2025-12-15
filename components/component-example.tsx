@@ -2,8 +2,9 @@
 
 import React from "react"
 import Image from "next/image";
-import { Image as ImageIcon, Paintbrush, Plus, X } from "lucide-react"
+import { Image as ImageIcon, Paintbrush, Plus, X, Languages, Moon, Sun } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
+import { Button } from "./ui/button";
 
 import {
   FloatingPanelBody,
@@ -112,7 +113,7 @@ const LanguagePickerFloatingPanel = () => {
         title="Choose language"
         className="flex items-center space-x-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90 transition-colors"
       >
-        <span>Choose language</span>
+        <Languages className="w-4 h-4" />
       </FloatingPanelTrigger>
       <FloatingPanelContent className="w-64">
         <FloatingPanelBody>
@@ -159,7 +160,7 @@ const QuickActionsFloatingPanel = () => {
   const actions = [
     {
       icon: <Plus className="w-4 h-4" />,
-      label: "New File",
+      label: "Download CV",
       action: () => console.log("New File"),
     },
     {
@@ -180,7 +181,8 @@ const QuickActionsFloatingPanel = () => {
         title="Quick Actions"
         className="flex items-center space-x-2 px-4 py-2 bg-accent text-accent-foreground rounded-md hover:bg-accent/90 transition-colors"
       >
-        <span>Quick Actions</span>
+              {/* <span>Quick Actions</span> */}
+              <Languages className="w-4 h-4"/>
       </FloatingPanelTrigger>
       <FloatingPanelContent className="w-56">
         <FloatingPanelBody>
@@ -264,8 +266,12 @@ export function ComponentExample() {
             <div className="flex flex-col md:flex-row flex-wrap gap-4">
                   {/* <ColorPickerFloatingPanel /> */}
                   <LanguagePickerFloatingPanel />
-                <QuickActionsFloatingPanel />
-                <ImagePreviewFloatingPanel />
+                  {/* <QuickActionsFloatingPanel /> */}
+                  <Button>
+                      <Moon className="w-4 h-4" />
+                      {/* <Sun className="w-4 h-4" /> */}
+                  </Button>
+                {/* <ImagePreviewFloatingPanel /> */}
             </div>
         </div>
     </div>
