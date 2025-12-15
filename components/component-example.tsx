@@ -6,7 +6,7 @@ import { Image as ImageIcon, Paintbrush, Plus, X, Languages, Moon, Sun } from "l
 import { AnimatePresence, motion } from "motion/react"
 import { Button } from "./ui/button";
 import ThemeToggler from "./theme-toggler";
-
+import LanguagePicker from "./language-picker";
 import {
   FloatingPanelBody,
   FloatingPanelButton,
@@ -86,65 +86,6 @@ const ColorPickerFloatingPanel = () => {
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.2 }}
                 />
-              ))}
-            </AnimatePresence>
-          </div>
-        </FloatingPanelBody>
-        <FloatingPanelFooter>
-          <FloatingPanelCloseButton />
-        </FloatingPanelFooter>
-      </FloatingPanelContent>
-    </FloatingPanelRoot>
-  )
-}
-
-const LanguagePickerFloatingPanel = () => {    
-    type Language = "fr" | "gb" | "de"
-    
-    const languages: Language[] = ["fr", "gb", "de"];
-    const languageFull = {
-        fr: "Français",
-        gb: "English",
-        de: "Deutsch"
-    }
-
-  return (
-    <FloatingPanelRoot>
-      <FloatingPanelTrigger
-        title="Choose language"
-        className="flex items-center space-x-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90 transition-colors"
-      >
-        <Languages className="w-4 h-4" />
-      </FloatingPanelTrigger>
-      <FloatingPanelContent className="w-64">
-        <FloatingPanelBody>
-          <div className="grid grid-cols-3 gap-2">
-            <AnimatePresence>
-              {languages.map((l) => (
-                // <motion.button
-                //   key={color}
-                //   className="w-12 h-12 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-                //   style={{ backgroundColor: color }}
-                //   onClick={() => console.log(`Selected color: ${color}`)}
-                //   whileHover={{ scale: 1.1 }}
-                //   whileTap={{ scale: 0.9 }}
-                //   initial={{ opacity: 0, scale: 0.8 }}
-                //   animate={{ opacity: 1, scale: 1 }}
-                //   exit={{ opacity: 0, scale: 0.8 }}
-                //   transition={{ duration: 0.2 }}
-                  // />
-                <motion.button
-                  key={l}
-                  className="w-12 h-12 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-                //   style={{ backgroundColor: l }}
-                  onClick={() => console.log(`Selected language: ${languageFull[l]}`)}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.2 }}
-                >{languageFull[l]}</motion.button>                  
               ))}
             </AnimatePresence>
           </div>
@@ -262,11 +203,11 @@ export function ComponentExample() {
     <div className="p-8 space-y-8">
       {/* <h1 className="text-3xl font-bold mb-4">FloatingPanel Examples</h1> */}
         <div className="flex flex-col md:justify-between md:flex-row flex-wrap gap-4">
-              {/* <FloatingPanelInput /> */}
-              <Image src="/logo.png" alt="Logo" width={48} height={48} />
+            {/* <FloatingPanelInput /> */}
+            <Image src="/logo.png" alt="Logo" width={48} height={48} />
             <div className="flex flex-col md:flex-row flex-wrap gap-4">
                 {/* <ColorPickerFloatingPanel /> */}
-                <LanguagePickerFloatingPanel />
+                <LanguagePicker className="w-9 h-9 aspect-square rounded-full"/>
                 {/* <QuickActionsFloatingPanel /> */}
                 <ThemeToggler />
                 {/* <ImagePreviewFloatingPanel /> */}

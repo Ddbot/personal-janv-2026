@@ -1,0 +1,14 @@
+.trigger {
+    display: flex;   
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary);
+    color: var(--secondary-foreground);
+    border-radius: 9999px !important;
+    aspect-ratio: 1 / 1 !important;
+    transition: background-color 0.2s ease-in-out;
+    padding: 0px !important;
+    /* width: 48px !important;
+    height: 48px !important; */
+}
