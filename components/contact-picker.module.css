@@ -1,0 +1,17 @@
+.trigger {
+    /* bg-accent text-accent-foreground rounded-md hover:bg-accent/90 transition-colors" */
+    display: flex;
+    align-items: center;
+    border-radius: 9999px !important;
+    transition: background-color 0.2s ease-in-out;
+    padding: 0px !important;
+    aspect-ratio: 1 / 1 !important;
+    anchor-name: --trigger;
+}
+
+.content {
+    position: absolute;
+    border: 1px solid gray;
+    position-anchor: --trigger;
+    position-area: bottom left;
+}

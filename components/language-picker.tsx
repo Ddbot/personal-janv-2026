@@ -23,7 +23,7 @@ const LanguagePicker = ({ className }: { className?: string }) => {
           >
             <Languages className="w-9 h-9 p-2"/>
         </FloatingPanelTrigger>   
-      <FloatingPanelContent className="w-64">
+      <FloatingPanelContent className={styles.content}>
         <FloatingPanelBody>
           <div className="grid grid-cols-3 gap-2">
             <AnimatePresence>

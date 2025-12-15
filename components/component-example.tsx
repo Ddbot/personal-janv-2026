@@ -2,11 +2,11 @@
 
 import React from "react"
 import Image from "next/image";
-import { Image as ImageIcon, Paintbrush, Plus, X, Languages, Moon, Sun } from "lucide-react"
+import { Image as ImageIcon, Paintbrush, Plus, Languages } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
-import { Button } from "./ui/button";
 import ThemeToggler from "./theme-toggler";
 import LanguagePicker from "./language-picker";
+import ContactPicker from "./contact-picker";
 import {
   FloatingPanelBody,
   FloatingPanelButton,
@@ -208,7 +208,7 @@ export function ComponentExample() {
             <div className="flex flex-col md:flex-row flex-wrap gap-4">
                 {/* <ColorPickerFloatingPanel /> */}
                 <LanguagePicker className="w-9 h-9 aspect-square rounded-full"/>
-                {/* <QuickActionsFloatingPanel /> */}
+                <ContactPicker className="w-9 h-9 aspect-square rounded-full"/>
                 <ThemeToggler />
                 {/* <ImagePreviewFloatingPanel /> */}
             </div>

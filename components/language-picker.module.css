@@ -11,4 +11,15 @@
     padding: 0px !important;
     /* width: 48px !important;
     height: 48px !important; */
+
+    anchor-name: --trigger;
+}
+
+.content {
+    width: calc(var(--spacing) * 64) !important;    
+    position: absolute;
+    position-anchor: --trigger;
+    position-area: center left;
+
+    border: 1px solid gray;
 }
