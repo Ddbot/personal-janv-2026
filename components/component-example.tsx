@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Image as ImageIcon, Paintbrush, Plus, X, Languages, Moon, Sun } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
 import { Button } from "./ui/button";
+import ThemeToggler from "./theme-toggler";
 
 import {
   FloatingPanelBody,
@@ -264,13 +265,10 @@ export function ComponentExample() {
               {/* <FloatingPanelInput /> */}
               <Image src="/logo.png" alt="Logo" width={48} height={48} />
             <div className="flex flex-col md:flex-row flex-wrap gap-4">
-                  {/* <ColorPickerFloatingPanel /> */}
-                  <LanguagePickerFloatingPanel />
-                  {/* <QuickActionsFloatingPanel /> */}
-                  <Button>
-                      <Moon className="w-4 h-4" />
-                      {/* <Sun className="w-4 h-4" /> */}
-                  </Button>
+                {/* <ColorPickerFloatingPanel /> */}
+                <LanguagePickerFloatingPanel />
+                {/* <QuickActionsFloatingPanel /> */}
+                <ThemeToggler />
                 {/* <ImagePreviewFloatingPanel /> */}
             </div>
         </div>
