@@ -207,8 +207,8 @@ export function ComponentExample() {
             <Image src="/logo.png" alt="Logo" width={48} height={48} />
             <div className="flex flex-col md:flex-row flex-wrap gap-4">
                 {/* <ColorPickerFloatingPanel /> */}
-                <LanguagePicker className="w-9 h-9 aspect-square rounded-full"/>
                 <ContactPicker className="w-9 h-9 aspect-square rounded-full"/>
+                <LanguagePicker className="w-9 h-9 aspect-square rounded-full"/>
                 <ThemeToggler />
                 {/* <ImagePreviewFloatingPanel /> */}
             </div>

@@ -8,8 +8,11 @@ const ThemeToggler = () => {
         setTheme(theme === "light" ? "dark" : "light");
     }
     return (
-        <Button size="icon" variant="outline" onClick={toggleTheme}>
-            {theme === "light" ? <Moon fill="var(--primary)"/> : <Sun />}
+        <Button size="icon" variant="outline" onClick={toggleTheme} style={{
+            backgroundColor: theme === "dark" ?  "var(--chart-2" :  "var(--card-foreground)",
+            color: theme === "dark" ?  "var(--card-foreground)" :  "var(--card-background)"
+        }}>
+            {theme === "light" ? <Moon fill="white"/> : <Sun fill="var(--primary)" />}
         </Button>        
     )
 }
