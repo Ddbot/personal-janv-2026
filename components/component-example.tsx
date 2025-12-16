@@ -21,7 +21,6 @@ import {
   FloatingPanelTrigger,
 } from "./ui/floating-panel"
 import Logo from "./site-logo"
-import SheetDemo from "./sheet-demo"
 import { ThemeContext } from "../contexts/ThemeContext"
 
 function FloatingPanelInput() {
@@ -209,10 +208,10 @@ export function ComponentExample() {
             <div className="flex flex-col md:justify-between md:flex-row flex-wrap gap-4">
                 {/* <FloatingPanelInput /> */}
                     <Logo theme={theme}/>
-                <div className="flex flex-col md:flex-row flex-wrap gap-4">
+                <div className="flex flex-col md:flex-row flex-wrap items-center gap-4">
                     {/* <ColorPickerFloatingPanel /> */}
                     {/* <ContactPicker className="w-9 h-9 aspect-square rounded-full"/> */}
-                    <SheetDemo />
+                    <ContactPicker className="w-9 h-9 aspect-square rounded-full"/>
                     <LanguagePicker className="w-9 h-9 aspect-square rounded-full"/>
                     <ThemeToggler theme={theme} toggleTheme={toggleTheme}/>
                     {/* <ImagePreviewFloatingPanel /> */}

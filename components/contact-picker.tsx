@@ -1,65 +1,81 @@
-import { FloatingPanelRoot, FloatingPanelButton, FloatingPanelTrigger, FloatingPanelContent, FloatingPanelBody, FloatingPanelFooter, FloatingPanelCloseButton } from "./ui/floating-panel"
+import { Button } from "@/components/ui/button"
+import { Item, ItemActions, ItemContent, ItemDescription, ItemTitle } from "@/components/ui/item"
+import { Label } from "@/components/ui/label"
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 import { Download, Mail, MessageCircle } from "lucide-react"
-import { AnimatePresence, motion } from "motion/react"
-
 import styles from "./contact-picker.module.css"
-import { cn } from "@/lib/utils"
+import { cn } from '@/lib/utils'
 
-const ContactPicker = ({ className }: { className?: string }) => {    
-      const actions = [
-        {
-          icon: <Mail className="w-4 h-4" />,
-          label: "Envoyer un email",
-          action: () => console.log("Send email"),
-        },
-        {
-          icon: <MessageCircle className="w-4 h-4" />,
-          label: "Envoyer un DM",
-          action: () => console.log("Send DM"),
-          },
-        {
-          icon: <Download className="w-4 h-4" />,
-          label: "Télécharger mon CV",
-          action: () => console.log("New File"),
-        },        
-      ]
-    
-      return (
-        <FloatingPanelRoot className={className}>
-            <FloatingPanelTrigger
-            title="Contact"
-            className={styles.trigger}
-            >
-                <Mail className="w-9 h-9 p-2"/>
-          </FloatingPanelTrigger>
-          <FloatingPanelContent className={cn("w-56", styles.content)}>
-            <FloatingPanelBody>
-              <AnimatePresence>
-                {actions.map((action, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <FloatingPanelButton
-                      onClick={action.action}
-                      className="w-full flex items-center space-x-2 px-2 py-1 rounded-md hover:bg-muted transition-colors"
-                    >
-                      {action.icon}
-                      <span>{action.label}</span>
-                    </FloatingPanelButton>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </FloatingPanelBody>
-            <FloatingPanelFooter>
-              <FloatingPanelCloseButton />
-            </FloatingPanelFooter>
-          </FloatingPanelContent>
-        </FloatingPanelRoot>
-      )
+export default function ContactPicker({ className }: { className: string}) {
+  return (
+      <Sheet>
+      <SheetTrigger asChild className={cn(className)}>
+        <Button variant="outline"><Mail /></Button>
+      </SheetTrigger>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Contactez-moi</SheetTitle>
+          <SheetDescription>
+            Envoyez-moi un email ou un message direct
+          </SheetDescription>
+        </SheetHeader>
+            <div className="grid md:h-full md:flex md:flex-1 md:flex-row md:flex-wrap md:justify-start gap-2 pl-6 pr-0 h-full">
+                <Item variant="outline">
+                    <ItemContent>
+                    <ItemTitle>Envoyer un email</ItemTitle>
+                    <ItemDescription>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde aspernatur maxime quasi fugiat exercitationem consequuntur in eos vero obcaecati quo, animi quos, sequi ducimus tempora. Quisquam nostrum ad velit repellat!
+                    </ItemDescription>
+                    </ItemContent>
+                    <ItemActions>
+                        <Button variant="outline" size="sm">
+                            <Mail className="w-6 h-6" />
+                        </Button>
+                    </ItemActions>
+                </Item>
+                <Item variant="outline">
+                    <ItemContent>
+                    <ItemTitle>Envoyer un message direct</ItemTitle>
+                    <ItemDescription>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde aspernatur maxime quasi fugiat exercitationem consequuntur in eos vero obcaecati quo, animi quos, sequi ducimus tempora. Quisquam nostrum ad velit repellat!
+                    </ItemDescription>
+                    </ItemContent>
+                    <ItemActions>
+                        <Button variant="outline" size="sm">
+                            <MessageCircle className="w-6 h-6" />
+                        </Button>
+                    </ItemActions>
+                  </Item>         
+                <Item variant="outline">
+                    <ItemContent>
+                    <ItemTitle>Télécharger mon CV</ItemTitle>
+                    <ItemDescription>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde aspernatur maxime quasi fugiat exercitationem consequuntur in eos vero obcaecati quo, animi quos, sequi ducimus tempora. Quisquam nostrum ad velit repellat!
+                    </ItemDescription>
+                    </ItemContent>
+                    <ItemActions>
+                        <Button variant="outline" size="sm">
+                            <Download className="w-6 h-6" />
+                        </Button>
+                    </ItemActions>
+                </Item>                  
+        </div>
+        <SheetFooter>
+          {/* <Button type="submit">Save changes</Button> */}
+          <SheetClose asChild>
+            <Button variant="outline">Fermer</Button>
+          </SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+  )
 }
-
-export default ContactPicker;
