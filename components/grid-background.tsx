@@ -7,22 +7,37 @@ export function GridPatternDemo() {
   return (
     <div className="bg-background relative flex h-dvh w-full flex-col items-center justify-center overflow-hidden rounded-lg">
       <GridPattern
-        squares={[
-[19+2, 2+9],
-[19+5, 2+9],
-[19+8, 2+9],
-[19+3, 3+9],
-[19+6, 3+9],
-[19+2, 8+9],
-[19+5, 7+9],
-[19+8, 7+9],
-[19+5, 8+9],
-[19+8, 8+9],
-[19+2, 5+9],
-[19+5, 5+9],
-[19+8, 5+9],
-[19+3, 6+9],
-[19+7, 6+9],
+              squares={[
+            // html
+                  [19, 11],
+                  //   css                  
+                  [23, 2 + 9],
+// tailwind
+                  [27, 2 + 9],
+// js
+                  [21, 13],
+// ts
+                  [25, 13],
+// react
+                  [29, 13],
+// next
+                  [20, 15],
+// postgres
+                  [24, 15],
+// firebase
+                  [19+6, 8+9],
+// supabase
+                  [19+8, 8+8],
+// apps script
+                  [19 + 8, 5 + 9],
+                //   figma
+                  [19 + 1, 5 + 10],
+                //   git
+                  [22, 16],
+// chatgpt
+                  [20,18],
+// gsap
+                  [28, 18],
               ]}
               
 
