@@ -199,7 +199,7 @@ const ImagePreviewFloatingPanel = () => {
   )
 }
 
-export function ComponentExample() {
+export default function Navbar() {
     const {theme, toggleTheme } = use(ThemeContext);
 
     return (

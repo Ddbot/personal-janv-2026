@@ -1,8 +1,10 @@
-import { ComponentExample } from "@/components/component-example";
+import Navbar from "@/components/navbar";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import { GridPatternDemo } from "@/components/grid-background";
 
 export default function Page() {
     return <ThemeProvider>
-        <ComponentExample />
+        <Navbar />
+        <GridPatternDemo />
     </ThemeProvider>
 }
