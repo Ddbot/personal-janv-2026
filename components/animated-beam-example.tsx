@@ -3,7 +3,7 @@
 import React, { forwardRef, useRef } from "react"
 
 import { cn } from "@/lib/utils"
-import { AnimatedBeam } from "@/registry/magicui/animated-beam"
+import { AnimatedBeam } from "@/components/ui/animated-beam"
 
 const Circle = forwardRef<
   HTMLDivElement,
@@ -24,7 +24,7 @@ const Circle = forwardRef<
 
 Circle.displayName = "Circle"
 
-export function AnimatedBeamMultipleOutputDemo({
+export default function AnimatedBeamMultipleOutputDemo({
   className,
 }: {
   className?: string
