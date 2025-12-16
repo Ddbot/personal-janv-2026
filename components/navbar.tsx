@@ -204,9 +204,9 @@ export default function Navbar() {
 
     return (
         <div className="p-8 space-y-8">
-            <div className="flex flex-col md:justify-between md:flex-row flex-wrap gap-4">
+            <div className="w-full flex flex-row flex-nowrap justify-between md:flex-nowrap gap-4">
                 <Logo theme={theme}/>
-                <div className="flex flex-col md:flex-row flex-wrap items-center gap-4">
+                <div className="flex flex-row md:flex-row flex-wrap items-center gap-4">
                     <ContactPicker className="w-9 h-9 aspect-square rounded-full"/>
                     <LanguagePicker className="w-9 h-9 aspect-square rounded-full"/>
                     <ThemeToggler theme={theme} toggleTheme={toggleTheme}/>
