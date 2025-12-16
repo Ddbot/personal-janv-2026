@@ -1,8 +1,9 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, use } from "react"
 import createGlobe, { COBEOptions } from "cobe"
 import { useMotionValue, useSpring } from "motion/react"
+import { ThemeContext } from "../../contexts/ThemeContext"
 
 import { cn } from "@/lib/utils"
 
@@ -15,9 +16,9 @@ const GLOBE_CONFIG: COBEOptions = {
   devicePixelRatio: 2,
   phi: 0,
   theta: 0.3,
-  dark: 0,
+  dark: 1,
   diffuse: 0.4,
-  mapSamples: 16000,
+  mapSamples: 4000,
   mapBrightness: 1.2,
   baseColor: [1, 1, 1],
   markerColor: [251 / 255, 100 / 255, 21 / 255],
@@ -33,8 +34,11 @@ const GLOBE_CONFIG: COBEOptions = {
     { location: [40.7128, -74.006], size: 0.1 },
     { location: [34.6937, 135.5022], size: 0.05 },
     { location: [41.0082, 28.9784], size: 0.06 },
-  ],
+    ],
 }
+
+const test_image = new Image()
+test_image.src = "https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
 
 export function Globe({
   className,
@@ -55,6 +59,8 @@ export function Globe({
     damping: 30,
     stiffness: 100,
   })
+    
+    const { theme } = use(ThemeContext);
 
   const updatePointerInteraction = (value: number | null) => {
     pointerInteracting.current = value
@@ -82,15 +88,16 @@ export function Globe({
     onResize()
 
     const globe = createGlobe(canvasRef.current!, {
-      ...config,
-      width: width * 2,
-      height: width * 2,
-      onRender: (state) => {
-        if (!pointerInteracting.current) phi += 0.005
-        state.phi = phi + rs.get()
-        state.width = width * 2
-        state.height = width * 2
-      },
+        ...config,
+        width: width * 2,
+        height: width * 2,
+        dark: theme === "dark" ? 0 : 1,
+        onRender: (state) => {
+            if (!pointerInteracting.current) phi += 0.005
+            state.phi = phi + rs.get()
+            state.width = width * 2
+            state.height = width * 2
+        },
     })
 
     setTimeout(() => (canvasRef.current!.style.opacity = "1"), 0)
@@ -98,18 +105,21 @@ export function Globe({
       globe.destroy()
       window.removeEventListener("resize", onResize)
     }
-  }, [rs, config])
-
+  }, [rs, config, theme])
+    
+    useEffect(() => { 
+        console.log(canvasRef.current?.getContext("2d"))
+    }, [width]);
   return (
     <div
       className={cn(
-        "absolute inset-0 mx-auto aspect-[1/1] w-full max-w-[600px]",
+        "mx-auto aspect-square w-full max-w-[600px] translate-x-64 translate-y-24",
         className
       )}
     >
       <canvas
         className={cn(
-          "size-full opacity-0 transition-opacity duration-500 [contain:layout_paint_size]"
+          "size-full opacity-0 transition-opacity duration-500 contain-[layout_paint_size]"
         )}
         ref={canvasRef}
         onPointerDown={(e) => {
