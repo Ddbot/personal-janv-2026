@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { Item, ItemActions, ItemContent, ItemDescription, ItemTitle } from "@/components/ui/item"
 import { Label } from "@/components/ui/label"
 import {
   Sheet,
@@ -26,19 +26,46 @@ export default function SheetDemo() {
             Envoyez-moi un email ou un message direct
           </SheetDescription>
         </SheetHeader>
-        <div className="grid md:h-full md:flex md:flex-1 md:flex-row md:flex-wrap md:justify-start md:items-stretch gap-2 pl-6 pr-0 h-full">
-            <div className="grid md:gap-3 md:flex md:items-end w-full">
-                <Mail className="w-6 h-6 mr-2" />
-                <Label className="text-lg" htmlFor="sheet-demo-name">Envoyer un email</Label>
-            </div>
-            <div className="grid gap-3 md:flex md:items-center w-full">
-                <MessageCircle className="w-6 h-6 mr-2" />
-                <Label className="text-lg" htmlFor="sheet-demo-username">Envoyer un message direct</Label>
-            </div>
-            <div className="grid gap-3 md:flex md:items-start w-full">
-                <Download className="w-6 h-6 mr-2" />
-                <Label className="text-lg" htmlFor="sheet-demo-username">Télécharger mon CV</Label>
-            </div>                  
+            <div className="grid md:h-full md:flex md:flex-1 md:flex-row md:flex-wrap md:justify-start gap-2 pl-6 pr-0 h-full">
+                <Item variant="outline">
+                    <ItemContent>
+                    <ItemTitle>Envoyer un email</ItemTitle>
+                    <ItemDescription>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde aspernatur maxime quasi fugiat exercitationem consequuntur in eos vero obcaecati quo, animi quos, sequi ducimus tempora. Quisquam nostrum ad velit repellat!
+                    </ItemDescription>
+                    </ItemContent>
+                    <ItemActions>
+                        <Button variant="outline" size="sm">
+                            <Mail className="w-6 h-6" />
+                        </Button>
+                    </ItemActions>
+                </Item>
+                <Item variant="outline">
+                    <ItemContent>
+                    <ItemTitle>Envoyer un message direct</ItemTitle>
+                    <ItemDescription>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde aspernatur maxime quasi fugiat exercitationem consequuntur in eos vero obcaecati quo, animi quos, sequi ducimus tempora. Quisquam nostrum ad velit repellat!
+                    </ItemDescription>
+                    </ItemContent>
+                    <ItemActions>
+                        <Button variant="outline" size="sm">
+                            <MessageCircle className="w-6 h-6" />
+                        </Button>
+                    </ItemActions>
+                  </Item>         
+                <Item variant="outline">
+                    <ItemContent>
+                    <ItemTitle>Télécharger mon CV</ItemTitle>
+                    <ItemDescription>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde aspernatur maxime quasi fugiat exercitationem consequuntur in eos vero obcaecati quo, animi quos, sequi ducimus tempora. Quisquam nostrum ad velit repellat!
+                    </ItemDescription>
+                    </ItemContent>
+                    <ItemActions>
+                        <Button variant="outline" size="sm">
+                            <Download className="w-6 h-6" />
+                        </Button>
+                    </ItemActions>
+                </Item>                  
         </div>
         <SheetFooter>
           {/* <Button type="submit">Save changes</Button> */}
