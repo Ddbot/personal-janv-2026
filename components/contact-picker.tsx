@@ -19,7 +19,7 @@ export default function ContactPicker({ className }: { className: string}) {
   return (
       <Sheet>
       <SheetTrigger asChild className={cn(className)}>
-        <Button variant="outline"><Mail /></Button>
+        <Button variant="outline" className="bg-secondary"><Mail /></Button>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>

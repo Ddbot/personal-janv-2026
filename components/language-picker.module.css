@@ -7,6 +7,7 @@
     color: var(--secondary-foreground);
     border-radius: 9999px !important;
     aspect-ratio: 1 / 1 !important;
+    background-color: var(--secondary);
     transition: background-color 0.2s ease-in-out;
     padding: 0px !important;
     /* width: 48px !important;

@@ -3,10 +3,11 @@
     display: flex;
     align-items: center;
     /* border-radius: 9999px !important; */
+    background-color: var(--secondary);
     transition: background-color 0.2s ease-in-out;
     /* padding: 0px !important; */
     /* aspect-ratio: 1 / 1 !important; */
-    anchor-name: --trigger;
+    anchor-name: --trigger;    
 }
 
 .content {

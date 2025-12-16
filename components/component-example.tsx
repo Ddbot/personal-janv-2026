@@ -204,17 +204,12 @@ export function ComponentExample() {
 
     return (
         <div className="p-8 space-y-8">
-            {/* <h1 className="text-3xl font-bold mb-4">FloatingPanel Examples</h1> */}
             <div className="flex flex-col md:justify-between md:flex-row flex-wrap gap-4">
-                {/* <FloatingPanelInput /> */}
-                    <Logo theme={theme}/>
+                <Logo theme={theme}/>
                 <div className="flex flex-col md:flex-row flex-wrap items-center gap-4">
-                    {/* <ColorPickerFloatingPanel /> */}
-                    {/* <ContactPicker className="w-9 h-9 aspect-square rounded-full"/> */}
                     <ContactPicker className="w-9 h-9 aspect-square rounded-full"/>
                     <LanguagePicker className="w-9 h-9 aspect-square rounded-full"/>
                     <ThemeToggler theme={theme} toggleTheme={toggleTheme}/>
-                    {/* <ImagePreviewFloatingPanel /> */}
                 </div>
             </div>
         </div>
