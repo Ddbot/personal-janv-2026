@@ -34,8 +34,8 @@ export function GridPatternDemo() {
                   [19 + 1, 5 + 10],
                 //   git
                   [22, 16],
-// chatgpt
-                  [20,18],
+// openai
+                  [21,18],
 // gsap
                   [28, 18],
               ]}
