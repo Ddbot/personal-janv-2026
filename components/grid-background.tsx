@@ -43,7 +43,7 @@ export function GridPatternDemo() {
 
         className={cn(
           "[mask-image:radial-gradient(400px_circle_at_70%_40%,white,transparent)]",
-          "inset-x-0 inset-y-[-30%] h-[200%] skew-y-12"
+          "inset-x-0 inset-y-[-20%] h-[200%] skew-y-12"
         )}
       />
     </div>
