@@ -1,14 +1,11 @@
 import Navbar from "@/components/navbar";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { GridPatternDemo } from "@/components/grid-background";
-import { BentoGrid } from "@/components/ui/bento-grid";
-
+import { BentoExample } from "@/components/BentoExample";
 export default function Page() {
     return <ThemeProvider>
         <Navbar />
         <GridPatternDemo />
-        <BentoGrid>
-            <div className="w-full h-dvh flex">hello</div>
-        </BentoGrid>
+        <BentoExample />        
     </ThemeProvider>
 }
