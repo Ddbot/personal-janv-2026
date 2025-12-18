@@ -31,13 +31,15 @@ export function GridPatternDemo() {
 // apps script
                   [19 + 8, 5 + 9],
                 //   figma
-                  [19 + 1, 5 + 10],
+                  [20, 5 + 10],
                 //   git
                   [22, 16],
 // openai
                   [21,18],
 // gsap
                   [28, 18],
+                //   gemini
+                  [19, 17],
               ]}
               
 

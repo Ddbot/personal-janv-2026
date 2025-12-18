@@ -3,7 +3,7 @@ import { ThemeContext } from "@/contexts/ThemeContext"
 import { cn } from "@/lib/utils"
 import { transform } from "next/dist/build/swc/generated-native"
 
-const urls = ["html_logo.svg", "css_logo.svg", "tailwind_logo.svg","js_logo.svg","ts_logo.svg",'react_logo.svg', "nextjs_logo.svg","postgreSQL_logo.svg","firebase_logo.svg","supabase_logo.svg","apps_script_logo.svg","figma_logo.svg","git_logo.svg","chatgpt_logo.svg","gsap_logo.svg"]
+const urls = ["html_logo.svg", "css_logo.svg", "tailwind_logo.svg","js_logo.svg","ts_logo.svg",'react_logo.svg', "nextjs_logo.svg","postgreSQL_logo.svg","firebase_logo.svg","supabase_logo.svg","apps_script_logo.svg","figma_logo.svg","git_logo.svg","chatgpt_logo.svg","gsap_logo.svg","gemini_logo.svg"]
 interface GridPatternProps extends React.SVGProps<SVGSVGElement> {
   width?: number
   height?: number
