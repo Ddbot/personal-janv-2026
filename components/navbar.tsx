@@ -22,6 +22,7 @@ import {
 } from "./ui/floating-panel"
 import Logo from "./site-logo"
 import { ThemeContext } from "../contexts/ThemeContext"
+import { AnimatedThemeToggler } from "./ui/animated-theme-toggler"
 
 function FloatingPanelInput() {
   const handleSubmit = (note: string) => {
@@ -210,6 +211,7 @@ export default function Navbar() {
                     <ContactPicker className="w-9 h-9 aspect-square rounded-full"/>
                     <LanguagePicker className="w-9 h-9 aspect-square rounded-full"/>
                     <ThemeToggler theme={theme} toggleTheme={toggleTheme}/>
+                    {/* <AnimatedThemeToggler/> */}
                 </div>
             </div>
         </div>
