@@ -9,17 +9,18 @@ import { Mail } from 'lucide-react';
 export function GridPatternDemo() {
   return (
     <div className="bg-background relative flex h-dvh w-full overflow-hidden rounded-lg pt-32">
-        <section className="w-1/2 h-full flex flex-col flex-wrap justify-start items-start text-left text-2xl p-8">
-            <div className="w-full h-fit text-5xl font-bold my-4">JS <span className="text-primary">|</span> React <span className="text-primary">|</span> Next.js</div>
-            <div className="w-full h-fit text-5xl font-bold my-4">Polyvalent, Curieux, Fiable</div>
-            <div className="w-full h-fit text-5xl font-bold my-4">Team Player </div>              
-            <div className="w-full flex flex-row justify-end gap-4 mt-8">
-                <Button variant='outline' className="text-xl p-4">
+        <section className="w-1/2 h-full flex flex-col flex-wrap justify-start items-start text-left text-2xl px-8 md:translate-x-8">
+            <div className="w-full h-fit text-5xl font-light my-2">Développeur <span className="font-bold text-primary">Front End</span></div>
+            <div className="w-full h-fit text-5xl font-light my-2">JS <span className="text-primary-foreground">|</span> React <span className="text-primary-foreground">|</span> Next.js</div>
+            <div className="w-full h-fit text-5xl font-light my-2">Polyvalent, Curieux, Fiable</div>
+            {/* <div className="w-full h-fit text-5xl font-bold my-2">Team Player </div>               */}
+            <div className="w-full flex flex-row justify-end gap-4 p-8">
+                <Button variant='outline' className="text-sm p-4">
                     <Link href="#projects">
                         Plus d&apos;infos
                     </Link>
                 </Button>  
-                <Button variant='secondary' className="text-xl p-4">
+                <Button variant='secondary' className="text-sm p-4">
                     <Link href="#contact">
                         Contact
                     </Link>
