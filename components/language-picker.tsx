@@ -1,3 +1,4 @@
+import { use } from 'react'
 import { FloatingPanelRoot, FloatingPanelTrigger, FloatingPanelContent, FloatingPanelBody, FloatingPanelFooter, FloatingPanelCloseButton } from "./ui/floating-panel"
 import { Languages } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
@@ -5,15 +6,22 @@ import styles from "./language-picker.module.css"
 import { cn } from "@/lib/utils"
 import { Button } from "./ui/button"
 import Image from "next/image"
+import { LangContext, Lang } from "@/contexts/LangContext"
 
 const LanguagePicker = ({ className }: { className?: string }) => {
-    type Language = "fr" | "gb" | "de"
     
-    const languages: Language[] = ["fr", "gb", "de"];
+    
+    const languages: Lang[] = ["fr", "gb", "de"];
     const languageFull = {
         fr: "Français",
         gb: "English",
         de: "Deutsch"
+    }
+
+    const { changeLang } = use(LangContext);
+
+    function handleChangeLanguage(l: Lang) {
+        changeLang(l);
     }
 
   return (
@@ -45,7 +53,7 @@ const LanguagePicker = ({ className }: { className?: string }) => {
                   key={l}
                   className="flex flex-col items-center w-12 h-12 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                 //   style={{ backgroundColor: l }}
-                  onClick={() => console.log(`Selected language: ${languageFull[l]}`)}
+                  onClick={() => handleChangeLanguage(l)}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   initial={{ opacity: 0, scale: 0.8 }}

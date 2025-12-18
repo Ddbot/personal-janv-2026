@@ -1,5 +1,5 @@
 "use client"
-
+import { use } from 'react'
 import { cn } from "@/lib/utils"
 import { GridPattern } from "./ui/grid-pattern"
 import { Button } from "./ui/button"
@@ -9,14 +9,16 @@ import { TypingAnimation } from "./ui/typing-animation"
 import { RainbowButton } from "./ui/rainbow-button"
 import styles from './grid-background.module.css';
 import { dictionary } from '../lib/dictionary';
+import { LangContext } from "../contexts/LangContext";
 
 export function GridPatternDemo() {
+    const { lang } = use(LangContext);
   return (
     <div className="bg-background relative flex h-dvh w-full overflow-hidden rounded-lg pt-32">
         <section className="w-1/2 h-full flex flex-col flex-wrap justify-start items-start text-left text-2xl px-8">
-            <div className="w-full h-fit text-5xl font-light my-2">{dictionary['de']['hero']['intro'][0]}<span className="font-bold text-primary">{dictionary['de']['hero']['intro'][1]}</span></div>
+            <div className="w-full h-fit text-5xl font-light my-2">{dictionary[lang]['hero']['intro'][0]}<span className="font-bold text-primary">{dictionary[lang]['hero']['intro'][1]}</span></div>
               <div className="w-full h-fit text-5xl font-light my-2">JS <span className="text-primary-foreground">|</span> React <span className="text-primary-foreground">|</span> Next.js</div>
-              <TypingAnimation className={styles.typing_animation} words={dictionary['de']['hero']['typing']}
+              <TypingAnimation className={styles.typing_animation} words={dictionary[lang]['hero']['typing']}
                 loop={true}
                   delay={1000}
                   deleteSpeed={100}
@@ -28,13 +30,13 @@ export function GridPatternDemo() {
             <div className="w-full flex flex-row justify-end gap-4 p-8">
                 <Button variant={"outline"}>
                     <Link href="#projects">
-                        {dictionary['de']['hero']['more']}
+                        {dictionary[lang]['hero']['more']}
                     </Link>
                 </Button>  
                   <Button variant='default' className="text-sm p-4">
                       <Mail size="icon"/>
                     <Link href="#contact">
-                        {dictionary['de']['hero']['contact']}
+                        {dictionary[lang]['hero']['contact']}
                     </Link>
                 </Button>  
             </div>
