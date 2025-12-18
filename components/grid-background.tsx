@@ -5,7 +5,8 @@ import { GridPattern } from "./ui/grid-pattern"
 
 export function GridPatternDemo() {
   return (
-    <div className="bg-background relative flex h-dvh w-full flex-col items-center justify-center overflow-hidden rounded-lg">
+      <div className="bg-background relative flex h-dvh w-full flex-col items-left justify-center overflow-hidden rounded-lg">
+          <p className="w-1/2 h-full text-left ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam consectetur ad quos. Eaque, deleniti iure. Reprehenderit facere temporibus nesciunt laborum, aperiam enim accusantium cupiditate sapiente repudiandae earum eos aut quasi?</p>
       <GridPattern
               squares={[
             // html
