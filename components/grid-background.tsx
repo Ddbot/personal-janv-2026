@@ -6,6 +6,7 @@ import { Button } from "./ui/button"
 import Link from "next/link"
 import { Mail } from 'lucide-react';
 import { TypingAnimation } from "./ui/typing-animation"
+import { RainbowButton } from "./ui/rainbow-button"
 import styles from './grid-background.module.css';
 
 export function GridPatternDemo() {
@@ -26,12 +27,12 @@ export function GridPatternDemo() {
             {/* <div className="w-full h-fit text-5xl font-light my-2">Polyvalent, Curieux, Fiable</div> */}
             {/* <div className="w-full h-fit text-5xl font-bold my-2">Team Player </div>               */}
             <div className="w-full flex flex-row justify-end gap-4 p-8">
-                <Button variant='outline' className="text-sm p-4">
+                <Button variant={"outline"}>
                     <Link href="#projects">
                         Plus d&apos;infos
                     </Link>
                 </Button>  
-                  <Button variant='secondary' className="text-sm p-4">
+                  <Button variant='default' className="text-sm p-4">
                       <Mail size="icon"/>
                     <Link href="#contact">
                         Contact
