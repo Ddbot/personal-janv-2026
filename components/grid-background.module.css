@@ -1,0 +1,9 @@
+.typing_animation {
+    font-size: 3rem;
+    line-height: 1;
+    margin-block: .5rem;
+    font-weight: 300;
+    & > span:last-child {
+        color: var(--primary);
+    }
+}
