@@ -11,7 +11,7 @@ import styles from './grid-background.module.css';
 import { dictionary } from '../lib/dictionary';
 import { LangContext } from "../contexts/LangContext";
 
-export function GridPatternDemo() {
+export default function Hero() {
     const { lang } = use(LangContext);
   return (
     <div className="bg-background relative flex h-dvh w-full overflow-hidden rounded-lg pt-32">
