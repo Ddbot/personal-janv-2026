@@ -49,7 +49,7 @@ export default function Projects() {
                 <Marquee
                     pauseOnHover
                     className="absolute top-10 [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] [--duration:20s]">
-                    {skills.map((f, idx) => (
+                    {dictionary[lang]['skills'].map((f, idx) => (
                         <figure
                             key={idx}
                             className={cn(

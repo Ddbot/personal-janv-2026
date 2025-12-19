@@ -1,7 +1,9 @@
 "use client"
-
+import { use } from 'react'
+import { LangContext, Lang } from '@/contexts/LangContext'
 import { cn } from "@/lib/utils"
 import { AnimatedList } from "@/components/ui/animated-list"
+import { dictionary } from "@/lib/dictionary"
 
 interface Item {
   name: string
@@ -11,39 +13,9 @@ interface Item {
   time: string
 }
 
-let notifications = [
-  {
-    name: "Payment received",
-    description: "Magic UI",
-    time: "15m ago",
+const notifications = (l: Lang) => { return dictionary[l]['skills'] };
 
-    icon: "💸",
-    color: "#00C9A7",
-  },
-  {
-    name: "User signed up",
-    description: "Magic UI",
-    time: "10m ago",
-    icon: "👤",
-    color: "#FFB800",
-  },
-  {
-    name: "New message",
-    description: "Magic UI",
-    time: "5m ago",
-    icon: "💬",
-    color: "#FF3D71",
-  },
-  {
-    name: "New event",
-    description: "Magic UI",
-    time: "2m ago",
-    icon: "🗞️",
-    color: "#1E86FF",
-  },
-]
-
-notifications = Array.from({ length: 10 }, () => notifications).flat()
+// notifications = Array.from({ length: 10 }, () => notifications).flat()
 
 const Notification = ({ name, description, icon, color, time }: Item) => {
   return (
@@ -86,7 +58,9 @@ export default function AnimatedListDemo({
   className,
 }: {
   className?: string
-}) {
+    }) {
+    // const notif: any = dictionary[lang]['skills'];
+    const { lang } = use(LangContext);
   return (
     <div
       className={cn(
@@ -95,7 +69,7 @@ export default function AnimatedListDemo({
       )}
     >
       <AnimatedList>
-        {notifications.map((item, idx) => (
+        {notifications(lang).reverse().map((item, idx) => (
           <Notification {...item} key={idx} />
         ))}
       </AnimatedList>
