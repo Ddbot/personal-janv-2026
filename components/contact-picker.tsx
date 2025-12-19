@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button"
 import { Item, ItemActions, ItemContent, ItemDescription, ItemTitle } from "@/components/ui/item"
-import { Label } from "@/components/ui/label"
 import {
   Sheet,
   SheetClose,
