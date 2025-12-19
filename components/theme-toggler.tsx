@@ -1,16 +1,12 @@
+"use client";
+import { use } from 'react';
 import { Sun, Moon } from "lucide-react"
 import { Button } from "./ui/button"
+import { ThemeContext } from '@/contexts/ThemeContext';
 
+const ThemeToggler = () => {
+    const {theme, toggleTheme } = use(ThemeContext);
 
-const ThemeToggler = ({theme, toggleTheme}: {theme: string, toggleTheme: () => void}) => {
-    // const [theme, setTheme] = useState("light");
-    // const toggleTheme = () => {
-    //     setTheme(theme === "light" ? "dark" : "light");
-    // }
-    // useEffect(() => {
-    //     document.documentElement.classList.remove("light", "dark");
-    //     document.documentElement.classList.add(theme);
-    // }, [theme]);
     return (
         <Button size="icon" variant="outline" onClick={toggleTheme} style={{
             backgroundColor: theme === "dark" ?  "var(--chart-2" :  "var(--card-foreground)",

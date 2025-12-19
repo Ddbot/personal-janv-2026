@@ -12,7 +12,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { Download, Mail, MessageCircle } from "lucide-react"
-import styles from "./contact-picker.module.css"
+
 import { cn } from '@/lib/utils'
 
 export default function ContactPicker({ className }: { className: string}) {

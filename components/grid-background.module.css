@@ -7,3 +7,9 @@
         color: var(--primary);
     }
 }
+
+@media screen and (orientation: portrait) {
+    .typing_animation {
+        font-size: 2.25rem;
+    }
+}

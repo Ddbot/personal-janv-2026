@@ -112,7 +112,7 @@ const features = [
 	},
 ];    
   return (
-    <BentoGrid className="p-24" id="projects">
+    <BentoGrid className="p-4 md:p-24" id="projects">
       {features.map((feature, idx) => (
         <BentoCard key={idx} {...feature} />
       ))}

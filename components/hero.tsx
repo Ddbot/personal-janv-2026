@@ -16,8 +16,8 @@ export default function Hero() {
   return (
     <div className="bg-background relative flex h-dvh w-full overflow-hidden rounded-lg pt-32">
         <section className="w-1/2 h-full flex flex-col flex-wrap justify-start items-start text-left text-2xl px-8">
-            <div className="w-full h-fit text-5xl font-light my-2">{dictionary[lang]['hero']['intro'][0]}<span className="font-bold text-primary">{dictionary[lang]['hero']['intro'][1]}</span></div>
-              <div className="w-full h-fit text-5xl font-light my-2">JS <span className="text-primary-foreground">|</span> React <span className="text-primary-foreground">|</span> Next.js</div>
+            <div className="w-full h-fit text-4xl md:text-5xl font-light my-2">{dictionary[lang]['hero']['intro'][0]}<span className="font-bold text-primary">{dictionary[lang]['hero']['intro'][1]}</span></div>
+              <div className="w-full h-fit text-4xl md:text-5xl font-light my-2">JS <span className="text-primary-foreground">|</span> React <span className="text-primary-foreground">|</span> Next.js</div>
               <TypingAnimation className={styles.typing_animation} words={dictionary[lang]['hero']['typing']}
                 loop={true}
                   delay={1000}
