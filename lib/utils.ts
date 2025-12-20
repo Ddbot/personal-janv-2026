@@ -18,5 +18,6 @@ export function decodeHtmlEntities(text: string) {
     .replace(/&lt;/g, '<')
     .replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"')
-    .replace(/&#039;/g, "'");
+      .replace(/&#039;/g, "'")
+    .replace(/&#8217;/g, "'")
 }

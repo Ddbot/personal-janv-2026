@@ -1,4 +1,4 @@
-import NewspaperBlog from './NewspaperBlog';
+import Index from './Index';
 // app/blog/page.js
 async function getPosts() {
 	const res = await fetch(
@@ -18,5 +18,5 @@ async function getPosts() {
 export default async function BlogPage() {
 	const posts = await getPosts();
 
-	return <NewspaperBlog posts={posts} />		
+	return <Index posts={posts} />		
 }
