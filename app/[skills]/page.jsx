@@ -1,6 +1,7 @@
 'use client';
 import { use, ViewTransition } from 'react';
 import { LangContext } from '@/contexts/LangContext';
+import { ThemeContext } from '@/contexts/ThemeContext';
 import { dictionary } from '@/lib/dictionary';
 import { Baby, Keyboard, Share2Icon, PocketKnife } from 'lucide-react';
 
@@ -13,7 +14,7 @@ import { Marquee } from '@/components/ui/marquee';
 
 export default function Skills() {
 	const { lang } = use(LangContext);
-
+    // const { theme } = use(ThemeContext);
 	const skills = [
 		{
 			name: 'Front End',
@@ -114,7 +115,7 @@ export default function Skills() {
 	];
 
 	return (
-		<BentoGrid className="p-4 md:p-2" id="skills_grid">
+		<BentoGrid className="p-4 md:p-2">
 			{/* {features.map((feature, idx) => ( */}
 				<ViewTransition key={1}>
 					<BentoCard {...features[1]} />
