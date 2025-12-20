@@ -1,9 +1,10 @@
 "use client"
-import { use } from 'react'
+import { use, useEffect } from 'react'
 import { LangContext, Lang } from '@/contexts/LangContext'
 import { cn } from "@/lib/utils"
 import { AnimatedList } from "@/components/ui/animated-list"
 import { dictionary } from "@/lib/dictionary"
+import Link from 'next/link'
 
 interface Item {
   name: string
@@ -14,6 +15,14 @@ interface Item {
 }
 
 const notifications = (l: Lang) => { return dictionary[l]['skills'] };
+
+function urlEncoder(url:string) {
+    const ar = url.split(' ');
+    const result = ar.map((word) => {
+        return word.toLowerCase();
+    });
+    return result.join('_');
+}
 
 // notifications = Array.from({ length: 10 }, () => notifications).flat()
 
@@ -50,8 +59,7 @@ const Notification = ({ name, description, icon, color, time }: Item) => {
           </p>
         </div>
       </div>
-    </figure>
-  )
+    </figure>)
 }
 
 export default function AnimatedListDemo({

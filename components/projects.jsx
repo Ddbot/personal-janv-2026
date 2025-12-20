@@ -1,5 +1,5 @@
 "use client";
-import { use } from 'react'
+import { use, ViewTransition } from 'react'
 import { LangContext } from '@/contexts/LangContext';
 import { dictionary } from '@/lib/dictionary';
 import { Baby, Keyboard, Share2Icon, PocketKnife } from 'lucide-react';
@@ -77,7 +77,7 @@ export default function Projects() {
             Icon: PocketKnife,
             name: 'Skills',
             description: dictionary[lang]['features']['description'][1],
-            href: '#',
+            href: '/skills',
             cta: dictionary[lang]['cta'],
             className: 'col-span-3 lg:col-span-2',
             background: (
@@ -114,8 +114,9 @@ export default function Projects() {
 
     return (
     <BentoGrid className="p-4 md:p-24" id="projects">
-      {features.map((feature, idx) => (
-        <BentoCard key={idx} {...feature} />
+            {features.map((feature, idx) => (<ViewTransition key={idx}>
+                <BentoCard {...feature} />
+      </ViewTransition>
       ))}
     </BentoGrid>
   )
