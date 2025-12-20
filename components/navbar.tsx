@@ -14,9 +14,9 @@ export default function Navbar() {
                 <Link href={'/'}>                
                     <Logo />
                 </Link>
-                <div className="flex flex-row flex-wrap items-center gap-4">
-                    <ContactPicker className="w-5 h-5 md:w-9 md:h-9 aspect-square rounded-full"/>
-                    <LanguagePicker className="w-5 h-5 md:w-9 md:h-9 aspect-square rounded-full"/>
+                <div className="flex flex-row flex-nowrap items-center gap-4">
+                    <ContactPicker className="md:w-9 md:h-9 aspect-square rounded-full"/>
+                    <LanguagePicker className="md:w-9 md:h-9 aspect-square rounded-full"/>
                     <ThemeToggler />
                 </div>
             </div>

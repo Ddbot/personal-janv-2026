@@ -14,11 +14,10 @@ export default async function PostPage({ params }) {
 	const post = await getPost((await params).slug);
     console.log('Post: ', post);
 	return (
-		<article className='p-8'>
-            <h1
-                className='flex items-center justify-center text-center text-2xl'
+		<article className="p-8">
+			<h1 className="flex items-center justify-center scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance"
 				style={{
-					minHeight: '50dvh',
+					minHeight: '40dvh',
 					backgroundImage: `url(${post.jetpack_featured_media_url})`,
 					backgroundSize: 'cover',
 				}}>

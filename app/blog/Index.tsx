@@ -1,6 +1,15 @@
 "use client";
 
 import React, { useState, useMemo } from 'react';
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { Calendar, User } from 'lucide-react';
 import { decodeHtmlEntities } from '@/lib/utils';
 import Link from 'next/link';
@@ -35,59 +44,53 @@ const Index = ({ posts }: { posts: WordPressPost[]}) => {
 		return cols;
 	}, [posts]);
 
-	const ArticleCard = ({ article }: { article: WordPressPost }) => (
-		<article
-			className="bg-white border border-gray-300 p-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer mb-0"
-            // onClick={() => setSelectedArticle(article)}
-        >
-			{/* Catégorie */}
-			<div className="text-xs uppercase tracking-wider border-b border-black pb-1 mb-3 font-bold">
-                {article.categories.toString()}
-			</div>
-
-			{/* Titre */}
-			<h2
-				className="text-lg font-serif leading-tight mb-3 font-bold"
-                // style={{ fontFamily: 'Georgia, serif' }}
-            >
-				{decodeHtmlEntities(article.title.rendered)}
-			</h2>
-
-			{/* Métadonnées */}
+    const ArticleCard = ({ article }: { article: WordPressPost }) => (<Link 
+            href={`/blog/${article.slug}`} 
+            className="hover:opacity-80 transition m-0"
+        >      
+        <Card className="m-2 rounded-none border-transparent">
+      <CardHeader>
+        <CardTitle>{decodeHtmlEntities(article.title.rendered)}</CardTitle>
+        <CardDescription>
+                    <span>
+                    {article.categories.toString()}
+                    </span>
 			<div className="flex flex-col gap-1 text-xs text-gray-600 mb-3 border-t border-gray-300 pt-2">
-				{/* <div className="flex items-center gap-1">
+				<div className="flex items-center gap-1">
 					<User size={12} />
 					<span className="italic">{article.author}</span>
-				</div> */}
+				</div>
 				<div className="flex items-center gap-1">
 					<Calendar size={12} />
 					<span>{article.date}</span>
 				</div>
 			</div>
-
-			{/* Contenu complet */}
-			{/* <p className="text-sm leading-relaxed text-justify">
-				{article.content.rendered}
-            </p> */}
+        </CardDescription>
+        {/* <CardAction>
+          <Button variant="link">Sign Up</Button>
+        </CardAction> */}
+      </CardHeader>
+      <CardContent>
             <p dangerouslySetInnerHTML={{ __html: article.excerpt.rendered }} />
-
-			{/* Ornement */}
-			<div className="text-center mt-3 text-xs">◆◆◆</div>
-		</article>
+      </CardContent>
+      <CardFooter className="flex-col gap-2">
+<div className="text-center mt-3 text-xs">◆◆◆</div>
+      </CardFooter>
+        </Card>
+    </Link>
 	);
 
 	return (
-		<div className="min-h-screen bg-amber-50">
+		<div className="min-h-screen bg-background">
 			{/* En-tête du journal */}
-			<header className="border-b-4 border-double border-black bg-white py-6">
+			<header className="border-b-4 border-double border-black bg-background py-6">
 				<div className="max-w-7xl mx-auto px-4">
 					<div className="text-center">
 						{/* <div className="text-xs uppercase tracking-widest mb-2">
 							Paris, France
 						</div> */}
 						<h1
-							className="text-6xl font-serif mb-2"
-                            style={{ fontFamily: 'Inter, serif' }}
+							className="text-6xl mb-2 text-primary"
                         >
 							Mon blog
 						</h1>
@@ -106,9 +109,9 @@ const Index = ({ posts }: { posts: WordPressPost[]}) => {
 			</header>
 
 			{/* Ligne décorative */}
-			<div className="bg-black h-1"></div>
-			<div className="bg-white h-2"></div>
-			<div className="bg-black h-0.5"></div>
+			{/* <div className="bg-[--chart-2] h-1"></div>
+			<div className="bg-[--chart-1] h-2"></div>
+			<div className="bg-[--chart-2] h-0.5"></div> */}
 
 			{/* Contenu principal */}
 			<main
@@ -117,18 +120,12 @@ const Index = ({ posts }: { posts: WordPressPost[]}) => {
 				{/* Masonry layout avec 3 colonnes */}
 				<div className="flex gap-1">
 					{columns.map((column, colIndex) => (
-						<div key={colIndex} className="flex-1 flex flex-col">
+						<div key={colIndex} className="flex-1 flex flex-col gap-0">
 							{column.map((article,i) => (
-                                <Link 
-                                    href={`/blog/${article.slug}`} 
-                                    key={i}
-                                    className="block hover:opacity-80 transition"
-                                >
-                                <ArticleCard
+                                <ArticleCard key={i}
                                     article={article}
                                     />
-                                </Link>
-							))}
+                                ))}
 						</div>
 					))}
 				</div>

@@ -16,9 +16,9 @@ import { cn } from '@/lib/utils'
 
 export default function ContactPicker({ className }: { className: string}) {
   return (
-      <Sheet>
-      <SheetTrigger asChild className={cn(className)}>
-        <Button variant="outline" className="bg-secondary"><Mail /></Button>
+      <Sheet> 
+      <SheetTrigger asChild>
+        <Button variant="outline" className="bg-secondary aspect-square w-9 h-9"><Mail /></Button>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
