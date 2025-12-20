@@ -1,3 +1,4 @@
+import { decodeHtmlEntities } from '@/lib/utils';
 // app/blog/[slug]/page.js
 async function getPost(slug) {
 	const res = await fetch(
@@ -13,8 +14,16 @@ export default async function PostPage({ params }) {
 	const post = await getPost((await params).slug);
     console.log('Post: ', post);
 	return (
-		<article>
-			<h1>{post.title.rendered}</h1>
+		<article className='p-8'>
+            <h1
+                className='flex items-center justify-center text-center text-2xl'
+				style={{
+					minHeight: '50dvh',
+					backgroundImage: `url(${post.jetpack_featured_media_url})`,
+					backgroundSize: 'cover',
+				}}>
+				{decodeHtmlEntities(post.title.rendered)}
+			</h1>
 			<div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
 		</article>
 	);
