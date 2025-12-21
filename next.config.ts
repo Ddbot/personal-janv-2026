@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
             hostname: 'flagsapi.com',
             pathname: '/**',
             },
+            {
+            protocol: 'https',
+            hostname: 'andryblogresume.wordpress.com',
+            pathname: '/**',
+            },            
         ],
     },
 };
