@@ -41,14 +41,15 @@ export default function Hero() {
                 </Button>  
             </div>
         </section>
-        <GridPattern
+          <GridPattern
+              
             squares={[
             // html
-                [19, 11],
+                  [19, 11],
                 //   css                  
-                [23, 2 + 9],
+                [23, 11],
 // tailwind
-                [27, 2 + 9],
+                [27, 11],
 // js
                 [21, 13],
 // ts
@@ -60,13 +61,13 @@ export default function Hero() {
 // postgres
                 [24, 15],
 // firebase
-                [19+6, 8+9],
+                [25, 17],
 // supabase
-                [19+8, 8+8],
+                [27, 16],
 // apps script
-                [19 + 8, 5 + 9],
+                [27, 14],
                 //   figma
-                [20, 5 + 10],
+                [20, 15],
                 //   git
                 [22, 16],
 // openai

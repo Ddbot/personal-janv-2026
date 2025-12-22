@@ -1,4 +1,4 @@
-import parse from 'html-react-parser';
+import parse, { domToReact} from 'html-react-parser';
 import Image from 'next/image';
 import Link from 'next/link';
 import { decodeHtmlEntities } from '@/lib/utils';
@@ -43,8 +43,46 @@ function parseContent(html) {
 					</h2>
 				);
 			}
+
+			if (node.name === 'h3') {
+				return (
+					<h3 className="text-2xl font-medium mt-6 mb-2">
+						{node.children[0]?.data}
+					</h3>
+				);
+			}
+
+            if (node.name === 'p') {
+                console.log('P: ', Object.keys(node), node.attribs);
+				return (
+					<p className="max-w-4xl">
+						{node.children
+							.map((child) => {
+								return child?.data;
+							})
+							.join(' ')}
+					</p>
+				);
+			}
+
+			// Code blocks
+			if (node.name === 'pre' && node.children[0]?.name === 'code') {
+				const codeNode = node.children[0];
+				const language =
+					codeNode.attribs.class?.replace('language-', '') || 'js';
+				const code = codeNode.children[0]?.data || '';
+				return <CodeBlock language={language}>{code}</CodeBlock>;
+			}
 		},
 	});
+}
+
+function CodeBlock({ children, language }) {
+	return (
+		<pre className="bg-gray-900 text-white p-4 rounded-lg overflow-x-auto max-w-3xl my-8">
+			<code className={`language-${language}`}>{children}</code>
+		</pre>
+	);
 }
 
 // app/blog/[slug]/page.js
