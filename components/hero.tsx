@@ -12,14 +12,14 @@ import { dictionary } from '../lib/dictionary';
 import { LangContext } from "../contexts/LangContext";
 
 const initialSquares: [x: number, y: number][] = [
-  [ 2, 5 ],   [ 6, 5 ],
-  [ 10, 5 ],  [ 4, 7 ],
+  [ 4, 5 ],   [ 6, 6 ],
+  [ 9, 5 ],  [ 4, 7 ],
   [ 8, 7 ],   [ 12, 7 ],
   [ 3, 9 ],   [ 7, 9 ],
   [ 8, 11 ],  [ 10, 10 ],
   [ 10, 8 ],  [ 3, 9 ],
   [ 5, 10 ],  [ 4, 12 ],
-  [ 11, 12 ], [ 2, 11 ]
+  [ 11, 12 ], [ 6, 13 ]
 ]
 
 export default function Hero() {
