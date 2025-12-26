@@ -11,10 +11,21 @@ import styles from './grid-background.module.css';
 import { dictionary } from '../lib/dictionary';
 import { LangContext } from "../contexts/LangContext";
 
+const initialSquares: [x: number, y: number][] = [
+  [ 2, 5 ],   [ 6, 5 ],
+  [ 10, 5 ],  [ 4, 7 ],
+  [ 8, 7 ],   [ 12, 7 ],
+  [ 3, 9 ],   [ 7, 9 ],
+  [ 8, 11 ],  [ 10, 10 ],
+  [ 10, 8 ],  [ 3, 9 ],
+  [ 5, 10 ],  [ 4, 12 ],
+  [ 11, 12 ], [ 2, 11 ]
+]
+
 export default function Hero() {
     const { lang } = use(LangContext);
   return (
-    <div className="bg-background relative flex h-dvh w-full overflow-hidden rounded-lg pt-32">
+    <div className="bg-background relative flex flex-col flex-wrap h-dvh w-full overflow-hidden rounded-lg pt-32">
         <section className="w-1/2 h-full flex flex-col flex-wrap justify-start items-start text-left text-2xl px-8">
             <div className="w-full h-fit text-4xl md:text-5xl font-light my-2">{dictionary[lang]['hero']['intro'][0]}<span className="font-bold text-primary">{dictionary[lang]['hero']['intro'][1]}</span></div>
               <div className="w-full h-fit text-4xl md:text-5xl font-light my-2">JS <span className="text-primary-foreground">|</span> React <span className="text-primary-foreground">|</span> Next.js</div>
@@ -41,49 +52,14 @@ export default function Hero() {
                 </Button>  
             </div>
         </section>
-          <GridPattern
-              
-            squares={[
-            // html
-                  [19, 11],
-                //   css                  
-                [23, 11],
-// tailwind
-                [27, 11],
-// js
-                [21, 13],
-// ts
-                [25, 13],
-// react
-                [29, 13],
-// next
-                [20, 15],
-// postgres
-                [24, 15],
-// firebase
-                [25, 17],
-// supabase
-                [27, 16],
-// apps script
-                [27, 14],
-                //   figma
-                [20, 15],
-                //   git
-                [22, 16],
-// openai
-                [21,18],
-// gsap
-                [28, 18],
-                //   gemini
-                [19, 17],
-            ]}
-            
-
-        className={cn(
-        "[mask-image:radial-gradient(400px_circle_at_70%_40%,white,transparent)]",
-        "inset-x-0 inset-y-[-20%] h-[200%] skew-y-12"
-        )}
-    />
+        <GridPattern    
+              className={cn(
+                "relative w-1/2",
+            "mask-[radial-gradient(350px_circle_at_45%_50%,white,transparent)]",
+                "inset-x-0 inset-y-[-20%] h-[200%] skew-y-12",
+            )}              
+            squares={initialSquares}            
+        />
     </div>
   )
 }
