@@ -29,14 +29,16 @@ export default function AnimatedBeamMultipleOutputDemo({
 }: {
   className?: string
 }) {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const div1Ref = useRef<HTMLDivElement>(null)
+    const containerRef = useRef<HTMLDivElement>(null)
+    
+  const googleDriveRef = useRef<HTMLDivElement>(null)
   const div2Ref = useRef<HTMLDivElement>(null)
-  const div3Ref = useRef<HTMLDivElement>(null)
-  const div4Ref = useRef<HTMLDivElement>(null)
+  const gmailRef = useRef<HTMLDivElement>(null)
+  const teamsRef = useRef<HTMLDivElement>(null)
   const div5Ref = useRef<HTMLDivElement>(null)
-  const div6Ref = useRef<HTMLDivElement>(null)
-  const div7Ref = useRef<HTMLDivElement>(null)
+  const trelloRef = useRef<HTMLDivElement>(null)
+    const usersRef = useRef<HTMLDivElement>(null)
+    const clientRef = useRef<HTMLDivElement>(null)
 
   return (
     <div
@@ -48,30 +50,38 @@ export default function AnimatedBeamMultipleOutputDemo({
     >
       <div className="flex size-full max-w-lg flex-row items-stretch justify-between gap-10">
         <div className="flex flex-col justify-center">
-          <Circle ref={div7Ref}>
-            <Icons.user />
+          <Circle ref={usersRef}>
+            <Icons.users />
           </Circle>
         </div>
         <div className="flex flex-col justify-center">
-          <Circle ref={div6Ref} className="size-16">
+          <Circle ref={trelloRef} className="size-16">
             <Icons.trello />
           </Circle>
         </div>
         <div className="flex flex-col justify-center gap-2">
-          <Circle ref={div1Ref}>
+          <Circle ref={googleDriveRef}>
             <Icons.googleDrive />
           </Circle>
-          <Circle ref={div2Ref}>
-            <Icons.googleDocs />
-          </Circle>
-          <Circle ref={div3Ref}>
+          <Circle ref={gmailRef}>
             <Icons.gmail />
           </Circle>
-          <Circle ref={div4Ref}>
+          {/* 
+                  <Circle ref={div2Ref}>
+            <Icons.googleDocs />
+          </Circle>
+          
+              */}
+          <Circle ref={teamsRef}>
             <Icons.teams />
           </Circle>
-          <Circle ref={div5Ref}>
+          {/* <Circle ref={div5Ref}>
             <Icons.notion />
+          </Circle> */}
+              </div>
+            <div className="flex flex-col justify-center">
+          <Circle ref={clientRef} className="size-16">
+            <Icons.user />
           </Circle>
         </div>
       </div>
@@ -79,40 +89,54 @@ export default function AnimatedBeamMultipleOutputDemo({
       {/* AnimatedBeams */}
       <AnimatedBeam
         containerRef={containerRef}
-        fromRef={div1Ref}
-        toRef={div6Ref}
+        fromRef={googleDriveRef}
+        toRef={trelloRef}
         duration={3}
       />
       <AnimatedBeam
         containerRef={containerRef}
         fromRef={div2Ref}
-        toRef={div6Ref}
+        toRef={trelloRef}
         duration={3}
       />
       <AnimatedBeam
         containerRef={containerRef}
-        fromRef={div3Ref}
-        toRef={div6Ref}
+        fromRef={gmailRef}
+        toRef={trelloRef}
         duration={3}
       />
       <AnimatedBeam
         containerRef={containerRef}
-        fromRef={div4Ref}
-        toRef={div6Ref}
+        fromRef={teamsRef}
+        toRef={trelloRef}
         duration={3}
       />
       <AnimatedBeam
         containerRef={containerRef}
         fromRef={div5Ref}
-        toRef={div6Ref}
+        toRef={trelloRef}
         duration={3}
       />
       <AnimatedBeam
         containerRef={containerRef}
-        fromRef={div6Ref}
-        toRef={div7Ref}
+        fromRef={trelloRef}
+        toRef={usersRef}
         duration={3}
-      />
+          />
+      <AnimatedBeam
+        containerRef={containerRef}
+        fromRef={trelloRef}
+        toRef={usersRef}
+        duration={3}
+          /> 
+      <AnimatedBeam
+        containerRef={containerRef}
+        fromRef={clientRef}
+        toRef={googleDriveRef}
+              duration={3}
+              curvature={1}
+              reverse={true}
+          />           
     </div>
   )
 }
@@ -511,6 +535,7 @@ const Icons = {
       <circle cx="12" cy="7" r="4" />
     </svg>
     ),
+  users: () => (<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-icon lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg>),
     trello: () => (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
         <defs>
             <linearGradient id="linear-gradient" x1="40" y1="70.47" x2="40" y2="9.53" gradientUnits="userSpaceOnUse">
