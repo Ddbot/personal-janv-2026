@@ -12,7 +12,7 @@ import { dictionary } from '../lib/dictionary';
 import { LangContext } from "../contexts/LangContext";
 
 const initialSquares: [x: number, y: number][] = [
-  [ 4, 5 ],   [ 6, 6 ],
+  [ 5, 4 ],   [ 6, 6 ],
   [ 9, 5 ],  [ 4, 7 ],
   [ 8, 7 ],   [ 12, 7 ],
   [ 3, 9 ],   [ 7, 9 ],
