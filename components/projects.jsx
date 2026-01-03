@@ -11,6 +11,9 @@ import AnimatedListDemo from "@/components/animated-list-demo"
 import { BentoCard, BentoGrid } from "@/components/ui/bento-grid"
 import { Marquee } from "@/components/ui/marquee"
 import Container from "./speed-typer-container"
+import bg from "@/public/speed_typer_.png"
+import Image from 'next/image'
+
 
 export default function Projects() {
     const { lang } = use(LangContext);
@@ -42,7 +45,7 @@ export default function Projects() {
 		{
 			Icon: PocketKnife,
 			name: 'Skills',
-			description: dictionary[lang]['features']['description'][1],
+			description: dictionary[lang]['features']['description'][0],
 			href: '#',
 			cta: dictionary[lang]['cta'],
 			className: 'col-span-3 lg:col-span-1',
@@ -84,10 +87,8 @@ export default function Projects() {
 			cta: dictionary[lang]['cta'],
 			className: 'col-span-3 lg:col-span-2',
 			background: (
-				// <Container className="absolute top-4 right-2 h-[300px] w-full scale-75 border-none [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-90" />
-				<Container
-					description={dictionary[lang]['features']['description'][1]}
-				/>
+                // <Container className="absolute top-4 right-2 h-[300px] w-full scale-75 border-none [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-90" />
+                <Image src={bg} alt="speed typer" className="absolute -top-8 right-2 w-full scale-75 border-none mask-[linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-90" />
 			),
 		},
 		{
