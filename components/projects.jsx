@@ -97,7 +97,7 @@ export default function Projects() {
 			description: dictionary[lang]['features']['description'][2],
 			href: '/blog/api-google-drive-trello-supabase',
 			cta: dictionary[lang]['cta'],
-			className: 'col-span-3 lg:col-span-2',
+			className: 'col-span-3 lg:col-span-1',
 			background: (
 				<AnimatedBeamMultipleOutputDemo className="absolute top-4 right-2 h-[300px] border-none [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-105" />
 			),

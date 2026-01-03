@@ -1,6 +1,6 @@
 "use client"
 
-import React, { forwardRef, useRef } from "react"
+import React, { forwardRef, useEffect, useRef, useState } from "react"
 
 import { cn } from "@/lib/utils"
 import { AnimatedBeam } from "@/components/ui/animated-beam"
@@ -31,14 +31,20 @@ export default function AnimatedBeamMultipleOutputDemo({
 }) {
     const containerRef = useRef<HTMLDivElement>(null)
     
-  const googleDriveRef = useRef<HTMLDivElement>(null)
-  const div2Ref = useRef<HTMLDivElement>(null)
-  const gmailRef = useRef<HTMLDivElement>(null)
-  const teamsRef = useRef<HTMLDivElement>(null)
-  const div5Ref = useRef<HTMLDivElement>(null)
-  const trelloRef = useRef<HTMLDivElement>(null)
+    const googleDriveRef = useRef<HTMLDivElement>(null)
+    const teamsRef = useRef<HTMLDivElement>(null)
+    const trelloRef = useRef<HTMLDivElement>(null)
     const usersRef = useRef<HTMLDivElement>(null)
     const clientRef = useRef<HTMLDivElement>(null)
+
+    const [isReversed, setIsReversed] = useState(false)
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setIsReversed(prev => !prev);
+        }, 3000);
+        return () => clearInterval(interval);
+    }, [setIsReversed]);
 
   return (
     <div
@@ -63,21 +69,9 @@ export default function AnimatedBeamMultipleOutputDemo({
           <Circle ref={googleDriveRef}>
             <Icons.googleDrive />
           </Circle>
-          <Circle ref={gmailRef}>
-            <Icons.gmail />
-          </Circle>
-          {/* 
-                  <Circle ref={div2Ref}>
-            <Icons.googleDocs />
-          </Circle>
-          
-              */}
           <Circle ref={teamsRef}>
             <Icons.teams />
           </Circle>
-          {/* <Circle ref={div5Ref}>
-            <Icons.notion />
-          </Circle> */}
               </div>
             <div className="flex flex-col justify-center">
           <Circle ref={clientRef} className="size-16">
@@ -86,57 +80,38 @@ export default function AnimatedBeamMultipleOutputDemo({
         </div>
       </div>
 
-      {/* AnimatedBeams */}
+          {/* AnimatedBeams */}
+                <AnimatedBeam
+        containerRef={containerRef}
+        toRef={clientRef}
+        fromRef={googleDriveRef}
+        duration={3}
+        reverse={isReversed}
+      />
       <AnimatedBeam
         containerRef={containerRef}
         fromRef={googleDriveRef}
-        toRef={trelloRef}
+              toRef={trelloRef}
+              reverse={isReversed}
         duration={3}
       />
       <AnimatedBeam
         containerRef={containerRef}
-        fromRef={div2Ref}
-        toRef={trelloRef}
-        duration={3}
-      />
-      <AnimatedBeam
-        containerRef={containerRef}
-        fromRef={gmailRef}
-        toRef={trelloRef}
-        duration={3}
-      />
-      <AnimatedBeam
+        fromRef={trelloRef}
+        toRef={usersRef}
+              duration={3}
+            //   delay={3}
+              reverse={isReversed}
+          />
+    <AnimatedBeam
         containerRef={containerRef}
         fromRef={teamsRef}
         toRef={trelloRef}
         duration={3}
+        reverse={isReversed}
+        gradientStartColor={!isReversed ? "#ffaa40" : "transparent"}
+        gradientStopColor={!isReversed ? "#9c40ff" : "transparent"}
       />
-      <AnimatedBeam
-        containerRef={containerRef}
-        fromRef={div5Ref}
-        toRef={trelloRef}
-        duration={3}
-      />
-      <AnimatedBeam
-        containerRef={containerRef}
-        fromRef={trelloRef}
-        toRef={usersRef}
-        duration={3}
-          />
-      <AnimatedBeam
-        containerRef={containerRef}
-        fromRef={trelloRef}
-        toRef={usersRef}
-        duration={3}
-          /> 
-      <AnimatedBeam
-        containerRef={containerRef}
-        fromRef={clientRef}
-        toRef={googleDriveRef}
-              duration={3}
-              curvature={1}
-              reverse={true}
-          />           
     </div>
   )
 }
