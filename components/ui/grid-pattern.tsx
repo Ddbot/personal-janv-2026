@@ -13,7 +13,7 @@ const urls = [
     "git_logo.svg", "chatgpt_logo.svg",
     "gsap_logo.svg", "gemini_logo.svg",
     "reading_logo.svg", "music_logo.svg",
-    "keyboard_logo.svg"]
+    "keyboard_logo.svg", "globe_logo.svg"]
 interface GridPatternProps extends React.SVGProps<SVGSVGElement> {
   width?: number
   height?: number
