@@ -3,7 +3,17 @@ import { ThemeContext } from "@/contexts/ThemeContext"
 import { cn } from "@/lib/utils"
 import { transform } from "next/dist/build/swc/generated-native"
 
-const urls = ["html_logo.svg", "css_logo.svg", "tailwind_logo.svg","js_logo.svg","ts_logo.svg",'react_logo.svg', "nextjs_logo.svg","postgreSQL_logo.svg","firebase_logo.svg","supabase_logo.svg","apps_script_logo.svg","figma_logo.svg","git_logo.svg","chatgpt_logo.svg","gsap_logo.svg","gemini_logo.svg"]
+const urls = [
+    "html_logo.svg", "css_logo.svg",
+    "tailwind_logo.svg", "js_logo.svg",
+    "ts_logo.svg", 'react_logo.svg',
+    "nextjs_logo.svg", "postgreSQL_logo.svg",
+    "firebase_logo.svg", "supabase_logo.svg",
+    "apps_script_logo.svg", "figma_logo.svg",
+    "git_logo.svg", "chatgpt_logo.svg",
+    "gsap_logo.svg", "gemini_logo.svg",
+    "reading_logo.svg", "music_logo.svg",
+    "keyboard_logo.svg"]
 interface GridPatternProps extends React.SVGProps<SVGSVGElement> {
   width?: number
   height?: number
@@ -68,7 +78,7 @@ export function GridPattern({
               // />
               <image
                   className="image"
-              href={(i === 13 && theme === "dark") ? "openai_logo.svg" : urls[i]}
+              href={urls[i]}
               strokeWidth="0"
               key={i}
               width={width + 1}
@@ -78,6 +88,7 @@ export function GridPattern({
                 //   transform="scale(.9)"
                   style={{
                       transformOrigin: `${(width - 1) + (x * width + 1) / 2} ${(height - 1) + (y * height + 1) / 2}`,
+                      mixBlendMode: "difference"
                   }}
             />
           ))}

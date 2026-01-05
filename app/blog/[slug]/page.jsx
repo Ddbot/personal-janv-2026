@@ -2,6 +2,7 @@ import parse, { domToReact} from 'html-react-parser';
 import Image from 'next/image';
 import Link from 'next/link';
 import { decodeHtmlEntities } from '@/lib/utils';
+import AnimatedBeamMultipleOutputDemo from '../../../components/animated-beam-example'
 
 function parseContent(html) {
 	return parse(html, {
@@ -107,7 +108,9 @@ export default async function PostPage({ params }) {
 					minHeight: '40dvh',
 					backgroundImage: `url(${post.jetpack_featured_media_url})`,
 					backgroundSize: 'cover',
-				}}>
+                }}
+            >
+                {/* <AnimatedBeamMultipleOutputDemo /> */}
 				{decodeHtmlEntities(post.title.rendered)}
 			</h1>
 			{/* <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} /> */}

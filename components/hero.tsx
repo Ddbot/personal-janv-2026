@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils"
 import { GridPattern } from "./ui/grid-pattern"
 import { Button } from "./ui/button"
 import Link from "next/link"
-import { Mail } from 'lucide-react';
+import { Mail, BookText } from 'lucide-react';
 import { TypingAnimation } from "./ui/typing-animation"
 import { RainbowButton } from "./ui/rainbow-button"
 import styles from './grid-background.module.css';
@@ -17,9 +17,11 @@ const initialSquares: [x: number, y: number][] = [
   [ 8, 7 ],   [ 12, 7 ],
   [ 3, 9 ],   [ 7, 9 ],
   [ 8, 11 ],  [ 10, 10 ],
-  [ 10, 8 ],  [ 3, 9 ],
+  [ 10, 8 ],  [ 3, 5 ],
   [ 5, 10 ],  [ 4, 12 ],
-  [ 11, 12 ], [ 6, 13 ]
+    [11, 12], [6, 13],
+    [7, 2], [11, 6],
+    [9, 12]
 ]
 
 export default function Hero() {
