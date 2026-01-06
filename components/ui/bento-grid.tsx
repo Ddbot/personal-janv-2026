@@ -5,6 +5,7 @@ import { Empty } from '../projects'
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import styles from '@/components/styles/bento-grid.module.css';
 
 interface BentoGridProps extends ComponentPropsWithoutRef<"div"> {
   children: ReactNode
@@ -25,7 +26,7 @@ const BentoGrid = ({ children, className, ...props }: BentoGridProps) => {
   return (
     <div
       className={cn(
-        "grid w-full auto-rows-[22rem] grid-cols-3 gap-4",
+        styles.container,
           className,
       )}
       {...props}
