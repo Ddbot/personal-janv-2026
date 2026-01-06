@@ -7,7 +7,7 @@ import {
 	Keyboard,
 	Share2Icon,
 	PocketKnife,
-	CirclePile,
+	MapPinHouse,
 	Phone,
 } from 'lucide-react';
 
@@ -103,7 +103,7 @@ const Container = ({ className }) => {
 			),
 		},
 		{
-			Icon: CirclePile,
+			Icon: MapPinHouse,
 			name: 'Ma Rue',
 			description: dictionary[lang]['features']['description'][4],
 			className: 'col-span-3 lg:col-span-1 lg:col-start-2 lg:row-start-1',
@@ -114,14 +114,20 @@ const Container = ({ className }) => {
 		{
 			Icon: Phone,
 			name: '',
-			description: dictionary[lang]['features']['description'][4],
+			description: dictionary[lang]['features']['description'][5],
 			className: 'col-span-3 lg:col-span-1 lg:col-start-2 lg:row-start-2',
 			href: '#',
 			cta: dictionary[lang]['cta'],
-            background: <div style={{
-                position: 'absolute',
-                inset: 0
-            }} className='flex items-center justify-center w-full h-full bg-primary'>CONTACT</div>,
+			background: (
+				<div
+					style={{
+						position: 'absolute',
+						inset: 0,
+					}}
+					className="flex items-center justify-center w-full h-full bg-primary">
+					CONTACT
+				</div>
+			),
 		},
 	];
     
