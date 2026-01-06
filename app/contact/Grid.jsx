@@ -1,5 +1,5 @@
 'use client';
-import { use, useState, ViewTransition } from 'react';
+import { use, useState, useEffect,ViewTransition } from 'react';
 import { LangContext } from '@/contexts/LangContext';
 import { dictionary } from '@/lib/dictionary';
 import Link from 'next/link';
@@ -59,6 +59,14 @@ const Container = ({ className }) => {
                 break;
         }
     }
+
+    useEffect(() => {
+        if (window) {
+            const {height} = window.screen
+            window.scrollTo(0, height);
+        }
+
+     }, []);
 
 	return (
 		<div
