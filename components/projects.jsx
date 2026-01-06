@@ -7,10 +7,8 @@ import { Baby, Keyboard, Share2Icon, PocketKnife } from 'lucide-react';
 import { cn } from "@/lib/utils"
 import { Calendar } from "@/components/ui/calendar"
 import AnimatedBeamMultipleOutputDemo from "@/components/animated-beam-example"
-import AnimatedListDemo from "@/components/animated-list-demo"
 import { BentoCard, BentoGrid } from "@/components/ui/bento-grid"
 import { Marquee } from "@/components/ui/marquee"
-import SpeedTyperContainer from "./speed-typer-container"
 import bg from "@/public/speed_typer_.png"
 import Image from 'next/image'
 import styles from './styles/projects.module.css';
