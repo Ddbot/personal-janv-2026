@@ -59,7 +59,7 @@ const Container = ({ className }) => {
 			description: dictionary[lang]['features']['description'][1],
 			href: '/speed-typer',
 			cta: dictionary[lang]['cta'],
-			className: 'col-span-3 lg:col-span-2',
+			className: 'row-start-2 lg:col-start-2 col-span-3 lg:col-span-2',
 			background: (
 				// <SpeedTyperContainer className="absolute top-4 right-2 h-[300px] w-full scale-75 border-none [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-90" />
 				<Image
@@ -75,7 +75,7 @@ const Container = ({ className }) => {
 			description: dictionary[lang]['features']['description'][2],
 			href: '/blog/api-google-drive-trello-supabase',
 			cta: dictionary[lang]['cta'],
-			className: 'col-span-3 lg:col-span-1',
+			className: 'col-span-3 lg:col-span-1 lg:col-start-1 lg:row-start-2',
 			background: (
 				<AnimatedBeamMultipleOutputDemo className="absolute top-4 right-2 h-[300px] border-none [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-105" />
 			),
@@ -84,7 +84,7 @@ const Container = ({ className }) => {
 			Icon: Baby,
 			name: 'Baby Log',
 			description: dictionary[lang]['features']['description'][3],
-			className: 'col-span-3 lg:col-span-1',
+			className: 'col-span-3 lg:col-span-1 lg:col-start-3',
 			href: '#',
 			cta: dictionary[lang]['cta'],
 			background: (

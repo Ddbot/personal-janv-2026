@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 function Body({ children }: { children: React.ReactNode }) {
-    const isScrolling = useIsScrolling(150);
+    const isScrolling = useIsScrolling(300);
 
     return <body className={`${geistSans.variable} ${geistMono.variable} antialiased ${styles.body}`}>
         <Providers>
