@@ -1,0 +1,18 @@
+.container {
+    animation: scaleOutIn linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 200%;
+
+    @starting-style {
+        scale: 100% 100%;
+    }
+}
+
+@keyframes scaleOutIn {
+    0% {
+        scale: 100%;
+    }
+    100% {
+        scale: 65%;
+    }
+}

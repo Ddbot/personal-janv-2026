@@ -32,6 +32,6 @@ function Body({ children }: { children: React.ReactNode }) {
 export default function Page() {
     return <Body>
         <Hero className={styles.children}/>
-        <Projects className={styles.children}/>        
+        <Projects className={styles.children} />        
     </Body> 
 }

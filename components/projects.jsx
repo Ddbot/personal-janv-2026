@@ -10,38 +10,14 @@ import AnimatedBeamMultipleOutputDemo from "@/components/animated-beam-example"
 import AnimatedListDemo from "@/components/animated-list-demo"
 import { BentoCard, BentoGrid } from "@/components/ui/bento-grid"
 import { Marquee } from "@/components/ui/marquee"
-import Container from "./speed-typer-container"
+import SpeedTyperContainer from "./speed-typer-container"
 import bg from "@/public/speed_typer_.png"
 import Image from 'next/image'
+import styles from './styles/projects.module.css';
 
-
-export default function Projects({ className }) {
+const Container = ({ className }) => {
 	const { lang } = use(LangContext);
-
-	const skills = [
-		{
-			name: 'Front End',
-			body: 'Je maîtrise parfaitement les technologies Front End et CSS et me tient constamment informé de leurs évolutions',
-		},
-		{
-			name: 'Back End',
-			body: 'Je maîtrise parfaitement les technologies Back End et me tient constamment informé de leurs évolutions',
-		},
-		{
-			name: 'Full Stack',
-			body: 'Je maîtrise parfaitement les technologies Full Stack et me tient constamment informé de leurs évolutions',
-		},
-		{
-			name: 'Rédaction & Copywriting',
-			body: 'Je maîtrise parfaitement les technologies Rédaction & Copywriting et me tient constamment informé de leurs évolutions',
-		},
-		{
-			name: 'Traduction & SEO',
-			body: 'Je maîtrise parfaitement les technologies Traduction & SEO et me tient constamment informé de leurs évolutions',
-		},
-	];
-
-	const features = [
+    const features = [
 		{
 			Icon: PocketKnife,
 			name: 'Skills',
@@ -87,7 +63,7 @@ export default function Projects({ className }) {
 			cta: dictionary[lang]['cta'],
 			className: 'col-span-3 lg:col-span-2',
 			background: (
-				// <Container className="absolute top-4 right-2 h-[300px] w-full scale-75 border-none [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-90" />
+				// <SpeedTyperContainer className="absolute top-4 right-2 h-[300px] w-full scale-75 border-none [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-90" />
 				<Image
 					src={bg}
 					alt="speed typer"
@@ -122,10 +98,12 @@ export default function Projects({ className }) {
 			),
 		},
 	];
-
-	return (
-        <BentoGrid className={
-            "p-4 md:p-24 " + className} id="projects">
+    
+    return (
+		<BentoGrid
+			style={{ _animation: 'scaleOutIn' }}
+			className={'p-4 md:p-24 ' + className + ' ' + styles.container}
+			id="projects">
 			{features.map((feature, idx) => (
 				<ViewTransition key={idx}>
 					<BentoCard {...feature} />
@@ -133,4 +111,31 @@ export default function Projects({ className }) {
 			))}
 		</BentoGrid>
 	);
+};
+    
+export default function Projects({ className }) {
+	const skills = [
+		{
+			name: 'Front End',
+			body: 'Je maîtrise parfaitement les technologies Front End et CSS et me tient constamment informé de leurs évolutions',
+		},
+		{
+			name: 'Back End',
+			body: 'Je maîtrise parfaitement les technologies Back End et me tient constamment informé de leurs évolutions',
+		},
+		{
+			name: 'Full Stack',
+			body: 'Je maîtrise parfaitement les technologies Full Stack et me tient constamment informé de leurs évolutions',
+		},
+		{
+			name: 'Rédaction & Copywriting',
+			body: 'Je maîtrise parfaitement les technologies Rédaction & Copywriting et me tient constamment informé de leurs évolutions',
+		},
+		{
+			name: 'Traduction & SEO',
+			body: 'Je maîtrise parfaitement les technologies Traduction & SEO et me tient constamment informé de leurs évolutions',
+		},
+	];
+
+    return <Container className={className} />
 }
