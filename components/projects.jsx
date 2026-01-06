@@ -15,7 +15,7 @@ import { Calendar } from "@/components/ui/calendar"
 import AnimatedBeamMultipleOutputDemo from "@/components/animated-beam-example"
 import { BentoCard, BentoGrid } from "@/components/ui/bento-grid"
 import { Marquee } from "@/components/ui/marquee"
-import bg from "@/public/speed_typer_.png"
+import bg from "@/public/speed_typer.png"
 import Image from 'next/image'
 import styles from './styles/projects.module.css';
 
@@ -65,7 +65,7 @@ const Container = ({ className }) => {
 			description: dictionary[lang]['features']['description'][1],
 			href: '/speed-typer',
 			cta: dictionary[lang]['cta'],
-			className: 'row-start-2 lg:col-start-2 col-span-3 lg:col-span-2',
+			className: 'row-start-2 lg:col-start-3 col-span-3 lg:col-span-1',
 			background: (
 				// <SpeedTyperContainer className="absolute top-4 right-2 h-[300px] w-full scale-75 border-none [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-90" />
 				<Image
