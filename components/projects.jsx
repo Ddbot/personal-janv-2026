@@ -1,5 +1,5 @@
 "use client";
-import { use, ViewTransition } from 'react'
+import { use, useState, ViewTransition } from 'react'
 import { LangContext } from '@/contexts/LangContext';
 import { dictionary } from '@/lib/dictionary';
 import {
@@ -8,7 +8,6 @@ import {
 	Share2Icon,
 	PocketKnife,
 	MapPinHouse,
-	Phone,
 } from 'lucide-react';
 
 import { cn } from "@/lib/utils"
@@ -25,7 +24,7 @@ const Empty = () => {
     return null
 }
 
-const Container = ({ className }) => {
+const Container = ({ className }) => {    
 	const { lang } = use(LangContext);
     const features = [
 		{
@@ -138,12 +137,12 @@ const Container = ({ className }) => {
     
     return (
 		<BentoGrid
-			style={{ _animation: 'scaleOutIn' }}
-			className={'p-4 md:p-24 ' + className + ' ' + styles.container}
+			// style={{ _animation: 'scaleOutIn' }}
+			className={`p-4 md:p-24 ${styles.container} ${className}`}
 			id="projects">
 			{features.map((feature, idx) => (
 				<ViewTransition key={idx}>
-					<BentoCard {...feature} />
+                    <BentoCard {...feature} />
 				</ViewTransition>
 			))}
 		</BentoGrid>

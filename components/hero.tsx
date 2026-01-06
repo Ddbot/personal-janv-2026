@@ -49,7 +49,7 @@ export default function Hero({ className }: { className: string }) {
                 </Button>  
                   <Button variant='default' className="text-sm p-4">
                       <Mail size="icon"/>
-                    <Link href="#contact">
+                    <Link href="/contact">
                         {dictionary[lang]['hero']['contact']}
                     </Link>
                 </Button>  

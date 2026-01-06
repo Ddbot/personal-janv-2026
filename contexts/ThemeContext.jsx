@@ -5,8 +5,8 @@ const ThemeContext = createContext();
 
 const ThemeProvider = memo(({ children }) => {
 	const [theme, setTheme] = useState(() => {
-		const storedTheme = localStorage.getItem('theme');
-		return storedTheme ?? 'light';
+        const storedTheme = window?.localStorage?.getItem('theme') ?? 'light';        
+        return storedTheme;
 	});
 
 	const toggleTheme = () => {
