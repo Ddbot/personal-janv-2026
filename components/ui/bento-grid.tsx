@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef, ReactNode } from "react"
 import { ArrowRightIcon } from "@radix-ui/react-icons"
+import { Phone } from 'lucide-react'; 
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -24,7 +25,7 @@ const BentoGrid = ({ children, className, ...props }: BentoGridProps) => {
     <div
       className={cn(
         "grid w-full auto-rows-[22rem] grid-cols-3 gap-4",
-        className
+          className,
       )}
       {...props}
     >
@@ -62,7 +63,7 @@ const BentoCard = ({
         <h3 className="text-xl font-semibold text-neutral-700 dark:text-neutral-300">
           {name}
         </h3>
-        <p className="max-w-lg text-neutral-400">{description}</p>
+        <p className={`max-w-lg ${Icon === Phone ? 'text-background' : 'text-neutral-400' }`}>{description}</p>
       </div>
 
       <div

@@ -1,5 +1,5 @@
 .container {
-    width: stretch;
+    /* width: stretch; */
     /* height: stretch;@ */
     max-height: 25dvh;
     animation: scaleOutIn linear both;
@@ -18,7 +18,7 @@
         margin: 0;
     }
     100% {
-        scale: 100%;
-        margin: 12.5vw;
+        scale: 85%;
+        /* margin: 12.5vw; */
     }
 }

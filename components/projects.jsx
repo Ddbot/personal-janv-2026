@@ -8,6 +8,7 @@ import {
 	Share2Icon,
 	PocketKnife,
 	CirclePile,
+	Phone,
 } from 'lucide-react';
 
 import { cn } from "@/lib/utils"
@@ -108,9 +109,19 @@ const Container = ({ className }) => {
 			className: 'col-span-3 lg:col-span-1 lg:col-start-2 lg:row-start-1',
 			href: '#',
 			cta: dictionary[lang]['cta'],
-			background: (
-				<h3>TEST</h3>
-			),
+			background: <h3>TEST</h3>,
+		},
+		{
+			Icon: Phone,
+			name: '',
+			description: dictionary[lang]['features']['description'][4],
+			className: 'col-span-3 lg:col-span-1 lg:col-start-2 lg:row-start-2',
+			href: '#',
+			cta: dictionary[lang]['cta'],
+            background: <div style={{
+                position: 'absolute',
+                inset: 0
+            }} className='flex items-center justify-center w-full h-full bg-primary'>CONTACT</div>,
 		},
 	];
     
