@@ -21,8 +21,8 @@ const Empty = () => {
 };
 
 const Container = ({ className }) => {
-    const [displayedCategory, setDisplayedCategory] = useState(null)
-    const [isSelected, setIsSelected] = useState(Mail);
+    const [displayedCategory, setDisplayedCategory] = useState('chat')
+    const [isSelected, setIsSelected] = useState(MessageCircle);
 	const { lang } = use(LangContext);
 	const features = [
 		{
@@ -68,7 +68,7 @@ const Container = ({ className }) => {
 			{features.map((feature, idx) => (
 				<ViewTransition key={idx}>
 					{/* <BentoCard {...feature} id={`card-${idx}`} /> */}
-					<Card className="self-center w-full h-full flex flex-col justify-between items-stretch mb-16 scale-85">
+					<Card className="self-center w-full h-full flex flex-col justify-between items-stretch mb-16 scale-85 rounded-b-none">
 						<CardHeader className="h-full">
 							<CardTitle className="h-full">
 								{feature.title}
