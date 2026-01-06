@@ -2,7 +2,13 @@
 import { use, ViewTransition } from 'react'
 import { LangContext } from '@/contexts/LangContext';
 import { dictionary } from '@/lib/dictionary';
-import { Baby, Keyboard, Share2Icon, PocketKnife } from 'lucide-react';
+import {
+	Baby,
+	Keyboard,
+	Share2Icon,
+	PocketKnife,
+	CirclePile,
+} from 'lucide-react';
 
 import { cn } from "@/lib/utils"
 import { Calendar } from "@/components/ui/calendar"
@@ -93,6 +99,17 @@ const Container = ({ className }) => {
 					selected={new Date(2022, 4, 11, 0, 0, 0)}
 					className="absolute top-10 right-0 origin-top scale-75 rounded-md border [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-90"
 				/>
+			),
+		},
+		{
+			Icon: CirclePile,
+			name: 'Ma Rue',
+			description: dictionary[lang]['features']['description'][4],
+			className: 'col-span-3 lg:col-span-1 lg:col-start-2 lg:row-start-1',
+			href: '#',
+			cta: dictionary[lang]['cta'],
+			background: (
+				<h3>TEST</h3>
 			),
 		},
 	];

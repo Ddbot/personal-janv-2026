@@ -77,7 +77,7 @@ export default function Skills() {
 		},
 		{
 			Icon: PocketKnife,
-			name: 'Skills',
+			name: '',
 			description: dictionary[lang]['features']['description'][1],
 			href: '/skills',
 			cta: dictionary[lang]['cta'],
