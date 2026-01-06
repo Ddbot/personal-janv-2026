@@ -110,10 +110,12 @@ export function FloatingPanelTrigger({
   const { openFloatingPanel, uniqueId, setTitle } = useFloatingPanel()
   const triggerRef = useRef<HTMLButtonElement>(null)
 
-  const handleClick = () => {
+    const handleClick = () => {
+      console.log('Cliked on ', title);
     if (triggerRef.current) {
       openFloatingPanel(triggerRef.current.getBoundingClientRect())
-      setTitle(title)
+        setTitle(title)
+        console.log('Cliked on ', title);
     }
   }
 

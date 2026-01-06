@@ -114,7 +114,7 @@ const Container = ({ className }) => {
 			className: 'col-span-3 lg:col-span-1 lg:col-start-2 lg:row-start-1',
 			href: '#',
 			cta: dictionary[lang]['cta'],
-			background: <h3>TEST</h3>,
+			background: <span></span>,
 		},
 		{
 			Icon: Empty,
