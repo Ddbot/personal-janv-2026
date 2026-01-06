@@ -24,7 +24,7 @@ const initialSquares: [x: number, y: number][] = [
     [9, 12], [1,7]
 ]
 
-export default function Hero({ className }: { className: string}) {
+export default function Hero({ className }: { className: string }) {
     const { lang } = use(LangContext);
     return (
         <div className={
