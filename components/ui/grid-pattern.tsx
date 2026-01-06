@@ -37,7 +37,6 @@ export function GridPattern({
 }: GridPatternProps) {
     const id = useId()
     const { theme } = use(ThemeContext)
-    console.log(urls.length)
 
   return (
     <svg
