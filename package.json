@@ -16,7 +16,7 @@
     "date-fns": "^4.1.0",
     "html-react-parser": "^5.2.11",
     "lucide-react": "^0.561.0",
-    "motion": "^12.23.26",
+    "motion": "^12.24.6",
     "next": "16.0.10",
     "radix-ui": "^1.4.3",
     "react": "19.2.1",

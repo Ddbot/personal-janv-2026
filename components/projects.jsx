@@ -16,9 +16,14 @@ import { Calendar } from "@/components/ui/calendar"
 import AnimatedBeamMultipleOutputDemo from "@/components/animated-beam-example"
 import { BentoCard, BentoGrid } from "@/components/ui/bento-grid"
 import { Marquee } from "@/components/ui/marquee"
+
 import bg from "@/public/speed_typer.png"
 import Image from 'next/image'
 import styles from './styles/projects.module.css';
+
+const Empty = () => {
+    return null
+}
 
 const Container = ({ className }) => {
 	const { lang } = use(LangContext);
@@ -112,7 +117,7 @@ const Container = ({ className }) => {
 			background: <h3>TEST</h3>,
 		},
 		{
-			Icon: Phone,
+			Icon: Empty,
 			name: '',
 			description: dictionary[lang]['features']['description'][5],
 			className: 'col-span-3 lg:col-span-1 lg:col-start-2 lg:row-start-2',
@@ -171,3 +176,5 @@ export default function Projects({ className }) {
 
     return <Container className={className} />
 }
+
+export { Empty };

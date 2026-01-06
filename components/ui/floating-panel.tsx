@@ -97,13 +97,15 @@ export function FloatingPanelRoot({
 interface FloatingPanelTriggerProps {
   children: React.ReactNode
   className?: string
-  title: string
+    title: string
+    source?: string
 }
 
 export function FloatingPanelTrigger({
   children,
   className,
-  title,
+    title,
+  source = ''
 }: FloatingPanelTriggerProps) {
   const { openFloatingPanel, uniqueId, setTitle } = useFloatingPanel()
   const triggerRef = useRef<HTMLButtonElement>(null)
@@ -120,8 +122,10 @@ export function FloatingPanelTrigger({
       ref={triggerRef}
       layoutId={`floating-panel-trigger-${uniqueId}`}
       className={cn(
-        "flex w-9 h-9 items-center border border-zinc-950/10 bg-white px-3 text-zinc-950 dark:border-zinc-50/10 dark:bg-zinc-700 dark:text-zinc-50",
-        className
+        "flex w-9 h-9 items-center justify-center bg-white px-3",
+          className,
+          source !== 'contact' ? "text-zinc-950 dark:border-zinc-50/10 dark:bg-zinc-700 dark:text-zinc-50" : "dark:bg-transparent",
+        source !== "contact" ? "border border-zinc-950/10" : "border-0"
       )}
       style={{ borderRadius: 8 }}
       onClick={handleClick}

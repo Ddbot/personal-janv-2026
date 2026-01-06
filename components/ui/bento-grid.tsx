@@ -1,6 +1,7 @@
 import { ComponentPropsWithoutRef, ReactNode } from "react"
 import { ArrowRightIcon } from "@radix-ui/react-icons"
 import { Phone } from 'lucide-react'; 
+import { Empty } from '../projects'
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -58,15 +59,15 @@ const BentoCard = ({
   >
     <div>{background}</div>
     <div className="p-4">
-      <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 transition-all duration-300 lg:group-hover:-translate-y-10">
+      <div className={cn("pointer-events-none z-10 flex transform-gpu flex-col gap-1 transition-all duration-300", Icon === Empty ? '' : 'lg:group-hover:-translate-y-10')}>
         <Icon className="h-12 w-12 origin-left transform-gpu text-neutral-700 transition-all duration-300 ease-in-out group-hover:scale-75" />
         <h3 className="text-xl font-semibold text-neutral-700 dark:text-neutral-300">
           {name}
         </h3>
-        <p className={`max-w-lg ${Icon === Phone ? 'text-background' : 'text-neutral-400' }`}>{description}</p>
+        <div className={`max-w-lg ${Icon === Phone ? 'text-background' : 'text-neutral-400' }`}>{description}</div>
       </div>
 
-      <div
+      { Icon !== Empty && <div
         className={cn(
           "pointer-events-none flex w-full translate-y-0 transform-gpu flex-row items-center transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:hidden"
         )}
@@ -82,7 +83,7 @@ const BentoCard = ({
             <ArrowRightIcon className="ms-2 h-4 w-4 rtl:rotate-180" />
           </a>
         </Button>
-      </div>
+      </div>}
     </div>
 
     <div
