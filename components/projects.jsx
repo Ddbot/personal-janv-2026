@@ -15,10 +15,10 @@ import bg from "@/public/speed_typer_.png"
 import Image from 'next/image'
 
 
-export default function Projects() {
-    const { lang } = use(LangContext);
+export default function Projects({ className }) {
+	const { lang } = use(LangContext);
 
-    const skills = [
+	const skills = [
 		{
 			name: 'Front End',
 			body: 'Je maîtrise parfaitement les technologies Front End et CSS et me tient constamment informé de leurs évolutions',
@@ -41,7 +41,7 @@ export default function Projects() {
 		},
 	];
 
-    const features = [
+	const features = [
 		{
 			Icon: PocketKnife,
 			name: 'Skills',
@@ -87,8 +87,12 @@ export default function Projects() {
 			cta: dictionary[lang]['cta'],
 			className: 'col-span-3 lg:col-span-2',
 			background: (
-                // <Container className="absolute top-4 right-2 h-[300px] w-full scale-75 border-none [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-90" />
-                <Image src={bg} alt="speed typer" className="absolute -top-8 right-2 w-full scale-75 border-none mask-[linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-90" />
+				// <Container className="absolute top-4 right-2 h-[300px] w-full scale-75 border-none [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-90" />
+				<Image
+					src={bg}
+					alt="speed typer"
+					className="absolute -top-8 right-2 w-full scale-75 border-none mask-[linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-90"
+				/>
 			),
 		},
 		{
@@ -117,14 +121,16 @@ export default function Projects() {
 				/>
 			),
 		},
-	];    
+	];
 
-    return (
-    <BentoGrid className="p-4 md:p-24" id="projects">
-            {features.map((feature, idx) => (<ViewTransition key={idx}>
-                <BentoCard {...feature} />
-      </ViewTransition>
-      ))}
-    </BentoGrid>
-  )
+	return (
+        <BentoGrid className={
+            "p-4 md:p-24 " + className} id="projects">
+			{features.map((feature, idx) => (
+				<ViewTransition key={idx}>
+					<BentoCard {...feature} />
+				</ViewTransition>
+			))}
+		</BentoGrid>
+	);
 }

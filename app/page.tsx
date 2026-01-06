@@ -1,12 +1,12 @@
 "use client";
 import Hero from "@/components/hero";
-import Projects from '../components/projects';
+import Projects from '@/components/projects';
 import Navbar from "@/components/navbar";
 import Providers from "./providers";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 
 import useIsScrolling from "../lib/hooks/useIsScrolling";
-import { useEffect } from "react";
+import styles from './page.module.css'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,7 +21,7 @@ const geistMono = Geist_Mono({
 function Body({ children }: { children: React.ReactNode }) {
     const isScrolling = useIsScrolling(150);
 
-    return <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    return <body className={`${geistSans.variable} ${geistMono.variable} antialiased ${styles.body}`}>
         <Providers>
             <Navbar className={ isScrolling ? '-translate-y-full' : 'translate-y-0' } />
             {children}
@@ -31,7 +31,7 @@ function Body({ children }: { children: React.ReactNode }) {
 
 export default function Page() {
     return <Body>
-        <Hero />
-        <Projects />        
+        <Hero className={styles.children}/>
+        <Projects className={styles.children}/>        
     </Body> 
 }
