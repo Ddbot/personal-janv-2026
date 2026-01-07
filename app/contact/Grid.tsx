@@ -4,14 +4,11 @@ import { LangContext } from '@/contexts/LangContext';
 import { dictionary } from '@/lib/dictionary';
 import Link from 'next/link';
 import { MessageCircle, Mail, Linkedin } from 'lucide-react';
-
-import { BentoCard } from '@/components/ui/bento-grid';
 import {
     Card,
     CardHeader,
     CardFooter,
-    CardTitle,
-    CardDescription,
+    CardTitle,    
     CardContent,
 } from '@/components/ui/card';
 import styles from './styles.module.css';
@@ -21,6 +18,7 @@ const Empty = () => {
 };
 
 const Container = ({ type = 'mail', className = '' }: { type: string, className: string }) => {
+    const {lang} = use(LangContext);
     const [displayedCategory, setDisplayedCategory] = useState(type)
     const [isSelected, setIsSelected] = useState(() => {
                 switch (type) {
@@ -32,7 +30,6 @@ const Container = ({ type = 'mail', className = '' }: { type: string, className:
                         return Mail;
 				}
     });
-	const { lang } = use(LangContext);
 	const features = [
 		{
 			Icon: Empty,
@@ -54,9 +51,9 @@ const Container = ({ type = 'mail', className = '' }: { type: string, className:
 		},
     ];
     
-    function handleClick(e) {
+    function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault()
-        setDisplayedCategory(e.currentTarget.dataset.icon)
+        setDisplayedCategory(e.currentTarget.dataset.icon as string)
         switch (e.currentTarget.dataset.icon) {
             case 'chat':
                 setIsSelected(MessageCircle)
@@ -92,7 +89,6 @@ const Container = ({ type = 'mail', className = '' }: { type: string, className:
     
 	return (
 		<div
-			style={{ _animation: 'scaleOutIn' }}
 			className={`p-4 md:p-24 ${styles.grid}`}
 			id="contact">
 			{features.map((feature, idx) => (
@@ -103,9 +99,6 @@ const Container = ({ type = 'mail', className = '' }: { type: string, className:
 							<CardTitle className="h-full">
 								{feature.title}
 							</CardTitle>
-							<CardDescription className="h-full">
-								{feature.description}
-							</CardDescription>
 						</CardHeader>
 						<CardContent className="h-full">
 							{displayedCategory === 'chat' ? (
@@ -115,8 +108,6 @@ const Container = ({ type = 'mail', className = '' }: { type: string, className:
 							)}
 						</CardContent>
 						<CardFooter className="h-full justify-end items-end gap-6 m-0 px-12">
-							{/* <div								
-								className="w-full flex justify-end gap-4"> */}
 							<button
 								className={`${
 									isSelected === MessageCircle
