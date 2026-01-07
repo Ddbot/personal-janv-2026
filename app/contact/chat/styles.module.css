@@ -1,0 +1,6 @@
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    color: #030712;
+}

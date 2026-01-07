@@ -3,7 +3,7 @@ import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Phone, Video } from 'lucide-react';
 const Header = () => {
     return (
-        <ChatHeader>
+        <ChatHeader className="px-4">
                 <ChatHeaderStart>
                     <Avatar>
                         <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
@@ -15,8 +15,8 @@ const Header = () => {
                     <span className="text-sm font-medium">Développeur Front End</span>
                 </ChatHeaderMain>
                 <ChatHeaderEnd className="w-fit p-0">
-                    <Phone width={20} height={20} className="mx-1"/>
-                    <Video width={20} height={20} className="mx-1"/>
+                    <Phone width={20} height={20} className="mx-2"/>
+                    <Video width={20} height={20} className="mx-2"/>
                 </ChatHeaderEnd>
 </ChatHeader>
     );

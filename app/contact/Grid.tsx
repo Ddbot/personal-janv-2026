@@ -49,7 +49,7 @@ const Container = ({ type = 'mail', className = '' }: { type: string, className:
 						position: 'absolute',
 						inset: 0,
 					}}
-					className="flex items-center justify-center w-full h-full bg-primary rounded-b-4xl">
+					className={`flex items-center justify-center w-full h-full rounded-b-4xl ${styles.bgPrimary}`}>
 					CONTACT
 				</div>
 			),

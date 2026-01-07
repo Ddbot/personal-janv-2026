@@ -31,7 +31,7 @@
         /* grid-row: 1 / span 2;
         grid-column: 1 / span 3; */
 
-        background-color: var(--primary);
+        /* background-color: var(--primary); */
         transform-origin: bottom center;
     }    
 }
@@ -53,6 +53,8 @@
     /* border-radius: 0px 0px var(--radius) var(--radius); */
     padding: 0px;
     margin-top: 0px;
+
+    background-color: hsl(from white h s l / 90%);
 
     & > *:first-child {
         width: 100%;
@@ -86,6 +88,11 @@
     /* background-color: blue; */
     border-radius: 0;
     border-bottom-right-radius: 0.5rem;
+}
+
+.bgPrimary {
+    background-color: red;
+    display: none;
 }
 
 @keyframes animateGrid{
