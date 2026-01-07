@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Body from '@/components/body';
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -16,7 +17,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="fr" className={inter.variable} data-scroll-behavior="smooth">
-            {children}
+            <Body>
+                {children}
+            </Body>
         </html>
     );
 }
