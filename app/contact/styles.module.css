@@ -51,7 +51,7 @@
     /* margin-bottom: calc(var(--spacing) * 4); */
     scale: 0.85;
     /* border-radius: 0px 0px var(--radius) var(--radius); */
-    padding-block: 0px;
+    padding: 0px;
     margin-top: 0px;
 
     & > *:first-child {
