@@ -34,7 +34,7 @@ function Body({ children }: { children: React.ReactNode }) {
 
 export default function Page() {
         const params = useSearchParams();
-        const type = params.get('type');
+        const type: string = params.get('type') || 'mail';
 
     return <Body>
         <Grid className={styles.grid} type={type} />        

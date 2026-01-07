@@ -20,7 +20,7 @@ const Empty = () => {
 	return null;
 };
 
-const Container = ({ type = 'mail', className }) => {
+const Container = ({ type = 'mail', className = '' }: { type: string, className: string }) => {
     const [displayedCategory, setDisplayedCategory] = useState(type)
     const [isSelected, setIsSelected] = useState(() => {
                 switch (type) {
@@ -169,7 +169,7 @@ const Container = ({ type = 'mail', className }) => {
 	);
 };
 
-export default function Grid({ type = {type}, className }) {
+export default function Grid({ type = 'mail', className = '' }: { type: string, className: string }) {
 	return <Container type={type} className={className} />;
 }
 
