@@ -1,7 +1,7 @@
 const MESSAGES = [
 	{
 		id: 'msg-1',
-		timestamp: 1736069700000, // 2026-01-05T09:15:00Z
+		timestamp: 1736069700000, 
 		sender: {
 			id: 'user-1',
 			username: 'sophie_martin',
@@ -12,7 +12,7 @@ const MESSAGES = [
 	},
 	{
 		id: 'msg-2',
-		timestamp: 1736069790000, // 2026-01-05T09:16:30Z
+		timestamp: 1736069790000, 
 		sender: {
 			id: 'user-2',
 			username: 'julien_durand',
@@ -23,7 +23,7 @@ const MESSAGES = [
 	},
 	{
 		id: 'msg-3',
-		timestamp: 1736069820000, // 2026-01-05T09:17:00Z
+		timestamp: 1736069820000, 
 		sender: {
 			id: 'user-1',
 			username: 'sophie_martin',
@@ -34,7 +34,7 @@ const MESSAGES = [
 	},
 	{
 		id: 'msg-4',
-		timestamp: 1736069865000, // 2026-01-05T09:17:45Z
+		timestamp: 1736069865000, 
 		sender: {
 			id: 'user-1',
 			username: 'sophie_martin',
@@ -45,7 +45,7 @@ const MESSAGES = [
 	},
 	{
 		id: 'msg-5',
-		timestamp: 1736070000000, // 2026-01-05T09:20:00Z
+		timestamp: 1736070000000, 
 		sender: {
 			id: 'user-3',
 			username: 'marie_lefevre',
@@ -56,7 +56,7 @@ const MESSAGES = [
 	},
 	{
 		id: 'msg-6',
-		timestamp: 1736174400000, // 2026-01-06T14:30:00Z
+		timestamp: 1736174400000, 
 		sender: {
 			id: 'user-2',
 			username: 'julien_durand',
@@ -67,7 +67,7 @@ const MESSAGES = [
 	},
 	{
 		id: 'msg-7',
-		timestamp: 1736174720000, // 2026-01-06T14:35:20Z
+		timestamp: 1736174720000,
 		sender: {
 			id: 'user-2',
 			username: 'julien_durand',
@@ -79,7 +79,7 @@ const MESSAGES = [
 	},
 	{
 		id: 'msg-8',
-		timestamp: 1736175000000, // 2026-01-06T14:40:00Z
+		timestamp: 1736175000000, 
 		sender: {
 			id: 'user-1',
 			username: 'sophie_martin',
@@ -90,7 +90,7 @@ const MESSAGES = [
 	},
 	{
 		id: 'msg-9',
-		timestamp: 1736175120000, // 2026-01-06T14:42:00Z
+		timestamp: 1736175120000,
 		sender: {
 			id: 'user-3',
 			username: 'marie_lefevre',
@@ -101,7 +101,7 @@ const MESSAGES = [
 	},
 	{
 		id: 'msg-10',
-		timestamp: 1736175180000, // 2026-01-06T14:43:00Z
+		timestamp: 1736175180000, 
 		sender: {
 			id: 'user-2',
 			username: 'julien_durand',
