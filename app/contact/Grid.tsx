@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/card';
 import styles from './styles.module.css';
 import { useRouter } from 'next/navigation';
+import ChatPage from './chat';
 
 const Empty = () => {
 	return null;
@@ -106,9 +107,7 @@ const Container = ({ type = 'mail', className = '' }: { type: string, className:
 						</CardHeader>
 						<CardContent className="min-w-[70%] h-full">
 							{displayedCategory === 'chat' ? (
-								<div className="flex items-center justify-center w-full h-full border-4 border-red-500">
-                                    <MessageCircle color={'var(--background'} />
-                                </div>
+								<ChatPage />
 							) : (
 								<div className="flex items-center justify-center w-full h-full border-4 border-red-500">
                                     <Mail color={'var(--background'} />
