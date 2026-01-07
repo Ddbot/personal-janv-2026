@@ -12,6 +12,7 @@ import {
     CardContent,
 } from '@/components/ui/card';
 import styles from './styles.module.css';
+import { useRouter } from 'next/navigation';
 
 const Empty = () => {
 	return null;
@@ -30,6 +31,8 @@ const Container = ({ type = 'mail', className = '' }: { type: string, className:
                         return Mail;
 				}
     });
+    const navigate = useRouter();
+
 	const features = [
 		{
 			Icon: Empty,
@@ -64,6 +67,7 @@ const Container = ({ type = 'mail', className = '' }: { type: string, className:
             default:
                 break;
         }
+        navigate.push(`?type=${e.currentTarget.dataset.icon}`)
     }
 
     function handleTypeChange(t) {
