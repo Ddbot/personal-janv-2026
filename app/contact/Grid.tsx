@@ -47,7 +47,7 @@ const Container = ({ type = 'mail', className = '' }: { type: string, className:
 						position: 'absolute',
 						inset: 0,
 					}}
-					className="flex items-center justify-center w-full h-full bg-primary">
+					className="flex items-center justify-center w-full h-full bg-primary rounded-b-4xl">
 					CONTACT
 				</div>
 			),
@@ -93,29 +93,33 @@ const Container = ({ type = 'mail', className = '' }: { type: string, className:
     
 	return (
 		<div
-			className={`p-4 md:p-24 ${styles.grid}`}
+			className={`p-4 md:p-0 ${styles.grid} rounded-4xl`}
 			id="contact">
 			{features.map((feature, idx) => (
 				<ViewTransition key={idx}>
 					{/* <BentoCard {...feature} id={`card-${idx}`} /> */}
-					<Card className="self-center w-full h-full flex flex-col justify-between items-stretch mb-16 scale-85 rounded-b-none">
-						<CardHeader className="h-full">
-							<CardTitle className="h-full">
+					<Card className={styles.card_container}>
+						<CardHeader className="w-full h-fit border-b-4 border-t-2 mt-0 border-background">
+							<CardTitle className="text-4xl h-full m-4 italic font-light text-background">
 								{feature.title}
 							</CardTitle>
 						</CardHeader>
-						<CardContent className="h-full">
+						<CardContent className="min-w-[70%] h-full">
 							{displayedCategory === 'chat' ? (
-								<MessageCircle color={'var(--background'} />
+								<div className="flex items-center justify-center w-full h-full border-4 border-red-500">
+                                    <MessageCircle color={'var(--background'} />
+                                </div>
 							) : (
-								<Mail color={'var(--background'} />
+								<div className="flex items-center justify-center w-full h-full border-4 border-red-500">
+                                    <Mail color={'var(--background'} />
+                                </div>
 							)}
 						</CardContent>
-						<CardFooter className="h-full justify-end items-end gap-6 m-0 px-12">
+						<CardFooter className={styles.card_footer}>
 							<button
 								className={`${
 									isSelected === MessageCircle
-										? 'border border-background/55 border-dashed p-2 rounded-[.5rem]'
+										? 'border border-background/55 border-dashed p-2'
 										: 'border-0'
 								} ${'flex flex-col items-end p-0 m-0'}`}
 								data-icon="chat"
@@ -131,15 +135,15 @@ const Container = ({ type = 'mail', className = '' }: { type: string, className:
 							<button
 								className={`${
 									isSelected === Mail
-										? 'border border-background/55 border-dashed p-2 rounded-[.5rem]'
+										? 'border border-background/55 border-dashed p-2'
 										: 'border-0'
 								} ${'flex flex-col items-end p-0 m-0'}`}
 								data-icon="mail"
 								onClick={handleClick}>
 								{/* <Link href="/contact"> */}
 								<Mail
-									width={48}
-									height={48}
+									width={36}
+									height={36}
 									color={'var(--background'}
 								/>
 								{/* </Link> */}
@@ -149,8 +153,8 @@ const Container = ({ type = 'mail', className = '' }: { type: string, className:
 									href="https://www.linkedin.com/in/andry-rakotoniaina/"
 									target="_blank">
 									<Linkedin
-										width={48}
-										height={48}
+										width={36}
+										height={36}
 										color={'var(--background'}
 									/>
 								</a>
