@@ -14,6 +14,7 @@ import {
 import styles from './styles.module.css';
 import { useRouter } from 'next/navigation';
 import ChatPage from './chat';
+import Header from '../contact/chat/Header';
 
 const Empty = () => {
 	return null;
@@ -99,12 +100,12 @@ const Container = ({ type = 'mail', className = '' }: { type: string, className:
 			{features.map((feature, idx) => (
 				<ViewTransition key={idx}>
 					{/* <BentoCard {...feature} id={`card-${idx}`} /> */}
-					<Card className={styles.card_container}>
-						<CardHeader className="w-full h-fit border-b-4 border-t-2 mt-0 border-background">
-							<CardTitle className="text-4xl h-full m-4 italic font-light text-background">
-								{feature.title}
-							</CardTitle>
-						</CardHeader>
+                    <Card className={styles.card_container}>
+                        {displayedCategory === 'chat' ? <Header /> : <CardHeader className="w-full h-fit border-b-4 border-t-2 mt-0 border-background">                             
+                            <CardTitle className="text-4xl h-full m-4 italic font-light text-background">
+                                {feature.title}
+                            </CardTitle>
+                        </CardHeader>}
 						<CardContent className="min-w-[70%] h-full">
 							{displayedCategory === 'chat' ? (
 								<ChatPage />
