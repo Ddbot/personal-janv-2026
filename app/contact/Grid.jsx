@@ -20,9 +20,18 @@ const Empty = () => {
 	return null;
 };
 
-const Container = ({ className }) => {
-    const [displayedCategory, setDisplayedCategory] = useState('chat')
-    const [isSelected, setIsSelected] = useState(MessageCircle);
+const Container = ({ type = 'mail', className }) => {
+    const [displayedCategory, setDisplayedCategory] = useState(type)
+    const [isSelected, setIsSelected] = useState(() => {
+                switch (type) {
+					case 'chat':
+						return MessageCircle;
+					case 'mail':
+						return Mail;
+					default:
+                        return Mail;
+				}
+    });
 	const { lang } = use(LangContext);
 	const features = [
 		{
@@ -60,14 +69,27 @@ const Container = ({ className }) => {
         }
     }
 
+    function handleTypeChange(t) {
+        setIsSelected(() => {
+            switch (t) {
+                case 'chat':
+                    return MessageCircle;
+                case 'mail':
+                    return Mail;
+                default:
+                    return Mail;
+            }
+        });
+    }
+
     useEffect(() => {
         if (window) {
-            const {height} = window.screen
+            const { height } = window.screen
             window.scrollTo(0, height);
         }
 
-     }, []);
-
+    }, []);    
+    
 	return (
 		<div
 			style={{ _animation: 'scaleOutIn' }}
@@ -147,8 +169,8 @@ const Container = ({ className }) => {
 	);
 };
 
-export default function Grid({ className }) {
-	return <Container className={className} />;
+export default function Grid({ type = {type}, className }) {
+	return <Container type={type} className={className} />;
 }
 
 export { Empty };

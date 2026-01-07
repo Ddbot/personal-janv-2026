@@ -12,16 +12,16 @@ import { dictionary } from '../lib/dictionary';
 import { LangContext } from "../contexts/LangContext";
 
 const initialSquares: [x: number, y: number][] = [
-  [ 5, 3 ],   [ 6, 5 ],
-  [ 9, 4 ],  [ 4, 6 ],
-  [ 7, 7 ],   [ 5, 8 ],
-  [ 3, 9 ],   [ 7, 9 ],
-  [ 8, 11 ],  [ 10, 10 ],
-  [ 10, 8 ],  [ 3, 4 ],
-  [ 4, 11 ],  [ 2, 11 ],
-    [11, 12], [6, 12],
-    [7, 2], [11, 6],
-    [9, 12], [1,7]
+    [ 5, 3 ],[ 6, 5 ],
+    [ 9, 4 ],[ 4, 6 ],
+    [ 7, 7 ],[ 5, 8 ],
+    [ 3, 9 ],[ 7, 9 ],
+    [ 8, 11 ],[ 10, 10 ],
+    [ 10, 8 ],[ 3, 4 ],
+    [ 4, 11 ],[ 2, 11 ],
+    [11, 12],[6, 12],
+    [7, 2],[11, 6],
+    [9, 12],[1,7]
 ]
 
 export default function Hero({ className }: { className: string }) {
@@ -49,7 +49,10 @@ export default function Hero({ className }: { className: string }) {
                 </Button>  
                   <Button variant='default' className="text-sm p-4">
                       <Mail size="icon"/>
-                    <Link href="/contact">
+                        <Link href={{
+								pathname: '/contact',
+								query: { type: 'mail' },
+							}}>
                         {dictionary[lang]['hero']['contact']}
                     </Link>
                 </Button>  
@@ -58,8 +61,8 @@ export default function Hero({ className }: { className: string }) {
         <GridPattern    
               className={cn(
                 "relative w-1/2",
-            "mask-[radial-gradient(350px_circle_at_45%_50%,white,transparent)]",
-                  "inset-x-0 inset-y-[-20%] h-[200%] skew-y-12",            
+                "mask-[radial-gradient(350px_circle_at_45%_50%,white,transparent)]",
+                "inset-x-0 inset-y-[-20%] h-[200%] skew-y-12",            
             )}              
             squares={initialSquares}            
         />

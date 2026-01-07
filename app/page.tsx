@@ -7,6 +7,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 
 import useIsScrolling from "../lib/hooks/useIsScrolling";
 import styles from './page.module.css'
+import { useSearchParams } from "next/navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

@@ -9,6 +9,8 @@ import useIsScrolling from "@/lib/hooks/useIsScrolling";
 import styles from './styles.module.css'
 import Grid from './Grid';
 
+import { useSearchParams } from "next/navigation";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -31,7 +33,10 @@ function Body({ children }: { children: React.ReactNode }) {
 }
 
 export default function Page() {
+        const params = useSearchParams();
+        const type = params.get('type');
+
     return <Body>
-        <Grid className={styles.grid} />        
+        <Grid className={styles.grid} type={type} />        
     </Body> 
 }
