@@ -15,12 +15,13 @@ import { PrimaryMessage } from "@/components/message-items/primary-message";
 import { ChatToolbar, ChatToolbarAddonStart, ChatToolbarTextarea, ChatToolbarAddonEnd } from "@/components/chat/chat-toolbar";
 import { Button } from "@/components/ui/button";
 import MESSAGES from './messages';
+import styles from './styles.module.css';
 
 export default function ChatPage() {
     return (
-        <Chat className="flex flex-col overflow-hidden">
+        <Chat className={styles.chat}>
             {/* PAS DE HEADER, déporté dans la CardHeader */}
-            <ChatMessages className="flex-1 overflow-y-auto min-h-0">
+            <ChatMessages className="px-6 flex-1 overflow-y-auto min-h-0">
                 {MESSAGES.map((msg, i, msgs) => {
                     // If date changed, show date item
                     if (

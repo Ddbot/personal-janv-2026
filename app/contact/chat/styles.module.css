@@ -1,8 +1,26 @@
+.chat {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    color: #030712;
+    /* scrollbar-color: red green; */
+    
+    &::-webkit-scrollbar-track {
+        background: rgb(174, 255, 0);
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background: rgb(57, 85, 171);
+    }
+}
+
 .messages {
     flex: 1;
     overflow-y: auto;
     min-height: 0;
     color: #030712;
+    scrollbar-color: red orange;
+
 }
 
 .header {

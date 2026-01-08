@@ -106,7 +106,7 @@ const Container = ({ type = 'mail', className = '' }: { type: string, className:
                                 {feature.title}
                             </CardTitle>
                         </CardHeader>}
-						<CardContent className="min-w-[70%] flex-1 min-h-0 pr-0">
+						<CardContent className="min-w-[70%] flex-1 min-h-0 px-0">
 							{displayedCategory === 'chat' ? (
 								<ChatPage />
 							) : (

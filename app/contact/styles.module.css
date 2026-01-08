@@ -87,12 +87,14 @@
     margin: 0px;
     padding-bottom: calc(var(--spacing) * 6);
     padding-right: calc(var(--spacing) * 6);
-    border-left: 4px solid var(--background);
+    /* border-left: 4px solid var(--background); */
     grid-column: 4 / span 1;
     grid-row: 2 / span 1;
     /* background-color: blue; */
     border-radius: 0;
     border-bottom-right-radius: 0.5rem;
+
+    scrollbar-color: red orange;
 
     :global(.dark) & {
         /* PARTIE DROITE DE LA GRID AVEC LES ICONES RESEAUX SOCIAUX */
