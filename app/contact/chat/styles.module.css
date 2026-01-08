@@ -23,7 +23,7 @@
     /* transition: transform 1s linear both;
      */
 
-    animation: header_entrance .17s linear forwards;
+    animation: header_entrance .07s linear forwards;
     @starting-style {
         transform: translateY(-50%);
     }    
