@@ -54,7 +54,12 @@
     padding: 0px;
     margin-top: 0px;
 
-    background-color: hsl(from white h s l / 90%);
+    background-color: hsl(from #e4e4e4 h s l / 50%);
+
+    :global(.dark) & {
+        background-color: hsl(from white h s l / 100%);
+        color: var(--background);
+    }
 
     & > *:first-child {
         width: 100%;
@@ -88,11 +93,13 @@
     /* background-color: blue; */
     border-radius: 0;
     border-bottom-right-radius: 0.5rem;
+
+    :global(.dark) & {
+        /* PARTIE DROITE DE LA GRID AVEC LES ICONES RESEAUX SOCIAUX */
+    }
 }
 
 .bgPrimary {
-    background-color: red;
-    display: none;
 }
 
 @keyframes animateGrid{
