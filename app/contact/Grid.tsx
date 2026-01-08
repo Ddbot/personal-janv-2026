@@ -127,8 +127,8 @@ const Container = ({ type = 'mail', className = '' }: { type: string, className:
 								{/* <Link href="/contact"> */}
 								<MessageCircle
 									width={48}
-									height={48} 
-									color={'var(--background'}
+									height={48}                                     
+                                    className='dark:stroke-background stroke-card-foreground'
 								/>
 								{/* </Link> */}
 							</button>
@@ -144,7 +144,7 @@ const Container = ({ type = 'mail', className = '' }: { type: string, className:
 								<Mail
 									width={36}
 									height={36}
-									color={'var(--background'}
+									className='dark:stroke-background stroke-card-foreground'
 								/>
 								{/* </Link> */}
 							</button>
@@ -155,7 +155,7 @@ const Container = ({ type = 'mail', className = '' }: { type: string, className:
 									<Linkedin
 										width={36}
 										height={36}
-										color={'var(--background'}
+										className='dark:stroke-background stroke-card-foreground'
 									/>
 								</a>
 							</button>
