@@ -7,8 +7,10 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 export interface Message {
   id: string
-  user_id: string
-  username: string
+  sender_id: string    
+  sender_username: string
+  sender_name: string
+  sender_avatar_url: string
   content: string
-  created_at: string
+  timestamp: string
 }
