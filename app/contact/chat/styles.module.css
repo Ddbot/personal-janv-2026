@@ -17,7 +17,8 @@
 }
 
 .header {
-    transform-origin: bottom center;
+    transform-origin: bottom center calc(100dvh / 12 * -1);
+    transform-style: preserve-3d;
     transform: translateY(0%);
     padding-inline: 1rem;
     /* transition: transform 1s linear both;
@@ -25,7 +26,8 @@
 
     animation: header_entrance .07s linear forwards;
     @starting-style {
-        transform: translateY(-50%);
+        transform: translateY(-50%) rotateX(90deg);
+        opacity: 1;
     }    
     :global(.dark) & {
         color: #e4e4e4;        
@@ -43,9 +45,9 @@
 
 @keyframes header_entrance {
     from {
-        transform: translateY(-50%);
+        transform: translateY(0%) rotateX(90deg);
     }
     to {
-        transform: translateY(0%);
+        transform: translateY(0%) rotate(0deg);
     }
 }
