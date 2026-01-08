@@ -124,7 +124,7 @@ const Container = ({ type = 'mail', className = '' }: { type: string, className:
 								<MessageCircle
 									width={isSelected === MessageCircle ? 32 : 36}
 									height={isSelected === MessageCircle ? 32 : 36}                                     
-                                    className='dark:stroke-background stroke-card-foreground p-0'
+                                    className='dark:stroke-background p-0'
 								/>
 								{/* </Link> */}
 							</button>
@@ -136,7 +136,7 @@ const Container = ({ type = 'mail', className = '' }: { type: string, className:
 								<Mail
 									width={isSelected === Mail ? 32 : 36}
 									height={isSelected === Mail ? 32 : 36}
-									className='dark:stroke-background stroke-card-foreground p-0'
+									className='dark:stroke-background p-0'
 								/>
 								{/* </Link> */}
 							</button>
@@ -147,7 +147,7 @@ const Container = ({ type = 'mail', className = '' }: { type: string, className:
 									<Linkedin
 										width={36}
 										height={36}
-										className='dark:stroke-background stroke-card-foreground'
+										className='dark:stroke-background'
 									/>
 								</a>
 							</button>

@@ -107,10 +107,13 @@
 }
 
 .isSelected {
-    border: 1px solid var(--background);
-    border-style: dotted;
+    border: 1px solid var(--primary);
+    /* border-style: dotted; */
     border-radius: 0.5rem;
     padding: 2px;
+    & svg {
+        stroke: var(--primary);
+    }
 }
 
 @keyframes animateGrid{

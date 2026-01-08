@@ -16,6 +16,22 @@
     }    
 }
 
+.header {
+    transform-origin: bottom center;
+    transform: translateY(0%);
+    padding-inline: 1rem;
+    /* transition: transform 1s linear both;
+     */
+
+    animation: header_entrance .17s linear forwards;
+    @starting-style {
+        transform: translateY(-50%);
+    }    
+    :global(.dark) & {
+        color: #e4e4e4;        
+    }
+}
+
 .messages {
     flex: 1;
     overflow-y: auto;
@@ -25,9 +41,11 @@
 
 }
 
-.header {
-    :global(.dark) & {
-        color: #e4e4e4;
-        padding-inline: 1rem;
+@keyframes header_entrance {
+    from {
+        transform: translateY(-50%);
+    }
+    to {
+        transform: translateY(0%);
     }
 }
