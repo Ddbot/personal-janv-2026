@@ -2,7 +2,7 @@ import { ChatHeader, ChatHeaderStart, ChatHeaderMain, ChatHeaderEnd } from "@/co
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Phone, Video } from 'lucide-react';
 import styles from './styles.module.css';
-const Header = () => {
+const Header = ({ title }) => {
     return (
 		<ChatHeader className={styles.header}>
 			<ChatHeaderStart>
@@ -20,8 +20,8 @@ const Header = () => {
 			</ChatHeaderStart>
 			<ChatHeaderMain>
 				<span className="text-sm font-medium text-primary">
-					Développeur Front End
-				</span>
+                    {title}
+                </span>
 			</ChatHeaderMain>
 			<ChatHeaderEnd className="w-fit p-0">
 				<Phone width={20} height={20} className="mx-2" />

@@ -14,6 +14,13 @@
     background-color: #d4aa70;
     border-radius: 100px;
     }    
+
+    scrollbar-color: var(--primary) transparent;
+    border-inline-end-color: var(--muted-foreground);
+    
+    :global(.dark) & {
+        border-inline-end: 1px solid var(--background);
+    }
 }
 
 .header {
@@ -39,7 +46,7 @@
     overflow-y: auto;
     min-height: 0;
     color: #030712;
-    scrollbar-color: red orange;
+    scrollbar-color: var(--primary) transparent;
 
 }
 
