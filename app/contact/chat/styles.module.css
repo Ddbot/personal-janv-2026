@@ -4,3 +4,10 @@
     min-height: 0;
     color: #030712;
 }
+
+.header {
+    :global(.dark) & {
+        color: #e4e4e4;
+        padding-inline: 1rem;
+    }
+}
