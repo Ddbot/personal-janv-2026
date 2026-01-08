@@ -102,7 +102,7 @@ const Container = ({ type = 'mail', className = '' }: { type: string, className:
 			id="contact">
             {features.map((feature, idx) => (
                     <Card key={idx} className={styles.card_container}>
-                        <ChatHeader title={"Développeur Front End"}/>
+                    <ChatHeader title={"Développeur Front End"} category={ displayedCategory} />
 						<CardContent className={`min-w-[70%] flex-1 min-h-0 px-0 ${displayedCategory === 'mail' ? 'p-0' : ''}`}>
 							{displayedCategory === 'chat' ? (
 								<ChatPage />

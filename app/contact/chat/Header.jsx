@@ -1,8 +1,12 @@
 import { ChatHeader, ChatHeaderStart, ChatHeaderMain, ChatHeaderEnd } from "@/components/chat/chat-header";
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import { Phone, Video } from 'lucide-react';
+import { Download, Phone, Video } from 'lucide-react';
 import styles from './styles.module.css';
-const Header = ({ title }) => {
+const Header = ({ title, category }) => {
+    function activateMediaConversation(e) {
+        e.preventDefault();
+        console.log(e.currentTarget?.dataset.name);
+    }
     return (
 		<ChatHeader className={styles.header}>
 			<ChatHeaderStart>
@@ -20,12 +24,37 @@ const Header = ({ title }) => {
 			</ChatHeaderStart>
 			<ChatHeaderMain>
 				<span className="text-sm font-medium text-primary">
-                    {title}
-                </span>
+					{title}
+				</span>
 			</ChatHeaderMain>
 			<ChatHeaderEnd className="w-fit p-0">
-				<Phone width={20} height={20} className="mx-2" />
-				<Video width={20} height={20} className="mx-2" />
+				{category !== 'mail' && (
+					<>
+						<div className="mx-2">
+							<button
+								onClick={activateMediaConversation}
+								data-name="phone">
+								<Phone width={20} height={20} />
+							</button>
+						</div>
+						<div className="mx-2">
+							<button
+								onClick={activateMediaConversation}
+								data-name="video">
+								<Video width={20} height={20} />
+							</button>
+						</div>
+					</>
+				)}
+				{category === 'mail' && (
+					<div className="mx-2">
+						<button
+							onClick={activateMediaConversation}
+							data-name="download">
+							<Download width={20} height={20} />
+						</button>
+					</div>
+				)}
 			</ChatHeaderEnd>
 		</ChatHeader>
 	);
