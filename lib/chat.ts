@@ -2,15 +2,26 @@
 // ============================================
 // 2. Fonctions Chat (lib/chat.ts)
 // ============================================
+
+// id,
+// timestamp,
+// sender_id,
+// sender_username,
+// sender_name,
+// sender_avatar_url,
+// content    
 import { supabase, Message } from './supabase'
 
 // Envoyer un message
 export const sendMessage = async (content: string, userId: string, username: string) => {
   const { data, error } = await supabase
     .from('messages')
-    .insert([{
-      user_id: userId,
-      username: username,
+      .insert([{
+    timestamp: new Date(),
+      sender_id: userId,
+      sender_username: username,
+      sender_name: username,
+      sender_avatar_url: 'https://i.pravatar.cc/150?img=2',
       content: content
     }])
     .select()
@@ -24,7 +35,7 @@ export const getMessages = async (limit = 100) => {
   const { data, error } = await supabase
     .from('messages')
     .select('*')
-    .order('created_at', { ascending: true })
+    .order('timestamp', { ascending: true })
     .limit(limit)
   
   return { data, error }
