@@ -94,14 +94,23 @@
     border-radius: 0;
     border-bottom-right-radius: 0.5rem;
 
-    scrollbar-color: red orange;
 
     :global(.dark) & {
         /* PARTIE DROITE DE LA GRID AVEC LES ICONES RESEAUX SOCIAUX */
     }
+
+    & > button > *:first-child,
+    & >  button > a > svg {
+        stroke-width: 1.5px;
+        transition: width 1s linear both, height 1s linear both;
+    }
 }
 
-.bgPrimary {
+.isSelected {
+    border: 1px solid var(--background);
+    border-style: dotted;
+    border-radius: 0.5rem;
+    padding: 2px;
 }
 
 @keyframes animateGrid{

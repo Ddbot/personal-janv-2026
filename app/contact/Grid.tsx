@@ -117,34 +117,26 @@ const Container = ({ type = 'mail', className = '' }: { type: string, className:
 						</CardContent>
 						<CardFooter className={styles.card_footer}>
 							<button
-								className={`${
-									isSelected === MessageCircle
-										? 'border border-background/55 border-dashed p-2'
-										: 'border-0'
-								} ${'flex flex-col items-end p-0 m-0'}`}
+								className={`${isSelected=== MessageCircle && styles.isSelected} ${'flex flex-col items-end p-0 m-0'}`}
 								data-icon="chat"
 								onClick={handleClick}>
 								{/* <Link href="/contact"> */}
 								<MessageCircle
-									width={48}
-									height={48}                                     
-                                    className='dark:stroke-background stroke-card-foreground'
+									width={isSelected === MessageCircle ? 32 : 36}
+									height={isSelected === MessageCircle ? 32 : 36}                                     
+                                    className='dark:stroke-background stroke-card-foreground p-0'
 								/>
 								{/* </Link> */}
 							</button>
 							<button
-								className={`${
-									isSelected === Mail
-										? 'border border-background/55 border-dashed p-2'
-										: 'border-0'
-								} ${'flex flex-col items-end p-0 m-0'}`}
+								className={`${isSelected=== Mail && styles.isSelected} ${'flex flex-col items-end p-0 m-0'}`}
 								data-icon="mail"
 								onClick={handleClick}>
 								{/* <Link href="/contact"> */}
 								<Mail
-									width={36}
-									height={36}
-									className='dark:stroke-background stroke-card-foreground'
+									width={isSelected === Mail ? 32 : 36}
+									height={isSelected === Mail ? 32 : 36}
+									className='dark:stroke-background stroke-card-foreground p-0'
 								/>
 								{/* </Link> */}
 							</button>
