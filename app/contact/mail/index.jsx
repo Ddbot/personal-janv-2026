@@ -26,10 +26,10 @@ const MailPage = () => {
     return (
 		<Card className={cn(styles.container, 'p-0 rounded-none')}>
 			{/* <Mail color={'var(--background'} /> */}
-			<CardHeader className={styles.header}>
+			<CardHeader className={cn(styles.header, "rounded-none gap-0 m-0")}>
 				<CardTitle className="h-full flex justify-center items-center">
 					<div>Sujet:</div>
-					<Input name="sujet" className="block ml-4 border-0" />
+					<Input name="sujet" className="w-full min-w-[70ch] block ml-4 border-0" />
 				</CardTitle>
 			</CardHeader>
 			<CardContent className="relative w-full h-full flex justify-center items-center p-0 m-0">
