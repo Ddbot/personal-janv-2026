@@ -11,13 +11,11 @@ export default async function ChatPage({ children }: { children: React.ReactNode
     async function addMessage(formData: FormData) {
         "use server";   
         const content = formData.get('content') as string ?? '';
-
-        console.log('content: ', content);
         if(content !== '' && content !== null) sendMessage(content,'user_lala', 'Big Boi');
     }  
     
 	return (
-			<form action={addMessage}>
+        <form action={addMessage}>
             <ChatToolbar className="bg-transparent">
                 { children }					
                 <ChatToolbarAddonEnd>
@@ -29,6 +27,6 @@ export default async function ChatPage({ children }: { children: React.ReactNode
                         </Button>
                 </ChatToolbarAddonEnd>
             </ChatToolbar>
-			</form>
+        </form>
 	);
 }

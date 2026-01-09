@@ -8,13 +8,16 @@ import MESSAGES from './messages';
 import styles from './styles.module.css';
 import Toolbar from './Toolbar';
 import Textarea from "./Textarea";
+import { getMessages } from '@/lib/chat';
 
-export default function ChatPage() {
+export default async function ChatPage() {
+    const { data, error } = await getMessages();
     return (
         <Chat className={styles.chat}>
             {/* PAS DE HEADER, déporté dans la CardHeader */}
             <ChatMessages className="px-6 flex-1 overflow-y-auto min-h-0">
-                {MESSAGES.map((msg, i, msgs) => {
+                {data?.map((msg, i, msgs) => {
+                    console.log('timestamp: ', msg.timestamp)
                     // If date changed, show date item
                     if (
                     new Date(msg.timestamp).toDateString() !==
@@ -23,26 +26,25 @@ export default function ChatPage() {
                     return (
                         <Fragment key={msg.id}>
                         <PrimaryMessage
-                        
-                            avatarSrc={msg.sender.avatarUrl}
-                            avatarAlt={msg.sender.username}
-                            avatarFallback={msg.sender.name.slice(0, 2)}
-                            senderName={msg.sender.name}
+                            avatarSrc={msg.sender_avatar_url}
+                            avatarAlt={msg.sender_username}
+                            avatarFallback={msg.sender_name.slice(0, 2)}
+                            senderName={msg.sender_name}
                             content={msg.content}
-                            timestamp={msg.timestamp}
+                            timestamp={new Date(msg.timestamp).getTime()}
                         />
-                        <DateItem timestamp={msg.timestamp} className="my-4" />
+                        <DateItem timestamp={new Date(msg.timestamp).getTime()} className="my-4" />
                         </Fragment>
                     );
                     }
 
                     // If next item is same user, show additional
-                    if (msg.sender.id === msgs[i + 1]?.sender.id) {
+                    if (msg.sender_id === msgs[i + 1]?.sender_id) {
                     return (
                         <AdditionalMessage
                         key={msg.id}
                         content={msg.content}
-                        timestamp={msg.timestamp}
+                        timestamp={new Date(msg.timestamp).getTime()}
                         />
                     );
                     }
@@ -52,12 +54,12 @@ export default function ChatPage() {
                         <PrimaryMessage
                         className="mt-4"
                         key={msg.id}
-                        avatarSrc={msg.sender.avatarUrl}
-                        avatarAlt={msg.sender.username}
-                        avatarFallback={msg.sender.name.slice(0, 2)}
-                        senderName={msg.sender.name}
+                        avatarSrc={msg.sender_avatar_url}
+                        avatarAlt={msg.sender_username}
+                        avatarFallback={msg.sender_name.slice(0, 2)}
+                        senderName={msg.sender_name}
                         content={msg.content}
-                        timestamp={msg.timestamp}
+                        timestamp={new Date(msg.timestamp).getTime()}
                         />
                     );
                     }
