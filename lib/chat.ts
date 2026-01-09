@@ -1,4 +1,4 @@
-
+"use server";
 // ============================================
 // 2. Fonctions Chat (lib/chat.ts)
 // ============================================
@@ -17,12 +17,12 @@ export const sendMessage = async (content: string, userId: string, username: str
   const { data, error } = await supabase
     .from('messages')
       .insert([{
-    timestamp: new Date(),
-      sender_id: userId,
-      sender_username: username,
-      sender_name: username,
-      sender_avatar_url: 'https://i.pravatar.cc/150?img=2',
-      content: content
+        timestamp: new Date(),
+        sender_id: userId,
+        sender_username: username,
+        sender_name: username,
+        sender_avatar_url: 'https://i.pravatar.cc/150?img=2',
+        content: content
     }])
     .select()
     .single()
@@ -42,7 +42,7 @@ export const getMessages = async (limit = 100) => {
 }
 
 // Écouter les nouveaux messages en temps réel
-export const subscribeToMessages = (onNewMessage: (message: Message) => void) => {
+export const subscribeToMessages = async (onNewMessage: (message: Message) => void) => {
   const channel = supabase
     .channel('public:messages')
     .on(
@@ -62,6 +62,6 @@ export const subscribeToMessages = (onNewMessage: (message: Message) => void) =>
 }
 
 // Se désabonner
-export const unsubscribeFromMessages = (channel: any) => {
+export const unsubscribeFromMessages = async (channel: any) => {
   supabase.removeChannel(channel)
 }

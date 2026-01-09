@@ -1,3 +1,5 @@
+"use client";
+
 import { ChatHeader, ChatHeaderStart, ChatHeaderMain, ChatHeaderEnd } from "@/components/chat/chat-header";
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Download, Phone, Video } from 'lucide-react';

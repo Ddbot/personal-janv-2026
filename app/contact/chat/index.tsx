@@ -1,21 +1,13 @@
 import { Fragment } from "react";
 import { Chat } from "@/components/chat/chat";
-import { ChatHeader } from "@/components/chat/chat-header";
-import { ChatHeaderStart, ChatHeaderMain, ChatHeaderEnd } from "@/components/chat/chat-header";
 import { ChatMessages } from "@/components/chat/chat-messages";
-import {
-    Avatar,
-    AvatarFallback,
-    AvatarImage,
-} from "@/components/ui/avatar";
-import { Phone, Video, PlusIcon, Gift, CalendarDays, SquareChevronRight } from 'lucide-react';
 import { AdditionalMessage } from "@/components/message-items/additional-message";
 import { DateItem } from "@/components/message-items/date-item";
 import { PrimaryMessage } from "@/components/message-items/primary-message";
-import { ChatToolbar, ChatToolbarAddonStart, ChatToolbarTextarea, ChatToolbarAddonEnd } from "@/components/chat/chat-toolbar";
-import { Button } from "@/components/ui/button";
 import MESSAGES from './messages';
 import styles from './styles.module.css';
+import Toolbar from './Toolbar';
+import Textarea from "./Textarea";
 
 export default function ChatPage() {
     return (
@@ -71,25 +63,9 @@ export default function ChatPage() {
                     }
                 })}
             </ChatMessages>    
-            <ChatToolbar className="bg-transparent">
-                <ChatToolbarAddonStart>
-                <Button variant="ghost" className="size-8 @md/chat:size-9">
-                    <PlusIcon className="size-5 @md/chat:size-6 stroke-[1.7px]" />
-                </Button>
-                </ChatToolbarAddonStart>
-                <ChatToolbarTextarea />
-                <ChatToolbarAddonEnd>
-                <Button variant="ghost" className="size-8 @md/chat:size-9">
-                    <Gift className="size-4 @md/chat:size-5 stroke-[1.7px]" />
-                </Button>
-                <Button variant="ghost" className="size-8 @md/chat:size-9">
-                    <CalendarDays className="size-4 @md/chat:size-5 stroke-[1.7px]" />
-                </Button>
-                <Button variant="ghost" className="size-8 @md/chat:size-9">
-                    <SquareChevronRight className="size-4 @md/chat:size-5 stroke-[1.7px]" />
-                </Button>
-                </ChatToolbarAddonEnd>
-            </ChatToolbar>
+            <Toolbar>
+                <Textarea />
+            </Toolbar>
         </Chat>
     );
 }

@@ -1,7 +1,8 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+// const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+const supabaseUrl="https://degpdieymuqeeojhrdrr.supabase.co"
+const supabaseAnonKey = "sb_publishable_xtLNS80lkS-dBJBs2eLzKg_WVIe-kWT"
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
@@ -12,5 +13,5 @@ export interface Message {
   sender_name: string
   sender_avatar_url: string
   content: string
-  timestamp: string
+  timestamp: string 
 }

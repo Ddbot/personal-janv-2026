@@ -1,0 +1,34 @@
+import { Send } from 'lucide-react';
+import {
+	ChatToolbar,
+	ChatToolbarAddonEnd,
+} from '@/components/chat/chat-toolbar';
+import { Button } from '@/components/ui/button';
+import { sendMessage } from '@/lib/chat';
+
+export default async function ChatPage({ children }: { children: React.ReactNode }) {
+    
+    async function addMessage(formData: FormData) {
+        "use server";   
+        const content = formData.get('content') as string ?? '';
+
+        console.log('content: ', content);
+        if(content !== '' && content !== null) sendMessage(content,'user_lala', 'Big Boi');
+    }  
+    
+	return (
+			<form action={addMessage}>
+            <ChatToolbar className="bg-transparent">
+                { children }					
+                <ChatToolbarAddonEnd>
+                        <Button
+                            type="submit"
+                            variant="ghost"
+                            className="size-8 @md/chat:size-9">
+                            <Send className="size-4 @md/chat:size-5 stroke-[1.7px]" />
+                        </Button>
+                </ChatToolbarAddonEnd>
+            </ChatToolbar>
+			</form>
+	);
+}
