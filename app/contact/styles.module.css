@@ -48,9 +48,9 @@
     /* transition: transform 1s linear both;
      */
 
-    animation: header_entrance .07s linear forwards;
+    /* animation: header_entrance .07s linear forwards; */
     @starting-style {
-        transform: translateY(-50%) rotateX(90deg);
+        /* transform: translateY(-50%) rotateX(90deg); */
         opacity: 1;
     }    
     :global(.dark) & {

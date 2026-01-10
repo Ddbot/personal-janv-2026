@@ -19,7 +19,7 @@
 .header {
     width: 100%;
     max-height: 3lh;
-    height: auto;
+    height: fit-content;
     /* flex: 1; */
     /* height: fit-content; */
     /* border-bottom: 2px solid var(--background); */
@@ -35,18 +35,18 @@
     justify-content: start;
     align-items: center;
 
-    transition: height 1000ms linear;
+    /* transition: height 1000ms linear;
 
     @starting-style {
         transition: height 1000ms linear;
         height: 0px;
-    }
+    } */
     
 
-    transition: height 1s linear forwards;
+    /* transition: height 1s linear forwards; */
 
-    transform-origin: bottom center calc(100dvh / 12 * -1);
-    transform-style: preserve-3d;
+    /* transform-origin: bottom center calc(100dvh / 12 * -1); */
+    /* transform-style: preserve-3d; */
 
     :global(.dark) & {
         color: var(--background);        
@@ -58,6 +58,11 @@
     & input {
         margin-inline-end: 1.25rem;
         background-color: white;
+
+        @starting-style {
+            height: 0;
+            border-width: 0;
+        }
     }
 }
 

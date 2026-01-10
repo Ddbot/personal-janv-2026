@@ -33,7 +33,7 @@
 
     animation: header_entrance .07s linear forwards;
     @starting-style {
-        transform: translateY(-50%) rotateX(90deg);
+        /* transform: translateY(-50%) rotateX(90deg); */
         opacity: 1;
     }    
     :global(.dark) & {
@@ -52,7 +52,7 @@
 
 @keyframes header_entrance {
     from {
-        transform: translateY(0%) rotateX(90deg);
+        /* transform: translateY(0%) rotateX(90deg); */
     }
     to {
         transform: translateY(0%) rotate(0deg);
