@@ -29,14 +29,14 @@ function MailPage() {
 }
     return (
         <form action={sendMail} className='w-full h-full'>
-            <Card className={cn(styles.container, 'p-0 rounded-none')}>
-                <CardHeader className={cn(styles.header, "rounded-none gap-0 m-0")}>
-                    <CardTitle className="h-full flex justify-center items-center">
-                        <div>Sujet:</div>
-                        <Input name="subject" className="w-full min-w-[70ch] block ml-4 border-0" />
-                    </CardTitle>
+            <Card className={styles.container}>
+                <CardHeader className={styles.header}>
+                    {/* <CardTitle className="w-full h-full flex justify-center items-center "> */}
+                        <label htmlFor="subject" className='ml-4'>Sujet:</label>
+                        <Input name="subject" id="subject" className="w-full min-w-[70ch] block ml-2 border-0" />
+                    {/* </CardTitle> */}
                 </CardHeader>
-                <CardContent className="relative w-full h-full flex justify-center items-center p-0 m-0">
+                <CardContent className={styles.content}>
                     <Textarea
                         name="body"
                         className={styles.textarea}
@@ -44,7 +44,7 @@ function MailPage() {
                         placeholder="Write your message here..."
                     />
                 </CardContent>
-                <CardFooter className="w-full h-fit flex flex-row items-start justify-end gap-2">
+                <CardFooter className={styles.footer}>
                     <ChatToolbar className="w-full bg-transparent">
                         {/* <ChatToolbarAddonStart>
                             <Button
