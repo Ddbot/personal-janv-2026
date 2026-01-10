@@ -20,7 +20,7 @@ const Container = async ({ className = '', category ="chat"}: { className: strin
 			id="contact">
             <Card key={type} className={styles.card_container}>
                 <Header title={"Développeur Front End"} category={ type} />
-                <CardContent className={`min-w-[70%] flex-1 min-h-0 px-0 ${type === 'mail' ? 'p-0' : ''}`}>
+                <CardContent className={`min-w-[70%] flex-1 min-h-0 px-0 ${type === 'mail' ? 'p-0' : 'p-0'}`}>
                     {type === 'chat' ? (
                         <ChatPage />
                     ) : (

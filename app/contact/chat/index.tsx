@@ -15,56 +15,57 @@ export default async function ChatPage() {
     return (
         <Chat className={styles.chat}>
             {/* PAS DE HEADER, déporté dans la CardHeader */}
-            <ChatMessages className="px-6 flex-1 overflow-y-auto min-h-0">
-                <Suspense fallback={<div>Loading...</div>}>
-                {data?.map((msg, i, msgs) => {
-                    // If date changed, show date item
-                    if (
-                    new Date(msg.timestamp).toDateString() !==
-                    new Date(msgs[i + 1]?.timestamp).toDateString()
-                    ) {
-                    return (
-                        <Fragment key={msg.id}>
-                        <PrimaryMessage
+            <Suspense fallback={<div className="px-6 flex-1 overflow-y-auto min-h-0">Loading...</div>}>
+                <ChatMessages className="px-6 flex-1 overflow-y-auto min-h-0">
+                    {data?.map((msg, i, msgs) => {
+                        // If date changed, show date item
+                        if (
+                        new Date(msg.timestamp).toDateString() !==
+                        new Date(msgs[i + 1]?.timestamp).toDateString()
+                        ) {
+                        return (
+                            <Fragment key={msg.id}>
+                            <PrimaryMessage
+                                avatarSrc={msg.sender_avatar_url}
+                                avatarAlt={msg.sender_username}
+                                avatarFallback={msg.sender_name.slice(0, 2)}
+                                senderName={msg.sender_name}
+                                content={msg.content}
+                                timestamp={new Date(msg.timestamp).getTime()}
+                            />
+                            <DateItem timestamp={new Date(msg.timestamp).getTime()} className="my-4" />
+                            </Fragment>
+                        );
+                        }
+
+                        // If next item is same user, show additional
+                        if (msg.sender_id === msgs[i + 1]?.sender_id) {
+                        return (
+                            <AdditionalMessage
+                            key={msg.id}
+                            content={msg.content}
+                            timestamp={new Date(msg.timestamp).getTime()}
+                            />
+                        );
+                        }
+                        // Else, show primary
+                        else {
+                        return (
+                            <PrimaryMessage
+                            className="mt-4"
+                            key={msg.id}
                             avatarSrc={msg.sender_avatar_url}
                             avatarAlt={msg.sender_username}
                             avatarFallback={msg.sender_name.slice(0, 2)}
                             senderName={msg.sender_name}
                             content={msg.content}
                             timestamp={new Date(msg.timestamp).getTime()}
-                        />
-                        <DateItem timestamp={new Date(msg.timestamp).getTime()} className="my-4" />
-                        </Fragment>
-                    );
-                    }
-
-                    // If next item is same user, show additional
-                    if (msg.sender_id === msgs[i + 1]?.sender_id) {
-                    return (
-                        <AdditionalMessage
-                        key={msg.id}
-                        content={msg.content}
-                        timestamp={new Date(msg.timestamp).getTime()}
-                        />
-                    );
-                    }
-                    // Else, show primary
-                    else {
-                    return (
-                        <PrimaryMessage
-                        className="mt-4"
-                        key={msg.id}
-                        avatarSrc={msg.sender_avatar_url}
-                        avatarAlt={msg.sender_username}
-                        avatarFallback={msg.sender_name.slice(0, 2)}
-                        senderName={msg.sender_name}
-                        content={msg.content}
-                        timestamp={new Date(msg.timestamp).getTime()}
-                        />
-                    );
-                    }
-                })}
-                </Suspense>            </ChatMessages>    
+                            />
+                        );
+                        }
+                    })}
+                </ChatMessages>    
+            </Suspense>
             <Toolbar>
                 <Textarea />
             </Toolbar>
