@@ -19,16 +19,17 @@ import {useGSAP} from '@gsap/react';
 function MailPage() {
     const footerRef = useRef<HTMLDivElement>(null);
     const headerRef = useRef<HTMLDivElement>(null);
+    const tl = useRef<GSAPTimeline>(null);
+    
     const sendMail = (formData: FormData) => {
-    const subject = formData.get('subject') as string;
-    const body = formData.get('body') as string;
-    
-    const link = "mailto:contact@andry.online"
-            //  + "?cc=myCCaddress@example.com"
-             + "?subject=" + subject
-             + "&body=" + body;
-    
-    window.location.href = link;
+        const subject = formData.get('subject') as string;
+        const body = formData.get('body') as string;
+        
+        const link = "mailto:contact@andry.online"
+        + "?subject=" + subject
+        + "&body=" + body;
+
+        window.location.href = link;
     }
 
     useGSAP(() => {
@@ -53,7 +54,8 @@ function MailPage() {
             ease: "expo.out",
         })
 
-    },{ scope: headerRef});    
+    }, { scope: headerRef });    
+    
     return (
         <form action={sendMail} className='w-full h-full'>
             <Card className={styles.container}>

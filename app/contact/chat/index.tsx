@@ -16,9 +16,8 @@ export default async function ChatPage() {
         <Chat className={styles.chat}>
             {/* PAS DE HEADER, déporté dans la CardHeader */}
             <Suspense fallback={<div className="px-6 flex-1 overflow-y-auto min-h-0">Loading...</div>}>
-                <ChatMessages className="px-6 flex-1 overflow-y-auto min-h-0">
+                <ChatMessages className={styles.messages}>
                     {data?.map((msg, i, msgs) => {
-                        // If date changed, show date item
                         if (
                         new Date(msg.timestamp).toDateString() !==
                         new Date(msgs[i + 1]?.timestamp).toDateString()
