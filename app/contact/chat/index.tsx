@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, Suspense } from "react";
 import { Chat } from "@/components/chat/chat";
 import { ChatMessages } from "@/components/chat/chat-messages";
 import { AdditionalMessage } from "@/components/message-items/additional-message";
@@ -16,8 +16,8 @@ export default async function ChatPage() {
         <Chat className={styles.chat}>
             {/* PAS DE HEADER, déporté dans la CardHeader */}
             <ChatMessages className="px-6 flex-1 overflow-y-auto min-h-0">
+                <Suspense fallback={<div>Loading...</div>}>
                 {data?.map((msg, i, msgs) => {
-                    console.log('timestamp: ', msg.timestamp)
                     // If date changed, show date item
                     if (
                     new Date(msg.timestamp).toDateString() !==
@@ -64,7 +64,7 @@ export default async function ChatPage() {
                     );
                     }
                 })}
-            </ChatMessages>    
+                </Suspense>            </ChatMessages>    
             <Toolbar>
                 <Textarea />
             </Toolbar>

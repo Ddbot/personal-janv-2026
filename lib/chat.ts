@@ -1,4 +1,6 @@
 "use server";
+
+import { revalidatePath } from 'next/cache';
 // ============================================
 // 2. Fonctions Chat (lib/chat.ts)
 // ============================================
@@ -36,8 +38,8 @@ export const getMessages = async (limit = 100) => {
     .from('messages')
     .select('*')
     .order('timestamp', { ascending: true })
-    .limit(limit)
-  
+      .limit(limit)
+    
   return { data, error }
 }
 

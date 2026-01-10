@@ -5,13 +5,17 @@ import {
 } from '@/components/chat/chat-toolbar';
 import { Button } from '@/components/ui/button';
 import { sendMessage } from '@/lib/chat';
+import { revalidatePath } from 'next/cache';
 
 export default async function ChatPage({ children }: { children: React.ReactNode }) {
     
     async function addMessage(formData: FormData) {
         "use server";   
         const content = formData.get('content') as string ?? '';
-        if(content !== '' && content !== null) sendMessage(content,'user_lala', 'Big Boi');
+        if(content !== '' && content !== null) {
+            await sendMessage(content,'user_lala', 'Big Boi');
+            revalidatePath('/contact');
+        }
     }  
     
 	return (
