@@ -45,7 +45,7 @@ function MailPage() {
                     />
                 </CardContent>
                 <CardFooter className={styles.footer}>
-                    <ChatToolbar className="w-full bg-transparent">
+                    <ChatToolbar className="w-full">
                         {/* <ChatToolbarAddonStart>
                             <Button
                                 variant="ghost"
@@ -54,7 +54,7 @@ function MailPage() {
                             </Button>
                         </ChatToolbarAddonStart> */}
                         {/* <ChatToolbarTextarea /> */}
-                        <ChatToolbarAddonEnd className="p-0 m-0">
+                        <ChatToolbarAddonEnd className="p-0 m-0 pb-2">
                             {/* <Button
                                 className="size-8 @md/chat:size-9"
                                 variant="outline">
