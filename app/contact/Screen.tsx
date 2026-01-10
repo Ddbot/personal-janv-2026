@@ -4,7 +4,7 @@ import styles from './styles.module.css';
 import { useState, useEffect } from 'react';
 import { LangContext } from '@/contexts/LangContext';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
-import ChatHeader from './chat/Header';
+import ChatHeader from './Header';
 import ChatPage from './chat';
 import MailPage from './mail';
 import { MessageCircle, Mail, Linkedin } from 'lucide-react';

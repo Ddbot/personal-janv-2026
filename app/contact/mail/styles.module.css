@@ -23,7 +23,7 @@
     margin-top: 0px;
     padding-top: calc(var(--spacing) * 6);
 
-    animation: header_entrance .4s linear forwards;
+    animation: header_entrance_ .4s linear forwards;
 
     display: flex;
     /* justify-content: start; */

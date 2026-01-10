@@ -1,6 +1,6 @@
 import styles from './styles.module.css';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
-import Header from './chat/Header';
+import Header from './Header';
 import Screen from './Screen';
 import ChatPage from './chat';
 import MailPage from './mail';
@@ -13,8 +13,7 @@ interface ISearchParams {
 
 
 const Container = async ({ className = '', category ="chat"}: { className: string, category: Category | undefined}) => {    
-    const type = await category
-    console.log('res: ', type)
+    const type = category
 	return (
 		<div
 			className={`p-4 md:p-0 ${styles.grid} rounded-4xl ${className}`}
