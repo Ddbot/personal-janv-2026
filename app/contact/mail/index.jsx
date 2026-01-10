@@ -12,7 +12,7 @@ import {
 	ChatToolbarAddonEnd,
 } from '@/components/chat/chat-toolbar';
 
-const MailPage = () => {
+async function MailPage() {
     return (
 		<Card className={cn(styles.container, 'p-0 rounded-none')}>
 			{/* <Mail color={'var(--background'} /> */}
