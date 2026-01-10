@@ -54,12 +54,12 @@ function MailPage() {
                             </Button>
                         </ChatToolbarAddonStart> */}
                         {/* <ChatToolbarTextarea /> */}
-                        <ChatToolbarAddonEnd>
-                            <Button
+                        <ChatToolbarAddonEnd className="p-0 m-0">
+                            {/* <Button
                                 className="size-8 @md/chat:size-9"
                                 variant="outline">
                                 <Trash2 className="size-4 @md/chat:size-5 stroke-[1.7px]" />
-                            </Button>
+                            </Button> */}
                             <Button type="submit" className="size-8 @md/chat:size-9">
                                 <Send className="size-4 @md/chat:size-5 stroke-[1.7px]" />
                             </Button>
