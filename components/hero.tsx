@@ -10,6 +10,16 @@ import { RainbowButton } from "./ui/rainbow-button"
 import styles from './grid-background.module.css';
 import { dictionary } from '../lib/dictionary';
 import { LangContext } from "../contexts/LangContext";
+import { Playfair_Display, Space_Grotesk, Roboto_Slab, Poppins } from 'next/font/google';
+
+const playfair_display = Playfair_Display({subsets:['latin'],variable:'--font-sans'});
+const space_grotesk = Space_Grotesk({subsets:['latin'],variable:'--font-sans'});
+const roboto_slab = Roboto_Slab({subsets:['latin'],variable:'--font-sans'});
+const poppins = Poppins({ weight: '400', subsets: ['latin'] });
+
+const CustomTypingAnimation  = (props: ComponentPropsWithoutRef<'div'>) => {
+    return <TypingAnimation {...props} />
+}
 
 const initialSquares: [x: number, y: number][] = [
     [ 5, 3 ],[ 6, 5 ],
@@ -32,7 +42,7 @@ export default function Hero({ className }: { className: string }) {
         <section className="w-1/2 h-fit flex flex-col flex-wrap items-start text-left text-2xl px-8  ">
             <div className="w-full h-fit text-4xl md:text-5xl font-light my-2">{dictionary[lang]['hero']['intro'][0]}<span className="font-bold text-primary">{dictionary[lang]['hero']['intro'][1]}</span></div>
               <div className="w-full h-fit text-4xl md:text-5xl font-light my-2">JS <span className="text-primary-foreground">|</span> React <span className="text-primary-foreground">|</span> Next.js</div>
-              <TypingAnimation className={styles.typing_animation} words={dictionary[lang]['hero']['typing']}
+              <CustomTypingAnimation className={styles.typing_animation} words={dictionary[lang]['hero']['typing']}
                 loop={true}
                   delay={1000}
                   deleteSpeed={100}

@@ -2,10 +2,14 @@
 
 import { useEffect, useMemo, useRef, useState } from "react"
 import { motion, MotionProps, useInView } from "motion/react"
-import { Kablammo, Geist, Inter } from "next/font/google";
+import { Kablammo, Inter, Playfair_Display, Roboto_Slab, Poppins } from 'next/font/google';
+
+const playfair_display = Playfair_Display({subsets:['latin'],variable:'--font-sans'});
+const roboto_slab = Roboto_Slab({subsets:['latin'],variable:'--font-sans'});
+const poppins = Poppins({ weight: '400', subsets: ['latin'] });
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
-// const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const kablammo = Kablammo({ subsets: ['latin'], variable: '--font-sans' });
 
 import { cn } from "@/lib/utils"
 
@@ -24,6 +28,12 @@ interface TypingAnimationProps extends MotionProps {
   showCursor?: boolean
   blinkCursor?: boolean
   cursorStyle?: "line" | "block" | "underscore"
+}
+
+const fontsList = [playfair_display, kablammo, roboto_slab, inter];
+
+function defineFont(index: number) {
+    return fontsList[index];
 }
 
 export function TypingAnimation({
@@ -114,6 +124,8 @@ export function TypingAnimation({
           }
           break
       }
+        
+      console.log('Index du mot courant = ' + currentWordIndex + ' Texte affiché = ' + displayedText);
     }, timeoutDelay)
 
     return () => clearTimeout(timeout)
@@ -164,7 +176,7 @@ export function TypingAnimation({
       className={cn("leading-[5rem] tracking-[-0.02em]", className, inter.className)}
       {...props}
     >
-      <span>{displayedText}</span>
+          <span className={defineFont(currentWordIndex).className + " " + "pt-16"}>{displayedText}</span>
       {shouldShowCursor && (
         <span
           className={cn("inline-block", blinkCursor && "animate-blink-cursor")}

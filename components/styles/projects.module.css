@@ -12,6 +12,18 @@
     }
 }
 
+.card {
+    /* 0 === skills
+    1 === speed typer
+    2 === trello to google apps script
+    3 === baby log
+    4 === Ma rue */
+    & > * {
+        border: 20px solid red;
+        background-color: red;
+    }
+}
+
 @keyframes scaleOutIn {
     0% {
         scale: 100%;

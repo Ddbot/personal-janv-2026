@@ -20,6 +20,10 @@ import bg from "@/public/speed_typer.png"
 import Image from 'next/image'
 import styles from './styles/projects.module.css';
 
+const Card = (props) => {
+    return <BentoCard className={styles.card} {...props} />;
+}
+
 const Empty = () => {
     return null
 }
@@ -140,9 +144,9 @@ const Container = ({ className }) => {
 			// style={{ _animation: 'scaleOutIn' }}
 			className={`p-4 md:p-24 ${styles.container} ${className}`}
 			id="projects">
-			{features.map((feature, idx) => (
+            {features.map((feature, idx) => (
 				<ViewTransition key={idx}>
-                    <BentoCard {...feature} />
+					<Card {...feature} />
 				</ViewTransition>
 			))}
 		</BentoGrid>
