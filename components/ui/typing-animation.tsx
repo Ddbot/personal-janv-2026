@@ -2,6 +2,10 @@
 
 import { useEffect, useMemo, useRef, useState } from "react"
 import { motion, MotionProps, useInView } from "motion/react"
+import { Kablammo, Geist, Inter } from "next/font/google";
+
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+// const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 import { cn } from "@/lib/utils"
 
@@ -157,10 +161,10 @@ export function TypingAnimation({
   return (
     <MotionComponent
       ref={elementRef}
-      className={cn("leading-[5rem] tracking-[-0.02em]", className)}
+      className={cn("leading-[5rem] tracking-[-0.02em]", className, inter.className)}
       {...props}
     >
-      {displayedText}
+      <span>{displayedText}</span>
       {shouldShowCursor && (
         <span
           className={cn("inline-block", blinkCursor && "animate-blink-cursor")}
