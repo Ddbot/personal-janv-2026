@@ -85,6 +85,7 @@
 body {
     scroll-snap-type: y mandatory;
     interpolate-size: allow-keywords;
+    background-color: var(--background);
 }
 :root {
   --background: oklch(1 0 0);
@@ -93,7 +94,7 @@ body {
   --card-foreground: oklch(0.13 0.028 261.692);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.13 0.028 261.692);
-  --primary: oklch(0.60 0.10 185);
+  /* --primary: oklch(0.60 0.10 185); */
   --primary: hsl(33, 79%, 59%);
   --primary-foreground: oklch(0.98 0.01 181);
   --secondary: oklch(0.967 0.001 286.375);
@@ -127,18 +128,23 @@ body {
   --color-3: oklch(69.6% 0.165 251);
   --color-4: oklch(80.2% 0.134 225);
   --color-5: oklch(90.7% 0.231 133);
+--accent-0: var(--card-foreground);
+--accent-1: #ff6150;
+--accent-2: var(--primary);
+--accent-3: #ffcb00;
 
   accent-color: var(--color-20);
 }
 
 .dark {
-  --background: oklch(0.13 0.028 261.692);
+  --background: #072448;
   --foreground: rgb(249, 250, 251);
   --card: oklch(0.21 0.034 264.665);
   --card-foreground: oklch(0.985 0.002 247.839);
   --popover: oklch(0.21 0.034 264.665);
   --popover-foreground: oklch(0.985 0.002 247.839);
-  --primary: oklch(0.70 0.12 183);
+  /* --primary: oklch(0.70 0.12 183); */
+  --primary: #1B9388;
   --primary-foreground: oklch(0.28 0.04 193);
   --secondary: oklch(0.274 0.006 286.033);
   --secondary-foreground: oklch(0.985 0 0);
@@ -168,6 +174,10 @@ body {
   --color-3: oklch(69.6% 0.165 251);
   --color-4: oklch(80.2% 0.134 225);
   --color-5: oklch(90.7% 0.231 133);
+  --accent-0: var(--card-foreground);
+  --accent-1: #ff6150;
+  --accent-2: var(--primary);
+  --accent-3: #ffcb00;
 }
 
 @layer base {

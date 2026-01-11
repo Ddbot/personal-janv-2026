@@ -31,9 +31,9 @@ interface TypingAnimationProps extends MotionProps {
 }
 
 const fontsList = [playfair_display, kablammo, roboto_slab, inter];
-
+const colorsList = ["-accent-0","-accent-1", "-accent-2", "-accent-3"];
 function defineFont(index: number) {
-    return fontsList[index];
+    return [fontsList[index], colorsList[index]];
 }
 
 export function TypingAnimation({
@@ -176,7 +176,10 @@ export function TypingAnimation({
       className={cn("leading-[5rem] tracking-[-0.02em]", className, inter.className)}
       {...props}
     >
-          <span className={defineFont(currentWordIndex).className + " " + "pt-16"}>{displayedText}</span>
+        <span className={fontsList[currentWordIndex].className}
+            style={{
+                color: `var(--accent-${currentWordIndex})`
+          }}>{displayedText}</span>
       {shouldShowCursor && (
         <span
           className={cn("inline-block", blinkCursor && "animate-blink-cursor")}
