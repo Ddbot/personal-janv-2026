@@ -3,7 +3,7 @@ import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import Header from './Header';
 import Screen from './Screen';
 import ChatPage from './chat/page';
-import MailPage from './mail';
+import MailPage from './mail/page';
 import Footer from './Footer';
 
 type Category = 'chat' | 'mail';

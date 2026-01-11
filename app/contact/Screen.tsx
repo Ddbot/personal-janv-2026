@@ -6,7 +6,7 @@ import { LangContext } from '@/contexts/LangContext';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import ChatHeader from './Header';
 import ChatPage from './chat/page';
-import MailPage from './mail';
+import MailPage from './mail/page';
 import { MessageCircle, Mail, Linkedin } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { use } from 'react';
