@@ -60,10 +60,8 @@ function MailPage() {
         <form action={sendMail} className='w-full h-full'>
             <Card className={styles.container}>
                 <CardHeader className={styles.header} ref={headerRef}>
-                    {/* <CardTitle className="w-full h-full flex justify-center items-center "> */}
-                        <label htmlFor="subject" className='ml-4'>Sujet:</label>
-                        <Input name="subject" id="subject"/>
-                    {/* </CardTitle> */}
+                    <label htmlFor="subject" className='ml-4'>Sujet:</label>
+                    <Input name="subject" id="subject"/>
                 </CardHeader>
                 <CardContent className={styles.content}>
                     <Textarea
@@ -75,21 +73,8 @@ function MailPage() {
                 </CardContent>
                 <CardFooter className={styles.footer} ref={ footerRef }>
                     <ChatToolbar className="w-full">
-                        {/* <ChatToolbarAddonStart>
-                            <Button
-                                variant="ghost"
-                                className="size-8 @md/chat:size-9">
-                                <PlusIcon className="size-5 @md/chat:size-6 stroke-[1.7px]" />
-                            </Button>
-                        </ChatToolbarAddonStart> */}
-                        {/* <ChatToolbarTextarea /> */}
                         <ChatToolbarAddonEnd className="p-0 m-0 pb-2">
-                            {/* <Button
-                                className="size-8 @md/chat:size-9"
-                                variant="outline">
-                                <Trash2 className="size-4 @md/chat:size-5 stroke-[1.7px]" />
-                            </Button> */}
-                            <Button type="submit" className="size-8 @md/chat:size-9">
+                            <Button type="submit" className="self-end size-8 @md/chat:size-9">
                                 <Send className="size-4 @md/chat:size-5 stroke-[1.7px]" />
                             </Button>
                         </ChatToolbarAddonEnd>

@@ -18,8 +18,9 @@ export function ChatToolbar({
     >
       <div
         className={cn(
-          "border rounded-md py-2 px-3",
-          "grid grid-cols-[max-content_auto_max-content] gap-x-2"
+          "border rounded-md py-0 px-3",
+            "grid grid-cols-[max-content_auto_max-content] gap-x-2",
+          "place-items-end"
         )}
       >
         {children}
