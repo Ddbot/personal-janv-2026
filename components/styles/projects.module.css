@@ -1,10 +1,12 @@
 .container {
     /* width: stretch; */
     /* height: stretch;@ */
+    max-width: 100%;
     max-height: 25dvh;
     animation: scaleOutIn linear both;
     animation-timeline: scroll();
     animation-range: entry 0% entry 100%;
+    overflow-x: clip;
 
     @starting-style {
         scale: 100% 100%;
@@ -13,24 +15,64 @@
 }
 
 .card {
-    /* 0 === skills
-    1 === speed typer
-    2 === trello to google apps script
-    3 === baby log
-    4 === Ma rue */
-    & > * {
-        border: 20px solid red;
-        background-color: red;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    /* 1 === skills
+    2 === speed typer
+    3 === trello to google apps script
+    4 === baby log
+    5 === Ma rue */    
+    &:nth-of-type(1) {
+        perspective: 1000px;
+        transform-style: preserve-3d;
+        /* border: 2px solid red; */
+        /* background-color: red; */
+        /* display: none; */
+        /* transform: translateZ(100px) rotateY(45deg); */
+        animation: rotate1 linear both;
+        animation-timeline: scroll();
+        animation-range: entry 0% entry 75%;
+    }    
+    &:nth-of-type(2) {
+        perspective: 1000px;
+        transform-style: preserve-3d;
+        /* border: 2px solid red; */
+        /* background-color: red; */
+        /* display: none; */
+        /* transform: translateZ(100px) rotateY(45deg); */
+        animation: rotate2 linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 75%;
     }
 }
 
 @keyframes scaleOutIn {
     0% {
-        scale: 100%;
         margin: 0;
+        transform: scale(1.05);
     }
     100% {
-        scale: 85%;
-        /* margin: 12.5vw; */
+        transform: scale(.85);
+    }
+}
+
+
+@keyframes rotate1 {
+    0% {
+        transform: translate(-25%,0);
+        opacity: 0.4;
+    }
+    100% {
+        transform:translate(0,0);
+        opacity: 1;
+    }
+}
+
+@keyframes rotate2 {
+    0% {
+        transform: rotateX(-42deg) rotateY(17deg) translate(25%,0) translateZ(500px);
+    }
+    100% {
+        transform: rotateX(0deg) rotateY(0deg) translate(0,0) translateZ(0px);
     }
 }

@@ -21,7 +21,7 @@ import Image from 'next/image'
 import styles from './styles/projects.module.css';
 
 const Card = (props) => {
-    return <BentoCard className={styles.card} {...props} />;
+    return <BentoCard {...props} />;
 }
 
 const Empty = () => {
@@ -142,11 +142,14 @@ const Container = ({ className }) => {
     return (
 		<BentoGrid
 			// style={{ _animation: 'scaleOutIn' }}
-			className={`p-4 md:p-24 ${styles.container} ${className}`}
+			className={`p-4 md:p-24 ${styles.container}`}
 			id="projects">
-            {features.map((feature, idx) => (
+			{features.map((feature, idx) => (
 				<ViewTransition key={idx}>
-					<Card {...feature} />
+					<Card
+						{...feature}
+						className={styles.card + ' ' + feature.className}
+					/>
 				</ViewTransition>
 			))}
 		</BentoGrid>
