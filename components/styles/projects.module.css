@@ -6,7 +6,7 @@
     animation: scaleOutIn linear both;
     animation-timeline: scroll();
     animation-range: entry 0% entry 100%;
-    overflow-x: clip;
+    /* overflow-x: clip; */
 
     @starting-style {
         scale: 100% 100%;
