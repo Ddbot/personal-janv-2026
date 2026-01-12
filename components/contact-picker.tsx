@@ -18,7 +18,7 @@ export default function ContactPicker({ className }: { className: string}) {
   return (
       <Sheet> 
       <SheetTrigger asChild>
-        <Button variant="outline" className="bg-secondary aspect-square w-9 h-9"><Mail /></Button>
+        <Button variant="outline" className="bg-transparent border-0 aspect-square w-9 h-9"><Mail /></Button>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>

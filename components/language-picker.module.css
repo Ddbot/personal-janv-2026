@@ -3,17 +3,22 @@
     flex-flow: row nowrap;
     align-items: center;
     justify-content: center;
-    background-color: var(--secondary);
+    /* background-color: var(--secondary); */
     color: var(--secondary-foreground);
     border-radius: 9999px !important;
     aspect-ratio: 1 / 1 !important;
-    background-color: var(--secondary);
+    /* background-color: var(--secondary); */
+    background-color: transparent;
     transition: background-color 0.2s ease-in-out;
     padding: 0px !important;
     /* width: 48px !important;
     height: 48px !important; */
 
     anchor-name: --trigger;
+
+    border: none;
+    & > * {
+    }
 }
 
 .content {
