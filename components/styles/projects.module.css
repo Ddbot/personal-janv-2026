@@ -9,11 +9,6 @@
     perspective: 2000px;
     transform-style: preserve-3d;
     transform-origin: center center -50px;
-
-    @starting-style {
-        scale: 100% 100%;
-        margin: 0;
-    }
 }
 
 .card {
@@ -55,6 +50,16 @@
         animation: rotate6 linear both;
         animation-timeline: scroll();
     }      
+}
+
+.contact {    
+    display: flex;
+    column-span: 3;
+    display: flex; 
+    @media screen and (orientation: landscape){
+        grid-row-start: 2;
+        grid-column: 2 / span 1;
+    }
 }
 
 @keyframes scaleOutIn {

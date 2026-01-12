@@ -1,5 +1,5 @@
 "use client";
-import { use, useState, ViewTransition } from 'react'
+import { use, useEffect, useRef, useState, ViewTransition } from 'react'
 import { LangContext } from '@/contexts/LangContext';
 import { dictionary } from '@/lib/dictionary';
 import {
@@ -19,6 +19,9 @@ import { Marquee } from "@/components/ui/marquee"
 import bg from "@/public/speed_typer.png"
 import Image from 'next/image'
 import styles from './styles/projects.module.css';
+import styles_bento from './styles/bento-grid.module.css';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 const Card = (props) => {
     return <BentoCard {...props} />;
@@ -29,7 +32,14 @@ const Empty = () => {
 }
 
 const Container = ({ className }) => {    
-	const { lang } = use(LangContext);
+    const { lang } = use(LangContext);
+    const ref = useRef(null);
+    
+    useGSAP(() => { 
+        const q = gsap.utils.selector(ref);
+        // gsap.to(ref.current, { duration: 1, scale: .85 });
+    }, { scope: ref });
+    
     const features = [
 		{
 			Icon: PocketKnife,
@@ -123,7 +133,7 @@ const Container = ({ className }) => {
 			Icon: Empty,
 			name: '',
 			description: dictionary[lang]['features']['description'][5],
-			className: 'col-span-3 lg:col-span-1 lg:col-start-2 lg:row-start-2',
+			className: styles.contact,
 			href: '#',
 			cta: dictionary[lang]['cta'],
 			background: (
@@ -135,15 +145,17 @@ const Container = ({ className }) => {
 					className="flex items-center justify-center w-full h-full bg-primary">
 					CONTACT
 				</div>
-			),
+            ),            
 		},
 	];
     
     return (
 		<BentoGrid
 			// style={{ _animation: 'scaleOutIn' }}
-			className={`p-4 md:p-24 ${styles.container}`}
-			id="projects">
+			// className={`p-4 md:p-24 ${styles.container}`}
+			className={styles_bento.container}
+			id="projects"
+			ref={ref}>
 			{features.map((feature, idx) => (
 				<ViewTransition key={idx}>
 					<Card
@@ -157,29 +169,6 @@ const Container = ({ className }) => {
 };
     
 export default function Projects({ className }) {
-	const skills = [
-		{
-			name: 'Front End',
-			body: 'Je maîtrise parfaitement les technologies Front End et CSS et me tient constamment informé de leurs évolutions',
-		},
-		{
-			name: 'Back End',
-			body: 'Je maîtrise parfaitement les technologies Back End et me tient constamment informé de leurs évolutions',
-		},
-		{
-			name: 'Full Stack',
-			body: 'Je maîtrise parfaitement les technologies Full Stack et me tient constamment informé de leurs évolutions',
-		},
-		{
-			name: 'Rédaction & Copywriting',
-			body: 'Je maîtrise parfaitement les technologies Rédaction & Copywriting et me tient constamment informé de leurs évolutions',
-		},
-		{
-			name: 'Traduction & SEO',
-			body: 'Je maîtrise parfaitement les technologies Traduction & SEO et me tient constamment informé de leurs évolutions',
-		},
-	];
-
     return <Container className={className} />
 }
 

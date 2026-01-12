@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ReactNode } from "react"
+import { ComponentPropsWithoutRef, ReactNode, forwardRef } from "react"
 import { ArrowRightIcon } from "@radix-ui/react-icons"
 import { Phone } from 'lucide-react'; 
 import { Empty } from '../projects'
@@ -23,9 +23,13 @@ interface BentoCardProps extends ComponentPropsWithoutRef<"div"> {
     fn?: () => void
 }
 
-const BentoGrid = ({ children, className, ...props }: BentoGridProps) => {
+const BentoGrid = forwardRef<HTMLDivElement, BentoGridProps>((
+    { children, className, ...props }: BentoGridProps,
+    ref
+) => {
   return (
       <div
+          ref={ref}
           id="bentogrid"
       className={cn(
         styles.container,
@@ -36,7 +40,9 @@ const BentoGrid = ({ children, className, ...props }: BentoGridProps) => {
       {children}
     </div>
   )
-}
+})
+
+BentoGrid.displayName = "BentoGrid"
 
 const BentoCard = ({
   name,
@@ -113,5 +119,7 @@ const BentoCard = ({
     <div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-black/[.03] group-hover:dark:bg-neutral-800/10" />
   </div>
 )
+
+BentoCard.displayName = "BentoCard"
 
 export { BentoCard, BentoGrid }
