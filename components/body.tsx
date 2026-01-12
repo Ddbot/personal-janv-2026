@@ -1,8 +1,11 @@
 "use client";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { useRef } from "react";
 import Providers from '@/app/providers';
 import Navbar from "./navbar";
 import useIsScrolling from "@/lib/hooks/useIsScrolling";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,10 +18,27 @@ const geistMono = Geist_Mono({
 });
 function Body({ children }: { children: React.ReactNode }) {
     const isScrolling = useIsScrolling(300);
+    const navbarRef = useRef<HTMLDivElement>(null);
+
+    useGSAP(() => {
+        if (isScrolling) {
+            gsap.to(navbarRef.current, {
+                yPercent: -100,
+                duration: 0.3,
+                ease: "power2.inOut"
+            });
+        } else {
+            gsap.set(navbarRef.current, { yPercent: 0 });
+            gsap.fromTo(navbarRef.current, 
+                { opacity: 0 },
+                { opacity: 1, duration: 0.3, ease: "power2.out" }
+            );
+        }
+    }, { dependencies: [isScrolling] });
 
     return <body className={`${geistSans.variable} ${geistMono.variable} antialiased p-0`}>
         <Providers>
-            <Navbar className={ isScrolling ? '-translate-y-full' : 'translate-y-0' } />
+            <Navbar ref={navbarRef} className="transition-none" />
             {children}
         </Providers>
     </body>
