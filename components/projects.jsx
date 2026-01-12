@@ -1,7 +1,7 @@
 "use client";
 import { use, useEffect, useRef, useState, ViewTransition } from 'react'
 import { LangContext } from '@/contexts/LangContext';
-import { dictionary } from '@/lib/dictionary';
+// import { dictionary } from '@/lib/dictionary';
 import {
 	Baby,
 	Keyboard,
@@ -21,7 +21,8 @@ import Image from 'next/image'
 import styles from './styles/projects.module.css';
 import styles_bento from './styles/bento-grid.module.css';
 import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
+import ProjectsContactCardContent from './projects-contact-card-content';
+import { useRouter } from 'next/navigation';
 
 const Card = (props) => {
     return <BentoCard {...props} />;
@@ -32,13 +33,271 @@ const Empty = () => {
 }
 
 const Container = ({ className }) => {    
+    const [shouldAnimate, setShouldAnimate] = useState(false);
     const { lang } = use(LangContext);
     const ref = useRef(null);
-    
-    useGSAP(() => { 
-        const q = gsap.utils.selector(ref);
-        // gsap.to(ref.current, { duration: 1, scale: .85 });
-    }, { scope: ref });
+    const containerRef = useRef(null);
+    const tl = useRef(null);
+    const router = useRouter();
+
+    const dictionary = {
+		fr: {
+			cta: 'Plus de détails',
+			hero: {
+				intro: ['Développeur', ' Front End'],
+				more: "Plus d'infos",
+				contact: 'Contact',
+				typing: ['Polyvalent', 'Curieux', 'Fiable', 'Team Player'],
+			},
+			features: {
+				description: [
+					'Des compétences diverses et variées',
+					'Mesurez votre vitesse de frappe !',
+					"Une app pour augmenter la productivité d'une content farm ",
+					'Une app mobile pour suivre la croissance et les données vitales de votre nouveau né',
+					'Echanger, vendre, partager, se rendre service: tout ce qui se passe dans ma rue',
+					<ProjectsContactCardContent
+                        key="contact"
+                        className={cn(styles_bento.animate_messages)}
+                        fn={handleClick}
+                        ref={ ref } />,
+					'Si on se contactait ?',
+				],
+			},
+			skills: [
+				{
+					name: 'Front End',
+					description:
+						'Je maîtrise parfaitement les technologies Front End et CSS et me tient constamment informé de leurs évolutions',
+					time: 'depuis 9 ans',
+					icon: '💸',
+					color: '#00C9A7',
+				},
+				{
+					name: 'Back End',
+					description:
+						'Je me suis familiarisé avec les technologies back-end et serveur. Mon parcours en développement web a débuté avec Ruby on Rails.',
+					time: 'depuis 5 ans',
+					icon: '👤',
+					color: '#FFB800',
+				},
+				{
+					name: 'Full Stack',
+					description:
+						"En tant que jeune entrepreneur, je me suis familiarisé avec les technologies SaaS, PostgreSQL, Firebase, les services Amazon, etc. Je suis toujours prêt à explorer de nouveaux domaines, et l'IA facilite grandement cette démarche.",
+					time: 'depuis 5 ans',
+					icon: '💬',
+					color: '#FF3D71',
+				},
+				{
+					name: 'Rédaction & Copywriting',
+					description:
+						"Je suis rédacteur-concepteur pour divers sites web spécialisés en technologie tels que Tom's Guide, 01Net ou Phonandroid.",
+					time: 'depuis 15 ans',
+					icon: '🗞️',
+					color: '#1E86FF',
+				},
+				{
+					name: 'Traduction & SEO',
+					description:
+						"J'ai travaillé dans le secteur de la traduction et j'ai l'habitude de traduire et/ou de rédiger du contenu technique.",
+					time: 'depuis 15 ans',
+					icon: '🗞️',
+					color: '#1E86FF',
+				},
+			],
+		},
+		gb: {
+			cta: 'More info',
+			hero: {
+				intro: ['Front End', ' Developer'],
+				more: 'More info',
+				contact: 'Contact',
+				typing: ['Versatile', 'Curious', 'Reliable', 'Team Player'],
+			},
+			features: {
+				description: [
+					'A speed typing app to train your typing skills',
+					'A broad skill set',
+					'A productivity app to streamline production in a content farm',
+					"A mobile app to monitor your baby's evolution",
+					'Echanger, vendre, partager, se rendre service: tout ce qui se passe dans ma rue',
+					"Let's get in touch!",
+				],
+			},
+			skills: [
+				{
+					name: 'Front End',
+					description:
+						'I master perfectly the Front End technologies and keep myself constantly informed of their evolutions',
+					time: '9y ago',
+					icon: '🗞️',
+					color: '#1E86FF',
+				},
+				{
+					name: 'Back End',
+					description:
+						'I have accustomed myself to Back End & server technologies. My journey in web dev has begun with Ruby on Rails.',
+					time: '5y ago',
+					icon: '🗞️',
+					color: '#1E86FF',
+				},
+				{
+					name: 'Full Stack',
+					description:
+						'As a budding entrepreneur, I have had to learn abour SaaS, PostGresQL, Firebase, Amazon Services and such. I am always willing to explore new domains, and AI makes this endeavour even easier.',
+					time: '5y ago',
+					icon: '🗞️',
+					color: '#1E86FF',
+				},
+				{
+					name: 'Editing & Copywriting',
+					description:
+						"I've long been an Editor Copywriter for various Tech web sites such as Tom's Guide, 01Net or Phonandroid.",
+					time: '15y ago',
+					icon: '🗞️',
+					color: '#1E86FF',
+				},
+				{
+					name: 'Translation & SEO',
+					description:
+						"I've worked in the Translation sector and I'm used to translating and/or writing technical content.",
+					time: '15y ago',
+					icon: '🗞️',
+					color: '#1E86FF',
+				},
+			],
+		},
+		de: {
+			cta: 'Mehr Info',
+			hero: {
+				intro: ['Frontend-', 'Entwickler'],
+				more: 'Mehr Info',
+				contact: 'Kontakt',
+				typing: [
+					'Vielseitig',
+					'Neugierig',
+					'Zuverlässig',
+					'Teamplayer',
+				],
+			},
+			features: {
+				description: [
+					'Eine Schnellschreib-App zum Trainieren Ihrer Tippfähigkeiten',
+					'Vielfältige Fähigkeiten',
+					'Eine App, die die Produktivität einer Content-Farm verzehnfacht.',
+					'Eine mobile App, die Ihnen hilft, die Entwicklung Ihres Babys zu überwachen',
+					'Echanger, vendre, partager, se rendre service: tout ce qui se passe dans ma rue',
+					'Lass uns Kontakt aufnehmen!',
+				],
+			},
+			skills: [
+				{
+					name: 'Front End',
+					description:
+						'Ich beherrsche Front-End-Technologien perfekt und halte mich ständig über deren Weiterentwicklung auf dem Laufenden.',
+					time: 'vor 9 Jahren',
+					icon: '🗞️',
+					color: '#1E86FF',
+				},
+				{
+					name: 'Back End',
+					description:
+						'Ich habe mich mit Backend- und Servertechnologien vertraut gemacht. Meine Reise in der Webentwicklung begann mit Ruby on Rails.',
+					time: 'vor 5 Jahren',
+					icon: '🗞️',
+					color: '#1E86FF',
+				},
+				{
+					name: 'Full Stack',
+					description:
+						'Als angehender Unternehmer musste ich mich mit SaaS, PostgreSQL, Firebase, Amazon-Diensten und ähnlichem auseinandersetzen. Ich bin stets offen für neue Herausforderungen, und KI erleichtert mir diesen Weg zusätzlich.',
+					time: 'vor 5 Jahren',
+					icon: '🗞️',
+					color: '#1E86FF',
+				},
+				{
+					name: 'Editing & Copywriting',
+					description:
+						"Ich bin seit langer Zeit als Texter für verschiedene Tech-Websites wie Tom's Guide, 01Net oder Phonandroid tätig.",
+					time: 'vor 15 Jahren',
+					icon: '🗞️',
+					color: '#1E86FF',
+				},
+				{
+					name: 'Translation & SEO',
+					description:
+						"Ich bin seit langer Zeit als Texter für verschiedene Tech-Websites wie Tom's Guide, 01Net oder Phonandroid tätig.",
+					time: 'vor 15 Jahren',
+					icon: '🗞️',
+					color: '#1E86FF',
+				},
+			],
+		},
+	};    
+
+    function handleClick(e) {
+        e.preventDefault();
+        const type = e.currentTarget.dataset.icon;
+        tl.current = gsap.timeline({
+            defaults: {
+                duration: .225,
+                ease: 'power2.out',
+            },
+            onComplete: () => {
+                router.push('/contact?type=' + type);
+            }
+        });
+
+        const timeline = tl.current;
+        console.log(e.currentTarget.dataset.icon)
+        ref.current.classList.toggle(styles.animate_messages);
+        // setShouldAnimate(!shouldAnimate);
+        gsap.set(containerRef.current, {
+			transformOrigin: 'bottom center 0px',
+			gridTemplateColumns: '1fr 1fr 1fr',
+            gridTemplateRows: '22rem 22rem',
+            // padding: '0 0 25dvh 0',
+		});
+
+        const otherCards = Array.from(containerRef.current.children);
+        const contactCard = otherCards.pop();
+
+        gsap.set(containerRef.current, { margin: 'auto' });
+        gsap.set(otherCards.at(0), { transformOrigin: 'top left' });
+        gsap.set(otherCards.at(1), { transformOrigin: '<bottom right' });
+        gsap.set(otherCards.at(2), { transformOrigin: 'bottom left' });
+        gsap.set(otherCards.at(3), { transformOrigin: 'top right' });
+        gsap.set(otherCards.at(4), { transformOrigin: 'top center' });
+        gsap.set(contactCard, { transformOrigin: 'bottom center' });
+
+        timeline
+			.to(containerRef.current, {
+				gridTemplateColumns: '1fr 1fr 1fr',
+				gridTemplateRows: '0fr 44rem',
+				ease: 'power2.out',
+			})
+			.to(
+				containerRef.current,
+				{
+					gridTemplateColumns: '0fr 1fr 0fr',
+					gridTemplateRows: '0fr 44rem',
+					// padding: 0,
+                    ease: 'power2.out',
+                    yPercent: -17.6
+				},
+				'<',
+			)
+			.to(
+				otherCards,
+				{
+                    height: 0,
+                    width: 0,
+                    opacity: 0,
+                    padding: 0,
+                    margin: 0,
+            }, '<')		
+    }
     
     const features = [
 		{
@@ -151,20 +410,18 @@ const Container = ({ className }) => {
     
     return (
 		<BentoGrid
-			// style={{ _animation: 'scaleOutIn' }}
-			// className={`p-4 md:p-24 ${styles.container}`}
+			ref={containerRef}
 			className={styles_bento.container}
-			id="projects"
-			ref={ref}>
-			{features.map((feature, idx) => (
-				<ViewTransition key={idx}>
-					<Card
-						{...feature}
-						className={styles.card + ' ' + feature.className}
-					/>
-				</ViewTransition>
+			id="projects">
+            {features.map((feature, idx) => (
+                <ViewTransition key={idx}>
+                    <Card
+                        {...feature}
+                        className={styles.card + ' ' + feature.className}
+                    />
+        </ViewTransition>
 			))}
-		</BentoGrid>
+        </BentoGrid>
 	);
 };
     

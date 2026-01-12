@@ -1,34 +1,19 @@
+import { forwardRef, ForwardedRef } from 'react';
 import Link from "next/link";
 import { Linkedin, Mail, MessageCircle } from 'lucide-react';
-const ProjectsContactCardContent = () => {
-    
-    function handleClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-        e.preventDefault();        
-        console.log(e.currentTarget.dataset.icon)
-        // 1. ANIMER la bentogrid
 
-        // 2. NAVIGUER VERS CHAT OU MAIL
-    }
+interface ProjectsContactCardContentProps {
+    fn: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
 
+const ProjectsContactCardContent = forwardRef<HTMLDivElement, ProjectsContactCardContentProps>(({ fn }, ref: ForwardedRef<HTMLDivElement>) => {
     return (
-        <div key="contact" className="w-full flex justify-end gap-4">
-            <button onClick={handleClick} data-icon="chat">
-                {/* <Link
-                    href={{
-                        pathname: '/contact',
-                        query: { type: 'chat' },
-                    }}> */}
-                    <MessageCircle color={'var(--background'} />
-                {/* </Link> */}
+        <div ref={ref} key="contact" className="w-full flex justify-end gap-4">
+            <button onClick={fn} data-icon="chat">
+                <MessageCircle color={'var(--background'} />
             </button>
-            <button onClick={handleClick} data-icon="mail">
-                <Link
-                    href={{
-                        pathname: '/contact',
-                        query: { type: 'mail' },
-                    }}>
-                    <Mail color={'var(--background'} />
-                </Link>
+            <button onClick={fn} data-icon="mail">
+                <Mail color={'var(--background'} />
             </button>
             <button data-icon="linkedin">
                 <a
@@ -39,6 +24,8 @@ const ProjectsContactCardContent = () => {
             </button>
         </div>
     );
-}
+});
+
+ProjectsContactCardContent.displayName = 'ProjectsContactCardContent';
 
 export default ProjectsContactCardContent;
