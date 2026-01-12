@@ -1,0 +1,21 @@
+.navbar {
+    transition: opacity 225ms linear;
+    opacity: 1;
+    /* animation: animate 225ms linear;
+    animation-timeline: scroll();
+    animation-range: entry 0% entry 100%; */
+}
+
+.isScrolling {
+    opacity: 0;
+}
+
+@keyframes animate {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

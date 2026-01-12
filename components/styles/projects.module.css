@@ -1,12 +1,14 @@
 .container {
-    /* width: stretch; */
-    /* height: stretch;@ */
     max-width: 100%;
-    max-height: 25dvh;
+    max-height: 66dvh;
+
     animation: scaleOutIn linear both;
     animation-timeline: scroll();
     animation-range: entry 0% entry 100%;
-    /* overflow-x: clip; */
+
+    perspective: 2000px;
+    transform-style: preserve-3d;
+    transform-origin: center center -50px;
 
     @starting-style {
         scale: 100% 100%;
@@ -15,81 +17,43 @@
 }
 
 .card {
-    perspective: 1000px;
+    
+    /* perspective: 100px;
     transform-style: preserve-3d;
+    transform-origin: center center -50px; */
+    
+    animation-timeline: scroll();
+    animation-range: entry 0% entry 100%;
+
     /* 1 === skills
     2 === speed typer
     3 === trello to google apps script
     4 === baby log
     5 === Ma rue */    
     &:nth-of-type(1) {
-        perspective: 1000px;
-        transform-style: preserve-3d;
-        /* border: 2px solid red; */
-        /* background-color: red; */
-        /* display: none; */
-        /* transform: translateZ(100px) rotateY(45deg); */
         animation: rotate1 linear both;
-        animation-timeline: scroll();
-        animation-range: entry 0% entry 75%;
+        animation-timeline: scroll();        
     }    
     &:nth-of-type(2) {
-        perspective: 1000px;
-        transform-style: preserve-3d;
-        /* border: 2px solid red; */
-        /* background-color: red; */
-        /* display: none; */
-        /* transform: translateZ(100px) rotateY(45deg); */
         animation: rotate2 linear both;
-        animation-timeline: view();
-        animation-range: entry 0% entry 75%;
     }
 
     &:nth-of-type(3) {
-        perspective: 1000px;
-        transform-style: preserve-3d;
-        /* border: 2px solid red; */
-        /* background-color: red; */
-        /* display: none; */
-        /* transform: translateZ(100px) rotateY(45deg); */
         animation: rotate3 linear both;
-        animation-timeline: view();
-        animation-range: entry 0% entry 75%;
     }
 
     &:nth-of-type(4) {
-        perspective: 1000px;
-        transform-style: preserve-3d;
-        /* border: 2px solid red; */
-        /* background-color: red; */
-        /* display: none; */
-        /* transform: translateZ(100px) rotateY(45deg); */
         animation: rotate4 linear both;
-        animation-timeline: view();
-        animation-range: entry 0% entry 75%;
+        animation-timeline: scroll();
     }  
     &:nth-of-type(5) {
-        perspective: 1000px;
-        transform-style: preserve-3d;
-        /* border: 2px solid red; */
-        /* background-color: red; */
-        /* display: none; */
-        /* transform: translateZ(100px) rotateY(45deg); */
         animation: rotate5 linear both;
-        animation-timeline: view();
-        animation-range: entry 0% entry 75%;
+        animation-timeline: scroll();
     }  
     
     &:nth-of-type(6) {
-        perspective: 1000px;
-        transform-style: preserve-3d;
-        /* border: 2px solid red; */
-        /* background-color: red; */
-        /* display: none; */
-        /* transform: translateZ(100px) rotateY(46deg); */
         animation: rotate6 linear both;
         animation-timeline: scroll();
-        animation-range: entry 50% entry 100%;
     }      
 }
 
