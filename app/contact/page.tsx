@@ -16,17 +16,17 @@ const Container = async ({ className = '', category ="chat"}: { className: strin
     const type = category
 	return (
 		<div
-			className={`p-4 md:p-0 ${styles.grid} rounded-4xl ${className}`}
+			className={`p-4 md:p-0 ${styles.grid} rounded-4xl`}
 			id="contact">
             <Card key={type} className={styles.card_container}>
                 <Header title={"Développeur Front End"} category={ type} />
-                <CardContent className={`flex-1 min-h-0 px-0 p-0`}>
+                {/* <CardContent className={`flex-1 min-h-0 px-0 p-0`}> */}
                     {type === 'chat' ? (
                         <ChatPage />
                     ) : (
                         <MailPage />
                     )}
-                </CardContent>
+                {/* </CardContent> */}
                 <Footer displayedCategory={type} />
             </Card>
 		</div>

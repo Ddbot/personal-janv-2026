@@ -4,7 +4,7 @@ export default function Providers({ children }) {
 	return (
 		<ThemeProvider>
 			<LangProvider>
-{children}
+                {children}
 			</LangProvider>
 		</ThemeProvider>
 	);

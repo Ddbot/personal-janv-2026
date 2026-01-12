@@ -33,7 +33,6 @@ const Empty = () => {
 }
 
 const Container = ({ className }) => {    
-    const [shouldAnimate, setShouldAnimate] = useState(false);
     const { lang } = use(LangContext);
     const ref = useRef(null);
     const containerRef = useRef(null);
@@ -244,38 +243,42 @@ const Container = ({ className }) => {
                 duration: .225,
                 ease: 'power2.out',
             },
+            onUpdate: () => {
+            },
             onComplete: () => {
+                window.scrollBy(window.innerHeight);
                 router.push('/contact?type=' + type);
             }
         });
 
         const timeline = tl.current;
-        console.log(e.currentTarget.dataset.icon)
-        ref.current.classList.toggle(styles.animate_messages);
-        // setShouldAnimate(!shouldAnimate);
+
         gsap.set(containerRef.current, {
-			transformOrigin: 'bottom center 0px',
+			transformOrigin: 'top center 0px',
 			gridTemplateColumns: '1fr 1fr 1fr',
-            gridTemplateRows: '22rem 22rem',
-            // padding: '0 0 25dvh 0',
+			gridTemplateRows: '22rem 22rem',
+			maxHeight: '44rem',
+			placeContent: 'start center'
+
+			// padding: '0 0 25dvh 0',
 		});
 
         const otherCards = Array.from(containerRef.current.children);
         const contactCard = otherCards.pop();
 
-        gsap.set(containerRef.current, { margin: 'auto' });
         gsap.set(otherCards.at(0), { transformOrigin: 'top left' });
         gsap.set(otherCards.at(1), { transformOrigin: '<bottom right' });
         gsap.set(otherCards.at(2), { transformOrigin: 'bottom left' });
         gsap.set(otherCards.at(3), { transformOrigin: 'top right' });
         gsap.set(otherCards.at(4), { transformOrigin: 'top center' });
-        gsap.set(contactCard, { transformOrigin: 'bottom center' });
+        gsap.set(contactCard, { transformOrigin: 'bottom center 0px', alignSelf: 'stretch' });
 
         timeline
 			.to(containerRef.current, {
 				gridTemplateColumns: '1fr 1fr 1fr',
 				gridTemplateRows: '0fr 44rem',
 				ease: 'power2.out',
+                y: '-6.6rem',
 			})
 			.to(
 				containerRef.current,
@@ -284,19 +287,21 @@ const Container = ({ className }) => {
 					gridTemplateRows: '0fr 44rem',
 					// padding: 0,
                     ease: 'power2.out',
-                    yPercent: -17.6
+                    gap: 0
 				},
 				'<',
 			)
 			.to(
 				otherCards,
 				{
-                    height: 0,
-                    width: 0,
-                    opacity: 0,
-                    padding: 0,
+					scale: 0,
+					// width: 0,
+					opacity: 0,
+					padding: 0,
                     margin: 0,
-            }, '<')		
+				},
+				'<',
+			)	
     }
     
     const features = [

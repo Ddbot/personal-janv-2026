@@ -11,31 +11,7 @@
     /* transform-origin: top center; */
     transform: scale(.85);
 
-    padding: 1rem;
-    /* animation: animate-messages 1s ease-in-out; */
-    animation-duration: 1s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: 1;
-    animation-fill-mode: both;
-    animation-play-state: paused;
+    overflow-y: crop;
 
-    @media screen and (min-width: 768px) {
-        /* padding: 6rem; */
-    }
-}
-
-.animate_messages {
-    animation-name: animate-messages_;
-    animation-play-state: running;
-}
-
-@keyframes animate-messages {
-    0% {
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 22rem 22rem;
-    }
-    100% {
-        grid-template-columns: 0fr 1fr 0fr;
-        grid-template-rows: 0fr 44rem;
-    }
+    padding: 0;
 }
