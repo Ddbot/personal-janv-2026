@@ -23,6 +23,7 @@ import styles_bento from './styles/bento-grid.module.css';
 import gsap from 'gsap';
 import ProjectsContactCardContent from './projects-contact-card-content';
 import { useRouter } from 'next/navigation';
+import { BorderWidthIcon } from '@radix-ui/react-icons';
 
 const Card = (props) => {
     return <BentoCard {...props} />;
@@ -240,13 +241,13 @@ const Container = ({ className }) => {
         const type = e.currentTarget.dataset.icon;
         tl.current = gsap.timeline({
             defaults: {
-                duration: .225,
+                duration: .1225,
                 ease: 'power2.out',
             },
             onUpdate: () => {
             },
             onComplete: () => {
-                window.scrollBy(window.innerHeight);
+                window.scrollTo(0,window.innerHeight);
                 router.push('/contact?type=' + type);
             }
         });
@@ -258,7 +259,7 @@ const Container = ({ className }) => {
 			gridTemplateColumns: '1fr 1fr 1fr',
 			gridTemplateRows: '22rem 22rem',
 			maxHeight: '44rem',
-			placeContent: 'start center'
+			placeContent: 'end center'
 
 			// padding: '0 0 25dvh 0',
 		});
@@ -274,12 +275,11 @@ const Container = ({ className }) => {
         gsap.set(contactCard, { transformOrigin: 'bottom center 0px', alignSelf: 'stretch' });
 
         timeline
-			.to(containerRef.current, {
-				gridTemplateColumns: '1fr 1fr 1fr',
-				gridTemplateRows: '0fr 44rem',
-				ease: 'power2.out',
-                y: '-6.6rem',
-			})
+			// .to(containerRef.current, {
+			// 	gridTemplateColumns: '1fr 1fr 1fr',
+			// 	gridTemplateRows: '0fr 44rem',
+			// 	ease: 'power2.out',
+			// })
 			.to(
 				containerRef.current,
 				{
@@ -299,9 +299,15 @@ const Container = ({ className }) => {
 					opacity: 0,
 					padding: 0,
                     margin: 0,
+                    borderWidth: 0
 				},
 				'<',
-			)	
+        )	
+            .to(contactCard, {
+            duration: .125,
+            scale: .85,
+            opacity: 0
+        }, '>')
     }
     
     const features = [
@@ -414,19 +420,21 @@ const Container = ({ className }) => {
 	];
     
     return (
-		<BentoGrid
-			ref={containerRef}
-			className={styles_bento.container}
-			id="projects">
-            {features.map((feature, idx) => (
-                <ViewTransition key={idx}>
-                    <Card
-                        {...feature}
-                        className={styles.card + ' ' + feature.className}
-                    />
-        </ViewTransition>
-			))}
-        </BentoGrid>
+		<ViewTransition>
+			<BentoGrid
+				ref={containerRef}
+				className={styles_bento.container}
+				id="projects">
+				{features.map((feature, idx) => (
+					<ViewTransition key={idx}>
+						<Card
+							{...feature}
+							className={styles.card + ' ' + feature.className}
+						/>
+					</ViewTransition>
+				))}
+			</BentoGrid>
+		</ViewTransition>
 	);
 };
     

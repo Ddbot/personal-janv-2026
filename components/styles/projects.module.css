@@ -25,6 +25,7 @@
     3 === trello to google apps script
     4 === baby log
     5 === Ma rue */    
+
     &:nth-of-type(1) {
         animation: rotate1 linear both;
         animation-timeline: scroll();        
@@ -46,9 +47,10 @@
         animation-timeline: scroll();
     }  
     
+    /* CONTACT */
     &:nth-of-type(6) {
         animation: rotate6 linear both;
-        animation-timeline: scroll();
+        animation-timeline: scroll();        
     }      
 }
 

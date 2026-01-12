@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from 'react';
+import { useRef, ViewTransition } from 'react';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from "@/components/ui/button";
 import styles from './styles.module.css';
@@ -56,7 +56,7 @@ function MailPage() {
 
     }, { scope: headerRef });    
     
-    return (
+    return (<ViewTransition>
         <form action={sendMail} className='w-full h-full'>
             <Card className={styles.container}>
                 <CardHeader className={styles.header} ref={headerRef}>
@@ -82,7 +82,7 @@ function MailPage() {
                 </CardFooter>
             </Card>
         </form>
-	);
+    </ViewTransition>);
 }
 
 export default MailPage;

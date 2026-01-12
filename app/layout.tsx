@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Body from '@/components/body';
-import { Inter } from "next/font/google";
+import { Inter, Atkinson_Hyperlegible_Mono } from "next/font/google";
 import "./globals.css";
-
+import { cn } from "@/lib/utils";
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const atkinson = Atkinson_Hyperlegible_Mono({weight: '300', subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
     return (
-        <html lang="fr" className={inter.variable} data-scroll-behavior="smooth">
+        <html lang="fr" className={cn(inter.variable)} data-scroll-behavior="smooth">
             <Body>
                 {children}
             </Body>

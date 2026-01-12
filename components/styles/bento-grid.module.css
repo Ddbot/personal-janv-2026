@@ -11,7 +11,7 @@
     /* transform-origin: top center; */
     transform: scale(.85);
 
-    overflow-y: crop;
+    overflow-y: clip;
 
     padding: 0;
 }
