@@ -13,12 +13,12 @@ export default function Navbar({ className } : { className: string}) {
             md:sticky md:top-0 md:bg-transparent md:backdrop-blur-none md:border-0
             
         `}>
-            <div className={cn('p-0 lg:p-8 lg:space-y-8', className)}>
+            <div className={cn('py-2 px-4 lg:p-8 lg:space-y-8', className)}>
                 <div className="w-full flex flex-row flex-nowrap justify-between md:flex-nowrap gap-4">
                     <Link href={'/'}>                
                         <Logo />
                     </Link>
-                    <div className="flex flex-row flex-nowrap items-center gap-4">
+                    <div className="flex flex-row flex-nowrap items-center gap-0 lg:gap-4">
                         <ContactPicker className="md:w-9 md:h-9 aspect-square rounded-full"/>
                         <LanguagePicker className="md:w-9 md:h-9 aspect-square rounded-full"/>
                         <ThemeToggler />
