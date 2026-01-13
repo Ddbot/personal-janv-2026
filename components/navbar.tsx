@@ -13,7 +13,7 @@ export default function Navbar({ className } : { className: string}) {
             md:sticky md:top-0 md:bg-transparent md:backdrop-blur-none md:border-0
             
         `}>
-            <div className={cn('p-8 space-y-8', className)}>
+            <div className={cn('p-0 lg:p-8 lg:space-y-8', className)}>
                 <div className="w-full flex flex-row flex-nowrap justify-between md:flex-nowrap gap-4">
                     <Link href={'/'}>                
                         <Logo />
