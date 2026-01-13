@@ -18,13 +18,16 @@ const geistMono = Geist_Mono({
 function Body({ children }: { children: React.ReactNode }) {
     const isScrolling = useIsScrolling(300);
 
-    return <body className={`${geistSans.variable} ${geistMono.variable} antialiased p-0`}>
+    return <body className={`${geistMono.variable} antialiased p-0`}>
         <Providers>
-            <Navbar className={cn(
-                isScrolling && styles.isScrolling,
-                styles.navbar
-            )} />
-            {children}
+            <div className="snap-y snap-mandatory">
+
+                <Navbar className={cn(
+                    isScrolling && styles.isScrolling,
+                    styles.navbar
+                )} />
+                {children}
+                </div>
         </Providers>
     </body>
 }

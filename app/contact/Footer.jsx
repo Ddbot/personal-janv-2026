@@ -15,12 +15,12 @@ const Footer = ({ displayedCategory }) => {
             navigate.push(`?type=${e.currentTarget.dataset.icon}`)
     }
 
-    useEffect(() => {
-        if (window) {
-            const { height } = window.screen
-            window.scrollTo(0, height);
-        }
-    }, []);      
+    // useEffect(() => {
+    //     if (window) {
+    //         const { height } = window.screen
+    //         window.scrollTo(0, height);
+    //     }
+    // }, []);      
     return (
 		<CardFooter className={styles.card_footer}>
 			<button

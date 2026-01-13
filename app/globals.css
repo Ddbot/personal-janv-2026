@@ -82,8 +82,7 @@
   100% {
     background-position: 200%;}}}
 
-body {
-    scroll-snap-type: y mandatory;
+body {    
     interpolate-size: allow-keywords;
     background-color: var(--background);
 }
