@@ -4,6 +4,9 @@
     /* animation: animate 225ms linear;
     animation-timeline: scroll();
     animation-range: entry 0% entry 100%; */
+    @starting-style {
+        opacity: 1;
+    }
 }
 
 .isScrolling {

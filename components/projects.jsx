@@ -247,7 +247,7 @@ const Container = ({ className }) => {
             onUpdate: () => {
             },
             onComplete: () => {
-                window.scrollTo(0,window.innerHeight);
+                // window.scrollTo(0,window.innerHeight);
                 router.push('/contact?type=' + type);
             }
         });
@@ -272,7 +272,7 @@ const Container = ({ className }) => {
         gsap.set(otherCards.at(2), { transformOrigin: 'bottom left' });
         gsap.set(otherCards.at(3), { transformOrigin: 'top right' });
         gsap.set(otherCards.at(4), { transformOrigin: 'top center' });
-        gsap.set(contactCard, { transformOrigin: 'bottom center 0px', alignSelf: 'stretch' });
+        gsap.set(contactCard, { transformOrigin: 'top center 0px', alignSelf: 'stretch', maxHeight: "44rem" });
 
         timeline
 			// .to(containerRef.current, {

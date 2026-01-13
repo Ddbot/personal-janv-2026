@@ -13,5 +13,8 @@
 
     overflow-y: clip;
 
+    scroll-snap-align: end;
+    container-type: scroll-state;
+
     padding: 0;
 }
