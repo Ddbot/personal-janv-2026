@@ -56,7 +56,7 @@ export default function Hero({ className }: { className: string }) {
                     </Button>  
                 </div>
             </section>
-            <LogosGrid />
+            <LogosGrid className="hidden lg:flex" />
         </div>
     )
 }

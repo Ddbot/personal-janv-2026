@@ -22,7 +22,7 @@ const initialSquares: [x: number, y: number][] = [
     [9, 12], [1, 7]
 ];
 
-const LogosGrid = () => {
+const LogosGrid = ({ className } : { className: string }) => {
     const ref = useRef<SVGSVGElement>(null)
     useGSAP(() => {        
         const q = gsap.utils.selector(ref);
@@ -60,7 +60,8 @@ const LogosGrid = () => {
             "relative w-1/2",
             "mask-[radial-gradient(350px_circle_at_45%_50%,white,transparent)]",
                 "inset-x-0 inset-y-[-20%] h-[200%] skew-y-12",  
-            styles.container
+                styles.container,
+                className,
         )}              
         squares={initialSquares}            
     />
