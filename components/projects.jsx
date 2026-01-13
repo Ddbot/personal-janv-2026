@@ -23,7 +23,6 @@ import styles_bento from './styles/bento-grid.module.css';
 import gsap from 'gsap';
 import ProjectsContactCardContent from './projects-contact-card-content';
 import { useRouter } from 'next/navigation';
-import { BorderWidthIcon } from '@radix-ui/react-icons';
 
 const Card = (props) => {
     return <BentoCard {...props} />;
@@ -238,76 +237,88 @@ const Container = ({ className }) => {
 
     function handleClick(e) {
         e.preventDefault();
+        
         const type = e.currentTarget.dataset.icon;
-        tl.current = gsap.timeline({
-            defaults: {
-                duration: .1225,
-                ease: 'power2.out',
-            },
-            onUpdate: () => {
-            },
-            onComplete: () => {
-                // window.scrollTo(0,window.innerHeight);
-                router.push('/contact?type=' + type);
-            }
-        });
 
-        const timeline = tl.current;
+        const mm = gsap.matchMedia();
 
-        gsap.set(containerRef.current, {
-			transformOrigin: 'top center 0px',
-			gridTemplateColumns: '1fr 1fr 1fr',
-			gridTemplateRows: '22rem 22rem',
-			maxHeight: '44rem',
-			placeContent: 'end center'
+        mm.add("(max-width: 767px)", () => {
+            router.push('/contact?type=' + type);
+        })
 
-			// padding: '0 0 25dvh 0',
-		});
-
-        const otherCards = Array.from(containerRef.current.children);
-        const contactCard = otherCards.pop();
-
-        gsap.set(otherCards.at(0), { transformOrigin: 'top left' });
-        gsap.set(otherCards.at(1), { transformOrigin: '<bottom right' });
-        gsap.set(otherCards.at(2), { transformOrigin: 'bottom left' });
-        gsap.set(otherCards.at(3), { transformOrigin: 'top right' });
-        gsap.set(otherCards.at(4), { transformOrigin: 'top center' });
-        gsap.set(contactCard, { transformOrigin: 'top center 0px', alignSelf: 'stretch', maxHeight: "44rem" });
-
-        timeline
-			// .to(containerRef.current, {
-			// 	gridTemplateColumns: '1fr 1fr 1fr',
-			// 	gridTemplateRows: '0fr 44rem',
-			// 	ease: 'power2.out',
-			// })
-			.to(
-				containerRef.current,
-				{
-					gridTemplateColumns: '0fr 1fr 0fr',
-					gridTemplateRows: '0fr 44rem',
-					// padding: 0,
+        mm.add("(min-width: 768px)", () => {
+            tl.current = gsap.timeline({
+                defaults: {
+                    duration: 0.1225,
                     ease: 'power2.out',
-                    gap: 0
-				},
-				'<',
-			)
-			.to(
-				otherCards,
-				{
-					scale: 0,
-					// width: 0,
-					opacity: 0,
-					padding: 0,
-                    margin: 0,
-                    borderWidth: 0
-				},
-				'<',
-        )	
-            .to(contactCard, {
-            duration: .125,
-            scale: .85,
-            opacity: 0
-        }, '>')
+                },
+                onUpdate: () => { },
+                onComplete: () => {
+                    // window.scrollTo(0,window.innerHeight);
+                    router.push('/contact?type=' + type);
+                },
+            });
+
+            const timeline = tl.current;
+
+            gsap.set(containerRef.current, {
+                transformOrigin: 'top center 0px',
+                gridTemplateColumns: '1fr 1fr 1fr',
+                gridTemplateRows: '22rem 22rem',
+                maxHeight: '44rem',
+                placeContent: 'end center',
+
+                // padding: '0 0 25dvh 0',
+            });
+
+            const otherCards = Array.from(containerRef.current.children);
+            const contactCard = otherCards.pop();
+
+            gsap.set(otherCards.at(0), { transformOrigin: 'top left' });
+            gsap.set(otherCards.at(1), { transformOrigin: '<bottom right' });
+            gsap.set(otherCards.at(2), { transformOrigin: 'bottom left' });
+            gsap.set(otherCards.at(3), { transformOrigin: 'top right' });
+            gsap.set(otherCards.at(4), { transformOrigin: 'top center' });
+            gsap.set(contactCard, {
+                transformOrigin: 'top center 0px',
+                alignSelf: 'stretch',
+                maxHeight: '44rem',
+            });
+
+            timeline
+                .to(
+                    containerRef.current,
+                    {
+                        gridTemplateColumns: '0fr 1fr 0fr',
+                        gridTemplateRows: '0fr 44rem',
+                        // padding: 0,
+                        ease: 'power2.out',
+                        gap: 0,
+                    },
+                    '<',
+                )
+                .to(
+                    otherCards,
+                    {
+                        scale: 0,
+                        // width: 0,
+                        opacity: 0,
+                        padding: 0,
+                        margin: 0,
+                        borderWidth: 0,
+                    },
+                    '<',
+                )
+                .to(
+                    contactCard,
+                    {
+                        duration: 0.125,
+                        scale: 0.85,
+                        opacity: 0,
+                    },
+                    '>',
+                );
+        });
     }
     
     const features = [
@@ -429,7 +440,11 @@ const Container = ({ className }) => {
 					<ViewTransition key={idx}>
 						<Card
 							{...feature}
-							className={styles.card + ' ' + feature.className}
+                            className={cn(
+                                styles.card,
+                                feature.className,
+                                'lg:max-h-[44rem]'
+                            )}
 						/>
 					</ViewTransition>
 				))}
