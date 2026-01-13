@@ -4,8 +4,8 @@ import Projects from '@/components/projects';
 import styles from './page.module.css'
 
 export default function Page() {
-    return <>
-        <Hero className={styles.children}/>
-        <Projects className={styles.children} />        
-    </> 
+    return <div className="snap-mandatory snap-y">
+        <Hero className="snap-start"/>
+        <Projects className="snap-end" />        
+    </div> 
 }
