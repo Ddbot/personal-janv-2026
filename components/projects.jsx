@@ -434,17 +434,17 @@ const Container = ({ className }) => {
 		<ViewTransition>
 			<BentoGrid
 				ref={containerRef}
-				className={cn(styles_bento.container, "lg:p-32 lg:pb-0")}
+				className={cn(styles_bento.container, 'lg:p-32 lg:pb-0 lg:m-0')}
 				id="projects">
 				{features.map((feature, idx) => (
 					<ViewTransition key={idx}>
 						<Card
 							{...feature}
-                            className={cn(
-                                styles.card,
-                                feature.className,
-                                'lg:max-h-[44rem] aspect-square lg:aspect-auto'
-                            )}
+							className={cn(
+								styles.card,
+								feature.className,
+								'h-dvh lg:h-auto lg:max-h-[44rem] lg:gap-0 m-4 lg:m-0 lg:aspect-auto',
+							)}
 						/>
 					</ViewTransition>
 				))}
