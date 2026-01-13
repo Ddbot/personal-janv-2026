@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 export default function Navbar({ className } : { className: string}) {
     return (
         <div className={`
-            fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b
+            fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md lg:border-b
             transition-transform duration-300 ease-in-out
             md:sticky md:top-0 md:bg-transparent md:backdrop-blur-none md:border-0
             

@@ -332,7 +332,7 @@ const Container = ({ className }) => {
 			background: (
 				<Marquee
 					pauseOnHover
-					className="absolute top-10 [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] [--duration:20s]">
+					className="absolute top-[50%] lg:top-10 [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] [--duration:20s]">
 					{dictionary[lang]['skills'].map((f, idx) => (
 						<figure
 							key={idx}
@@ -371,7 +371,7 @@ const Container = ({ className }) => {
 				<Image
 					src={bg}
 					alt="speed typer"
-					className="absolute -top-8 right-2 w-full scale-75 border-none mask-[linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-90"
+					className="absolute top-[25%] lg:-top-8 lg:right-2 w-full scale-75 border-none mask-[linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-90"
 				/>
 			),
 		},
@@ -383,7 +383,7 @@ const Container = ({ className }) => {
 			cta: dictionary[lang]['cta'],
 			className: 'col-span-3 lg:col-span-1 lg:col-start-1 lg:row-start-2',
 			background: (
-				<AnimatedBeamMultipleOutputDemo className="absolute top-4 right-2 h-[300px] border-none [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-105" />
+				<AnimatedBeamMultipleOutputDemo className="absolute left-0 right-0 top-4 lg:right-2 h-auto border-none [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-105" />
 			),
 		},
 		{
@@ -426,7 +426,7 @@ const Container = ({ className }) => {
 					className="flex items-center justify-center w-full h-full bg-primary">
 					CONTACT
 				</div>
-            ),            
+			),
 		},
 	];
     
