@@ -313,7 +313,7 @@ const Container = ({ className }) => {
                     contactCard,
                     {
                         duration: 0.125,
-                        scale: 0.85,
+                        // scale: 0.85,
                         opacity: 0,
                     },
                     '>',
@@ -434,7 +434,10 @@ const Container = ({ className }) => {
 		<ViewTransition>
 			<BentoGrid
 				ref={containerRef}
-				className={cn(styles_bento.container, 'lg:p-32 lg:pb-0 lg:m-0')}
+				className={cn(
+					styles_bento.container,
+					'lg:p-32 lg:pb-0 lg:m-0 lg:scale-85',
+				)}
 				id="projects">
 				{features.map((feature, idx) => (
 					<ViewTransition key={idx}>

@@ -20,7 +20,7 @@ function Body({ children }: { children: React.ReactNode }) {
 
     return <body className={`${geistMono.variable} antialiased p-0`}>
         <Providers>
-            <div className="snap-y snap-mandatory">
+            <div className="flex flex-col snap-y snap-mandatory">
 
                 <Navbar className={cn(
                     isScrolling && styles.isScrolling,

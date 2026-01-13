@@ -14,7 +14,9 @@
 
     overflow-y: clip;
 
-    scroll-snap-align: end;
+    scroll-snap-align: start;
     container-type: scroll-state;
+
+    padding-block: 0;
     }
 }

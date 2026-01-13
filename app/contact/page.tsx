@@ -22,10 +22,10 @@ const Container = async ({ className = '', category ="chat"}: { className: strin
 	return (
         // <div className={`p-4 md:p-0 ${styles.grid} rounded-4xl`}>
             <BentoGrid
-                className={cn(styles_bento.container, "lg:p-32 lg:pb-0")}
+                className={cn("lg:p-32 lg:pb-0", styles_bento.container)}
                 id="contact">
                 <ViewTransition>
-                    <Card key="chat-card" className={styles.container}>
+                    <Card key="chat-card" className={cn(styles.container, "lg:scale-85")}>
                         <Header title={"Développeur Front End"} category="chat" />
                         {type === 'chat' ? (
                             <ChatPage />
