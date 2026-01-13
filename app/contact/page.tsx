@@ -8,6 +8,7 @@ import ChatPage from './chat';
 import MailPage from './mail';
 import Footer from './Footer';
 import {BentoGrid} from '@/components/ui/bento-grid';
+import { cn } from '@/lib/utils';
 
 type Category = 'chat' | 'mail';
 interface ISearchParams {
@@ -21,7 +22,7 @@ const Container = async ({ className = '', category ="chat"}: { className: strin
 	return (
         // <div className={`p-4 md:p-0 ${styles.grid} rounded-4xl`}>
             <BentoGrid
-                className={styles_bento.container}
+                className={cn(styles_bento.container, "lg:p-32 lg:pb-0")}
                 id="contact">
                 <ViewTransition>
                     <Card key="chat-card" className={styles.container}>

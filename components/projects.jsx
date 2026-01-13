@@ -434,7 +434,7 @@ const Container = ({ className }) => {
 		<ViewTransition>
 			<BentoGrid
 				ref={containerRef}
-				className={styles_bento.container}
+				className={cn(styles_bento.container, "lg:p-32 lg:pb-0")}
 				id="projects">
 				{features.map((feature, idx) => (
 					<ViewTransition key={idx}>
@@ -443,7 +443,7 @@ const Container = ({ className }) => {
                             className={cn(
                                 styles.card,
                                 feature.className,
-                                'lg:max-h-[44rem]'
+                                'lg:max-h-[44rem] aspect-square lg:aspect-auto'
                             )}
 						/>
 					</ViewTransition>

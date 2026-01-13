@@ -8,12 +8,10 @@
     gap: calc(var(--spacing) * 4) /* 1rem = 16px */;
 
     /* transform-origin: top center; */
-    transform: scale(.85);
+    /* transform: scale(.85); */
 
     overflow-y: clip;
 
     scroll-snap-align: end;
     container-type: scroll-state;
-
-    padding: 0;
 }

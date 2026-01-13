@@ -11,9 +11,9 @@
     transform-origin: center center -50px;
 }
 
-.card {
-    
-    /* perspective: 100px;
+.card {    
+    @media screen and (width > 768px) {
+            /* perspective: 100px;
     transform-style: preserve-3d;
     transform-origin: center center -50px; */
     
@@ -51,18 +51,8 @@
     &:nth-of-type(6) {
         animation: rotate6 linear both;
         animation-timeline: scroll();        
-    }     
-    
-    @media screen and (max-width: 767px) {
-        /* display: none; */
-        transform: rotateX(0deg) rotateY(0deg) translate(0,0) translateZ(0px);
-        animation-name: none;
-        animation-timeline: none;      
-        @starting-style {
-            transform: rotateX(0deg) rotateY(0deg) translate(0,0) translateZ(0px);
-            animation-timeline: none;      
-        }
-    }
+    }  
+    }   
 }
 
 .contact {    

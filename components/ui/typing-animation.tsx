@@ -172,7 +172,7 @@ export function TypingAnimation({
   return (
     <MotionComponent
       ref={elementRef}
-      className={cn("leading-[5rem] tracking-[-0.02em]", className, inter.className)}
+      className={cn("leading-[5rem] tracking-[-0.02em] min-h-[2lh]", className, inter.className)}
       {...props}
     >
         <span className={fontsList[currentWordIndex].className}
