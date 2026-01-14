@@ -93,6 +93,12 @@
         grid-column: 1 / span 3;
         grid-row: 2 / span 1;
     }
+
+    @media  screen and (max-width: 767px) {
+        display: flex;
+        flex-direction: column;
+        overflow-y: visible;
+    }
 }
 
 
@@ -169,6 +175,10 @@
     & >  button > a > svg {
         stroke-width: 1.5px;
         transition: width 1s linear both, height 1s linear both;
+    }
+
+    @media (max-width: 767px) {
+        display: none;
     }
 }
 
