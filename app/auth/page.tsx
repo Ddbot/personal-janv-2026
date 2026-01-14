@@ -22,7 +22,7 @@ const checkExistingSession = async () => {
       const { data: { session } } = await supabase.auth.getSession()
       if (session) {
         // User is already logged in, redirect them
-        router.push('/protected')
+        router.push('/contact?type=chat')
       }
     } catch (error) {
       console.error('Error checking session:', error)
