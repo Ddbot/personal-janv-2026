@@ -1,10 +1,16 @@
-import { createClient } from '@supabase/supabase-js'
 
-// const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseUrl="https://degpdieymuqeeojhrdrr.supabase.co"
-const supabaseAnonKey = "sb_publishable_xtLNS80lkS-dBJBs2eLzKg_WVIe-kWT"
+import { createBrowserClient } from "@supabase/ssr";
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY;
+
+export const createClient = () =>
+  createBrowserClient(
+    supabaseUrl!,
+    supabaseKey!,
+  );
+
+const supabase = createClient();
 
 export interface Message {
   id: string
@@ -15,3 +21,5 @@ export interface Message {
   content: string
   timestamp: string 
 }
+
+export default supabase;

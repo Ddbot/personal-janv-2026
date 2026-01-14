@@ -2,7 +2,7 @@
 'use client'
 
 import { useState } from 'react'
-import { supabase } from '@/lib/supabase'
+import supabase from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
 
 export default function AuthPage() {
@@ -22,7 +22,7 @@ export default function AuthPage() {
       const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {
-          emailRedirectTo: `${window.location.origin}/protected`,
+          emailRedirectTo: `${window.location.origin}/contact?type=chat`,
         },
       })
 

@@ -9,6 +9,7 @@ import MailPage from './mail';
 import Footer from './Footer';
 import {BentoGrid} from '@/components/ui/bento-grid';
 import { cn } from '@/lib/utils';
+import ProtectedContainer from '../auth/ProtectedContainer';
 
 type Category = 'chat' | 'mail';
 interface ISearchParams {
@@ -20,23 +21,23 @@ const Container = async ({ className = '', category ="chat"}: { className: strin
     const type = category;
     
 	return (
-        // <div className={`p-4 md:p-0 ${styles.grid} rounded-4xl`}>
             <BentoGrid
                 className={cn("lg:p-32 lg:pb-0", styles_bento.container)}
                 id="contact">
                 <ViewTransition>
                     <Card key="chat-card" className={cn(styles.container, "lg:scale-85")}>
-                        <Header title={"Développeur Front End"} category="chat" />
+                    <Header title={"Développeur Front End"} category="chat" />
+                    <ProtectedContainer>
                         {type === 'chat' ? (
                             <ChatPage />
                         ) : (
                             <MailPage />
                         )}
                         <Footer displayedCategory="chat" />
+                    </ProtectedContainer>
                     </Card>
                 </ViewTransition>
-            </BentoGrid>
-        // </div>
+            </BentoGrid>        
     );
 };
 

@@ -47,10 +47,11 @@ export default function Hero({ className }: { className: string }) {
                     </Button>  
                     <Button variant='default' className="text-sm p-4">
                         <Mail size="icon"/>
-                            <Link href={{
+                            {/* <Link href={{
                                     pathname: '/contact',
                                     query: { type: 'mail' },
-                                }}>
+                                }}> */}
+                        <Link href={'/contact?type=mail'}>
                             {dictionary[lang]['hero']['contact']}
                         </Link>
                     </Button>  

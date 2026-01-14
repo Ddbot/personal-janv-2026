@@ -1,4 +1,4 @@
-import { Fragment, Suspense } from "react";
+import { Fragment, Suspense, ViewTransition } from "react";
 import { Chat } from "@/components/chat/chat";
 import { ChatMessages } from "@/components/chat/chat-messages";
 import { AdditionalMessage } from "@/components/message-items/additional-message";
@@ -9,9 +9,10 @@ import Toolbar from './Toolbar';
 import Textarea from "./Textarea";
 import { getMessages } from '@/lib/chat';
 import { CardContent } from '@/components/ui/card';
+import ProtectedContainer from '../../auth/ProtectedContainer';
 export default async function ChatPage() {
     const { data, error } = await getMessages();
-    return (
+    return (<ViewTransition>
         <Chat className={styles.chat}>
             <CardContent className={`flex-1 min-h-0 px-0 p-0`}>
             {/* PAS DE HEADER, déporté dans la CardHeader */}
@@ -70,5 +71,6 @@ export default async function ChatPage() {
                 <Textarea />
             </Toolbar>
         </Chat>
+    </ViewTransition>
     );
 }

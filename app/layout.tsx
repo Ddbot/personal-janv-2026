@@ -4,7 +4,7 @@ import { Inter, Atkinson_Hyperlegible_Mono, Roboto_Mono } from "next/font/google
 import "./globals.css";
 import { cn } from "@/lib/utils";
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
-const atkinson = Atkinson_Hyperlegible_Mono({weight: '300', subsets:['latin'],variable:'--font-sans'});
+const atkinson = Atkinson_Hyperlegible_Mono({weight: '400', subsets:['latin'],variable:'--font-sans'});
 const roboto = Roboto_Mono({weight: '300', subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
