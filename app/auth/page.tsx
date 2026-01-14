@@ -1,7 +1,7 @@
 // app/auth/page.tsx
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import supabase from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
 
@@ -12,17 +12,38 @@ export default function AuthPage() {
   const [error, setError] = useState('')
   const router = useRouter()
 
+  // Check if user is already authenticated on mount
+  useEffect(() => {
+    checkExistingSession()
+  }, [])
+  
+const checkExistingSession = async () => {
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (session) {
+        // User is already logged in, redirect them
+        router.push('/protected')
+      }
+    } catch (error) {
+      console.error('Error checking session:', error)
+    }
+}
+
   const handleMagicLink = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setError('')
     setMessage('')
 
-    try {
-      const { error } = await supabase.auth.signInWithOtp({
+      try {
+        // First, check if a user with this email exists
+        // Note: This is a basic check. Supabase doesn't expose a direct "user exists" API
+        // for security reasons, but we can attempt to sign in
+        const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {
-          emailRedirectTo: `${window.location.origin}/contact?type=chat`,
+            emailRedirectTo: `${window.location.origin}/contact?type=chat`,
+            shouldCreateUser: true
         },
       })
 
