@@ -1,0 +1,12 @@
+.card {
+    max-width: 448px;
+    width: 100%;
+    padding: 2rem;
+    gap: 2rem;
+    background-color: color-mix(in srgb, white, transparent 0%);
+    border-radius: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    margin-block-start: calc(2rem /* 32px */ * var(--tw-space-y-reverse));
+    margin-block-end: calc(2rem /* 32px */ * calc(1 - var(--tw-space-y-reverse)));    
+}

@@ -6,6 +6,8 @@ import supabase from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
 import { LangContext } from '@/contexts/LangContext'
 import dictionary from './dictionary';
+import { cn } from '@/lib/utils';
+import styles from './styles.module.css';
 
 export default function AuthPage() {
   const [email, setEmail] = useState('')
@@ -61,8 +63,8 @@ const checkExistingSession = async () => {
   }
 
   return (
-    <div className="absolute inset-0 h-screen flex items-center justify-center bg-background border-2">
-      <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-md">
+    <div className="absolute inset-0 flex items-center justify-center bg-background border-0">
+      <div className={cn(styles.card)}>
         <div>
           <h2 className="text-3xl font-bold text-center text-gray-900">
             {dictionary[lang].signIn}
