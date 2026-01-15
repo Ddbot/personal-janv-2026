@@ -10,7 +10,8 @@ import Textarea from "./Textarea";
 import { getMessages } from '@/lib/chat';
 import { CardContent } from '@/components/ui/card';
 import ProtectedContainer from '../../auth/ProtectedContainer';
-export default async function ChatPage() {
+
+export default async function ChatPage() {    
     const { data, error } = await getMessages();
     return (<ViewTransition>
         <Chat className={styles.chat}>

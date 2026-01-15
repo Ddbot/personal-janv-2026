@@ -8,26 +8,34 @@ import { LangContext } from '@/contexts/LangContext'
 import dictionary from './dictionary';
 import { cn } from '@/lib/utils';
 import styles from './styles.module.css';
+import { useSearchParams } from 'next/navigation';
 
 export default function AuthPage() {
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
   const router = useRouter()
-    const {lang} = use(LangContext);
+  const { lang } = use(LangContext);
+  
+  const type = searchParams.get('type')
 
   // Check if user is already authenticated on mount
   useEffect(() => {
     checkExistingSession()
   }, [])
+    
+    useEffect(() => { 
+        console.log('type demandé: ', type)
+    }, [type]);
   
 const checkExistingSession = async () => {
     try {
       const { data: { session } } = await supabase.auth.getSession()
       if (session) {
         // User is already logged in, redirect them
-        router.push('/contact?type=chat')
+        router.push(`/contact?type=${type}`)
       }
     } catch (error) {
       console.error('Error checking session:', error)
@@ -47,7 +55,7 @@ const checkExistingSession = async () => {
         const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {
-            emailRedirectTo: `${window.location.origin}/contact?type=chat`,
+            emailRedirectTo: `${window.location.origin}/contact?type=${type ?? 'mail'}`,
             shouldCreateUser: true
         },
       })
