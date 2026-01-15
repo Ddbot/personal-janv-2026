@@ -1,9 +1,10 @@
 // app/auth/page.tsx
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, use } from 'react'
 import supabase from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
+import { LangContext } from '@/contexts/LangContext'
 
 export default function AuthPage() {
   const [email, setEmail] = useState('')
@@ -11,6 +12,7 @@ export default function AuthPage() {
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
   const router = useRouter()
+    const {lang} = use(LangContext);
 
   // Check if user is already authenticated on mount
   useEffect(() => {
@@ -58,7 +60,7 @@ const checkExistingSession = async () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <div className="absolute inset-0 h-screen flex items-center justify-center bg-background border-2">
       <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-md">
         <div>
           <h2 className="text-3xl font-bold text-center text-gray-900">
