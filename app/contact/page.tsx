@@ -33,7 +33,7 @@ const Container = async ({ className = '', category ="chat"}: { className: strin
                         ) : (
                             <MailPage />
                         )}
-                        <Footer displayedCategory={category} />
+                        <Footer />
                     </ProtectedContainer>
                     </Card>
                 </ViewTransition>

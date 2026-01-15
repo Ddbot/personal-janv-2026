@@ -7,19 +7,31 @@ import { PrimaryMessage } from "@/components/message-items/primary-message";
 import styles from './styles.module.css';
 import Toolbar from './Toolbar';
 import Textarea from "./Textarea";
-import { getMessages } from '@/lib/chat';
+import { getUserConversations, getConversationMessages, Message } from '@/lib/conversations';
 import { CardContent } from '@/components/ui/card';
 import ProtectedContainer from '../../auth/ProtectedContainer';
 
 export default async function ChatPage() {    
-    const { data, error } = await getMessages();
+    // Get all user conversations
+    const conversations = await getUserConversations();
+    
+    // Get all messages from all conversations
+    const allMessages: Message[] = [];
+    for (const conversation of conversations) {
+        const messages = await getConversationMessages(conversation.id);
+        allMessages.push(...messages);
+    }
+    
+    // Sort all messages by timestamp
+    allMessages.sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
+    
     return (<ViewTransition>
         <Chat className={styles.chat}>
             <CardContent className={`flex-1 min-h-0 px-0 p-0`}>
             {/* PAS DE HEADER, déporté dans la CardHeader */}
                 <Suspense fallback={<div className="px-6 flex-1 overflow-y-auto min-h-0">Loading...</div>}>
                     <ChatMessages className={styles.messages}>
-                        {data?.map((msg, i, msgs) => {
+                        {allMessages?.map((msg: Message, i: number, msgs: Message[]) => {
                             if (
                             new Date(msg.timestamp).toDateString() !==
                             new Date(msgs[i + 1]?.timestamp).toDateString()
