@@ -37,8 +37,6 @@ export default function Hero({ className }: { className: string }) {
                     cursorStyle="block"
                     blinkCursor={false}
                 />
-                {/* <div className="w-full h-fit text-5xl font-light my-2">Polyvalent, Curieux, Fiable</div> */}
-                {/* <div className="w-full h-fit text-5xl font-bold my-2">Team Player </div>               */}
                 <div className="w-full flex flex-row justify-end lg:gap-4 lg:p-8 lg:pb-0 lg:pr-0">
                     <Button variant={"outline"}>
                         <Link href="#projects">
@@ -47,10 +45,6 @@ export default function Hero({ className }: { className: string }) {
                     </Button>  
                     <Button variant='default' className="text-sm p-4">
                         <Mail size={48}/>
-                            {/* <Link href={{
-                                    pathname: '/contact',
-                                    query: { type: 'mail' },
-                                }}> */}
                         <Link href={'/contact?type=mail'}>
                             {dictionary[lang]['hero']['contact']}
                         </Link>
