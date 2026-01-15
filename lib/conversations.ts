@@ -1,5 +1,6 @@
+"use server";
 // lib/conversations.ts (Updated for your schema)
-import supabase from '@/lib/supabase';
+import { createServerComponentClient } from '@/lib/supabase';
 
 export interface Conversation {
   id: string
@@ -24,6 +25,7 @@ export interface Message {
 
 // Create a new conversation for the authenticated user
 export async function createConversation(title?: string) {
+  const supabase = await createServerComponentClient()
   const { data: { user } } = await supabase.auth.getUser()
   
   if (!user) {
@@ -45,6 +47,7 @@ export async function createConversation(title?: string) {
 
 // Get all conversations for the authenticated user
 export async function getUserConversations() {
+  const supabase = await createServerComponentClient()
   const { data, error } = await supabase
     .from('conversations')
     .select('*')
@@ -56,6 +59,7 @@ export async function getUserConversations() {
 
 // Get a specific conversation
 export async function getConversation(conversationId: string) {
+  const supabase = await createServerComponentClient()
   const { data, error } = await supabase
     .from('conversations')
     .select('*')
@@ -75,6 +79,7 @@ export async function addMessage(
   senderName: string,
   senderAvatarUrl: string
 ) {
+  const supabase = await createServerComponentClient()
   const { data: { user } } = await supabase.auth.getUser()
   
   if (!user) {
@@ -84,7 +89,7 @@ export async function addMessage(
   const { data, error } = await supabase
     .from('messages')
     .insert({
-      conversation_id: conversationId,
+      conversation_id: conversationId,   
       sender_id: user.id,
       sender_type: senderType,
       sender_username: senderUsername,
@@ -104,6 +109,7 @@ export async function addUserMessage(
   conversationId: string,
   content: string
 ) {
+  const supabase = await createServerComponentClient()
   const { data: { user } } = await supabase.auth.getUser()
   
   if (!user) {
@@ -117,7 +123,7 @@ export async function addUserMessage(
 
   return addMessage(
     conversationId,
-    'user',
+    user.id === process.env.NEXT_PUBLIC_ADMIN_UID ? 'assistant' : 'user',
     content,
     username,
     name,
@@ -127,9 +133,10 @@ export async function addUserMessage(
 
 // Add assistant message
 export async function addAssistantMessage(
-  conversationId: string,
+//   conversationId: string,
   content: string
 ) {
+  const supabase = await createServerComponentClient()
   const { data: { user } } = await supabase.auth.getUser()
   
   if (!user) {
@@ -139,7 +146,7 @@ export async function addAssistantMessage(
   const { data, error } = await supabase
     .from('messages')
     .insert({
-      conversation_id: conversationId,
+    //   conversation_id: conversationId,
       sender_id: 'assistant',
       sender_type: 'assistant',
       sender_username: 'assistant',
@@ -156,6 +163,7 @@ export async function addAssistantMessage(
 
 // Get all messages for a conversation
 export async function getConversationMessages(conversationId: string) {
+  const supabase = await createServerComponentClient()
   const { data, error } = await supabase
     .from('messages')
     .select('*')
@@ -171,6 +179,7 @@ export async function updateConversationTitle(
   conversationId: string,
   title: string
 ) {
+  const supabase = await createServerComponentClient()
   const { data, error } = await supabase
     .from('conversations')
     .update({ title })
@@ -184,6 +193,7 @@ export async function updateConversationTitle(
 
 // Delete a conversation (messages will be deleted automatically due to CASCADE)
 export async function deleteConversation(conversationId: string) {
+  const supabase = await createServerComponentClient()
   const { error } = await supabase
     .from('conversations')
     .delete()
@@ -193,10 +203,11 @@ export async function deleteConversation(conversationId: string) {
 }
 
 // Subscribe to new messages in a conversation (real-time)
-export function subscribeToMessages(
+export async function subscribeToMessages(
   conversationId: string,
   callback: (message: Message) => void
 ) {
+  const supabase = await createServerComponentClient()
   return supabase
     .channel(`messages:${conversationId}`)
     .on(
@@ -207,8 +218,8 @@ export function subscribeToMessages(
         table: 'messages',
         filter: `conversation_id=eq.${conversationId}`
       },
-      (payload) => {
-        callback(payload.new as Message)
+      (payload: { new: Message }) => {
+        callback(payload.new)
       }
     )
     .subscribe()

@@ -1,29 +1,39 @@
+"use client";
+import { useState } from 'react';
 import { Send } from 'lucide-react';
 import {
 	ChatToolbar,
 	ChatToolbarAddonEnd,
 } from '@/components/chat/chat-toolbar';
 import { Button } from '@/components/ui/button';
-import { sendMessage } from '@/lib/chat';
-import { revalidatePath } from 'next/cache';
+import { sendMessage } from './actions';
 
-export default async function ChatPage({ children }: { children: React.ReactNode }) {
-    
-    async function addMessage(formData: FormData) {
-        "use server";   
-        const content = formData.get('content') as string ?? '';
-        if(content !== '' && content !== null) {
-            await sendMessage(content,'user_lala', 'Big Boi');
-            revalidatePath('/contact');
+export default function Toolbar({ children }: { children: React.ReactNode }) {
+        const [isLoading, setIsLoading] = useState(false);
+ 
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setIsLoading(true);
+ 
+        const formData = new FormData(e.currentTarget);
+        const content = formData.get('content') as string;
+ 
+        try {
+            await sendMessage(content);
+        } catch (error) {
+            console.error('Error sending message:', error);
+        } finally {
+            setIsLoading(false);
         }
-    }  
+    };  
     
 	return (
-        <form action={addMessage} className='max-height-[2lh] bg-background'>
+        <form onSubmit={handleSubmit} className='max-height-[2lh] bg-background'>
             <ChatToolbar className="max-height-[2lh] bg-transparent m-2">
                 { children }					
                 <ChatToolbarAddonEnd className='p-0 m-0'>
-                    <Button type="submit" className="self-end size-8 @md/chat:size-9">
+                    {/* <Button type="submit" className="self-end size-8 @md/chat:size-9"> */}
+                    <Button type="submit" disabled={isLoading} className="self-end size-8 @md/chat:size-9">
                         <Send className="size-4 @md/chat:size-5 stroke-[1.7px]" />
                     </Button>
                 </ChatToolbarAddonEnd>

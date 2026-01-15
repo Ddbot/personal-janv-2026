@@ -33,6 +33,7 @@ const Container = async ({ className = '', category ="chat"}: { className: strin
                         ) : (
                             <MailPage />
                         )}
+                        {/* logos reseaux sociaux */}
                         <Footer />
                     </ProtectedContainer>
                     </Card>
