@@ -46,7 +46,7 @@ export default function Hero({ className }: { className: string }) {
                         </Link>
                     </Button>  
                     <Button variant='default' className="text-sm p-4">
-                        <Mail size="icon"/>
+                        <Mail size={48}/>
                             {/* <Link href={{
                                     pathname: '/contact',
                                     query: { type: 'mail' },

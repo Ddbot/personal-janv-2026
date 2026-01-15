@@ -4,21 +4,26 @@ import { createContext, useState, useEffect, memo } from "react";
 const ThemeContext = createContext();
 
 const ThemeProvider = memo(({ children }) => {
-	const [theme, setTheme] = useState(() => {
-        const storedTheme = window?.localStorage?.getItem('theme') ?? 'light';        
-        return storedTheme;
-	});
+	const [theme, setTheme] = useState('light');
+
+	useEffect(() => {
+		const root = window.document.documentElement;
+		root.classList.remove('light', 'dark');
+		
+		const storedTheme = localStorage.getItem('theme') ?? 'light';
+		root.classList.add(storedTheme);
+		setTheme(storedTheme);
+	}, []);
 
 	const toggleTheme = () => {
 		const newTheme = theme === 'light' ? 'dark' : 'light';
 		setTheme(newTheme);
 		localStorage.setItem('theme', newTheme);
+		
+		const root = window.document.documentElement;
+		root.classList.remove('light', 'dark');
+		root.classList.add(newTheme);
 	};
-
-	useEffect(() => {
-		document.documentElement.classList.remove('light', 'dark');
-		document.documentElement.classList.add(theme);
-	}, [theme]);
 
 	return (
 		<ThemeContext.Provider value={{ theme, toggleTheme }}>
