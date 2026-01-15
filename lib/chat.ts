@@ -23,7 +23,7 @@ export const sendMessage = async (content: string, userId: string, username: str
         sender_id: userId,
         sender_username: username,
         sender_name: username,
-        sender_avatar_url: 'https://i.pravatar.cc/150?img=2',
+        sender_avatar_url: userId = process.env.NEXT_PUBLIC_ADMIN_UID ? 'https://mockmind-api.uifaces.co/content/abstract/27.jpg' : 'https://i.pravatar.cc/150?img=2',
         content: content
     }])
     .select()
