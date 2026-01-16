@@ -50,7 +50,7 @@ export default function Navbar({ className } : { className: string}) {
 
         checkAuthState();
 
-    }, [setUser, setLoading])    
+    }, [router, setUser, setLoading]);    
     
     return (
         <div className={cn(`
