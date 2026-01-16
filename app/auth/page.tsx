@@ -32,7 +32,8 @@ export default function AuthPage() {
   
 const checkExistingSession = async () => {
     try {
-      const { data: { session } } = await supabase.auth.getSession()
+      const client = await supabase;
+      const { data: { session } } = await client.auth.getSession()
       if (session) {
         // User is already logged in, redirect them
         router.push(`/contact?type=${type}`)
@@ -47,12 +48,13 @@ const checkExistingSession = async () => {
     setLoading(true)
     setError('')
     setMessage('')
+    const client = await supabase;
 
       try {
         // First, check if a user with this email exists
         // Note: This is a basic check. Supabase doesn't expose a direct "user exists" API
         // for security reasons, but we can attempt to sign in
-        const { error } = await supabase.auth.signInWithOtp({
+        const { error } = await client.auth.signInWithOtp({
         email,
         options: {
             emailRedirectTo: `${window.location.origin}/contact?type=${type ?? 'mail'}`,

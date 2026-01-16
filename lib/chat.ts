@@ -12,7 +12,9 @@ import { revalidatePath } from 'next/cache';
 // sender_name,
 // sender_avatar_url,
 // content    
-import supabase, { Message } from '@/lib/supabase'
+import { Message } from '@/lib/supabase'
+import createServer from '@/lib/serverClient'
+const supabase = await createServer();
 
 // Envoyer un message
 export const sendMessage = async (content: string, userId: string, username: string) => {

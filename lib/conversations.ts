@@ -1,5 +1,6 @@
 // lib/conversations.ts (Updated for your schema)
-import supabase from '@/lib/supabase';
+// import supabase from '@/lib/supabase';
+import createServer from './serverClient';
 
 export interface Conversation {
   id: string
@@ -7,7 +8,7 @@ export interface Conversation {
   title: string
   created_at: string
   updated_at: string
-  metadata?: any
+  metadata?: Record<string, unknown>
 }
 
 export interface Message {
@@ -24,6 +25,7 @@ export interface Message {
 
 // Create a new conversation for the authenticated user
 export async function createConversation(title?: string) {
+  const supabase = await createServer()
   const { data: { user } } = await supabase.auth.getUser()
   
   if (!user) {
@@ -34,7 +36,7 @@ export async function createConversation(title?: string) {
     .from('conversations')
     .insert({
       user_id: user.id,
-      title: title || 'New Conversation'
+      title: title || 'Andry'
     })
     .select()
     .single()
@@ -44,10 +46,15 @@ export async function createConversation(title?: string) {
 }
 
 // Get all conversations for the authenticated user
-export async function getUserConversations() {
+export async function getUserConversations() {    
+  const supabase = await createServer()
+  console.log('Server client created:', supabase)
+  
   const { data: { user } } = await supabase.auth.getUser()
+  console.log('User data:', user)
   
   if (!user) {
+    console.log('No user found, throwing error')
     throw new Error('User not authenticated')
   }
 
@@ -57,12 +64,16 @@ export async function getUserConversations() {
     .eq('user_id', user.id)
     .order('updated_at', { ascending: false })
 
-  if (error) throw error
+  if (error) {
+    console.log('Database error:', error)
+    throw error
+  }
   return data as Conversation[]
 }
 
 // Get a specific conversation
 export async function getConversation(conversationId: string) {
+  const supabase = await createServer()
   const { data, error } = await supabase
     .from('conversations')
     .select('*')
@@ -82,6 +93,7 @@ export async function addMessage(
   senderName: string,
   senderAvatarUrl: string
 ) {
+  const supabase = await createServer()
   const { data: { user } } = await supabase.auth.getUser()
   
   if (!user) {
@@ -111,6 +123,7 @@ export async function addUserMessage(
   conversationId: string,
   content: string
 ) {
+  const supabase = await createServer()
   const { data: { user } } = await supabase.auth.getUser()
   
   if (!user) {
@@ -137,6 +150,7 @@ export async function addAssistantMessage(
   conversationId: string,
   content: string
 ) {
+  const supabase = await createServer()
   const { data: { user } } = await supabase.auth.getUser()
   
   if (!user) {
@@ -163,6 +177,13 @@ export async function addAssistantMessage(
 
 // Get all messages for a conversation
 export async function getConversationMessages(conversationId: string) {
+    const supabase = await createServer();
+    const { data: { user } } = await supabase.auth.getUser()
+    
+    if (!user) {
+        throw new Error('User not authenticated')
+    }
+    
   const { data, error } = await supabase
     .from('messages')
     .select('*')
@@ -178,6 +199,7 @@ export async function updateConversationTitle(
   conversationId: string,
   title: string
 ) {
+  const supabase = await createServer()
   const { data, error } = await supabase
     .from('conversations')
     .update({ title })
@@ -191,6 +213,7 @@ export async function updateConversationTitle(
 
 // Delete a conversation (messages will be deleted automatically due to CASCADE)
 export async function deleteConversation(conversationId: string) {
+  const supabase = await createServer()
   const { error } = await supabase
     .from('conversations')
     .delete()
@@ -204,19 +227,24 @@ export function subscribeToMessages(
   conversationId: string,
   callback: (message: Message) => void
 ) {
-  return supabase
-    .channel(`messages:${conversationId}`)
-    .on(
-      'postgres_changes',
-      {
-        event: 'INSERT',
-        schema: 'public',
-        table: 'messages',
-        filter: `conversation_id=eq.${conversationId}`
-      },
-      (payload) => {
-        callback(payload.new as Message)
-      }
-    )
-    .subscribe()
+  const setupSubscription = async () => {
+    const supabase = await createServer()
+    return supabase
+      .channel(`messages:${conversationId}`)
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'messages',
+          filter: `conversation_id=eq.${conversationId}`
+        },
+        (payload: { new: Message }) => {
+          callback(payload.new)
+        }
+      )
+      .subscribe()
+  }
+  
+  return setupSubscription()
 }

@@ -8,41 +8,43 @@ import { useSearchParams } from 'next/navigation';
 import ConversationTitleCard from './ConversationTitleCard';
 import { createConversation, getUserConversations } from '@/lib/conversations';
 
-const Footer = () => {
+const Footer = ({ convos }) => {
     // const [category, setCategory] = useState(displayedCategory ?? 'mail');
     const searchParams = useSearchParams();
     const type = searchParams.get('type');
     const navigate = useRouter();
-    const [conversations, setConversations] = useState([]);
+    const [conversations, setConversations] = useState(convos);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchConversations = async () => {
-            try {
-                const userConversations = await getUserConversations();
-                if (userConversations.length === 0) {
-                    await createConversation('Nouvelle conversation');
-                    // Fetch again after creating to get the newly created conversation
-                    const updatedConversations = await getUserConversations();
-                    setConversations(updatedConversations);
-                } else {
-                    setConversations(userConversations);
-                }
-            } catch (error) {
-                console.error('Error fetching conversations:', error);
-                setConversations([]);
-            } finally {
-                setLoading(false);
-            }
+		const fetchConversations = async () => {
+			try {
+				// const userConversations = await getUserConversations();
+				if (convos.length === 0) {
+					await createConversation('Andry dans FOOTER');
+					// Fetch again after creating to get the newly created conversation
+					const updatedConversations = await getUserConversations();
+					setConversations(updatedConversations);
+				} else {
+					setConversations(convos);
+				}
+			} catch (error) {
+				console.error('Error fetching conversations:', error);
+				setConversations([]);
+			} finally {
+				setLoading(false);
+			}
         };
-
-        if (type === 'chat') {
-            fetchConversations();
+        
+        const isAdmin = async () => {
+            
         }
-    }, [type]);
 
-    console.log('Type dans FOOTER rendering: ', type);
-    
+		if (type === 'chat') {
+			fetchConversations();
+		}
+	}, [type, convos, setLoading, setConversations]);
+
     function handleClick(e) {
             e.preventDefault()
             // setCategory(e.currentTarget.dataset.icon)
@@ -55,10 +57,10 @@ const Footer = () => {
 				<ul className="block w-full self-start">
 					{loading ? (
 						<li className="text-gray-500 p-2">Loading conversations...</li>
-					) : conversations.length === 0 ? (
+					) : convos.length === 0 ? (
 						<li className="text-gray-500 p-2">No conversations yet</li>
 					) : (
-						conversations.map((conversation) => (
+						convos.map((conversation) => (
 							<ConversationTitleCard key={conversation.id} title={conversation.title}/>
 						))
 					)}

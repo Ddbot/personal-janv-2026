@@ -8,20 +8,29 @@ import styles from './styles.module.css';
 import Toolbar from './Toolbar';
 import Textarea from "./Textarea";
 import { getMessages } from '@/lib/chat';
-import { getConversationMessages } from '@/lib/conversations';
+import { getConversationMessages, createConversation } from '@/lib/conversations';
 import { CardContent } from '@/components/ui/card';
 import ProtectedContainer from '../../auth/ProtectedContainer';
+import { Message } from '@/lib/supabase';
 
-export default async function ChatPage() {    
-    const { data, error } = await getMessages();
+type MessagesType = {
+    messages: Message[]
+}
+
+export default async function ChatPage({ messages, conversation }: { messages: Message[], conversation: string }) {   
+    // const { data, error } = await getMessages();
+    if (conversation === null) {
+        // CREER UNE CONVERSATION
+        await createConversation('Nouvelle conversation');
+    }
     return (<ViewTransition>
-        {error && <h2 className="text-red-500">{error.message}</h2>}
+        {/* {error && <h2 className="text-red-500">{error.message}</h2>} */}
         <Chat className={styles.chat}>
             <CardContent className={`flex-1 min-h-0 px-0 p-0`}>
             {/* PAS DE HEADER, déporté dans la CardHeader */}
                 <Suspense fallback={<div className="px-6 flex-1 overflow-y-auto min-h-0">Loading...</div>}>
                     <ChatMessages className={styles.messages}>
-                        {data?.map((msg, i, msgs) => {
+                        {messages?.map((msg, i, msgs) => {
                             if (
                             new Date(msg.timestamp).toDateString() !==
                             new Date(msgs[i + 1]?.timestamp).toDateString()

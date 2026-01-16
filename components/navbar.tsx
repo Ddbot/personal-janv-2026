@@ -22,31 +22,35 @@ export default function Navbar({ className } : { className: string}) {
     }
 
     const handleSignOut = async () => {
-        await supabase.auth.signOut()
+        
+    const client = await supabase;
+    
+    await client.auth.signOut()
         router.push('/')
     }
     
     useEffect(() => {
-        // Listen for auth changes
-        const { data: authListener } = supabase.auth.onAuthStateChange(
-            (event, session) => {
-            if (session?.user) {
-                setUser(session.user)
-                setLoading(false);
-                console.log(session.user)
-            } else {
-                console.log('Pas de user registered')
-                setUser(null);
-                setLoading(false);
-                // router.push('/auth')
-            }
-            }
-        )
+        async function checkAuthState() {
+            const client = await supabase;
+            const { data: authListener } = client.auth.onAuthStateChange(
+                (event, session) => {
+                    if (session?.user) {
+                        setUser(session.user)
+                        setLoading(false);
+                        console.log(session.user)
+                    } else {
+                        console.log('Pas de user registered')
+                        setUser(null);
+                        setLoading(false);
+                        router.push('/auth')
+                    }
+                }
+            )
+        }
 
-        return () => {
-        authListener.subscription.unsubscribe()
-    }
-    }, [])    
+        checkAuthState();
+
+    }, [setUser, setLoading])    
     
     return (
         <div className={cn(`
