@@ -152,10 +152,12 @@
 .card_footer {
     width: 100%;
     height: 100%;
+
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     justify-content: flex-end;
     align-items: end;
+    
     gap: calc(var(--spacing) * 6);
     margin: 0px;
     padding-bottom: calc(var(--spacing) * 6);
@@ -167,14 +169,15 @@
     border-radius: 0;
     border-bottom-right-radius: 0.5rem;
 
-    :global(.dark) & {
-        /* PARTIE DROITE DE LA GRID AVEC LES ICONES RESEAUX SOCIAUX */
-    }
-
     & > button > *:first-child,
     & >  button > a > svg {
         stroke-width: 1.5px;
         transition: width 1s linear both, height 1s linear both;
+        margin-block-end: calc(var(--spacing) * 6);
+    }
+
+    & > button:last-child {
+        margin-right: calc(var(--spacing) * 6)
     }
 
     @media (max-width: 767px) {
@@ -182,11 +185,17 @@
     }
 }
 
+.conversation_title_card {
+    min-height: 3lh;
+    border-bottom: 1px solid red;
+    padding-left: calc(var(--spacing) * 6);
+}
+
 .isSelected {
     border: 1px solid var(--primary);
     /* border-style: dotted; */
     border-radius: 0.5rem;
-    padding: 2px;
+    /* padding: 2px; */
     & svg {
         stroke: var(--primary);
     }
