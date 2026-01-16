@@ -160,8 +160,9 @@
     
     gap: calc(var(--spacing) * 6);
     margin: 0px;
-    padding-bottom: calc(var(--spacing) * 6);
-    padding-right: calc(var(--spacing) * 6);
+    padding: 0;
+    padding-block-end: calc(var(--spacing) * 3);
+    /* padding-bottom: calc(var(--spacing) * 6); */
     /* border-left: 4px solid var(--background); */
     grid-column: 4 / span 1;
     grid-row: 2 / span 1;
@@ -173,7 +174,7 @@
     & >  button > a > svg {
         stroke-width: 1.5px;
         transition: width 1s linear both, height 1s linear both;
-        margin-block-end: calc(var(--spacing) * 6);
+        /* margin-block-end: calc(var(--spacing) * 6); */
     }
 
     & > button:last-child {
@@ -187,8 +188,8 @@
 
 .conversation_title_card {
     min-height: 3lh;
-    border-bottom: 1px solid red;
-    padding-left: calc(var(--spacing) * 6);
+    border-bottom: 1px solid #e4e4e4;
+    /* padding-left: calc(var(--spacing) * 6); */
 }
 
 .isSelected {

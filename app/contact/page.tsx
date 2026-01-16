@@ -33,7 +33,7 @@ const Container = async ({ className = '', category ="chat"}: { className: strin
                         ) : (
                             <MailPage />
                         )}
-                        <Footer displayedCategory={category} />
+                        <Footer />
                     </ProtectedContainer>
                     </Card>
                 </ViewTransition>
@@ -44,19 +44,3 @@ const Container = async ({ className = '', category ="chat"}: { className: strin
 export default async function Grid({ className = '', searchParams }: { type: string, className: string, searchParams: ISearchParams }) {
 	return <Container className={className} category={(await searchParams)?.type} />;
 }
-
-        // <ViewTransition>
-        //     <BentoGrid
-        //         ref={containerRef}
-        //         className={styles_bento.container}
-        //         id="projects">
-        //         {features.map((feature, idx) => (
-        //             <ViewTransition key={idx}>
-        //                 <Card
-        //                     {...feature}
-        //                     className={styles.card + ' ' + feature.className}
-        //                 />
-        //             </ViewTransition>
-        //         ))}
-        //     </BentoGrid>
-        // </ViewTransition>

@@ -31,21 +31,14 @@ const Footer = () => {
             // setCategory(e.currentTarget.dataset.icon)
             navigate.push(`?type=${e.currentTarget.dataset.icon}`)
     }
-
-    useEffect(() => {
-        // if (window) {
-        //     const { height } = window.screen
-        //     window.scrollTo(0, height);
-        // }
-        console.log('Type dans FOOTER useEffect: ', type);
-    }, [type]);      
+     
     return (
 		<CardFooter className={styles.card_footer}>
-			<ul className="block w-full self-start">
+			{ type === "chat" && <ul className="block w-full self-start">
 				{mock_convos.map((title, index) => (
 					<ConversationTitleCard key={index} title={title}/>
 				))}
-			</ul>
+			</ul>}
 			<button
 				className={`${
 					type === 'chat' && styles.isSelected
