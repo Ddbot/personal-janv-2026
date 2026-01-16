@@ -1,5 +1,5 @@
 "use client";
-import { use, useState, ViewTransition } from 'react'
+import { use, useRef, useState, ViewTransition } from 'react'
 import { LangContext } from '@/contexts/LangContext';
 import { dictionary } from '@/lib/dictionary';
 import {
@@ -19,6 +19,8 @@ import { Marquee } from "@/components/ui/marquee"
 import bg from "@/public/speed_typer.png"
 import Image from 'next/image'
 import styles from './styles/projects.module.css';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 const Card = (props) => {
     return <BentoCard {...props} />;
@@ -29,7 +31,8 @@ const Empty = () => {
 }
 
 const Container = ({ className }) => {    
-	const { lang } = use(LangContext);
+    const { lang } = use(LangContext);
+    const gridRef = useRef(null);
     const features = [
 		{
 			Icon: PocketKnife,
@@ -137,20 +140,31 @@ const Container = ({ className }) => {
 				</div>
 			),
 		},
-	];
+    ];
+    
+    // useGSAP(() => { 
+    //     gsap.set('div:first-of-type', {
+    //         scale: 3
+    //     })
+    // }, { scope: gridRef });
     
     return (
-		<BentoGrid
+        <BentoGrid
+            ref={ gridRef }
 			// style={{ _animation: 'scaleOutIn' }}
 			className={`p-4 md:p-24 ${styles.container}`}
 			id="projects">
 			{features.map((feature, idx) => (
-				<ViewTransition key={idx}>
-					<Card
-						{...feature}
-						className={styles.card + ' ' + feature.className}
-					/>
-				</ViewTransition>
+				// <ViewTransition key={idx}>
+				<Card
+					key={idx}
+					{...feature}
+					className={styles.card + ' ' + feature.className}
+					onAnimationEnd={() => {
+						console.log('Exit Element ', idx + 1);
+					}}
+				/>
+				// </ViewTransition>
 			))}
 		</BentoGrid>
 	);

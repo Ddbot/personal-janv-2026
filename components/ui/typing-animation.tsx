@@ -123,9 +123,7 @@ export function TypingAnimation({
             setPhase("typing")
           }
           break
-      }
-        
-      console.log('Index du mot courant = ' + currentWordIndex + ' Texte affiché = ' + displayedText);
+      }     
     }, timeoutDelay)
 
     return () => clearTimeout(timeout)

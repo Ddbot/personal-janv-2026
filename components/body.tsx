@@ -4,8 +4,8 @@ import { useRef } from "react";
 import Providers from '@/app/providers';
 import Navbar from "./navbar";
 import useIsScrolling from "@/lib/hooks/useIsScrolling";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
+import styles from './styles/navbar.module.css';
+import { cn } from '@/lib/utils';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,7 +38,10 @@ function Body({ children }: { children: React.ReactNode }) {
 
     return <body className={`${geistSans.variable} ${geistMono.variable} antialiased p-0`}>
         <Providers>
-            <Navbar ref={navbarRef} className="transition-none" />
+            <Navbar className={cn(
+                isScrolling && styles.isScrolling,
+                styles.navbar
+            )} />
             {children}
         </Providers>
     </body>

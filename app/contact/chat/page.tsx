@@ -9,6 +9,9 @@ import styles from './styles.module.css';
 import Toolbar from './Toolbar';
 import Textarea from "./Textarea";
 import { getMessages } from '@/lib/chat';
+import Header from "../Header";
+import Footer from "../Footer";
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
 
 export default async function ChatPage() {
     const { data, error } = await getMessages();
