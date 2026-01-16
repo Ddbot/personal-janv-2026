@@ -8,6 +8,7 @@ import styles from './styles.module.css';
 import Toolbar from './Toolbar';
 import Textarea from "./Textarea";
 import { getMessages } from '@/lib/chat';
+import { getConversationMessages } from '@/lib/conversations';
 import { CardContent } from '@/components/ui/card';
 import ProtectedContainer from '../../auth/ProtectedContainer';
 

@@ -6,23 +6,40 @@ import styles from './styles.module.css';
 import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation';
 import ConversationTitleCard from './ConversationTitleCard';
+import { createConversation, getUserConversations } from '@/lib/conversations';
 
-
-const mock_convos = [
-    "Conversation 1",
-    "Conversation 2",
-    "Conversation 3",
-    "Conversation 4",
-    "Conversation 5",
-    "Conversation 6",
-    "Conversation 7",
-    "Conversation 8",
-];
 const Footer = () => {
     // const [category, setCategory] = useState(displayedCategory ?? 'mail');
     const searchParams = useSearchParams();
     const type = searchParams.get('type');
     const navigate = useRouter();
+    const [conversations, setConversations] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchConversations = async () => {
+            try {
+                const userConversations = await getUserConversations();
+                if (userConversations.length === 0) {
+                    await createConversation('Nouvelle conversation');
+                    // Fetch again after creating to get the newly created conversation
+                    const updatedConversations = await getUserConversations();
+                    setConversations(updatedConversations);
+                } else {
+                    setConversations(userConversations);
+                }
+            } catch (error) {
+                console.error('Error fetching conversations:', error);
+                setConversations([]);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        if (type === 'chat') {
+            fetchConversations();
+        }
+    }, [type]);
 
     console.log('Type dans FOOTER rendering: ', type);
     
@@ -34,11 +51,19 @@ const Footer = () => {
      
     return (
 		<CardFooter className={styles.card_footer}>
-			{ type === "chat" && <ul className="block w-full self-start">
-				{mock_convos.map((title, index) => (
-					<ConversationTitleCard key={index} title={title}/>
-				))}
-			</ul>}
+			{ type === "chat" && 
+				<ul className="block w-full self-start">
+					{loading ? (
+						<li className="text-gray-500 p-2">Loading conversations...</li>
+					) : conversations.length === 0 ? (
+						<li className="text-gray-500 p-2">No conversations yet</li>
+					) : (
+						conversations.map((conversation) => (
+							<ConversationTitleCard key={conversation.id} title={conversation.title}/>
+						))
+					)}
+				</ul>
+			}
 			<button
 				className={`${
 					type === 'chat' && styles.isSelected

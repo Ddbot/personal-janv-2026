@@ -45,9 +45,16 @@ export async function createConversation(title?: string) {
 
 // Get all conversations for the authenticated user
 export async function getUserConversations() {
+  const { data: { user } } = await supabase.auth.getUser()
+  
+  if (!user) {
+    throw new Error('User not authenticated')
+  }
+
   const { data, error } = await supabase
     .from('conversations')
     .select('*')
+    .eq('user_id', user.id)
     .order('updated_at', { ascending: false })
 
   if (error) throw error

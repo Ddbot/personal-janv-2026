@@ -10,7 +10,7 @@ import Footer from './Footer';
 import {BentoGrid} from '@/components/ui/bento-grid';
 import { cn } from '@/lib/utils';
 import ProtectedContainer from '../auth/ProtectedContainer';
-
+import { getConversation } from '@/lib/conversations';
 type Category = 'chat' | 'mail';
 interface ISearchParams {
     type?: Category;
@@ -19,7 +19,7 @@ interface ISearchParams {
 
 const Container = async ({ className = '', category ="chat"}: { className: string, category: Category | undefined}) => {    
     const type = category;
-    
+       
 	return (
             <BentoGrid
                 className={cn("lg:p-32 lg:pb-0", styles_bento.container)}
