@@ -4,7 +4,7 @@ import ContactPicker from "./contact-picker";
 import Logo from "./site-logo"
 import Link from "next/link";
 import { cn } from '@/lib/utils';
-import { Mail, MessageCircle, Download } from 'lucide-react';
+import { Mail, MessageCircle, Download, LogOut } from 'lucide-react';
 import supabase from '@/lib/supabase'
 import { useRouter } from 'next/navigation';
 import { User } from '@supabase/supabase-js';
@@ -153,7 +153,22 @@ export default function Navbar({ className } : { className: string}) {
                                 <Download />                        
                             </button>
                         </ItemActions>
-                    </Item>                    
+                    </Item>  
+                    {user && <Item variant='outline' className="h-fit min-h-20">
+                        <ItemContent>
+                            <ItemTitle>
+                                Déconnexion
+                            </ItemTitle>
+                        </ItemContent>
+                        <ItemActions>
+                            <button onClick={() => {
+                                supabase.auth.signOut()
+                                router.push('/')
+                            }}>
+                                <LogOut />                        
+                            </button>
+                        </ItemActions>
+                    </Item>}
                     
                 </ContactPicker>
             </div>
