@@ -9,7 +9,7 @@ import { revalidatePath } from 'next/cache';
 import createServer from '@/lib/serverClient';
 import { addMessage, getUserConversations } from '@/lib/conversations';
 
-export default async function ChatPage({ children }: { children: React.ReactNode }) {
+export default async function Toolbar({ children }: { children: React.ReactNode }) {
 
     const conversation = await getUserConversations();
     const conversation_id = conversation[0].id
