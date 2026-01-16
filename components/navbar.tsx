@@ -83,14 +83,6 @@ export default function Navbar({ className } : { className: string}) {
                         <ItemContent>
                             Langue
                         </ItemContent>
-                        {/* <ItemContent>
-                            <ItemTitle>
-                                Langue
-                            </ItemTitle>
-                            <ItemDescription>
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde aspernatur maxime quasi fugiat exercitationem consequuntur in eos vero obcaecati quo, animi quos, sequi ducimus tempora. Quisquam nostrum ad velit repellat!
-                            </ItemDescription>
-                        </ItemContent> */}
                         <ItemActions className='w-full h-fit flex justify-center gap-3 p-0'>
                             {/* <LanguagePicker /> */}
                             {languages.map((l) => {
