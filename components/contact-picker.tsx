@@ -10,15 +10,15 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { Cog, SlidersHorizontal, Download, Mail, MessageCircle } from "lucide-react"
+import { SlidersHorizontal } from "lucide-react"
 
 import { cn } from '@/lib/utils'
 
-export default function ContactPicker({ className }: { className: string}) {
+export default function ContactPicker({ className, children }: { className: string, children: React.ReactNode }) {
   return (
       <Sheet> 
       <SheetTrigger asChild>
-        <Button variant="outline" className="bg-transparent border-0 aspect-square w-9 h-9"><SlidersHorizontal /></Button>
+        <SlidersHorizontal className="self-start w-9 h-9"/>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
@@ -27,49 +27,10 @@ export default function ContactPicker({ className }: { className: string}) {
             Envoyez-moi un email ou un message direct
           </SheetDescription> */}
         </SheetHeader>
-            <div className="grid md:h-full md:flex md:flex-1 md:flex-row md:flex-wrap md:justify-start gap-2 pl-6 pr-0 h-full">
-                <Item variant="outline">
-                    <ItemContent>
-                    <ItemTitle>Envoyer un email</ItemTitle>
-                    <ItemDescription>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde aspernatur maxime quasi fugiat exercitationem consequuntur in eos vero obcaecati quo, animi quos, sequi ducimus tempora. Quisquam nostrum ad velit repellat!
-                    </ItemDescription>
-                    </ItemContent>
-                    <ItemActions>
-                        <Button variant="outline" size="sm">
-                            <Mail className="w-6 h-6" />
-                        </Button>
-                    </ItemActions>
-                </Item>
-                <Item variant="outline">
-                    <ItemContent>
-                    <ItemTitle>Envoyer un message direct</ItemTitle>
-                    <ItemDescription>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde aspernatur maxime quasi fugiat exercitationem consequuntur in eos vero obcaecati quo, animi quos, sequi ducimus tempora. Quisquam nostrum ad velit repellat!
-                    </ItemDescription>
-                    </ItemContent>
-                    <ItemActions>
-                        <Button variant="outline" size="sm">
-                            <MessageCircle className="w-6 h-6" />
-                        </Button>
-                    </ItemActions>
-                  </Item>         
-                {/* <Item variant="outline">
-                    <ItemContent>
-                    <ItemTitle>Télécharger mon CV</ItemTitle>
-                    <ItemDescription>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde aspernatur maxime quasi fugiat exercitationem consequuntur in eos vero obcaecati quo, animi quos, sequi ducimus tempora. Quisquam nostrum ad velit repellat!
-                    </ItemDescription>
-                    </ItemContent>
-                    <ItemActions>
-                        <Button variant="outline" size="sm">
-                            <Download className="w-6 h-6" />
-                        </Button>
-                    </ItemActions>
-                </Item>                   */}
-        </div>
-        <SheetFooter>
-          {/* <Button type="submit">Save changes</Button> */}
+            <div className="grid md:h-fit md:flex md:flex-row md:flex-wrap md:justify-start gap-3 px-6">
+                {children}    
+            </div>
+        <SheetFooter>          
           <SheetClose asChild>
             <Button variant="outline">Fermer</Button>
           </SheetClose>
