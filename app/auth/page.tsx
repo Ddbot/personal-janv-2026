@@ -2,7 +2,7 @@
 'use client'
 
 import { useEffect, useState, use } from 'react'
-import supabase from '@/lib/supabase'
+import { createClient } from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
 import { LangContext } from '@/contexts/LangContext'
 import dictionary from './dictionary';
@@ -30,23 +30,25 @@ export default function AuthPage() {
         console.log('type demandé: ', type)
     }, [type]);
   
-const checkExistingSession = async () => {
-    try {
-      const { data: { session } } = await supabase.auth.getSession()
-      if (session) {
-        // User is already logged in, redirect them
-        router.push(`/contact?type=${type}`)
-      }
-    } catch (error) {
-      console.error('Error checking session:', error)
+    const checkExistingSession = async () => {
+        const supabase = await createClient();
+        try {
+            const { data: { session } } = await supabase.auth.getSession()
+            if (session) {
+            // User is already logged in, redirect them
+            router.push(`/contact?type=${type}`)
+            }
+        } catch (error) {
+            console.error('Error checking session:', error)
+        }
     }
-}
 
   const handleMagicLink = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setError('')
     setMessage('')
+    const supabase = await createClient()
 
       try {
         // First, check if a user with this email exists

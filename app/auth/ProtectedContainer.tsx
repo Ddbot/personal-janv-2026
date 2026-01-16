@@ -2,7 +2,7 @@
 'use client'
 
 import { useEffect, useCallback, useState } from 'react'
-import supabase from '@/lib/supabase'
+import { createClient } from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
 import { User } from '@supabase/supabase-js'
 
@@ -12,6 +12,7 @@ export default function ProtectedContainer({ children }: { children: React.React
   const router = useRouter()
 
     const checkUser = useCallback(async () => {
+        const supabase = await createClient();
         try {
             const { data: { user } } = await supabase.auth.getUser()
       
@@ -29,28 +30,40 @@ export default function ProtectedContainer({ children }: { children: React.React
     }, [router, setUser, setLoading]);
     
     useEffect(() => {
-    checkUser()
+        checkUser()
 
-    // Listen for auth changes
-    const { data: authListener } = supabase.auth.onAuthStateChange(
-        (event, session) => {
-        if (session?.user) {
-            setUser(session.user)
-            console.log(session.user)
-        } else {
-            console.log('Pas de user registered')
-            router.push('/auth')
+        // Listen for auth changes
+        let authListener: { data: { subscription: { unsubscribe: () => void; } }; };
+        
+        const setupAuthListener = async () => {
+            const supabase = await createClient();
+            // Listen for auth changes
+            authListener = supabase.auth.onAuthStateChange(
+                (event, session) => {
+                    if (session?.user) {
+                        setUser(session.user)
+                        setLoading(false);
+                        console.log(session.user)
+                    } else {
+                        console.log('Pas de user registered')
+                        setUser(null);
+                        setLoading(false);
+                        // router.push('/auth')
+                    }
+                }
+            )
         }
-        }
-    )
-
+        
+        setupAuthListener();
+        
         return () => {
-            authListener.subscription.unsubscribe()
+            authListener?.data?.subscription?.unsubscribe();
         }
     }, [router, checkUser])
     
     const handleSignOut = async () => {
       setUser(null)
+    const supabase = await createClient();
     await supabase.auth.signOut()
     router.push('/')
   }

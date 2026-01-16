@@ -42,8 +42,9 @@ const Container = async ({ className = '', category ="chat"}: { className: strin
     );
 };
 
-export default async function Grid({ className = '', searchParams }: { type: string, className: string, searchParams: ISearchParams }) {
-	return <Container className={className} category={(await searchParams)?.type} />;
+export default async function Grid({ className = '', searchParams }: { className: string, searchParams: Promise<ISearchParams> }) {
+	const resolvedParams = await searchParams;
+	return <Container className={className} category={resolvedParams?.type} />;
 }
 
         // <ViewTransition>
