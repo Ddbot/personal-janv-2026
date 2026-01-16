@@ -37,15 +37,15 @@ export default async function ChatPage({ messages, conversation }: { messages: M
                             ) {
                             return (
                                 <Fragment key={msg.id}>
-                                <PrimaryMessage
-                                    avatarSrc={msg.sender_avatar_url}
-                                    avatarAlt={msg.sender_username}
-                                    avatarFallback={msg.sender_name.slice(0, 2)}
-                                    senderName={msg.sender_name}
-                                    content={msg.content}
-                                    timestamp={new Date(msg.timestamp).getTime()}
-                                />
-                                <DateItem timestamp={new Date(msg.timestamp).getTime()} className="my-4" />
+                                    <PrimaryMessage
+                                        avatarSrc={msg.sender_avatar_url}
+                                        avatarAlt={msg.sender_username}
+                                        avatarFallback={msg.sender_name.slice(0, 2)}
+                                        senderName={msg.sender_name}
+                                        content={msg.content}
+                                        timestamp={new Date(msg.timestamp).getTime()}
+                                    />
+                                    <DateItem timestamp={new Date(msg.timestamp).getTime()} className="my-4" />
                                 </Fragment>
                             );
                             }

@@ -5,7 +5,7 @@ import ContactPicker from "./contact-picker";
 import Logo from "./site-logo"
 import Link from "next/link";
 import { cn } from '@/lib/utils';
-import { LogIn, LogOut } from 'lucide-react';
+import { Cog, SlidersHorizontal, LogIn, LogOut } from 'lucide-react';
 import supabase from '@/lib/supabase'
 import { useRouter } from 'next/navigation';
 import { User } from '@supabase/supabase-js';
