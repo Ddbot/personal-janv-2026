@@ -8,9 +8,9 @@ const ThemeToggler = () => {
     const {theme, toggleTheme } = use(ThemeContext);
 
     return (
-        <Button size="icon" variant="outline" onClick={toggleTheme} className="border-0 dark:border-2 border-primary dark:bg-transparent bg-primary">
+        <button onClick={toggleTheme}>
             {theme === "light" ? <Moon fill="var(--card-foreground)" /> : <Sun fill="var(--primary)" stroke="var(--primary)" />}
-        </Button>        
+        </button>        
     )
 }
 

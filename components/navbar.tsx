@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, use } from 'react';
 import ThemeToggler from "./theme-toggler";
 import LanguagePicker from "./language-picker";
 import ContactPicker from "./contact-picker";
@@ -10,22 +10,36 @@ import supabase from '@/lib/supabase'
 import { useRouter } from 'next/navigation';
 import { User } from '@supabase/supabase-js';
 import { Button } from '@/components/ui/button';
+import { Item, ItemActions, ItemContent, ItemDescription, ItemTitle } from "@/components/ui/item"
+import { LangContext, Lang } from "@/contexts/LangContext"
+import Image from 'next/image';
+
+const languages: Lang[] = ["fr", "gb", "de"];
+const languageFull = {
+    fr: "Français",
+    gb: "English",
+    de: "Deutsch"
+}
 
 export default function Navbar({ className } : { className: string}) {
     const router = useRouter();
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
+    const { lang, changeLang } = use(LangContext);
+
+    function handleChangeLanguage(l: Lang) {
+        changeLang(l);
+    }    
 
     function handleSignIn(e: React.MouseEvent) {
         e.preventDefault();
         router.push('/auth')
     }
 
-    const handleSignOut = async () => {
+    async function handleSignOut() {
+        const client = supabase;
         
-    const client = await supabase;
-    
-    await client.auth.signOut()
+        await client.auth.signOut()
         router.push('/')
     }
     
@@ -64,15 +78,71 @@ export default function Navbar({ className } : { className: string}) {
                 <Logo />
             </Link>
             <div className="flex flex-row flex-nowrap items-center gap-0 lg:gap-4">
-                <ContactPicker className="md:w-9 md:h-9 aspect-square rounded-full"/>
-                <LanguagePicker className="md:w-9 md:h-9 aspect-square rounded-full"/>
-                <ThemeToggler />
-                { user ? <button onClick={handleSignOut}>
-                    <LogOut width={16} height={16} className="w-4 h-4"/>
-                </button> :
-                <button onClick={handleSignIn}>
-                    <LogIn width={16} height={16} className="w-4 h-4"/>
-                </button>}
+                <ContactPicker className="md:w-9 md:h-9 aspect-square rounded-full">                  
+                    <Item variant='outline'>
+                        <ItemContent>
+                            Langue
+                        </ItemContent>
+                        {/* <ItemContent>
+                            <ItemTitle>
+                                Langue
+                            </ItemTitle>
+                            <ItemDescription>
+                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde aspernatur maxime quasi fugiat exercitationem consequuntur in eos vero obcaecati quo, animi quos, sequi ducimus tempora. Quisquam nostrum ad velit repellat!
+                            </ItemDescription>
+                        </ItemContent> */}
+                        <ItemActions className='w-full h-fit flex justify-center gap-3 p-0'>
+                            {/* <LanguagePicker /> */}
+                            {languages.map((l) => {
+                                return <Item key={l} variant='outline' className='self-start flex flex-col items-center p-2'>
+                                    <ItemTitle style={{
+                                        transition: 'opacity .225s linear',
+                                        opacity: l === lang ? 0 : 1
+                                    }}>{ languageFull[l]}</ItemTitle>
+                                    <ItemDescription>
+                                        <button
+                                            className="flex flex-col items-center w-12 h-12 focus:outline-none"
+                                            onClick={() => handleChangeLanguage(l)}
+                                            disabled={l === lang}
+                                            style={{
+                                                transition: 'opacity .225s linear',
+                                                opacity: l === lang ? 0 : 1
+                                            }}>
+                                            {/* <span className='text-xs'>{languageFull[l]}</span> */}
+                                            <Image src={`/${l}-flag.png`} alt={`${l} flag`} width={64} height={64} />
+                                        </button>
+                                    </ItemDescription>
+                                </Item>
+                            })
+                            }
+                        </ItemActions>
+                    </Item>
+                    <Item variant='outline'>
+                        <ItemContent>
+                            <ItemTitle>
+                                Thème
+                            </ItemTitle>
+                        </ItemContent>
+                        <ItemActions>
+                            <ThemeToggler />                            
+                        </ItemActions>
+                    </Item>
+                    <Item variant='outline'>
+                        <ItemContent>
+                            <ItemTitle>
+                                { user ? 'Se déconnecter' : 'Se connecter'}
+                            </ItemTitle> 
+                        </ItemContent>
+                        <ItemActions>
+                            { user ? <button onClick={handleSignOut}>
+                                <LogOut width={16} height={16} className="w-4 h-4"/>
+                            </button> :
+                            <button onClick={handleSignIn}>
+                        <LogIn width={16} height={16} className="w-4 h-4"/>
+                                </button>}
+                        </ItemActions>
+                    </Item>
+                </ContactPicker>
             </div>
         </div>
     )

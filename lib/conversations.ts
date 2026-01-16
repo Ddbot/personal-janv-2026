@@ -48,13 +48,9 @@ export async function createConversation(title?: string) {
 // Get all conversations for the authenticated user
 export async function getUserConversations() {    
   const supabase = await createServer()
-  console.log('Server client created:', supabase)
-  
   const { data: { user } } = await supabase.auth.getUser()
-  console.log('User data:', user)
   
   if (!user) {
-    console.log('No user found, throwing error')
     throw new Error('User not authenticated')
   }
 
@@ -65,7 +61,7 @@ export async function getUserConversations() {
     .order('updated_at', { ascending: false })
 
   if (error) {
-    console.log('Database error:', error)
+    console.log('Error in conversations: ', error)
     throw error
   }
   return data as Conversation[]

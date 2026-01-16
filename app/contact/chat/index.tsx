@@ -1,4 +1,6 @@
-import { Fragment, Suspense, ViewTransition } from "react";
+"use client";
+
+import { Fragment, Suspense, ViewTransition, useState, useEffect } from "react";
 import { Chat } from "@/components/chat/chat";
 import { ChatMessages } from "@/components/chat/chat-messages";
 import { AdditionalMessage } from "@/components/message-items/additional-message";
@@ -8,7 +10,7 @@ import styles from './styles.module.css';
 import Toolbar from './Toolbar';
 import Textarea from "./Textarea";
 import { getMessages } from '@/lib/chat';
-import { getConversationMessages, createConversation } from '@/lib/conversations';
+import { getConversationMessages, getUserConversations } from '@/lib/conversations';
 import { CardContent } from '@/components/ui/card';
 import ProtectedContainer from '../../auth/ProtectedContainer';
 import { Message } from '@/lib/supabase';
@@ -17,17 +19,35 @@ type MessagesType = {
     messages: Message[]
 }
 
-export default async function ChatPage({ messages, conversation }: { messages: Message[], conversation: string }) {   
-    // const { data, error } = await getMessages();
-    if (conversation === null) {
-        // CREER UNE CONVERSATION
-        await createConversation('Nouvelle conversation');
+export default function ChatPage() {   
+    const [messages, setMessages] = useState<Message[]>([]);
+    const [loading, setLoading] = useState(true);
+    
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const conversations = await getUserConversations();
+                const conversation_id = conversations[0]?.id ?? null;
+                const conversationMessages = conversation_id ? await getConversationMessages(conversation_id) : [];
+                setMessages(conversationMessages);
+            } catch (error) {
+                console.error('Error fetching chat data:', error);
+                setMessages([]);
+            } finally {
+                setLoading(false);
+            }
+        };
+        
+        fetchData();
+    }, []);
+    
+    if (loading) {
+        return <div className="flex-1 flex items-center justify-center">Loading...</div>;
     }
+    
     return (<ViewTransition>
-        {/* {error && <h2 className="text-red-500">{error.message}</h2>} */}
         <Chat className={styles.chat}>
             <CardContent className={`flex-1 min-h-0 px-0 p-0`}>
-            {/* PAS DE HEADER, déporté dans la CardHeader */}
                 <Suspense fallback={<div className="px-6 flex-1 overflow-y-auto min-h-0">Loading...</div>}>
                     <ChatMessages className={styles.messages}>
                         {messages?.map((msg, i, msgs) => {

@@ -10,15 +10,11 @@
     /* background-color: var(--secondary); */
     background-color: transparent;
     transition: background-color 0.2s ease-in-out;
-    padding: 0px !important;
+    /* padding: 0px !important; */
     /* width: 48px !important;
     height: 48px !important; */
 
     anchor-name: --trigger;
-
-    border: none;
-    & > * {
-    }
 }
 
 .content {

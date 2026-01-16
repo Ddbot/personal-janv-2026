@@ -28,9 +28,9 @@ const LanguagePicker = ({ className }: { className?: string }) => {
     <FloatingPanelRoot className={className}>
         <FloatingPanelTrigger
             title="Choose language"
-            className={cn(styles.trigger)}
+            // className={cn(styles.trigger)}
           >
-            <Languages className="w-4 h-4"/>
+            <Languages />
         </FloatingPanelTrigger>   
       <FloatingPanelContent className={styles.content}>
         <FloatingPanelBody className="mb-2">
