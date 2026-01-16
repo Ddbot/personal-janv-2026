@@ -26,6 +26,7 @@ export default async function ChatPage() {
     allMessages.sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
     
     return (<ViewTransition>
+        {error && <h2 className="text-red-500">{error.message}</h2>}
         <Chat className={styles.chat}>
             <CardContent className={`flex-1 min-h-0 px-0 p-0`}>
             {/* PAS DE HEADER, déporté dans la CardHeader */}

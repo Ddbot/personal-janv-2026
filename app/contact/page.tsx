@@ -10,7 +10,7 @@ import Footer from './Footer';
 import {BentoGrid} from '@/components/ui/bento-grid';
 import { cn } from '@/lib/utils';
 import ProtectedContainer from '../auth/ProtectedContainer';
-
+import { getConversation } from '@/lib/conversations';
 type Category = 'chat' | 'mail';
 interface ISearchParams {
     type?: Category;
@@ -19,7 +19,7 @@ interface ISearchParams {
 
 const Container = async ({ className = '', category ="chat"}: { className: string, category: Category | undefined}) => {    
     const type = category;
-    
+       
 	return (
             <BentoGrid
                 className={cn("lg:p-32 lg:pb-0", styles_bento.container)}
@@ -33,7 +33,6 @@ const Container = async ({ className = '', category ="chat"}: { className: strin
                         ) : (
                             <MailPage />
                         )}
-                        {/* logos reseaux sociaux */}
                         <Footer />
                     </ProtectedContainer>
                     </Card>
@@ -46,19 +45,3 @@ export default async function Grid({ className = '', searchParams }: { className
 	const resolvedParams = await searchParams;
 	return <Container className={className} category={resolvedParams?.type} />;
 }
-
-        // <ViewTransition>
-        //     <BentoGrid
-        //         ref={containerRef}
-        //         className={styles_bento.container}
-        //         id="projects">
-        //         {features.map((feature, idx) => (
-        //             <ViewTransition key={idx}>
-        //                 <Card
-        //                     {...feature}
-        //                     className={styles.card + ' ' + feature.className}
-        //                 />
-        //             </ViewTransition>
-        //         ))}
-        //     </BentoGrid>
-        // </ViewTransition>
