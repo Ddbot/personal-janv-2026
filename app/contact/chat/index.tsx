@@ -7,10 +7,8 @@ import { PrimaryMessage } from "@/components/message-items/primary-message";
 import styles from './styles.module.css';
 import Toolbar from './Toolbar';
 import Textarea from "./Textarea";
-import { getMessages } from '@/lib/chat';
 import { getConversationMessages, createConversation } from '@/lib/conversations';
 import { CardContent } from '@/components/ui/card';
-import ProtectedContainer from '../../auth/ProtectedContainer';
 import { Message } from '@/lib/supabase';
 
 type MessagesType = {
