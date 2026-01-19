@@ -1,5 +1,6 @@
 .container {
     gap: calc(var(--spacing) * 12); 
+    transition: background-color .125s linear;
     @media (min-width: 768px) {
         min-width: 100%;
         /* aspect-ratio: 3 / 2; */
@@ -18,5 +19,9 @@
     container-type: scroll-state;
 
     padding-block: 0;
+    }
+
+    @starting-style {
+        background-color: var(--primary);
     }
 }

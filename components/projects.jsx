@@ -56,10 +56,11 @@ const Container = ({ className }) => {
 					'Une app mobile pour suivre la croissance et les données vitales de votre nouveau né',
 					'Echanger, vendre, partager, se rendre service: tout ce qui se passe dans ma rue',
 					<ProjectsContactCardContent
-                        key="contact"
-                        className={cn(styles_bento.animate_messages)}
-                        fn={handleClick}
-                        ref={ ref } />,
+						key="contact"
+						className={cn(styles_bento.animate_messages)}
+						fn={handleClick}
+						ref={ref}
+					/>,
 					'Si on se contactait ?',
 				],
 			},
@@ -121,6 +122,12 @@ const Container = ({ className }) => {
 					'A productivity app to streamline production in a content farm',
 					"A mobile app to monitor your baby's evolution",
 					'Echanger, vendre, partager, se rendre service: tout ce qui se passe dans ma rue',
+					<ProjectsContactCardContent
+						key="contact"
+						className={cn(styles_bento.animate_messages)}
+						fn={handleClick}
+						ref={ref}
+					/>,
 					"Let's get in touch!",
 				],
 			},
@@ -187,6 +194,12 @@ const Container = ({ className }) => {
 					'Eine App, die die Produktivität einer Content-Farm verzehnfacht.',
 					'Eine mobile App, die Ihnen hilft, die Entwicklung Ihres Babys zu überwachen',
 					'Echanger, vendre, partager, se rendre service: tout ce qui se passe dans ma rue',
+					<ProjectsContactCardContent
+						key="contact"
+						className={cn(styles_bento.animate_messages)}
+						fn={handleClick}
+						ref={ref}
+					/>,
 					'Lass uns Kontakt aufnehmen!',
 				],
 			},
@@ -252,7 +265,6 @@ const Container = ({ className }) => {
                     duration: 0.1225,
                     ease: 'power2.out',
                 },
-                onUpdate: () => { },
                 onComplete: () => {
                     // window.scrollTo(0,window.innerHeight);
                     router.push('/contact?type=' + type);
@@ -310,13 +322,13 @@ const Container = ({ className }) => {
                     '<',
                 )
                 .to(
-                    contactCard,
+                    contactCard.querySelectorAll('button'),
                     {
-                        duration: 0.125,
+                        duration: .125,
                         // scale: 0.85,
                         opacity: 0,
                     },
-                    '>',
+                    '<',
                 );
         });
     }

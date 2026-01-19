@@ -49,7 +49,7 @@ export default function ContactPicker({ className, children }: { className: stri
             </div>
         <SheetFooter>          
           <SheetClose asChild>
-                      <Button variant="outline">{dictionary[lang]['close']}</Button>
+                <Button variant="outline">{dictionary[lang]['close']}</Button>
           </SheetClose>
         </SheetFooter>
       </SheetContent>
