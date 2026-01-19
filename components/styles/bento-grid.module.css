@@ -25,3 +25,7 @@
         background-color: var(--primary);
     }
 }
+
+.animate_messages {
+    pointer-events: all;
+}

@@ -9,13 +9,17 @@ interface ProjectsContactCardContentProps {
 const ProjectsContactCardContent = forwardRef<HTMLDivElement, ProjectsContactCardContentProps>(({ fn }, ref: ForwardedRef<HTMLDivElement>) => {
     return (
         <div ref={ref} key="contact" className="w-full flex justify-end gap-4">
-            <button onClick={fn} data-icon="chat">
-                <MessageCircle color={'var(--background'} />
+            <button onClick={fn} data-icon="chat" className='pointer-events-auto hover:scale-120 transition-all duration-300'>
+                <Link href="/contact?type=chat">
+                    <MessageCircle color={'var(--background'} className='pointer-events-auto' />
+                </Link>
             </button>
-            <button onClick={fn} data-icon="mail">
-                <Mail color={'var(--background'} />
+            <button onClick={fn} data-icon="mail" className='pointer-events-auto hover:scale-120 transition-all duration-300'>
+                <Link href="/contact?type=mail">
+                    <Mail color={'var(--background'} className='pointer-events-auto' />
+                </Link>
             </button>
-            <button data-icon="linkedin">
+            <button data-icon="linkedin" className='pointer-events-auto hover:scale-120 transition-all duration-300'>
                 <a
                     href="https://www.linkedin.com/in/andry-rakotoniaina/"
                     target="_blank">
