@@ -6,7 +6,7 @@ import Link from "next/link";
 import { cn } from '@/lib/utils';
 import { Mail, MessageCircle, Download, LogOut } from 'lucide-react';
 import supabase from '@/lib/supabase'
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { User } from '@supabase/supabase-js';
 import { Item, ItemActions, ItemContent, ItemDescription, ItemTitle } from "@/components/ui/item"
 import { Lang, LangContext } from '@/contexts/LangContext';
@@ -21,6 +21,7 @@ const languageFull: Record<Lang, string>= {
 
 export default function Navbar({ className } : { className: string}) {
     const router = useRouter();
+    const pathname = usePathname();
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
     const { lang, changeLang} = use(LangContext);
@@ -52,10 +53,10 @@ export default function Navbar({ className } : { className: string}) {
                         setLoading(false);
                         console.log(session.user)
                     } else {
-                        console.log('Pas de user registered')
+                        console.log('Pas de user registered ', pathname)
                         setUser(null);
                         setLoading(false);
-                        router.push('/auth')
+                        if(pathname !== '/') router.push('/auth')
                     }
                 }
             )
