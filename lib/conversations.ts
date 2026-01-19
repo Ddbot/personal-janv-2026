@@ -58,6 +58,7 @@ export async function getUserConversations() {
     throw new Error('User not authenticated')
   }
 
+    // Sera seulement utile pour moi l'admin, les visiteurs n'ont qu'un interlocuteur = MOI
   const { data, error } = await supabase
     .from('conversations')
     .select('*')
@@ -68,7 +69,7 @@ export async function getUserConversations() {
     console.log('Database error:', error)
     throw error
   }
-  return data as Conversation[]
+  return data as Conversation[] | []
 }
 
 // Get a specific conversation
