@@ -4,7 +4,12 @@ import { ChatHeader, ChatHeaderStart, ChatHeaderMain, ChatHeaderEnd } from "@/co
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Download, Phone, Video } from 'lucide-react';
 import styles from './styles.module.css';
+import { use } from 'react';
+import { LangContext } from "@/contexts/LangContext";
+import dictionary from './dictionary';
+
 const Header = ({ title, category }) => {
+    const { lang } = use(LangContext);
     function activateMediaConversation(e) {
         e.preventDefault();
         console.log(e.currentTarget?.dataset.name);
@@ -26,7 +31,7 @@ const Header = ({ title, category }) => {
 			</ChatHeaderStart>
 			<ChatHeaderMain>
 				<span className="text-sm font-medium text-primary">
-					{title}
+					{dictionary[lang][title]}
 				</span>
 			</ChatHeaderMain>
 			<ChatHeaderEnd className="w-fit p-0">

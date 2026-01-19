@@ -33,7 +33,7 @@ const Container = async ({ className = '', category ="chat"}: { className: strin
                 id="contact">
                 <ViewTransition>
                     <Card key="chat-card" className={cn(styles.container, "lg:scale-85")}>
-                        <Header title={"Développeur Front End"} category="chat" />
+                        <Header title="role" category="chat" />
                         <ProtectedContainer>
                             {type === 'chat' ? (
                                 <ChatPage messages={conversationMessages} conversation={conversation_id} />
