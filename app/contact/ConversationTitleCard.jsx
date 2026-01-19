@@ -1,10 +1,13 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import styles from './styles.module.css';
 import supabase from '@/lib/supabase';
 const adminUID = process.env.NEXT_PUBLIC_ADMIN_UID;
+import { LangContext } from '@/contexts/LangContext';
+import dictionary from './dictionary';
 
 const ConversationTitleCard = ({ conversation }) => {
+    const { lang } = use(LangContext);
     const [userData, setuserData] = useState({ email: '', id: '' });
     const [loading, setLoading] = useState(true);
 
@@ -41,7 +44,7 @@ const ConversationTitleCard = ({ conversation }) => {
 			{conversation.user_id !== adminUID ? (
 				userData.id !== adminUID ? (
 					<button>
-						<p>Conversation avec Andry</p>
+						<p>{dictionary[lang].conversation}</p>
 					</button>
 				) : (
 					<button
@@ -56,7 +59,7 @@ const ConversationTitleCard = ({ conversation }) => {
 				)
 			) : (
 				<button>
-					<p>Conversation avec moi-même</p>
+					<p>{dictionary[lang].conversation}</p>
 				</button>
 			)}
 		</li>

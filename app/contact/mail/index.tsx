@@ -1,5 +1,6 @@
 "use client";
-import { useRef, ViewTransition } from 'react';
+import { useRef, ViewTransition, use } from 'react';
+import { LangContext } from '@/contexts/LangContext';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from "@/components/ui/button";
 import styles from './styles.module.css';
@@ -15,11 +16,13 @@ import {
 } from '@/components/chat/chat-toolbar';
 import gsap from 'gsap';
 import {useGSAP} from '@gsap/react';
+import dictionary from '../dictionary';
 
 function MailPage() {
     const footerRef = useRef<HTMLDivElement>(null);
     const headerRef = useRef<HTMLDivElement>(null);
     const tl = useRef<GSAPTimeline>(null);
+    const { lang } = use(LangContext);
     
     const sendMail = (formData: FormData) => {
         const subject = formData.get('subject') as string;
@@ -60,7 +63,7 @@ function MailPage() {
         <form action={sendMail} className='w-full h-full'>
             <Card className={styles.container}>
                 <CardHeader className={styles.header} ref={headerRef}>
-                    <label htmlFor="subject" className='ml-4'>Sujet:</label>
+                    <label htmlFor="subject" className='ml-4'>{dictionary[lang].sujet}</label>
                     <Input name="subject" id="subject"/>
                 </CardHeader>
                 <CardContent className={styles.content}>
@@ -68,7 +71,7 @@ function MailPage() {
                         name="body"
                         className={styles.textarea}
                         // field-sizing: Content; + defensive styling
-                        placeholder="Write your message here..."
+                        placeholder={dictionary[lang].placeholder}
                     />
                 </CardContent>
                 <CardFooter className={styles.footer} ref={ footerRef }>
