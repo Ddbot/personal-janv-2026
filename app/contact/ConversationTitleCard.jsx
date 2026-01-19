@@ -31,15 +31,33 @@ const ConversationTitleCard = ({ conversation }) => {
     }
 
     return (
-		<li className={styles.conversation_title_card}>
+        <li className={styles.conversation_title_card} style={{
+            height: '100%',
+            display: 'flex',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            padding: '1.5rem'
+        }}>
 			{conversation.user_id !== adminUID ? (
 				userData.id !== adminUID ? (
-					'Conversation avec Andry'
+					<button>
+						<p>Conversation avec Andry</p>
+					</button>
 				) : (
-					<button onClick={ () => { console.log('Clicked on conversation: ', conversation.id)}}>{conversation.title}</button>
+					<button
+						onClick={() => {
+							console.log(
+								'Clicked on conversation: ',
+								conversation.id,
+							);
+						}}>
+						{conversation.title}
+					</button>
 				)
 			) : (
-				'Conversation avec moi-même'
+				<button>
+					<p>Conversation avec moi-même</p>
+				</button>
 			)}
 		</li>
 	);
