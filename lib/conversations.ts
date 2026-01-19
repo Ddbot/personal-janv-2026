@@ -2,6 +2,8 @@
 // import supabase from '@/lib/supabase';
 import createServer from './serverClient';
 
+const adminUID = process.env.NEXT_PUBLIC_ADMIN_UID;
+
 export interface Conversation {
   id: string
   user_id: string
@@ -36,7 +38,7 @@ export async function createConversation(title?: string) {
     .from('conversations')
     .insert({
       user_id: user.id,
-      title: title || 'Andry'
+      title: user.id !== adminUID ? user.email : 'Andry'
     })
     .select()
     .single()

@@ -12,14 +12,14 @@ import { addMessage, getUserConversations } from '@/lib/conversations';
 export default async function Toolbar({ children }: { children: React.ReactNode }) {
 
     const conversation = await getUserConversations();
-    const conversation_id = conversation[0].id
+    const conversation_id = conversation[0].id ?? null
 
     async function sendMessage(formData: FormData) {
         "use server";   
         const content = formData.get('content') as string ?? '';
         const server = await createServer();
         const { data: { user } } = await server.auth.getUser()
-        if(content !== '' && content !== null && user) {
+        if(content !== '' && content !== null && user && conversation_id) {
             await addMessage(conversation_id, user.id === process.env.NEXT_PUBLIC_ADMIN_UUID ? "assistant" : "user", content, user.user_metadata?.username ?? 'no username', user.user_metadata?.full_name ?? 'no full name', user.user_metadata?.avatar_url ?? 'no avatar');
             revalidatePath('/contact');
         }
