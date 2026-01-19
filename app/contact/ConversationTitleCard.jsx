@@ -32,7 +32,15 @@ const ConversationTitleCard = ({ conversation }) => {
 
     return (
 		<li className={styles.conversation_title_card}>
-			{conversation.user_id !== adminUID ? (userData.id !== adminUID ? 'Conversation avec Andry' : conversation.title) : 'Conversation avec moi-même'}
+			{conversation.user_id !== adminUID ? (
+				userData.id !== adminUID ? (
+					'Conversation avec Andry'
+				) : (
+					<button onClick={ () => { console.log('Clicked on conversation: ', conversation.id)}}>{conversation.title}</button>
+				)
+			) : (
+				'Conversation avec moi-même'
+			)}
 		</li>
 	);
 }
