@@ -61,17 +61,32 @@ export async function getUserConversations() {
   }
 
     // Sera seulement utile pour moi l'admin, les visiteurs n'ont qu'un interlocuteur = MOI
-  const { data, error } = await supabase
-    .from('conversations')
-    .select('*')
-    .eq('user_id', user.id)
-    .order('updated_at', { ascending: false })
+    if (user.id !== adminUID) {
+        const { data, error } = await supabase
+        .from('conversations')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('updated_at', { ascending: false });
+        
+        if (error) {
+            console.log('Database error:', error)
+            throw error
+        }
+        return data as Conversation[] | []
+    } else {
+        const { data, error } = await supabase
+        .from('conversations')
+        .select('*')
+        // .eq('user_id', user.id)
+        .order('updated_at', { ascending: false });
+        
+        if (error) {
+            console.log('Database error with ADMIN UID:', error)
+            throw error
+        }
+        return data as Conversation[] | []        
+    }
 
-  if (error) {
-    console.log('Database error:', error)
-    throw error
-  }
-  return data as Conversation[] | []
 }
 
 // Get a specific conversation
