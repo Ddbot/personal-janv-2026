@@ -7,8 +7,9 @@ import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation';
 import ConversationTitleCard from './ConversationTitleCard';
 import { createConversation, getUserConversations } from '@/lib/conversations';
+import { Conversation } from '@/lib/conversations';
 
-const Footer = ({ convos }) => {
+const Footer = ({ convos }: { convos: Conversation[] }) => {
     // const [category, setCategory] = useState(displayedCategory ?? 'mail');
     const searchParams = useSearchParams();
     const type = searchParams.get('type');
@@ -35,10 +36,6 @@ const Footer = ({ convos }) => {
 				setLoading(false);
 			}
         };
-        
-        const isAdmin = async () => {
-            
-        }
 
 		if (type === 'chat') {
 			fetchConversations();
@@ -61,7 +58,7 @@ const Footer = ({ convos }) => {
 						<li className="text-gray-500 p-2">No conversations yet</li>
 					) : (
 						convos.map((conversation) => (
-							<ConversationTitleCard key={conversation.id} title={conversation.title}/>
+							<ConversationTitleCard key={conversation.id} conversation={conversation}/>
 						))
 					)}
 				</ul>
