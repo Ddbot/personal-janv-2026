@@ -11,10 +11,27 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { SlidersHorizontal } from "lucide-react"
+import { use } from 'react';
+import { LangContext } from '@/contexts/LangContext';
 
 import { cn } from '@/lib/utils'
 
 export default function ContactPicker({ className, children }: { className: string, children: React.ReactNode }) {
+    const { lang } = use(LangContext);
+    const dictionary = {
+        fr: {
+            settings: 'Paramètres',
+            close: 'Fermer',
+        },
+        gb: {
+            settings: 'Settings',
+            close: 'Close',
+        },
+        de: {
+            settings: 'Einstellungen',
+            close: 'Schließen',
+        }
+    }
   return (
       <Sheet> 
       <SheetTrigger asChild>
@@ -22,7 +39,7 @@ export default function ContactPicker({ className, children }: { className: stri
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>Réglages</SheetTitle>
+          <SheetTitle>{dictionary[lang]['close']}</SheetTitle>
           {/* <SheetDescription>
             Envoyez-moi un email ou un message direct
           </SheetDescription> */}
@@ -32,7 +49,7 @@ export default function ContactPicker({ className, children }: { className: stri
             </div>
         <SheetFooter>          
           <SheetClose asChild>
-            <Button variant="outline">Fermer</Button>
+                      <Button variant="outline">{dictionary[lang]['close']}</Button>
           </SheetClose>
         </SheetFooter>
       </SheetContent>

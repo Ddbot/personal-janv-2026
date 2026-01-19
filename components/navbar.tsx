@@ -24,7 +24,37 @@ export default function Navbar({ className } : { className: string}) {
     const pathname = usePathname();
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
-    const { lang, changeLang} = use(LangContext);
+    const { lang, changeLang } = use(LangContext);
+    
+    const dictionary = {
+        fr: {
+            settings: 'Paramètres',
+            lang: 'Langue',
+            theme: 'Thème',
+            send_email: 'Envoyer un email',
+            download_cv: 'Télécharger le CV',
+            sign_out: 'Déconnexion',
+            launch_chat: 'Lancer le chat'
+        },
+        gb: {
+            settings: 'Settings',
+            lang: 'Language',
+            theme: 'Theme',
+            send_email: 'Send email',
+            download_cv: 'Download Andry\'s resume',
+            sign_out: 'Sign out',
+            launch_chat: 'Start chat'
+        },
+        de: {
+            settings: 'Einstellungen',
+            lang: 'Sprache',
+            theme: 'Thema',
+            send_email: 'Senden Sie eine E-Mail',
+            download_cv: 'Lebenslauf herunterladen',
+            sign_out: 'Abmelden',
+            launch_chat: 'Chat starten'
+        }
+    }
 
     function handleChangeLanguage(l: Lang) {
         changeLang(l);
@@ -64,7 +94,7 @@ export default function Navbar({ className } : { className: string}) {
 
         checkAuthState();
 
-    }, [router, setUser, setLoading])    
+    }, [router, setUser, setLoading, pathname])    
     
     return (
         <div className={cn(`
@@ -81,7 +111,7 @@ export default function Navbar({ className } : { className: string}) {
                 <ContactPicker className="md:w-9 md:h-9 aspect-square">
                     <Item variant='outline' className="h-fit min-h-20">
                         <ItemContent>
-                            Langue
+                            {dictionary[lang].lang}
                         </ItemContent>
                         <ItemActions className='w-full h-fit flex justify-center gap-3 p-0'>
                             {/* <LanguagePicker /> */}
@@ -112,7 +142,7 @@ export default function Navbar({ className } : { className: string}) {
                     <Item variant='outline' className="h-fit min-h-20">
                         <ItemContent>
                             <ItemTitle>
-                                Thème
+                                {dictionary[lang].theme}
                             </ItemTitle>
                         </ItemContent>
                         <ItemActions>
@@ -122,7 +152,7 @@ export default function Navbar({ className } : { className: string}) {
                     <Item variant='outline' className="h-fit min-h-20">
                         <ItemContent>
                             <ItemTitle>
-                                Lancer le chat
+                                {dictionary[lang].launch_chat}
                             </ItemTitle>
                         </ItemContent>
                         <ItemActions>
@@ -134,7 +164,7 @@ export default function Navbar({ className } : { className: string}) {
                     <Item variant='outline' className="h-fit min-h-20">
                         <ItemContent>
                             <ItemTitle>
-                                Envoyer un email
+                                {dictionary[lang].send_email}
                             </ItemTitle>
                         </ItemContent>
                         <ItemActions>
@@ -146,7 +176,7 @@ export default function Navbar({ className } : { className: string}) {
                     <Item variant='outline' className="h-fit min-h-20">
                         <ItemContent>
                             <ItemTitle>
-                                Télécharger le CV
+                                {dictionary[lang].download_cv}
                             </ItemTitle>
                         </ItemContent>
                         <ItemActions>
@@ -158,7 +188,7 @@ export default function Navbar({ className } : { className: string}) {
                     {user && <Item variant='outline' className="h-fit min-h-20">
                         <ItemContent>
                             <ItemTitle>
-                                Déconnexion
+                                {dictionary[lang].sign_out}
                             </ItemTitle>
                         </ItemContent>
                         <ItemActions>
