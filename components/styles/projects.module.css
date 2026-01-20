@@ -3,6 +3,7 @@
     max-height: 66dvh;
 
     animation: scaleOutIn linear both;
+    -webkit-animation: scaleOutIn linear both;
     animation-timeline: scroll();
     animation-range: entry 0% entry 100%;
 
