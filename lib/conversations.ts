@@ -1,6 +1,8 @@
 // lib/conversations.ts (Updated for your schema)
 // import supabase from '@/lib/supabase';
 import createServer from './serverClient';
+import supabaseClient from './supabase';
+import { redirect, RedirectType } from 'next/navigation'
 
 const adminUID = process.env.NEXT_PUBLIC_ADMIN_UID;
 
@@ -245,24 +247,25 @@ export function subscribeToMessages(
   conversationId: string,
   callback: (message: Message) => void
 ) {
-  const setupSubscription = async () => {
-    const supabase = await createServer()
-    return supabase
-      .channel(`messages:${conversationId}`)
-      .on(
-        'postgres_changes',
-        {
-          event: 'INSERT',
-          schema: 'public',
-          table: 'messages',
-          filter: `conversation_id=eq.${conversationId}`
-        },
-        (payload: { new: Message }) => {
-          callback(payload.new)
-        }
-      )
-      .subscribe()
-  }
-  
-  return setupSubscription()
+  // Real-time subscriptions must use the client-side Supabase instance.
+  // `createServer()` is for server-side operations and will not work correctly
+  // when called from a client-side component to set up a subscription, as it
+  // cannot access user session cookies, leading to authentication errors.
+  const channel = supabaseClient
+    .channel(`messages:${conversationId}`)
+    .on(
+      'postgres_changes',
+      {
+        event: 'INSERT',
+        schema: 'public',
+        table: 'messages',
+        filter: `conversation_id=eq.${conversationId}`,
+      },
+      (payload: { new: Message }) => {
+        callback(payload.new);
+      }
+    )
+    .subscribe();
+
+  return channel;
 }
