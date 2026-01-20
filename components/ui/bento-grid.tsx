@@ -30,7 +30,7 @@ const BentoGrid = forwardRef<HTMLDivElement, BentoGridProps>((
   return (
       <div
           ref={ref}
-          id="bentogrid"
+        //   id="bentogrid"
       className={className}
       {...props}
     >

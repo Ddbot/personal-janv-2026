@@ -20,7 +20,7 @@ const initialSquares: [x: number, y: number][] = [
     [11, 12], [6, 12],
     [7, 2], [11, 6],
     [9, 12], [1, 7]
-];
+].map(([x, y]) => [x+2, y+4] as [number, number]);
 
 const LogosGrid = ({ className } : { className: string }) => {
     const ref = useRef<SVGSVGElement>(null)
