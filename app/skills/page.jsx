@@ -1,22 +1,17 @@
 'use client';
-import { use, ViewTransition } from 'react';
+import { use, useRef, ViewTransition } from 'react';
 import { LangContext } from '@/contexts/LangContext';
-import { ThemeContext } from '@/contexts/ThemeContext';
-import { dictionary } from '@/lib/dictionary';
-import { Baby, Keyboard, Share2Icon, PocketKnife } from 'lucide-react';
-
 import { cn } from '@/lib/utils';
-import { Calendar } from '@/components/ui/calendar';
-import AnimatedBeamMultipleOutputDemo from '@/components/animated-beam-example';
-import AnimatedListDemo from '@/components/animated-list-demo';
-import { BentoCard, BentoGrid } from '@/components/ui/bento-grid';
-import { Marquee } from '@/components/ui/marquee';
-import styles_bento from '../../components/styles/bento-grid.module.css';
-
+import { BentoGrid } from '@/components/ui/bento-grid';
+import styles from './styles.module.css';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react'
 
 export default function Skills() {
-	const { lang } = use(LangContext);
-    // const { theme } = use(ThemeContext);
+    const { lang } = use(LangContext);   
+    const ref = useRef(null);
+    const tlRef = useRef(null);    
+
     const dictionary = {
 		fr: [
 			{
@@ -147,33 +142,44 @@ export default function Skills() {
 				color: '#1E86FF',
 			},
 		],
-	};   
+    };   
+    
+    useGSAP(() => {
+        const q = gsap.utils.selector(ref.current);
+        tlRef.current = gsap.timeline({
+            defaults: {
+                duration: 1,
+                ease: 'power2.out',
+            },
+        });
+        const timeline = tlRef.current;
+        timeline.from(q('figure'), {
+            opacity: 0,
+            y: 100,
+            transform: 'rotateX(-7deg)',
+            ease: 'power4.out',
+            stagger: {
+                amount: 0.25
+            },
+        });
+    }, { scope: ref });
 
 	return (
-		<BentoGrid
+        <BentoGrid
+            ref={ref}
 			className={cn(
-				styles_bento.container,
+				styles.container,
 				'lg:p-32 lg:pb-0 lg:m-0 lg:scale-85',
 			)}>
-			{/* <Marquee
-				pauseOnHover
-				className="absolute top-[50%] lg:top-10 [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] [--duration:20s]"> */}
-			<ViewTransition>
+			{/* <ViewTransition> */}
 				{dictionary[lang].map((f, idx) => (
 					<figure
 						key={idx}
 						style={{ backgroundColor: f.color }}
 						className={cn(
-							'w-full h-full flex flex-row flex-wrap align-start rounded-xl p-8',
+							styles.figure,
                             f.className,                            
 						)}
-						// className={cn(
-						// 	'relative w-32 cursor-pointer overflow-hidden rounded-xl border p-4',
-						// 	'border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]',
-						// 	'dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]',
-						// 	'transform-gpu blur-[1px] transition-all duration-300 ease-out hover:blur-none',
-						// )}
-
 						onClick={() => console.log(f.description)}>
 						<div className="flex flex-row items-start gap-4 lg:h-[10dvh]">
 							<div className="flex flex-col">
@@ -187,8 +193,7 @@ export default function Skills() {
 						</blockquote>
 					</figure>
 				))}
-			</ViewTransition>
-			{/* </Marquee> */}
+			{/* </ViewTransition> */}
 		</BentoGrid>
 	);
 }

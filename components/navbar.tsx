@@ -83,9 +83,8 @@ export default function Navbar({ className } : { className: string}) {
                     if (session?.user) {
                         setUser(session.user)
                         setLoading(false);
-                        console.log(session.user)
+                        console.log('authListener: ', authListener)
                     } else {
-                        console.log('Pas de user registered ', pathname)
                         setUser(null);
                         setLoading(false);
                         if(pathname !== '/' && pathname !== '/skills') router.push('/auth')

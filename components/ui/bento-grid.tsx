@@ -6,7 +6,7 @@ import { Empty } from '../projects'
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import styles from '@/components/styles/bento-grid.module.css';
-
+import Link from "next/link";
 interface BentoGridProps extends ComponentPropsWithoutRef<"div"> {
   children: ReactNode
   className?: string
@@ -88,10 +88,10 @@ const BentoCard = ({
           size="sm"
           className="pointer-events-auto p-0"
         >
-          <a href={href}>
+          <Link href={href}>
             {cta}
             <ArrowRightIcon className="ms-2 h-4 w-4 rtl:rotate-180" />
-          </a>
+          </Link>
         </Button>
       </div>}
     </div>
@@ -108,10 +108,10 @@ const BentoCard = ({
         size="sm"
         className="pointer-events-auto p-0"
       >
-        <a href={href}>
+        <Link href={href}>
           {cta}
           <ArrowRightIcon className="ms-2 h-4 w-4 rtl:rotate-180" />
-        </a>
+        </Link>
       </Button>
     </div>}
 
