@@ -21,6 +21,7 @@ export default function Skills() {
 				time: 'depuis 9 ans',
 				icon: '💸',
 				color: '#00C9A780',
+				className: '',
 			},
 			{
 				name: 'Back End',
@@ -29,6 +30,7 @@ export default function Skills() {
 				time: 'depuis 5 ans',
 				icon: '👤',
 				color: '#FFB80080',
+				className: '',
 			},
 			{
 				name: 'Full Stack',
@@ -37,6 +39,15 @@ export default function Skills() {
 				time: 'depuis 5 ans',
 				icon: '💬',
 				color: '#FF3D7180',
+				className: '',
+			},
+			{
+				name: '',
+				description: '',
+				time: 'depuis 15 ans',
+				icon: '🗞️',
+				color: '#1E86FF00',
+				className: styles.geometricPattern + ' relative border-4',
 			},
 			{
 				name: 'Rédaction & Copywriting',
@@ -45,8 +56,7 @@ export default function Skills() {
 				time: 'depuis 15 ans',
 				icon: '🗞️',
 				color: '#1E86FF00',
-				className:
-					'dark:text-white border-2 border-chart-4 lg:col-start-3 lg:col-end-4',
+				className: 'dark:text-white border-2 border-chart-4',
 			},
 			{
 				name: 'Traduction & SEO',
@@ -54,8 +64,8 @@ export default function Skills() {
 					"J'ai travaillé dans le secteur de la traduction et j'ai l'habitude de traduire et/ou de rédiger du contenu technique.",
 				time: 'depuis 15 ans',
 				icon: '🗞️',
-                color: '#1E86FF80',
-                className: 'dark:text-white lg:col-start-2 lg:col-end-3 lg:row-start-2',
+				color: '#1E86FF80',
+				className: 'dark:text-white',
 			},
 		],
 		gb: [
@@ -142,7 +152,7 @@ export default function Skills() {
 				color: '#1E86FF',
 			},
 		],
-    };   
+	};   
     
     useGSAP(() => {
         const q = gsap.utils.selector(ref.current);
