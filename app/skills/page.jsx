@@ -11,7 +11,8 @@ import PatternComponent from './[components]/PatternComponent';
 export default function Skills() {
     const { lang } = use(LangContext);   
     const ref = useRef(null);
-    const tlRef = useRef(null);    
+    const tlRef = useRef(null);  
+    const colors = ['#00C9A780', '#FFB80080', '#FF3D7180','#1E86FF'];
 
     const dictionary = {
 		fr: [
@@ -175,9 +176,64 @@ export default function Skills() {
         });
     }, { scope: ref });
 
+    useGSAP(() => {
+        const q = gsap.utils.selector(ref);
+        const tl = gsap.timeline({
+			defaults: {
+				repeat: -1,
+				yoyo: true,
+                ease: 'none',
+                duration: 10
+			},
+		});
+        const circles = q('circle');
+        const clipPath = q('#pattern-clipPath')[0];
+        if (!circles.length) return;
+
+            // Pick a circle
+            // const index = gsap.utils.random(0, circles.length - 1, 1);    
+        const targets = gsap.utils.shuffle(circles);
+        
+        targets.forEach((t, index) => { 
+            const initialColor = gsap.utils.random(colors, true);
+
+            tl.from(t, {
+                fill: initialColor,
+                duration: 10,
+                ease: 'power2.out',
+            }, '<');
+        });
+            
+        tl.to(targets, {
+			attr: {
+				r: 16,
+			},
+			opacity: 0.5,
+			stagger: {
+				// wrap advanced options in an object
+				amount: 30,
+				grid: [13, 13],
+				from: 84,
+				ease: 'power2.inOut',
+				yoyo: true,
+				repeat: -1, // Repeats immediately, not waiting for the other staggered animations to finish
+			},
+			// ease: 'back.out(1.7)',
+        })
+            // .to(
+            //     clipPath.querySelector('circle'),
+            //     {
+            //         attr: {
+            //             r: 380,
+            //         },
+            //         duration: 4.2,
+            //     },
+            //     '<',
+            // );            
+  }, { scope: ref });
+
 	return (
         <BentoGrid
-            ref={ref}
 			className={cn(
 				styles.container,
 				'lg:p-32 lg:pb-0 lg:m-0 lg:scale-85',
@@ -207,7 +263,7 @@ export default function Skills() {
                             </blockquote>
                         </Fragment>
                     ) : (
-                        <PatternComponent key={idx} className="w-full h-full col-start-1" col-end-2 />
+                            <PatternComponent ref={ ref } key={idx} className="w-full h-full col-start-1 col-end-2"/>
                     )}
                 </figure>
             })}
