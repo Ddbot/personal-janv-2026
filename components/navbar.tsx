@@ -74,6 +74,8 @@ export default function Navbar({ className } : { className: string}) {
     }
     
     useEffect(() => {
+        console.log('PATHNAME: ', pathname);
+
         async function checkAuthState() {
             const client = await supabase;
             const { data: authListener } = client.auth.onAuthStateChange(
@@ -86,7 +88,7 @@ export default function Navbar({ className } : { className: string}) {
                         console.log('Pas de user registered ', pathname)
                         setUser(null);
                         setLoading(false);
-                        if(pathname !== '/') router.push('/auth')
+                        if(pathname !== '/' && pathname !== '/skills') router.push('/auth')
                     }
                 }
             )
