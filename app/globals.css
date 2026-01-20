@@ -87,6 +87,8 @@ body {
     background-color: var(--background);
 }
 :root {
+--row-height: 22rem;
+--col-width: var(--row-height);
   --background: oklch(1 0 0);
   --foreground: oklch(0.13 0.028 261.692);
   --card: oklch(1 0 0);
