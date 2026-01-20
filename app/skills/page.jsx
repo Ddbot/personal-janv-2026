@@ -1,11 +1,12 @@
 'use client';
-import { use, useRef, ViewTransition } from 'react';
+import { Fragment, use, useRef, ViewTransition } from 'react';
 import { LangContext } from '@/contexts/LangContext';
 import { cn } from '@/lib/utils';
 import { BentoGrid } from '@/components/ui/bento-grid';
 import styles from './styles.module.css';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react'
+import PatternComponent from './[components]/PatternComponent';
 
 export default function Skills() {
     const { lang } = use(LangContext);   
@@ -47,7 +48,7 @@ export default function Skills() {
 				time: 'depuis 15 ans',
 				icon: '🗞️',
 				color: '#1E86FF00',
-				className: styles.geometricPattern + ' relative border-4',
+				className: ''
 			},
 			{
 				name: 'Rédaction & Copywriting',
@@ -182,28 +183,34 @@ export default function Skills() {
 				'lg:p-32 lg:pb-0 lg:m-0 lg:scale-85',
 			)}>
 			{/* <ViewTransition> */}
-				{dictionary[lang].map((f, idx) => (
-					<figure
-						key={idx}
-						style={{ backgroundColor: f.color }}
-						className={cn(
-                            f.className,  
-							styles.figure,
-                            'relative'
-						)}
-						onClick={() => console.log(f.description)}>
-						<div className="flex flex-row items-start gap-4 lg:h-[10dvh]">
-							<div className="flex flex-col">
-								<figcaption className="text-xl font-medium dark:text-white">
-									{f.name}
-								</figcaption>
-							</div>
-						</div>
-						<blockquote className="mt-2">
-							{f.description}
-						</blockquote>
-					</figure>
-				))}
+            {dictionary[lang].map((f, idx) => {
+                return <figure
+                key={idx}
+                style={{ backgroundColor: f.color }}
+                className={cn(
+                    f.className,
+                    styles.figure,
+                    'relative'
+                )}
+                onClick={() => console.log(f.description)}>
+                {idx !== 3 ? (
+                    <Fragment key={idx}>
+                        <div className="flex flex-row items-start gap-4 lg:h-[10dvh]">
+                            <div className="flex flex-col">
+                                <figcaption className="text-xl font-medium dark:text-white">
+                                    {f.name}
+                                </figcaption>
+                                </div>
+                            </div>
+                            <blockquote className="mt-2">
+                                {f.description}
+                            </blockquote>
+                        </Fragment>
+                    ) : (
+                        <PatternComponent key={idx} className="w-full h-full col-start-1" col-end-2 />
+                    )}
+                </figure>
+            })}
 			{/* </ViewTransition> */}
 		</BentoGrid>
 	);
