@@ -338,7 +338,7 @@ const Container = ({ className }) => {
 			Icon: PocketKnife,
 			name: 'Skills',
 			description: dictionary[lang]['features']['description'][0],
-			href: '#',
+			href: '/skills',
 			cta: dictionary[lang]['cta'],
 			className: 'col-span-3 lg:col-span-1',
 			background: (
