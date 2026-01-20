@@ -1,5 +1,9 @@
-import { forwardRef } from 'react';
-const SvgComponent = ({ className, ...props }, ref) => (
+import { forwardRef, useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+
+const SvgComponent = ({ className, ...props }: { className: string }, ref: React.Ref<SVGSVGElement>) => {
+  return (
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
 		// width={800}
@@ -9,17 +13,49 @@ const SvgComponent = ({ className, ...props }, ref) => (
 		{...props}
 		className={className}>
 		<defs>
-			<clipPath id="pattern-clipPath">
+			<clipPath id="pattern-clipPath" filter='url(#blurX)'>
 				{/* <rect width="100%" height="100%" fill="white" /> */}
-				<circle cx="50%" cy="50%" r="35%" fill="black" />
-			</clipPath>
+				<circle cx={400} cy={400} r={400} fill="black" />
+            </clipPath>
+            <filter id="neopan">
+                <feColorMatrix type="matrix" values="
+                0.5 0.44 0.1 0 -.02
+                0.5 0.44 0.1 0 -.02
+                0.5 0.44 0.1 0 -.02
+                0 0 0 1 0" />
+                    <feComponentTransfer>
+                    <feFuncR type="linear" slope="1" intercept="-0.02" />
+                    <feFuncG type="linear" slope="1" intercept="-0.02" />
+                    <feFuncB type="linear" slope="1" intercept="-0.02" />
+                </feComponentTransfer>
+            </filter>
+            <filter id="blurX">
+                <feGaussianBlur stdDeviation="12 20">
+                    <feTurbulence
+                        type="fractalNoise"
+                        baseFrequency="0.85"
+                        numOctaves="1"
+                        stitchTiles="stitch" />
+                </feGaussianBlur>
+            </filter>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="30" />
+                <feColorMatrix
+                    in="blur"
+                    values="1 0 0 0 0 
+                            0 1 0 0 0 
+                            0 0 1 0 0 
+                            0 0 0 30 -7"
+                />
+                </filter>
 			<style>{'circle{fill:#87345e;stroke:none}'}</style>
 		</defs>
 		<g
 			fill="none"
 			stroke="#87345e"
 			strokeWidth={3.5}
-			clipPath="url(#pattern-clipPath)">
+			// clipPath="url(#pattern-clipPath)"
+			filter="url(#blurX)">
 			<circle r={7.237} opacity={0.35} />
 			<circle cx={66.667} r={7.237} opacity={0.35} />
 			<circle cx={133.333} r={7.237} opacity={0.35} />
@@ -191,6 +227,8 @@ const SvgComponent = ({ className, ...props }, ref) => (
 			<circle cx={800} cy={800} r={7.237} opacity={0.35} />
 		</g>
 	</svg>
-);
+  );
+};
+    
 const PatternComponent = forwardRef(SvgComponent);
 export default PatternComponent;
