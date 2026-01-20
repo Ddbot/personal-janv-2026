@@ -177,8 +177,9 @@ export default function Skills() {
 						key={idx}
 						style={{ backgroundColor: f.color }}
 						className={cn(
+                            f.className,  
 							styles.figure,
-                            f.className,                            
+                            'relative'
 						)}
 						onClick={() => console.log(f.description)}>
 						<div className="flex flex-row items-start gap-4 lg:h-[10dvh]">
@@ -188,7 +189,7 @@ export default function Skills() {
 								</figcaption>
 							</div>
 						</div>
-						<blockquote className="mt-2 text-md">
+						<blockquote className="mt-2">
 							{f.description}
 						</blockquote>
 					</figure>
