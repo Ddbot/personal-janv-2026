@@ -6,9 +6,4 @@
     @starting-style {
         transform: skewY(16deg);
     }
-
-
-    &:hover {
-        /* transform: skewY(0deg); */
-    }
 }

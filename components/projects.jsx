@@ -58,7 +58,7 @@ const Container = ({ className }) => {
 					<ProjectsContactCardContent
 						key="contact"
 						className={cn(styles_bento.animate_messages)}
-						fn={handleClick}
+						fn={handleClick_}
 						ref={ref}
 					/>,
 					'Si on se contactait ?',
@@ -125,7 +125,7 @@ const Container = ({ className }) => {
 					<ProjectsContactCardContent
 						key="contact"
 						className={cn(styles_bento.animate_messages)}
-						fn={handleClick}
+						fn={handleClick_}
 						ref={ref}
 					/>,
 					"Let's get in touch!",
@@ -197,7 +197,7 @@ const Container = ({ className }) => {
 					<ProjectsContactCardContent
 						key="contact"
 						className={cn(styles_bento.animate_messages)}
-						fn={handleClick}
+						fn={handleClick_}
 						ref={ref}
 					/>,
 					'Lass uns Kontakt aufnehmen!',
@@ -266,7 +266,6 @@ const Container = ({ className }) => {
                     ease: 'power2.out',
                 },
                 onComplete: () => {
-                    window.scrollTo(0,window.innerHeight);
                     router.push('/contact?type=' + type);
                 },
             });
@@ -279,9 +278,6 @@ const Container = ({ className }) => {
                 gridTemplateRows: 'var(--row-height) var(--row-height)',
                 maxHeight: '44rem',
                 placeContent: 'end center',
-                // scale: 0.85,
-
-                // padding: '0 0 25dvh 0',
             });
 
             const otherCards = Array.from(containerRef.current.children);
@@ -304,7 +300,6 @@ const Container = ({ className }) => {
                     {
                         gridTemplateColumns: '0fr 1fr 0fr',
                         gridTemplateRows: '0fr 44rem',
-                        // padding: 0,
                         ease: 'power2.out',
                         gap: 0,
                     },
@@ -314,7 +309,6 @@ const Container = ({ className }) => {
                     otherCards,
                     {
                         scale: 0,
-                        // width: 0,
                         opacity: 0,
                         padding: 0,
                         margin: 0,
@@ -326,13 +320,20 @@ const Container = ({ className }) => {
                     contactCard.querySelectorAll('button'),
                     {
                         duration: .125,
-                        // scale: 0.85,
                         opacity: 0,
                     },
                     '<',
-                ).pause();
+                );
         });
     }
+
+function handleClick_(e) {
+	e.preventDefault();
+	const type = e.currentTarget.dataset.icon;
+	router.push('/contact?type=' + type);
+}    
+
+    
     
     const features = [
 		{
@@ -444,7 +445,6 @@ const Container = ({ className }) => {
 	];
     
     return (
-		<ViewTransition>
 			<BentoGrid
 				ref={containerRef}
 				className={cn(
@@ -465,7 +465,6 @@ const Container = ({ className }) => {
 					</ViewTransition>
 				))}
 			</BentoGrid>
-		</ViewTransition>
 	);
 };
     

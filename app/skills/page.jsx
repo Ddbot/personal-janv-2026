@@ -241,32 +241,39 @@ export default function Skills() {
 			)}>
 			{/* <ViewTransition> */}
             {dictionary[lang].map((f, idx) => {
-                return <figure
-                key={idx}
-                style={{ backgroundColor: f.color }}
-                className={cn(
-                    f.className,
-                    styles.figure,
-                    'relative'
-                )}
-                onClick={() => console.log(f.description)}>
-                {idx !== 3 ? (
-                    <Fragment key={idx}>
-                        <div className="flex flex-row items-start gap-4 lg:h-[10dvh]">
-                            <div className="flex flex-col">
-                                <figcaption className="text-xl font-medium dark:text-white">
-                                    {f.name}
-                                </figcaption>
-                                </div>
-                            </div>
-                            <blockquote className="mt-2">
-                                {f.description}
-                            </blockquote>
-                        </Fragment>
-                    ) : (
-                    <PatternComponent ref={ ref } key={idx} className="w-full h-full col-start-1 col-end-2"/>
-                    )}
-                </figure>
+                return (
+					<ViewTransition key={idx}>
+						<figure
+							style={{ backgroundColor: f.color }}
+							className={cn(
+								f.className,
+								styles.figure,
+								'relative',
+							)}
+							onClick={() => console.log(f.description)}>
+							{idx !== 3 ? (
+								<Fragment key={idx}>
+									<div className="flex flex-row items-start gap-4 lg:h-[10dvh]">
+										<div className="flex flex-col">
+											<figcaption className="text-xl font-medium dark:text-white">
+												{f.name}
+											</figcaption>
+										</div>
+									</div>
+									<blockquote className="mt-2">
+										{f.description}
+									</blockquote>
+								</Fragment>
+							) : (
+								<PatternComponent
+									ref={ref}
+									key={idx}
+									className="w-full h-full col-start-1 col-end-2"
+								/>
+							)}
+						</figure>
+					</ViewTransition>
+				);
             })}
 			{/* </ViewTransition> */}
 		</BentoGrid>

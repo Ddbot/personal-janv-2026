@@ -16,10 +16,6 @@
     :global(.dark) & {
         border-inline-end: 1px solid var(--background);
     }
-
-    @starting-style {
-        /* transform: translate(0, 25%)   ; */
-    }
 }
 
 .header {
