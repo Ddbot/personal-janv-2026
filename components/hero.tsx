@@ -12,6 +12,7 @@ import { dictionary } from '../lib/dictionary';
 import { LangContext } from "../contexts/LangContext";
 import { Playfair_Display, Space_Grotesk, Roboto_Slab, Poppins } from 'next/font/google';
 import LogosGrid from './logos-grid';
+import styles_hero from './styles/hero.module.css';
 
 const playfair_display = Playfair_Display({subsets:['latin'],variable:'--font-sans'});
 const space_grotesk = Space_Grotesk({subsets:['latin'],variable:'--font-sans'});
@@ -25,8 +26,7 @@ const CustomTypingAnimation  = (props: ComponentPropsWithoutRef<'div'>) => {
 export default function Hero({ className }: { className: string }) {
     const { lang } = use(LangContext);
     return (
-        <div className={
-            "bg-background relative flex flex-col flex-wrap justify-start items-center h-dvh w-full overflow-hidden rounded-lg pt-0" + className }>
+        <div className={ styles_hero.hero}>
             <section className="w-full lg:w-full h-full lg:h-full flex flex-col flex-wrap justify-center items-start text-left text-2xl px-4 lg:pl-20 border-4 border-red-500">
                 <div className="w-full h-fit text-3xl md:text-5xl font-light my-2">{dictionary[lang]['hero']['intro'][0]}<span className="lg:font-bold text-primary">{dictionary[lang]['hero']['intro'][1]}</span></div>
                 <div className="w-full h-fit text-3xl md:text-5xl font-light my-2">JS <span className="text-primary-foreground">|</span> React <span className="text-primary-foreground">|</span> Next.js</div>
@@ -37,7 +37,7 @@ export default function Hero({ className }: { className: string }) {
                     cursorStyle="block"
                     blinkCursor={false}
                 />
-                <div className="w-full flex flex-row justify-end lg:gap-4 lg:p-8 lg:pb-0 lg:pr-0">
+                <div className="lg:w-1/2 lg:-translate-x-20 flex flex-row justify-end lg:gap-4 lg:p-8 lg:pb-0 lg:pr-0">
                     <Button variant={"outline"}>
                         <Link href="#projects">
                             {dictionary[lang]['hero']['more']}
