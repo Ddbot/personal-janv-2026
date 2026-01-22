@@ -12,6 +12,7 @@ import { User } from '@supabase/supabase-js';
 import { Item, ItemActions, ItemContent, ItemDescription, ItemTitle } from "@/components/ui/item"
 import { Lang, LangContext } from '@/contexts/LangContext';
 import Image from 'next/image';
+import styles from './styles/navbar.module.css';
 
 const languages: Lang[] = ["fr", "gb", "de"];
 const languageFull: Record<Lang, string>= {
@@ -99,12 +100,9 @@ export default function Navbar({ className } : { className: string}) {
     }, [router, setUser, setLoading, pathname])    
     
     return (
-        <div className={cn(`
-            fixed top-0 left-0 right-0 z-50 lg:max-h-[10dvh] bg-background/80 backdrop-blur-md transition-transform duration-300 ease-in-out
-            md:sticky md:top-0 md:bg-transparent md:backdrop-blur-none md:border-0`,
-            'py-2 px-4 lg:p-8 lg:space-y-8',
-            'w-full flex flex-row flex-nowrap justify-between md:flex-nowrap gap-4',
+        <div className={cn(
             className
+            // styles.navbar
         )}>
             <Link href={'/'}>                
                 <Logo />
