@@ -1,3 +1,4 @@
+import { ViewTransition } from "react";
 import type { Metadata } from "next";
 import Body from '@/components/body';
 import { Inter, Atkinson_Hyperlegible_Mono, Roboto_Mono } from "next/font/google";
@@ -20,7 +21,9 @@ export default function RootLayout({
     return (
         <html lang="fr" className={cn(inter.variable)} data-scroll-behavior="smooth">
             <Body>
-                {children}
+                <ViewTransition>
+                    {children}
+                </ViewTransition>
             </Body>
         </html>
     );
