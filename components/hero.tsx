@@ -27,7 +27,7 @@ export default function Hero({ className }: { className: string }) {
     const { lang } = use(LangContext);
     return (
         <div className={ styles_hero.hero}>
-            <section className="w-full lg:w-full h-full lg:h-full flex flex-col flex-wrap justify-start items-start text-left text-2xl lg:pl-20 lg:pt-20">
+            <section className="w-full lg:w-full h-full lg:h-full flex flex-col flex-wrap justify-start items-start text-left text-2xl lg:pl-20 lg:pt-20 lg:gap-4">
                 <div className="w-full h-fit text-3xl md:text-5xl font-light my-2">{dictionary[lang]['hero']['intro'][0]}<span className="lg:font-bold text-primary">{dictionary[lang]['hero']['intro'][1]}</span></div>
                 <div className="w-full h-fit text-3xl md:text-5xl font-light my-2">JS <span className="text-primary-foreground">|</span> React <span className="text-primary-foreground">|</span> Next.js</div>
                 <CustomTypingAnimation className={styles.typing_animation} words={dictionary[lang]['hero']['typing']}
