@@ -13,6 +13,7 @@ import {
 import { SlidersHorizontal } from "lucide-react"
 import { use } from 'react';
 import { LangContext } from '@/contexts/LangContext';
+import styles from './contact-picker.module.css';
 
 import { cn } from '@/lib/utils'
 
@@ -33,26 +34,23 @@ export default function ContactPicker({ className, children }: { className: stri
         }
     }
   return (
-      <Sheet> 
-      <SheetTrigger asChild>
-        <SlidersHorizontal className="self-start w-9 h-9"/>
-      </SheetTrigger>
-      <SheetContent>
-        <SheetHeader>
-          <SheetTitle>{dictionary[lang]['close']}</SheetTitle>
-          {/* <SheetDescription>
-            Envoyez-moi un email ou un message direct
-          </SheetDescription> */}
-        </SheetHeader>
+    <Sheet> 
+        <SheetTrigger asChild>
+              <SlidersHorizontal className={cn(styles.SlidersHorizontal, className, "data-[state=open]:invisible")} />
+        </SheetTrigger>
+        <SheetContent>
+            <SheetHeader>
+                <SheetTitle>{dictionary[lang]['close']}</SheetTitle>               
+            </SheetHeader>
             <div className="grid md:h-fit md:flex md:flex-row md:flex-wrap md:justify-start gap-3 px-6">
                 {children}    
             </div>
-        <SheetFooter>          
-          <SheetClose asChild>
-                <Button variant="outline">{dictionary[lang]['close']}</Button>
-          </SheetClose>
-        </SheetFooter>
-      </SheetContent>
+            <SheetFooter>          
+                <SheetClose asChild>
+                    <Button variant="outline">{dictionary[lang]['close']}</Button>
+                </SheetClose>
+            </SheetFooter>
+        </SheetContent>
     </Sheet>
   )
 }

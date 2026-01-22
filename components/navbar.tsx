@@ -200,8 +200,7 @@ export default function Navbar({ className } : { className: string}) {
                                 </button>
                             </ItemActions>}
                         </Item>
-                    }
-                    
+                    }               
                 </ContactPicker>
             </div>
         </div>

@@ -16,3 +16,9 @@
     position-anchor: --trigger;
     position-area: bottom left;
 }
+
+.SlidersHorizontal {
+    align-self: flex-start;
+    width: 2.25rem;
+    height: 2.25rem;
+}
