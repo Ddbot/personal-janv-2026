@@ -56,7 +56,7 @@ export default function AuthPage() {
         const { error } = await client.auth.signInWithOtp({
         email,
         options: {
-            emailRedirectTo: `${window.location.origin}/contact?type=${type ?? 'mail'}`,
+            emailRedirectTo: `${window.location.origin}/contact?type=chat`,
             shouldCreateUser: true
         },
         })

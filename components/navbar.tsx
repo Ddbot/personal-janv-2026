@@ -187,23 +187,23 @@ export default function Navbar({ className } : { className: string}) {
                             </button>
                         </ItemActions>
                     </Item>  
-                    {/* {user && */}
+                    {user &&
                         <Item variant='outline' className="h-fit min-h-20">
-                        <ItemContent>
-                            <ItemTitle>
-                                {dictionary[lang].sign_out}
-                            </ItemTitle>
-                        </ItemContent>
-                        <ItemActions>
-                            <button onClick={() => {
-                                supabase.auth.signOut()
-                                // router.push('/')
-                            }}>
-                                <LogOut />                        
-                            </button>
-                        </ItemActions>
-                    </Item>
-                    {/* } */}
+                            <ItemContent>
+                                <ItemTitle>
+                                    {dictionary[lang].sign_out}
+                                </ItemTitle>
+                            </ItemContent>
+                            {<ItemActions>
+                                <button onClick={() => {
+                                    supabase.auth.signOut()
+                                    // router.push('/')
+                                }}>
+                                    <LogOut />
+                                </button>
+                            </ItemActions>}
+                        </Item>
+                    }
                     
                 </ContactPicker>
             </div>
