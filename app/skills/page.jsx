@@ -187,11 +187,8 @@ export default function Skills() {
 			},
 		});
         const circles = q('circle');
-        const clipPath = q('#pattern-clipPath')[0];
         if (!circles.length) return;
 
-            // Pick a circle
-            // const index = gsap.utils.random(0, circles.length - 1, 1);    
         const targets = gsap.utils.shuffle(circles);
         
         targets.forEach((t, index) => { 
@@ -210,36 +207,21 @@ export default function Skills() {
 			},
 			opacity: 0.5,
 			stagger: {
-				// wrap advanced options in an object
 				amount: 30,
 				grid: [13, 13],
 				from: 84,
 				ease: 'power2.inOut',
 				yoyo: true,
-				repeat: -1, // Repeats immediately, not waiting for the other staggered animations to finish
+				repeat: -1,
 			},
-			// ease: 'back.out(1.7)',
-        })
-            // .to(
-            //     clipPath.querySelector('circle'),
-            //     {
-            //         attr: {
-            //             r: 380,
-            //         },
-            //         duration: 4.2,
-            //     },
-            //     '<',
-            // );            
+        })         
   }, { scope: ref });
 
     return (
-        // <div className={
-        //     "bg-background relative self-center flex flex-col flex-wrap justify-center items-end h-dvh w-full overflow-hidden rounded-lg border-4 border-red-500" }>
         <BentoGrid
 			className={cn(
 				styles.container,
 			)}>
-			{/* <ViewTransition> */}
             {dictionary[lang].map((f, idx) => {
                 return (
 					<ViewTransition key={idx}>
@@ -275,8 +257,6 @@ export default function Skills() {
 					</ViewTransition>
 				);
             })}
-			{/* </ViewTransition> */}
 		</BentoGrid>
-        // </div>
 	);
 }
