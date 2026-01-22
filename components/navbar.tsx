@@ -85,7 +85,6 @@ export default function Navbar({ className } : { className: string}) {
                     if (session?.user) {
                         setUser(session.user)
                         setLoading(false);
-                        console.log('authListener: ', authListener)
                     } else {
                         setUser(null);
                         setLoading(false);

@@ -81,23 +81,45 @@
     width: 100%;    
     display: flex;
     justify-content: end;
-
     
     gap: 0;
+}
 
-    & > * {
-        min-width: 2rem;
-        margin-inline: calc(var(--spacing) * 1.5);
-        color: transparent;
+.button {
+    position: relative;
+    pointer-events: auto;
 
-        &:hover > * {
-            &:last-child {
-                transform-origin: bottom center;
-                transform: translateY(-100%) scale(1.1);
-                color: var(--background);
-            }
-        }
+    min-width: 2rem;
+    margin-inline: calc(var(--spacing) * 1.5);
+    color: transparent;
+}
+
+.ornament {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    *:hover > & {
+        animation-name: popup_container;
+        animation-duration: 175ms;
+        animation-timing-function: linear(0, 0.415 5.8%, 0.725 12.1%, 0.936 19%, 1.009 22.8%, 1.061 26.9%, 1.101 32.9%, 1.109 40%, 1.097 46.2%, 1.039 63.2%, 1.016 72.9%, 1.003 84%, 1);
+        animation-delay: 0;
+        animation-iteration-count: 1;
+        animation-direction: normal;
+        animation-fill-mode: both;
+        animation-play-state: running;
+        opacity: 1;
+        color: var(--foreground);
     }
+}
+
+@keyframes popup_container {
+    0% {
+        transform: translateY(0%) scaleX(0);
+    }
+    100% {
+        transform: translateY(-100%) scale(2,.8);        
+    }    
 }
 
 @keyframes scaleOutIn {
