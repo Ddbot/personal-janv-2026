@@ -77,6 +77,29 @@
     }
 }
 
+.ProjectsContactCardContent {
+    width: 100%;    
+    display: flex;
+    justify-content: end;
+
+    
+    gap: 0;
+
+    & > * {
+        min-width: 2rem;
+        margin-inline: calc(var(--spacing) * 1.5);
+        color: transparent;
+
+        &:hover > * {
+            &:last-child {
+                transform-origin: bottom center;
+                transform: translateY(-100%) scale(1.1);
+                color: var(--background);
+            }
+        }
+    }
+}
+
 @keyframes scaleOutIn {
     0% {
         margin: 0;
