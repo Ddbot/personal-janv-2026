@@ -15,7 +15,7 @@
     /* transform-origin: top center; */
         transform: scale(.85);
 
-        overflow-y: clip;
+        overflow-x: clip;
 
         scroll-snap-align: start;
         container-type: scroll-state;
