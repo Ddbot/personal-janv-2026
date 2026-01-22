@@ -14,7 +14,6 @@ const ProjectsContactCardContent = forwardRef<HTMLDivElement, ProjectsContactCar
     return (
         <div ref={ref} key="contact" className="w-full flex justify-end gap-4">
                 <Link href="/blog">
-                    {/* <Mail color={'var(--background'} className='pointer-events-auto' /> */}
                     <span className={cn(playwrite.className, 'text-background')}>
                         blog
                     </span>

@@ -36,7 +36,6 @@ const Screen = () => {
             Icon: Empty,
             name: '',
             title: dictionary[lang]['features']['description'][6],
-            // className: `${className}`,
             href: '#',
             cta: '',
             background: (
@@ -66,14 +65,7 @@ const Screen = () => {
                     break;
             }
             navigate.push(`?type=${e.currentTarget.dataset.icon}`)
-    }
-
-    // useEffect(() => {
-    //     if (window) {
-    //         const { height } = window.screen
-    //         window.scrollTo(0, height);
-    //     }
-    // }, []);      
+    }  
     
     return features.map((feature, idx) => (<Card key={displayedCategory} className={styles.card_container}>
         <ChatHeader title={"Développeur Front End"} category={ displayedCategory} />
