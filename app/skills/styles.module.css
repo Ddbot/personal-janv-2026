@@ -5,17 +5,19 @@
     perspective: 1000px;
     /* transition: background-color .125s linear; */
 
+    place-content: center;
+
     @media (min-width: 768px) {
         min-width: 100%;
         /* aspect-ratio: 3 / 2; */
 
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 22rem 22rem;
-        gap: calc(var(--spacing) * 4) /* 1rem = 16px */;
+        grid-template-columns: var(--col-width) var(--col-width) var(--col-width);
+        grid-template-rows: var(--row-height) var(--row-height);
+        gap: calc(var(--spacing) * 3) /* 1rem = 16px */;
 
     /* transform-origin: top center; */
-    /* transform: scale(.85); */
+    transform: scale(.85);
 
     overflow-y: clip;
 

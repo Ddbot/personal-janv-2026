@@ -232,7 +232,9 @@ export default function Skills() {
             // );            
   }, { scope: ref });
 
-	return (
+    return (
+        // <div className={
+        //     "bg-background relative self-center flex flex-col flex-wrap justify-center items-end h-dvh w-full overflow-hidden rounded-lg border-4 border-red-500" }>
         <BentoGrid
 			className={cn(
 				styles.container,
@@ -268,5 +270,6 @@ export default function Skills() {
             })}
 			{/* </ViewTransition> */}
 		</BentoGrid>
+        // </div>
 	);
 }

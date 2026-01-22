@@ -448,7 +448,7 @@ const Container = ({ className }) => {
 				ref={containerRef}
 				className={cn(
 					styles_bento.container,
-					'lg:p-32 lg:pb-0 lg:m-0 lg:scale-85',
+					// 'lg:p-32 lg:pb-0',
 				)}
 				id="projects">
 				{features.map((feature, idx) => (
