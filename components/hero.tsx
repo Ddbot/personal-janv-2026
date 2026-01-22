@@ -26,7 +26,7 @@ export default function Hero({ className }: { className: string }) {
         <div className={ styles_hero.hero}>
             <section className={ styles_hero.section}>
                 <div className="w-full h-fit text-3xl md:text-5xl font-light my-2">{dictionary[lang]['hero']['intro'][0]}<span className="lg:font-bold text-primary">{dictionary[lang]['hero']['intro'][1]}</span></div>
-                <div className="w-full h-fit text-3xl md:text-5xl font-light my-2">JS <span className="text-primary-foreground">|</span> React <span className="text-primary-foreground">|</span> Next.js</div>
+                <div className="w-full h-fit text-3xl md:text-5xl font-light my-2">JS <span className="text-primary">|</span> React <span className="text-primary">|</span> Next.js</div>
                 <CustomTypingAnimation className={styles.typing_animation} words={dictionary[lang]['hero']['typing']}
                     loop={true}
                     delay={1000}
