@@ -15,7 +15,7 @@ type MessagesType = {
     messages: Message[]
 }
 
-export default async function ChatPage({ messages, conversation }: { messages: Message[], conversation: string }) {   
+export default async function ChatPage({ messages, conversation }: { messages: Message[] | [],  conversation: string | null }) {   
     // const { data, error } = await getMessages();
     if (conversation === null) {
         // CREER UNE CONVERSATION

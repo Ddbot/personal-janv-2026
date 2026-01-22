@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState, use } from 'react';
 import ThemeToggler from "./theme-toggler";
 import ContactPicker from "./contact-picker";
@@ -78,7 +79,7 @@ export default function Navbar({ className } : { className: string}) {
 
         async function checkAuthState() {
             const client = await supabase;
-            const { data: authListener } = client.auth.onAuthStateChange(
+            const { data: authListener } = await client.auth.onAuthStateChange(
                 (event, session) => {
                     if (session?.user) {
                         setUser(session.user)
@@ -87,7 +88,7 @@ export default function Navbar({ className } : { className: string}) {
                     } else {
                         setUser(null);
                         setLoading(false);
-                        if(pathname !== '/' && pathname !== '/skills') router.push('/auth')
+                        if(pathname === '/contact?type=chat') router.push('/auth')
                     }
                 }
             )
@@ -186,7 +187,8 @@ export default function Navbar({ className } : { className: string}) {
                             </button>
                         </ItemActions>
                     </Item>  
-                    {user && <Item variant='outline' className="h-fit min-h-20">
+                    {/* {user && */}
+                        <Item variant='outline' className="h-fit min-h-20">
                         <ItemContent>
                             <ItemTitle>
                                 {dictionary[lang].sign_out}
@@ -195,12 +197,13 @@ export default function Navbar({ className } : { className: string}) {
                         <ItemActions>
                             <button onClick={() => {
                                 supabase.auth.signOut()
-                                router.push('/')
+                                // router.push('/')
                             }}>
                                 <LogOut />                        
                             </button>
                         </ItemActions>
-                    </Item>}
+                    </Item>
+                    {/* } */}
                     
                 </ContactPicker>
             </div>

@@ -1,3 +1,4 @@
+"use server";
 import { Send } from 'lucide-react';
 import {
 	ChatToolbar,

@@ -19,38 +19,37 @@ export default function AuthPage() {
   const router = useRouter()
   const { lang } = use(LangContext);
   
-  const type = searchParams.get('type')
-
-  // Check if user is already authenticated on mount
-  useEffect(() => {
-    checkExistingSession()
-  }, [])
+    const type = searchParams.get('type')
     
     useEffect(() => { 
         console.log('type demandé: ', type)
     }, [type]);
-  
-const checkExistingSession = async () => {
-    try {
-      const client = await supabase;
-      const { data: { session } } = await client.auth.getSession()
-      if (session) {
-        // User is already logged in, redirect them
-        router.push(`/contact?type=${type}`)
-      }
-    } catch (error) {
-      console.error('Error checking session:', error)
-    }
-}
 
-  const handleMagicLink = async (e: React.FormEvent) => {
+  // Check if user is already authenticated on mount
+    useEffect(() => {
+        const checkExistingSession = async () => {
+            try {
+            const client = await supabase;
+            const { data: { session } } = await client.auth.getSession()
+            if (session) {
+                // User is already logged in, redirect them
+                router.push(`/contact?type=${type}`)
+            }
+            } catch (error) {
+            console.error('Error checking session:', error)
+            }
+        }        
+        checkExistingSession();
+    });   
+
+    const handleMagicLink = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setError('')
     setMessage('')
     const client = await supabase;
 
-      try {
+        try {
         // First, check if a user with this email exists
         // Note: This is a basic check. Supabase doesn't expose a direct "user exists" API
         // for security reasons, but we can attempt to sign in
@@ -60,17 +59,19 @@ const checkExistingSession = async () => {
             emailRedirectTo: `${window.location.origin}/contact?type=${type ?? 'mail'}`,
             shouldCreateUser: true
         },
-      })
+        })
 
-      if (error) throw error
+        if (error) throw error
 
-      setMessage('Check your email for the magic link!')
+        setMessage('Check your email for the magic link!')
     } catch (error: any) {
-      setError(error.message || 'An error occurred')
+        setError(error.message || 'An error occurred')
     } finally {
-      setLoading(false)
+        setLoading(false)
     }
-  }
+    }
+
+
 
   return (
     <div className="absolute inset-0 flex items-center justify-center bg-background border-0">

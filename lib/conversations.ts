@@ -1,8 +1,8 @@
+"use server";
 // lib/conversations.ts (Updated for your schema)
 // import supabase from '@/lib/supabase';
 import createServer from './serverClient';
 import supabaseClient from './supabase';
-import { redirect, RedirectType } from 'next/navigation'
 
 const adminUID = process.env.NEXT_PUBLIC_ADMIN_UID;
 
@@ -29,6 +29,7 @@ export interface Message {
 
 // Create a new conversation for the authenticated user
 export async function createConversation(title?: string) {
+  "use server";
   const supabase = await createServer()
   const { data: { user } } = await supabase.auth.getUser()
   
@@ -51,6 +52,7 @@ export async function createConversation(title?: string) {
 
 // Get all conversations for the authenticated user
 export async function getUserConversations() {    
+  "use server";
   const supabase = await createServer()
   console.log('Server client created:', supabase)
   
@@ -58,8 +60,7 @@ export async function getUserConversations() {
   console.log('User data:', user)
   
   if (!user) {
-    console.log('No user found, throwing error')
-    throw new Error('User not authenticated')
+    return null
   }
 
     // Sera seulement utile pour moi l'admin, les visiteurs n'ont qu'un interlocuteur = MOI
@@ -243,7 +244,7 @@ export async function deleteConversation(conversationId: string) {
 }
 
 // Subscribe to new messages in a conversation (real-time)
-export function subscribeToMessages(
+export async function subscribeToMessages(
   conversationId: string,
   callback: (message: Message) => void
 ) {
@@ -251,7 +252,7 @@ export function subscribeToMessages(
   // `createServer()` is for server-side operations and will not work correctly
   // when called from a client-side component to set up a subscription, as it
   // cannot access user session cookies, leading to authentication errors.
-  const channel = supabaseClient
+  const channel = await supabaseClient
     .channel(`messages:${conversationId}`)
     .on(
       'postgres_changes',

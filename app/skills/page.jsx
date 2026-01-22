@@ -236,7 +236,6 @@ export default function Skills() {
         <BentoGrid
 			className={cn(
 				styles.container,
-				'lg:p-32 lg:pb-0 lg:m-0 lg:scale-85',
 			)}>
 			{/* <ViewTransition> */}
             {dictionary[lang].map((f, idx) => {
@@ -263,7 +262,7 @@ export default function Skills() {
                             </blockquote>
                         </Fragment>
                     ) : (
-                            <PatternComponent ref={ ref } key={idx} className="w-full h-full col-start-1 col-end-2"/>
+                    <PatternComponent ref={ ref } key={idx} className="w-full h-full col-start-1 col-end-2"/>
                     )}
                 </figure>
             })}

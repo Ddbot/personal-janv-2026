@@ -9,7 +9,7 @@ import ConversationTitleCard from './ConversationTitleCard';
 import { createConversation, getUserConversations } from '@/lib/conversations';
 import { Conversation } from '@/lib/conversations';
 
-const Footer = ({ convos }: { convos: Conversation[] }) => {
+const Footer = ({ convos }: { convos: Conversation[] | null }) => {
     // const [category, setCategory] = useState(displayedCategory ?? 'mail');
     const searchParams = useSearchParams();
     const type = searchParams.get('type');
@@ -18,17 +18,15 @@ const Footer = ({ convos }: { convos: Conversation[] }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-		const fetchConversations = async () => {
+        const fetchConversations = async () => {
+            const conversations = await getUserConversations();
+            
+            if (!conversations) {
+                return;
+            }
+
 			try {
-				// const userConversations = await getUserConversations();
-				if (convos.length === 0) {
-					await createConversation('Andry dans FOOTER');
-					// Fetch again after creating to get the newly created conversation
-					const updatedConversations = await getUserConversations();
-					setConversations(updatedConversations);
-				} else {
-					setConversations(convos);
-				}
+				setConversations(conversations);
 			} catch (error) {
 				console.error('Error fetching conversations:', error);
 				setConversations([]);
@@ -54,10 +52,10 @@ const Footer = ({ convos }: { convos: Conversation[] }) => {
 				<ul className="block w-full self-start">
 					{loading ? (
 						<li className="text-gray-500 p-2">Loading conversations...</li>
-					) : convos.length === 0 ? (
+					) : conversations.length === 0 ? (
 						<li className="text-gray-500 p-2">No conversations yet</li>
 					) : (
-						convos.map((conversation) => (
+						conversations.map((conversation) => (
 							<ConversationTitleCard key={conversation.id} conversation={conversation}/>
 						))
 					)}
