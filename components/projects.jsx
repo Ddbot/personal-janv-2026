@@ -266,7 +266,7 @@ const Container = ({ className }) => {
                     ease: 'power2.out',
                 },
                 onComplete: () => {
-                    // window.scrollTo(0,window.innerHeight);
+                    window.scrollTo(0,window.innerHeight);
                     router.push('/contact?type=' + type);
                 },
             });
@@ -274,11 +274,12 @@ const Container = ({ className }) => {
             const timeline = tl.current;
 
             gsap.set(containerRef.current, {
-                transformOrigin: 'top center 0px',
-                gridTemplateColumns: '1fr 1fr 1fr',
-                gridTemplateRows: '22rem 22rem',
+                transformOrigin: 'center center 0px',
+                gridTemplateColumns: 'var(--col-width) var(--col-width) var(--col-width)',
+                gridTemplateRows: 'var(--row-height) var(--row-height)',
                 maxHeight: '44rem',
                 placeContent: 'end center',
+                // scale: 0.85,
 
                 // padding: '0 0 25dvh 0',
             });
@@ -329,7 +330,7 @@ const Container = ({ className }) => {
                         opacity: 0,
                     },
                     '<',
-                );
+                ).pause();
         });
     }
     

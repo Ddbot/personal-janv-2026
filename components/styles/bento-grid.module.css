@@ -13,14 +13,14 @@
         gap: calc(var(--spacing) * 3) /* 1rem = 16px */;
 
     /* transform-origin: top center; */
-    transform: scale(.85);
+        transform: scale(.85);
 
-    overflow-y: clip;
+        overflow-y: clip;
 
-    scroll-snap-align: start;
-    container-type: scroll-state;
+        scroll-snap-align: start;
+        container-type: scroll-state;
 
-    padding-block: 0;
+        padding-block: 0;
     }
 
     @starting-style {
