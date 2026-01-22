@@ -57,9 +57,6 @@ const LogosGrid = ({ className } : { className: string }) => {
     return <GridPattern   
             ref={ref}    
             className={cn(
-            "relative w-1/2",
-            "mask-[radial-gradient(300px_circle_at_50%_60%,black,white,transparent)]",
-                "inset-x-0 inset-y-[-20%] h-[200%] skew-y-16",  
                 styles.container,
                 className,
         )}              

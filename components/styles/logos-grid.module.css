@@ -3,6 +3,11 @@
     /* z-index: 100; */
     transform: skewY(16deg);
 
+
+    /* "relative w-1/2",
+    "mask-[radial-gradient(300px_circle_at_50%_60%,black,white,transparent)]",
+    "inset-x-0 inset-y-[-20%] h-[200%] skew-y-16",  */
+
     @starting-style {
         transform: skewY(16deg);
     }
