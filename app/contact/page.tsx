@@ -38,17 +38,17 @@ const Container = async ({ className = '', category ="chat"}: { className: strin
             <BentoGrid
                 className={cn("lg:p-32 lg:pb-0", styles_bento.container)}
                 id="contact">
-                <ViewTransition>
                     <Card key="chat-card" className={cn(styles.container, "lg:scale-85")}>
                         <Header title="role" category="chat" />
-                        { type === 'chat' ? (
-                            <ProtectedContainer>
-                                <ChatPage messages={conversationMessages} conversation={conversation_id} />
-                            </ProtectedContainer>
-                        ) : <MailPage /> }
+                        <ViewTransition>
+                            { type === 'chat' ? (
+                                <ProtectedContainer>
+                                    <ChatPage messages={conversationMessages} conversation={conversation_id} />
+                                </ProtectedContainer>
+                            ) : <MailPage /> }
+                        </ViewTransition>
                         <Footer convos={conversations} />
                     </Card>
-                </ViewTransition>
             </BentoGrid>
         );
     } catch (error) {
