@@ -1,5 +1,5 @@
 "use client"
-import { use } from 'react'
+import { use, useEffect } from 'react'
 import { cn } from "@/lib/utils"
 import { GridPattern } from "./ui/grid-pattern"
 import { Button } from "./ui/button"
@@ -10,24 +10,21 @@ import { RainbowButton } from "./ui/rainbow-button"
 import styles from './grid-background.module.css';
 import { dictionary } from '../lib/dictionary';
 import { LangContext } from "../contexts/LangContext";
-import { Playfair_Display, Space_Grotesk, Roboto_Slab, Poppins } from 'next/font/google';
 import LogosGrid from './logos-grid';
 import styles_hero from './styles/hero.module.css';
 
-const playfair_display = Playfair_Display({subsets:['latin'],variable:'--font-sans'});
-const space_grotesk = Space_Grotesk({subsets:['latin'],variable:'--font-sans'});
-const roboto_slab = Roboto_Slab({subsets:['latin'],variable:'--font-sans'});
-const poppins = Poppins({ weight: '400', subsets: ['latin'] });
-
-const CustomTypingAnimation  = (props: ComponentPropsWithoutRef<'div'>) => {
+const CustomTypingAnimation  = (props: React.ComponentPropsWithoutRef<'div'>) => {
     return <TypingAnimation {...props} />
 }
 
 export default function Hero({ className }: { className: string }) {
     const { lang } = use(LangContext);
+    useEffect(() => { 
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <div className={ styles_hero.hero}>
-            <section className="w-full lg:w-full h-full lg:h-full flex flex-col flex-wrap justify-start items-start text-left text-2xl lg:pl-20 lg:pt-20 lg:gap-4">
+            <section className={ styles_hero.section}>
                 <div className="w-full h-fit text-3xl md:text-5xl font-light my-2">{dictionary[lang]['hero']['intro'][0]}<span className="lg:font-bold text-primary">{dictionary[lang]['hero']['intro'][1]}</span></div>
                 <div className="w-full h-fit text-3xl md:text-5xl font-light my-2">JS <span className="text-primary-foreground">|</span> React <span className="text-primary-foreground">|</span> Next.js</div>
                 <CustomTypingAnimation className={styles.typing_animation} words={dictionary[lang]['hero']['typing']}
