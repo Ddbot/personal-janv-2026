@@ -6,11 +6,6 @@ import useIsScrolling from "@/lib/hooks/useIsScrolling";
 import styles from './styles/navbar.module.css';
 import { cn } from '@/lib/utils';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -23,7 +18,7 @@ function Body({ children }: { children: React.ReactNode }) {
             <div className="flex flex-col snap-y snap-mandatory">
 
                 <Navbar className={cn(
-                    isScrolling && styles.isScrolling,
+                    // isScrolling && styles.isScrolling,
                     styles.navbar
                 )} />
                 {children}
