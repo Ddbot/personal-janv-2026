@@ -37,7 +37,7 @@ export default function Hero({ className }: { className: string }) {
                     cursorStyle="block"
                     blinkCursor={false}
                 />
-                <div className="lg:w-1/2 lg:-translate-x-20 flex flex-row justify-end lg:gap-4 lg:p-8 lg:pb-0 lg:pr-0">
+                <div className="lg:w-1/2 lg:-translate-x-20 flex flex-row justify-end lg:gap-4 lg:p-8 lg:pb-0 lg:pr-20">
                     <Button variant={"outline"}>
                         <Link href="#projects">
                             {dictionary[lang]['hero']['more']}
