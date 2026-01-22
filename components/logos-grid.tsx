@@ -20,7 +20,7 @@ const initialSquares: [x: number, y: number][] = [
     [11, 12], [6, 12],
     [7, 2], [11, 6],
     [9, 12], [1, 7]
-].map(([x, y]) => [x+2, y+4] as [number, number]);
+].map(([x, y]) => [x+17, y-1] as [number, number]);
 
 const LogosGrid = ({ className } : { className: string }) => {
     const ref = useRef<SVGSVGElement>(null)
@@ -58,6 +58,7 @@ const LogosGrid = ({ className } : { className: string }) => {
             ref={ref}    
             className={cn(
                 styles.container,
+                "mask-[radial-gradient(300px_circle_at_65%_33%,black,white,transparent)]",
                 className,
         )}              
         squares={initialSquares}            
