@@ -37,7 +37,7 @@ export default function Navbar({ className } : { className: string}) {
     const setIlluRef = useCallback((node: SVGSVGElement | null) => {
         illuRef.current = node;
 
-        if (node) console.log('illuRef: ', node);
+        // if (node) console.log('illuRef: ', node);
         
     }, []);
 
@@ -121,7 +121,8 @@ export default function Navbar({ className } : { className: string}) {
             gsap
                 .set(earth, {
                     svgOrigin: "131.5 132",
-                    yPercent: theme === 'light' ? 100 : 0
+                    yPercent: theme === 'light' ? 100 : 0,
+                    opacity: theme === 'light' ? 0 : 1
                 })
             //     .to(sun, {
                 //         yPercent: theme === 'light' ? 0 : -100,
@@ -186,7 +187,19 @@ export default function Navbar({ className } : { className: string}) {
 
     }, [router, setUser, setLoading, pathname]);    
     
+    useEffect(() => {         
+        if (illuRef.current) { 
+            // console.log(illuRef.current); 
+            const q = gsap.utils.selector(illuRef);
+            const stops = q("#skyGradient > stop");
+            // stops.forEach((stop,i) => {
+            //     console.log(i+1, '. ', stop.getAttribute('offset'));
+            // });
 
+            
+            
+        }
+    },[theme]);
     return (
         <div className={cn(
             className
@@ -228,7 +241,7 @@ export default function Navbar({ className } : { className: string}) {
                         </ItemActions>
                     </Item>
                     <Item variant='outline' className="relative h-fit min-h-20 overflow-hidden cursor-pointer" onClick={handleClick}>
-                        <LightThemeSwitchIllustration ref={ setIlluRef } />
+                        <LightThemeSwitchIllustration ref={setIlluRef} theme={ theme } />
                         <ItemContent className='flex flex-row justify-start'>
                             <ItemTitle className='w-fit'>
                                 {dictionary[lang].theme}
