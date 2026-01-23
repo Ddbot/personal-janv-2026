@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState, use, useRef, ViewTransition, useCallback } from 'react';   
 import { ThemeContext } from '@/contexts/ThemeContext';
-import ThemeToggler from "./theme-toggler";
 import ContactPicker from "./contact-picker";
 import Logo from "./site-logo"
 import Link from "next/link";
@@ -13,10 +12,11 @@ import { User } from '@supabase/supabase-js';
 import { Item, ItemActions, ItemContent, ItemDescription, ItemTitle } from "@/components/ui/item"
 import { Lang, LangContext } from '@/contexts/LangContext';
 import Image from 'next/image';
-import styles from './styles/navbar.module.css';
 import LightThemeSwitchIllustration from './assets/LightThemeSwitchIllustration';
 import { Sun, Moon } from "lucide-react";
-import { Button } from './ui/button';
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
 
 const languages: Lang[] = ["fr", "gb", "de"];
 const languageFull: Record<Lang, string>= {
@@ -36,7 +36,9 @@ export default function Navbar({ className } : { className: string}) {
 
     const setIlluRef = useCallback((node: SVGSVGElement | null) => {
         illuRef.current = node;
+
         if (node) console.log('illuRef: ', node);
+        
     }, []);
 
     
@@ -89,8 +91,77 @@ export default function Navbar({ className } : { className: string}) {
 
     function handleClick(e: React.MouseEvent) {
         e.preventDefault();
-        // console.log('Classe: ', e.currentTarget.className);
-        toggleTheme();
+        
+        console.log('Theme avant le click: ', theme);
+        
+        // on ANIME LA SORTIE
+        const tl = gsap.timeline({
+            defaults: {
+                duration: .225,
+                ease: theme === 'light' ? "power4.out" : "power4.in",
+                onStart: toggleTheme,
+            }
+        });
+
+        if (illuRef.current) {
+            const earth = illuRef.current.querySelector('g#earth');
+            const sun = illuRef.current.querySelector('g#sun');
+            const moon = illuRef.current.querySelector('g#moon');    
+
+            gsap.set(sun, {
+                yPercent: theme === 'light' ? 0 : -100,
+                // opacity: theme === 'light' ? 0 : 1
+            });
+
+            gsap.set(moon, {
+                yPercent: theme === 'light' ? 0 : 100,
+                // opacity: theme === 'light' ? 1 : 0
+            });
+            
+            gsap
+                .set(earth, {
+                    svgOrigin: "131.5 132",
+                    yPercent: theme === 'light' ? 100 : 0
+                })
+            //     .to(sun, {
+                //         yPercent: theme === 'light' ? 0 : -100,
+                //         opacity: theme === 'light' ? 1 : 0
+            //     })
+            //     .to(moon, {
+            //         yPercent: theme === 'light' ? 0 : 100,
+            //         opacity: theme === 'light' ? 1 : 0
+            //     });              
+
+            switch (theme) {
+                case 'light':
+                        tl
+                            .to(earth, { xPercent: 0, yPercent: 0, opacity: 1 })    
+                            .to(moon, {
+                                yPercent: -100,
+                                opacity: 0
+                            })
+                            .to(sun, {
+                                yPercent: 0,
+                                opacity: 1
+                            })
+                    break;
+                case 'dark':                
+                        tl
+                            .to(earth, { xPercent: 0, yPercent: 100, opacity: 0 })
+                            .to(sun, {
+                                yPercent: 100,
+                                opacity: 0
+                            })
+                            .to(moon, {
+                                yPercent: 0,
+                                opacity: 1
+                            })
+                    break;        
+                default:
+                break;
+            }
+        }
+        // toggleTheme();
     }
 
     // CHECK AUTH
@@ -114,6 +185,7 @@ export default function Navbar({ className } : { className: string}) {
         checkAuthState();
 
     }, [router, setUser, setLoading, pathname]);    
+    
 
     return (
         <div className={cn(
@@ -156,21 +228,16 @@ export default function Navbar({ className } : { className: string}) {
                         </ItemActions>
                     </Item>
                     <Item variant='outline' className="relative h-fit min-h-20 overflow-hidden cursor-pointer" onClick={handleClick}>
-                        <LightThemeSwitchIllustration ref={ setIlluRef } className="absolute inset-0 w-full h-full -z-10"/>
+                        <LightThemeSwitchIllustration ref={ setIlluRef } />
                         <ItemContent className='flex flex-row justify-start'>
                             <ItemTitle className='w-fit'>
                                 {dictionary[lang].theme}
                             </ItemTitle>
                         </ItemContent>
-                        <ItemActions>
-                            {/* <ThemeToggler />                             */}
-                            {/* <Button variant="outline" size={"icon-lg"}> */}
-                            {/* <ViewTransition> */}
-                                <button onClick={handleClick}>
-                                    {theme === "light" ? <Moon fill="var(--card-foreground)" className='w-9 h-9' /> : <Sun fill="var(--accent-3)" stroke="var(--accent-3)" strokeWidth={ 1} className='w-9 h-9'/>}
-                                </button>
-                            {/* </ViewTransition> */}
-                            {/* </Button>    */}
+                        <ItemActions>                            
+                            {/* <button ref={ btnRef } onClick={handleClick}>
+                                {theme === "light" ? <Moon fill="var(--card-foreground)" className='w-9 h-9' /> : <Sun fill="var(--accent-3)" stroke="var(--accent-3)" strokeWidth={ 1} className='w-9 h-9'/>}
+                            </button> */}
                         </ItemActions>
                     </Item>
                     <Item variant='outline' className="h-fit min-h-20">
