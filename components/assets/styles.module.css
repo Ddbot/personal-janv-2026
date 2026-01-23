@@ -1,0 +1,5 @@
+.LightThemeSwitchIllustration {    
+    & > path:first-child {
+        filter: url(#inset-shadow);
+    }
+}
