@@ -1,4 +1,6 @@
-.LightThemeSwitchIllustration {    
+.LightThemeSwitchIllustration {
+    pointer-events:all;    
+    cursor: pointer;    
     & > path:first-child {
         filter: url(#inset-shadow);
     }

@@ -155,7 +155,7 @@ export default function Navbar({ className } : { className: string}) {
                             }
                         </ItemActions>
                     </Item>
-                    <Item variant='outline' className="relative h-fit min-h-20 overflow-hidden" onClick={handleClick}>
+                    <Item variant='outline' className="relative h-fit min-h-20 overflow-hidden cursor-pointer" onClick={handleClick}>
                         <LightThemeSwitchIllustration ref={ setIlluRef } className="absolute inset-0 w-full h-full -z-10"/>
                         <ItemContent className='flex flex-row justify-start'>
                             <ItemTitle className='w-fit'>
