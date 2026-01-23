@@ -18,24 +18,23 @@ const sunRayPalette = [
 ];
 
 const SvgComponent = (
-  props: SVGProps<SVGSVGElement>,
+  { theme }: { theme: string },
   ref: Ref<SVGSVGElement>
 ) => {
     const xRayOrigin = 333.762;
     const yRayOrigin = 39.66;
     const raysOrigin = `${xRayOrigin} ${yRayOrigin}`;
-    const { theme } = use(ThemeContext);
+    // const { theme } = use(ThemeContext);
 
     return <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="65.262 15.433 299 49"
     fill="none"
         ref={ref}
-        className={styles.LightThemeSwitchIllustration}
-        {...props}        
+        className={styles.LightThemeSwitchIllustration}                
     >
             {/* RECT QUI DEFINIT LA VIEWBOX BG SKY */}
-            <path stroke="#000" strokeOpacity={0} fill="url(#skygradient)" fillOpacity={1} d="M65.262 5.433H364.262V74.433H65.262Z" />
+            <path stroke="#000" strokeOpacity={0} fill="url(#skyGradient)" fillOpacity={1} d="M65.262 5.433H364.262V74.433H65.262Z" />
             {/* RAYONS CONCENTRIQUES */}
             <g strokeDasharray={'8 25'} strokeWidth={.25} strokeOpacity={.75}>
             {
@@ -63,12 +62,14 @@ const SvgComponent = (
             </g>
             
             {/* SUN */}
-            <g id="sun" transform="translate(87,10.25) scale(.75)" stroke="var(--accent-3)" style={{
+            <g id="sun" transform="translate(87,10.25) scale(.75 .75)" stroke="var(--accent-3)" style={{
             opacity: theme === 'light' ? 0 : 1,
             fill: theme === "light" ? "transparent" : 'var(--accent-3)',
-            stroke: theme === "light" ? "transparent" : 'var(--accent-3)'
+            stroke: theme === "light" ? "transparent" : 'var(--accent-3)',
+            transformOrigin: `328.76px 39.9329px`
             }} >
-                <path d="M328.76 48.2662C333.362 48.2662 337.093 44.5353 337.093 39.9329C337.093 35.3305 333.362 31.5996 328.76 31.5996C324.158 31.5996 320.427 35.3305 320.427 39.9329C320.427 44.5353 324.158 48.2662 328.76 48.2662Z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            {/* <path d="M328.76 48.2662C333.362 48.2662 337.093 44.5353 337.093 39.9329C337.093 35.3305 333.362 31.5996 328.76 31.5996C324.158 31.5996 320.427 35.3305 320.427 39.9329C320.427 44.5353 324.158 48.2662 328.76 48.2662Z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/> */}
+                <circle cx="328.76" cy="39.9329" r="8.33333" fill="red"/>
                 <path d="M328.76 19.0996V23.2662" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M328.76 56.5996V60.7663" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M314.031 25.2038L316.968 28.1413" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -106,7 +107,7 @@ const SvgComponent = (
                     <stop stopColor="oklch(70% .25 35 / 1)" offset="50%"/>
                     <stop stopColor="oklch(95% .15 75 / 1)" offset="100%" />
                 </linearGradient>
-                <linearGradient id="skygradient" x1="100%" y1="0%" x2="0%" y2="100%">
+                <linearGradient id="skyGradient" x1="100%" y1="0%" x2="0%" y2="100%">
                     <stop stopColor="#2980b9" offset="0%"/>
                     <stop stopColor="#6dd5fa" offset="25%" />
                     <stop stopColor="#ffffff" offset="100%" />
