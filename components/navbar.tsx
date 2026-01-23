@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, use, ViewTransition } from 'react';   
+import { useEffect, useState, use, useRef, ViewTransition, useCallback } from 'react';   
 import { ThemeContext } from '@/contexts/ThemeContext';
 import ThemeToggler from "./theme-toggler";
 import ContactPicker from "./contact-picker";
@@ -32,6 +32,12 @@ export default function Navbar({ className } : { className: string}) {
     const [loading, setLoading] = useState(true);
     const { lang, changeLang } = use(LangContext);
     const { theme, toggleTheme } = use(ThemeContext);
+    const illuRef = useRef<SVGSVGElement | null>(null);
+
+    const setIlluRef = useCallback((node: SVGSVGElement | null) => {
+        illuRef.current = node;
+        if (node) console.log('illuRef: ', node);
+    }, []);
 
     
     const dictionary = {
@@ -86,10 +92,9 @@ export default function Navbar({ className } : { className: string}) {
         // console.log('Classe: ', e.currentTarget.className);
         toggleTheme();
     }
-    
-    useEffect(() => {
-        console.log('PATHNAME: ', pathname);
 
+    // CHECK AUTH
+    useEffect(() => {
         async function checkAuthState() {
             const client = await supabase;
             const { data: authListener } = await client.auth.onAuthStateChange(
@@ -100,7 +105,7 @@ export default function Navbar({ className } : { className: string}) {
                     } else {
                         setUser(null);
                         setLoading(false);
-                        if(pathname === '/contact?type=chat') router.push('/auth')
+                        if (pathname === '/contact?type=chat') router.push('/auth')
                     }
                 }
             )
@@ -108,8 +113,8 @@ export default function Navbar({ className } : { className: string}) {
 
         checkAuthState();
 
-    }, [router, setUser, setLoading, pathname])    
-    
+    }, [router, setUser, setLoading, pathname]);    
+
     return (
         <div className={cn(
             className
@@ -151,7 +156,7 @@ export default function Navbar({ className } : { className: string}) {
                         </ItemActions>
                     </Item>
                     <Item variant='outline' className="relative h-fit min-h-20 overflow-hidden" onClick={handleClick}>
-                        <LightThemeSwitchIllustration className="absolute inset-0 w-full h-full -z-10 inset-shadow-red-500"/>
+                        <LightThemeSwitchIllustration ref={ setIlluRef } className="absolute inset-0 w-full h-full -z-10 inset-shadow-red-500"/>
                         <ItemContent className='flex flex-row justify-start'>
                             <ItemTitle className='w-fit'>
                                 {dictionary[lang].theme}
@@ -160,11 +165,11 @@ export default function Navbar({ className } : { className: string}) {
                         <ItemActions>
                             {/* <ThemeToggler />                             */}
                             {/* <Button variant="outline" size={"icon-lg"}> */}
-                            <ViewTransition>
+                            {/* <ViewTransition> */}
                                 <button onClick={handleClick}>
                                     {theme === "light" ? <Moon fill="var(--card-foreground)" className='w-9 h-9' /> : <Sun fill="var(--accent-3)" stroke="var(--accent-3)" strokeWidth={ 1} className='w-9 h-9'/>}
                                 </button>
-                            </ViewTransition>
+                            {/* </ViewTransition> */}
                             {/* </Button>    */}
                         </ItemActions>
                     </Item>
