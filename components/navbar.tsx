@@ -1,5 +1,6 @@
 "use client";
-import { useEffect, useState, use } from 'react';
+import { useEffect, useState, use, ViewTransition } from 'react';   
+import { ThemeContext } from '@/contexts/ThemeContext';
 import ThemeToggler from "./theme-toggler";
 import ContactPicker from "./contact-picker";
 import Logo from "./site-logo"
@@ -13,6 +14,9 @@ import { Item, ItemActions, ItemContent, ItemDescription, ItemTitle } from "@/co
 import { Lang, LangContext } from '@/contexts/LangContext';
 import Image from 'next/image';
 import styles from './styles/navbar.module.css';
+import LightThemeSwitchIllustration from './assets/LightThemeSwitchIllustration';
+import { Sun, Moon } from "lucide-react";
+import { Button } from './ui/button';
 
 const languages: Lang[] = ["fr", "gb", "de"];
 const languageFull: Record<Lang, string>= {
@@ -27,6 +31,8 @@ export default function Navbar({ className } : { className: string}) {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
     const { lang, changeLang } = use(LangContext);
+    const { theme, toggleTheme } = use(ThemeContext);
+
     
     const dictionary = {
         fr: {
@@ -73,6 +79,12 @@ export default function Navbar({ className } : { className: string}) {
     
     await client.auth.signOut()
         router.push('/')
+    }
+
+    function handleClick(e: React.MouseEvent) {
+        e.preventDefault();
+        // console.log('Classe: ', e.currentTarget.className);
+        toggleTheme();
     }
     
     useEffect(() => {
@@ -138,14 +150,22 @@ export default function Navbar({ className } : { className: string}) {
                             }
                         </ItemActions>
                     </Item>
-                    <Item variant='outline' className="h-fit min-h-20">
-                        <ItemContent>
-                            <ItemTitle>
+                    <Item variant='outline' className="relative h-fit min-h-20 overflow-hidden" onClick={handleClick}>
+                        <LightThemeSwitchIllustration className="absolute inset-0 w-full h-full -z-10 inset-shadow-red-500"/>
+                        <ItemContent className='flex flex-row justify-start'>
+                            <ItemTitle className='w-fit'>
                                 {dictionary[lang].theme}
                             </ItemTitle>
                         </ItemContent>
                         <ItemActions>
-                            <ThemeToggler />                            
+                            {/* <ThemeToggler />                             */}
+                            {/* <Button variant="outline" size={"icon-lg"}> */}
+                            <ViewTransition>
+                                <button onClick={handleClick}>
+                                    {theme === "light" ? <Moon fill="var(--card-foreground)" className='w-9 h-9' /> : <Sun fill="var(--accent-3)" stroke="var(--accent-3)" strokeWidth={ 1} className='w-9 h-9'/>}
+                                </button>
+                            </ViewTransition>
+                            {/* </Button>    */}
                         </ItemActions>
                     </Item>
                     <Item variant='outline' className="h-fit min-h-20">
