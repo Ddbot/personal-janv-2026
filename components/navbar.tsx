@@ -99,70 +99,59 @@ export default function Navbar({ className } : { className: string}) {
             defaults: {
                 duration: .225,
                 ease: theme === 'light' ? "power4.out" : "power4.in",
-                onStart: toggleTheme,
-            }
+            },
+            // onComplete: toggleTheme,
         });
 
         if (illuRef.current) {
             const earth = illuRef.current.querySelector('g#earth');
             const sun = illuRef.current.querySelector('g#sun');
             const moon = illuRef.current.querySelector('g#moon');    
+            const stop1 = illuRef.current.querySelector('#skyGradient > stop:first-child');
+            const stop2 = illuRef.current.querySelector('#skyGradient > stop:nth-child(2)');
+            const stop3 = illuRef.current.querySelector('#skyGradient > stop:nth-child(3)');
 
-            gsap.set(sun, {
-                yPercent: theme === 'light' ? 0 : -100,
-                // opacity: theme === 'light' ? 0 : 1
+            const stops_initial_values = {
+                dark: ["#2980b9", "#6dd5fa", "#ffffff"],
+                light: ["#203A43", "#0F2027", "#2980b9"]
+            };
+
+            const stops = [stop1, stop2, stop3];            
+
+            stops.forEach((stop, i) => { 
+                tl.to(stop, {
+                    stopColor: theme === 'light' ? stops_initial_values.dark[i] : stops_initial_values.light[i],
+                    duration: .4
+                },0);
+            });
+            const animateMoon = gsap.to(moon, {
+                yPercent: theme === 'light' ? -100 : 0,
+                opacity: theme === 'light' ? 0 : 1,
+                onComplete: toggleTheme,
+                duration: theme === 'light' ? .42 : .225,
+                ease: theme === 'light' ? "power4.out" : "power4.in",
             });
 
-            gsap.set(moon, {
+            const animateSun = gsap.fromTo(sun, {
+                yPercent: theme === 'light' ? 100 : 0,
+                opacity: theme === 'light' ? 0 : 1,
+                
+            }, {
                 yPercent: theme === 'light' ? 0 : 100,
-                // opacity: theme === 'light' ? 1 : 0
+                opacity: theme === 'light' ? 1 : 0,
+                duration: .125
             });
-            
-            gsap
-                .set(earth, {
-                    svgOrigin: "131.5 132",
-                    yPercent: theme === 'light' ? 100 : 0,
-                    opacity: theme === 'light' ? 0 : 1
-                })
-            //     .to(sun, {
-                //         yPercent: theme === 'light' ? 0 : -100,
-                //         opacity: theme === 'light' ? 1 : 0
-            //     })
-            //     .to(moon, {
-            //         yPercent: theme === 'light' ? 0 : 100,
-            //         opacity: theme === 'light' ? 1 : 0
-            //     });              
 
-            switch (theme) {
-                case 'light':
-                        tl
-                            .to(earth, { xPercent: 0, yPercent: 0, opacity: 1 })    
-                            .to(moon, {
-                                yPercent: -100,
-                                opacity: 0
-                            })
-                            .to(sun, {
-                                yPercent: 0,
-                                opacity: 1
-                            })
-                    break;
-                case 'dark':                
-                        tl
-                            .to(earth, { xPercent: 0, yPercent: 100, opacity: 0 })
-                            .to(sun, {
-                                yPercent: 100,
-                                opacity: 0
-                            })
-                            .to(moon, {
-                                yPercent: 0,
-                                opacity: 1
-                            })
-                    break;        
-                default:
-                break;
+            const earthAnimationVars: Record<string, gsap.TweenVars> = {
+                light:  { xPercent: 0, yPercent: 0, opacity: 1, ease: "power4.out", duration: .32 },
+                dark:  { xPercent: 0, yPercent: 100, opacity: 0 }
             }
+
+            tl
+                .to(earth, earthAnimationVars[theme], 0)
+                .add(animateMoon, 0)
+                .add(animateSun, 0);
         }
-        // toggleTheme();
     }
 
     // CHECK AUTH
@@ -196,10 +185,11 @@ export default function Navbar({ className } : { className: string}) {
             //     console.log(i+1, '. ', stop.getAttribute('offset'));
             // });
 
-            
+
             
         }
     },[theme]);
+    
     return (
         <div className={cn(
             className

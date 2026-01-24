@@ -7,4 +7,14 @@
     z-index: -10;
     pointer-events:all;    
     cursor: pointer;
+
+    /* & > defs > linearGradient#skyGradient > stop {
+        transition: stop-color 2250ms linear;
+        &:first-child {
+         stop-color: red;   
+        }
+        &:last-child {
+            stop-color: blue;   
+        }
+    } */
 }
