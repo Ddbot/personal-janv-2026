@@ -12,11 +12,11 @@ import { User } from '@supabase/supabase-js';
 import { Item, ItemActions, ItemContent, ItemDescription, ItemTitle } from "@/components/ui/item"
 import { Lang, LangContext } from '@/contexts/LangContext';
 import Image from 'next/image';
-import LightThemeSwitchIllustration from './assets/LightThemeSwitchIllustration';
 import { Sun, Moon } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-
+import ThemeSelectionItem from "./theme-selection-item";
+import LanguageSelectionItem from "./language-selection-item";
 
 const languages: Lang[] = ["fr", "gb", "de"];
 const languageFull: Record<Lang, string>= {
@@ -33,13 +33,6 @@ export default function Navbar({ className } : { className: string}) {
     const { lang, changeLang } = use(LangContext);
     const { theme, toggleTheme } = use(ThemeContext);
     const illuRef = useRef<SVGSVGElement | null>(null);
-
-    const setIlluRef = useCallback((node: SVGSVGElement | null) => {
-        illuRef.current = node;
-
-        // if (node) console.log('illuRef: ', node);
-        
-    }, []);
 
     
     const dictionary = {
@@ -72,9 +65,9 @@ export default function Navbar({ className } : { className: string}) {
         }
     }
 
-    function handleChangeLanguage(l: Lang) {
-        changeLang(l);
-    }
+    // function handleChangeLanguage(l: Lang) {
+    //     changeLang(l);
+    // }
 
     function handleSignIn(e: React.MouseEvent) {
         e.preventDefault();
@@ -87,71 +80,6 @@ export default function Navbar({ className } : { className: string}) {
     
     await client.auth.signOut()
         router.push('/')
-    }
-
-    function handleClick(e: React.MouseEvent) {
-        e.preventDefault();
-        
-        console.log('Theme avant le click: ', theme);
-        
-        // on ANIME LA SORTIE
-        const tl = gsap.timeline({
-            defaults: {
-                duration: .225,
-                ease: theme === 'light' ? "power4.out" : "power4.in",
-            },
-            // onComplete: toggleTheme,
-        });
-
-        if (illuRef.current) {
-            const earth = illuRef.current.querySelector('g#earth');
-            const sun = illuRef.current.querySelector('g#sun');
-            const moon = illuRef.current.querySelector('g#moon');    
-            const stop1 = illuRef.current.querySelector('#skyGradient > stop:first-child');
-            const stop2 = illuRef.current.querySelector('#skyGradient > stop:nth-child(2)');
-            const stop3 = illuRef.current.querySelector('#skyGradient > stop:nth-child(3)');
-
-            const stops_initial_values = {
-                dark: ["#2980b9", "#6dd5fa", "#ffffff"],
-                light: ["#203A43", "#0F2027", "#2980b9"]
-            };
-
-            const stops = [stop1, stop2, stop3];            
-
-            stops.forEach((stop, i) => { 
-                tl.to(stop, {
-                    stopColor: theme === 'light' ? stops_initial_values.dark[i] : stops_initial_values.light[i],
-                    duration: .4
-                },0);
-            });
-            const animateMoon = gsap.to(moon, {
-                yPercent: theme === 'light' ? -100 : 0,
-                opacity: theme === 'light' ? 0 : 1,
-                onComplete: toggleTheme,
-                duration: theme === 'light' ? .42 : .225,
-                ease: theme === 'light' ? "power4.out" : "power4.in",
-            });
-
-            const animateSun = gsap.fromTo(sun, {
-                yPercent: theme === 'light' ? 100 : 0,
-                opacity: theme === 'light' ? 0 : 1,
-                
-            }, {
-                yPercent: theme === 'light' ? 0 : 100,
-                opacity: theme === 'light' ? 1 : 0,
-                duration: .125
-            });
-
-            const earthAnimationVars: Record<string, gsap.TweenVars> = {
-                light:  { xPercent: 0, yPercent: 0, opacity: 1, ease: "power4.out", duration: .32 },
-                dark:  { xPercent: 0, yPercent: 100, opacity: 0 }
-            }
-
-            tl
-                .to(earth, earthAnimationVars[theme], 0)
-                .add(animateMoon, 0)
-                .add(animateSun, 0);
-        }
     }
 
     // CHECK AUTH
@@ -200,49 +128,8 @@ export default function Navbar({ className } : { className: string}) {
             </Link>
             <div className="flex flex-row flex-nowrap items-center gap-0 lg:gap-4">
                 <ContactPicker className="md:w-9 md:h-9 aspect-square">
-                    <Item variant='outline' className="h-fit min-h-20">
-                        <ItemContent>
-                            {dictionary[lang].lang}
-                        </ItemContent>
-                        <ItemActions className='w-full h-fit flex justify-center gap-3 p-0'>
-                            {/* <LanguagePicker /> */}
-                            {languages.map((l) => {
-                                return <Item key={l} variant='outline' className='self-start flex flex-col items-center p-2'>
-                                    <ItemTitle style={{
-                                        transition: 'opacity .225s linear',
-                                        opacity: l === lang ? 0 : 1
-                                    }}>{ languageFull[l] as string}</ItemTitle>
-                                    <ItemDescription>
-                                        <button
-                                            className="flex flex-col items-center w-12 h-12 focus:outline-none"
-                                            onClick={() => handleChangeLanguage(l)}
-                                            disabled={l === lang}
-                                            style={{
-                                                transition: 'opacity .225s linear',
-                                                opacity: l === lang ? 0 : 1
-                                            }}>
-                                            {/* <span className='text-xs'>{languageFull[l]}</span> */}
-                                            <Image src={`/${l}-flag.png`} alt={`${l} flag`} width={64} height={64} />
-                                        </button>
-                                    </ItemDescription>
-                                </Item>
-                            })
-                            }
-                        </ItemActions>
-                    </Item>
-                    <Item variant='outline' className="relative h-fit min-h-20 overflow-hidden cursor-pointer" onClick={handleClick}>
-                        <LightThemeSwitchIllustration ref={setIlluRef} theme={ theme } />
-                        <ItemContent className='flex flex-row justify-start'>
-                            <ItemTitle className='w-fit'>
-                                {dictionary[lang].theme}
-                            </ItemTitle>
-                        </ItemContent>
-                        <ItemActions>                            
-                            {/* <button ref={ btnRef } onClick={handleClick}>
-                                {theme === "light" ? <Moon fill="var(--card-foreground)" className='w-9 h-9' /> : <Sun fill="var(--accent-3)" stroke="var(--accent-3)" strokeWidth={ 1} className='w-9 h-9'/>}
-                            </button> */}
-                        </ItemActions>
-                    </Item>
+                    <LanguageSelectionItem />
+                    <ThemeSelectionItem />
                     <Item variant='outline' className="h-fit min-h-20">
                         <ItemContent>
                             <ItemTitle>
@@ -300,4 +187,4 @@ export default function Navbar({ className } : { className: string}) {
             </div>
         </div>
     )
-}
+};
