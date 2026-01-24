@@ -1,0 +1,52 @@
+.item {
+    /* "h-fit min-h-20" */
+    height: fit-content;
+    min-height: 5rem;
+}
+
+.itemContent {
+    background-color: transparent;
+}
+
+.itemActions {
+    position: relative;
+    gap: 1rem;
+}
+
+.flagCard {
+    /* border: none; */
+    align-self: start;
+    position: relative;
+
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    justify-content: center; */
+
+    padding: 0;
+
+    border-radius: 0;    
+
+    border-radius: .5rem;
+}
+
+.flagImage {
+    /* 'absolute inset-0 w-full h-full object-cover aspect-square' */
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* aspect-ratio: 1 / 1; */
+}
+
+.clicker {
+    /* "absolute inset-0 flex flex-col items-center w-12 h-12 focus:outline-none" */
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+    outline: none;
+}
