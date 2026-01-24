@@ -1,11 +1,12 @@
 
 import LightThemeSwitchIllustration from './assets/LightThemeSwitchIllustration';
 import { Item, ItemActions, ItemContent, ItemDescription, ItemTitle } from "@/components/ui/item";
-import { useCallback, useRef, use } from "react";
+import { useCallback, useRef, use, useState } from "react";
 import { ThemeContext } from "@/contexts/ThemeContext";
 import { LangContext } from "@/contexts/LangContext";
 import gsap from "gsap";
 import { cn } from "@/lib/utils";
+import LightThemeSwitchIllustration_alt from "./assets/LightThemeSwitchIllustration_alt";
 
 const dictionary = {
     fr: {
@@ -38,6 +39,7 @@ const dictionary = {
 };
 
 const ThemeSelectionItem = () => {
+    const [isHovered, setIsHovered]:[boolean, React.Dispatch<React.SetStateAction<boolean>>] = useState(false);
     const { theme, toggleTheme } = use(ThemeContext);
     const { lang } = use(LangContext);
     const illuRef = useRef<SVGSVGElement | null>(null);
@@ -48,8 +50,7 @@ const ThemeSelectionItem = () => {
     }, []);
 
     function handleClick(e: React.MouseEvent) {
-        e.preventDefault();
-        
+        e.preventDefault();        
         // on ANIME LA SORTIE
         const tl = gsap.timeline({
             defaults: {
@@ -108,8 +109,14 @@ const ThemeSelectionItem = () => {
                 .add(animateSun, 0);
         }
     }    
-    return <Item variant='outline' className="relative h-fit min-h-20 overflow-hidden cursor-pointer" onClick={handleClick}>
-        <LightThemeSwitchIllustration ref={setIlluRef} theme={ theme } />
+
+    function handleHover(e: React.MouseEvent | React.PointerEvent) {
+        
+    }
+
+    return <Item variant='outline' className="relative h-fit min-h-20 overflow-hidden cursor-pointer" onClick={handleClick} onPointerEnter={() => setIsHovered(true)} onPointerLeave={() => setIsHovered(false)}>
+        <LightThemeSwitchIllustration ref={setIlluRef} theme={theme} />
+        {/* <LightThemeSwitchIllustration_alt /> */}
         <ItemContent className='flex flex-row justify-start'>
             <ItemTitle className={cn('w-fit', theme === 'light' && 'text-white')}>
                 {dictionary[lang].theme}

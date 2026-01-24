@@ -123,35 +123,31 @@ export default function Navbar({ className } : { className: string}) {
             className
             // styles.navbar
         )}>
-            <Link href={'/'}>                
+            <Link href='/'>                
                 <Logo />
             </Link>
             <div className="flex flex-row flex-nowrap items-center gap-0 lg:gap-4">
                 <ContactPicker className="md:w-9 md:h-9 aspect-square">
                     <LanguageSelectionItem />
                     <ThemeSelectionItem />
-                    <Item variant='outline' className="h-fit min-h-20">
+                    <Item variant='outline' className="h-fit min-h-20 cursor-pointer" onClick={() => router.push('/contact?type=chat')}>
                         <ItemContent>
                             <ItemTitle>
                                 {dictionary[lang].launch_chat}
                             </ItemTitle>
                         </ItemContent>
                         <ItemActions>
-                            <button onClick={() => router.push('/contact?type=chat')}>
-                                <MessageCircle />
-                            </button>                          
+                            <MessageCircle />
                         </ItemActions>
                     </Item>
-                    <Item variant='outline' className="h-fit min-h-20">
+                    <Item variant='outline' className="h-fit min-h-20 cursor-pointer hover:inset-shadow-primary-foreground" onClick={() => router.push('/contact?type=mail')}>
                         <ItemContent>
                             <ItemTitle>
                                 {dictionary[lang].send_email}
                             </ItemTitle>
                         </ItemContent>
                         <ItemActions>
-                            <button onClick={() => router.push('/contact?type=mail')}>
-                                <Mail />                        
-                            </button>
+                            <Mail />                                                    
                         </ItemActions>
                     </Item>
                     <Item variant='outline' className="h-fit min-h-20">
