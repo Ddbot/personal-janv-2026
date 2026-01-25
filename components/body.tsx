@@ -5,20 +5,22 @@ import Navbar from "./navbar";
 import useIsScrolling from "@/lib/hooks/useIsScrolling";
 import styles from './styles/navbar.module.css';
 import { cn } from '@/lib/utils';
+import { usePathname } from "next/navigation";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 function Body({ children }: { children: React.ReactNode }) {
-    const isScrolling = useIsScrolling(300);
+    const pathname = usePathname();
 
     return <body className={`${geistMono.variable} antialiased p-0`}>
         <Providers>
             <div className="flex flex-col snap-y snap-mandatory">
 
                 <Navbar className={cn(
-                    styles.navbar
+                    styles.navbar,
+                    !pathname.startsWith('/blog') ? 'sticky' : 'static'
                 )} />
                 {children}
                 </div>
