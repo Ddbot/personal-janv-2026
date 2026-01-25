@@ -1,12 +1,13 @@
 import { ViewTransition } from "react";
 import type { Metadata } from "next";
 import Body from '@/components/body';
-import { Inter, Atkinson_Hyperlegible_Mono, Roboto_Mono } from "next/font/google";
+import { Inter, Atkinson_Hyperlegible_Mono, Roboto_Mono, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 const atkinson = Atkinson_Hyperlegible_Mono({weight: '400', subsets:['latin'],variable:'--font-sans'});
-const roboto = Roboto_Mono({weight: '300', subsets:['latin'],variable:'--font-sans'});
+const roboto = Roboto_Mono({ weight: '300', subsets: ['latin'], variable: '--font-sans' });
+const geistMono = Geist_Mono({ weight: ['100','200','300','400','500','600','700','900'], subsets: ['latin'], variable: '--font-mono' });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
     return (
-        <html lang="fr" className={cn(inter.variable)} data-scroll-behavior="smooth">
+        <html lang="fr" className={ geistMono.variable} data-scroll-behavior="smooth">
             <Body>
                 <ViewTransition>
                     {children}

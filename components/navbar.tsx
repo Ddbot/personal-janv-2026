@@ -1,25 +1,20 @@
 "use client";
-import { useEffect, useState, use, useRef, ViewTransition, useCallback } from 'react';   
-import { ThemeContext } from '@/contexts/ThemeContext';
-import SettingsSheet from "./settings-sheet";
-import Logo from "./site-logo"
+import { useEffect, useState, use } from 'react';   
 import Link from "next/link";
-import { cn } from '@/lib/utils';
-import { Mail, MessageCircle, Download, LogOut } from 'lucide-react';
-import supabase from '@/lib/supabase'
-import { useRouter, usePathname } from 'next/navigation';
-import { User } from '@supabase/supabase-js';
-import { Item, ItemActions, ItemContent, ItemDescription, ItemTitle } from "@/components/ui/item"
-import { Lang, LangContext } from '@/contexts/LangContext';
-import Image from 'next/image';
-import { Sun, Moon } from "lucide-react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
+import Logo from "./site-logo"
+import SettingsSheet from "./settings-sheet";
 import ThemeSelectionItem from "./settings-selection-items/theme-selection-item";
 import LanguageSelectionItem from "./settings-selection-items/language-selection-item";
 import ChatSelectionItem from './settings-selection-items/chat-selection-item';
 import MailSelectionItem from './settings-selection-items/mail-selection-item';
 import DownloadCVItem from './settings-selection-items/download-cv-item';
+import { Item, ItemActions, ItemContent, ItemTitle } from "@/components/ui/item"
+import { cn } from '@/lib/utils';
+import { LogOut } from 'lucide-react';
+import { useRouter, usePathname } from 'next/navigation';
+import supabase from '@/lib/supabase'
+import { User } from '@supabase/supabase-js';
+import { LangContext } from '@/contexts/LangContext';
 
 export default function Navbar({ className } : { className: string}) {
     const router = useRouter();
@@ -27,10 +22,7 @@ export default function Navbar({ className } : { className: string}) {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
     const { lang, changeLang } = use(LangContext);
-    const { theme, toggleTheme } = use(ThemeContext);
-    const illuRef = useRef<SVGSVGElement | null>(null);
 
-    
     const dictionary = {
         fr: {
             settings: 'Paramètres',
@@ -61,23 +53,6 @@ export default function Navbar({ className } : { className: string}) {
         }
     }
 
-    // function handleChangeLanguage(l: Lang) {
-    //     changeLang(l);
-    // }
-
-    function handleSignIn(e: React.MouseEvent) {
-        e.preventDefault();
-        router.push('/auth')
-    }
-
-    const handleSignOut = async () => {
-        
-    const client = await supabase;
-    
-    await client.auth.signOut()
-        router.push('/')
-    }
-
     // CHECK AUTH
     useEffect(() => {
         async function checkAuthState() {
@@ -98,26 +73,11 @@ export default function Navbar({ className } : { className: string}) {
 
         checkAuthState();
 
-    }, [router, setUser, setLoading, pathname]);    
-    
-    useEffect(() => {         
-        if (illuRef.current) { 
-            // console.log(illuRef.current); 
-            const q = gsap.utils.selector(illuRef);
-            const stops = q("#skyGradient > stop");
-            // stops.forEach((stop,i) => {
-            //     console.log(i+1, '. ', stop.getAttribute('offset'));
-            // });
-
-
-            
-        }
-    },[theme]);
+    }, [router, setUser, setLoading, pathname]);
     
     return (
         <div className={cn(
             className
-            // styles.navbar
         )}>
             <Link href='/'>                
                 <Logo />
@@ -139,7 +99,6 @@ export default function Navbar({ className } : { className: string}) {
                             {<ItemActions>
                                 <button onClick={() => {
                                     supabase.auth.signOut()
-                                    // router.push('/')
                                 }}>
                                     <LogOut />
                                 </button>
