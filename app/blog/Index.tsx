@@ -15,9 +15,10 @@ import { decodeHtmlEntities } from '@/lib/utils';
 import Link from 'next/link';
 import { Playwrite_FR_Trad, Geist_Mono } from 'next/font/google';
 import { cn } from '@/lib/utils';
+import styles from './styles.module.css';
 
 const playwrite = Playwrite_FR_Trad({ variable:'--font-sans'})
-const geist_mono = Geist_Mono({ variable:'--font-mono' })
+const geist_mono = Geist_Mono({ variable:'--font-mono', weight: ['300','900'] })
 
 interface WordPressPost {
   id: number;
@@ -88,30 +89,31 @@ const Index = ({ posts }: { posts: WordPressPost[]}) => {
 	return (
 		<div className="min-h-screen bg-background">
 			{/* En-tête du journal */}
-			<header className="border-b-4 border-double border-black bg-background py-6">
-				<div className="max-w-7xl mx-auto px-4">
-					<div className="text-center">
-						{/* <div className="text-xs uppercase tracking-widest mb-2">
-							Paris, France
-						</div> */}
-						<h1
-							className={cn(playwrite.className, "text-4xl mb-8 text-primary")}
-                        >
-							Le blog
-						</h1>
-						<div className="text-sm italic">
-							Mon pense-bête, mon bloc-notes, mon journal
-						</div>
-						{/* <div className="flex justify-center items-center gap-8 mt-3 text-xs">
-							<span>Samedi 20 Décembre 2025</span>
-							<span className="border-x border-black px-3">
-								Édition Matinale
-							</span>
-							<span>Prix: 2 Francs</span>
-						</div> */}
-					</div>
-				</div>
-			</header>
+			<header className={styles.header}>
+                <div className="text-left">
+                    {/* <div className="text-xs uppercase tracking-widest mb-2">
+                        Paris, France
+                    </div> */}
+                    <hgroup className={cn("text-[3.5rem] text-primary font-extrabold mb-5 max-h-[2lh]")}>
+                        <h3>
+                            andry nirina –
+                        </h3>
+                        <h3>
+                            développeur web
+                        </h3>
+                    </hgroup>
+                    <div className="text-[20px] mt-5 md:max-w-[40ch]">
+                        Ceci est mon blog. J&apos;y parle de développement web, de bricolage, de musique, de choses et d&apos;autres.
+                    </div>
+                    {/* <div className="flex justify-center items-center gap-8 mt-3 text-xs">
+                        <span>Samedi 20 Décembre 2025</span>
+                        <span className="border-x border-black px-3">
+                            Édition Matinale
+                        </span>
+                        <span>Prix: 2 Francs</span>
+                    </div> */}
+                </div>
+            </header>
 
 			{/* Ligne décorative */}
 			{/* <div className="bg-[--chart-2] h-1"></div>
