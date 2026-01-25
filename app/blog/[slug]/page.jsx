@@ -1,8 +1,7 @@
-import parse, { domToReact} from 'html-react-parser';
+import parse, { domToReact } from 'html-react-parser';
 import Image from 'next/image';
 import Link from 'next/link';
 import { decodeHtmlEntities } from '@/lib/utils';
-import AnimatedBeamMultipleOutputDemo from '../../../components/animated-beam-example'
 
 function parseContent(html) {
 	return parse(html, {
