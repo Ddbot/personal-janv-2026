@@ -13,11 +13,11 @@ import {
 import { SlidersHorizontal } from "lucide-react"
 import { use } from 'react';
 import { LangContext } from '@/contexts/LangContext';
-import styles from './contact-picker.module.css';
+import styles from './styles/contact-picker.module.css';
 
 import { cn } from '@/lib/utils'
 
-export default function ContactPicker({ className, children }: { className: string, children: React.ReactNode }) {
+export default function SettingsSheet({ className, children }: { className: string, children: React.ReactNode }) {
     const { lang } = use(LangContext);
     const dictionary = {
         fr: {

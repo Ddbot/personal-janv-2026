@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState, use, useRef, ViewTransition, useCallback } from 'react';   
 import { ThemeContext } from '@/contexts/ThemeContext';
-import ContactPicker from "./contact-picker";
+import SettingsSheet from "./settings-sheet";
 import Logo from "./site-logo"
 import Link from "next/link";
 import { cn } from '@/lib/utils';
@@ -19,6 +19,7 @@ import ThemeSelectionItem from "./theme-selection-item";
 import LanguageSelectionItem from "./language-selection-item";
 import ChatSelectionItem from './chat-selection-item';
 import MailSelectionItem from './mail-selection-item';
+import DownloadCVItem from './download-cv-item';
 
 export default function Navbar({ className } : { className: string}) {
     const router = useRouter();
@@ -122,23 +123,12 @@ export default function Navbar({ className } : { className: string}) {
                 <Logo />
             </Link>
             <div className="flex flex-row flex-nowrap items-center gap-0 lg:gap-4">
-                <ContactPicker className="md:w-9 md:h-9 aspect-square">
+                <SettingsSheet className="md:w-9 md:h-9 aspect-square">
                     <LanguageSelectionItem />
                     <ThemeSelectionItem />
                     <ChatSelectionItem title={dictionary[lang].launch_chat} />
                     <MailSelectionItem title={dictionary[lang].send_email} />
-                    <Item variant='outline' className="h-fit min-h-20">
-                        <ItemContent>
-                            <ItemTitle>
-                                {dictionary[lang].download_cv}
-                            </ItemTitle>
-                        </ItemContent>
-                        <ItemActions>
-                            <button onClick={() => router.push('/contact?type=mail')}>
-                                <Download />                        
-                            </button>
-                        </ItemActions>
-                    </Item>  
+                    <DownloadCVItem title={dictionary[lang].download_cv} />
                     {user &&
                         <Item variant='outline' className="h-fit min-h-20">
                             <ItemContent>
@@ -156,7 +146,7 @@ export default function Navbar({ className } : { className: string}) {
                             </ItemActions>}
                         </Item>
                     }               
-                </ContactPicker>
+                </SettingsSheet>
             </div>
         </div>
     )
