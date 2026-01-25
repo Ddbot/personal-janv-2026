@@ -87,13 +87,10 @@ const Index = ({ posts }: { posts: WordPressPost[]}) => {
 	);
 
 	return (
-		<div className="min-h-screen bg-background">
+		<div className="min-h-screen">
 			{/* En-tête du journal */}
-			<header className={styles.header}>
+			<header className={cn(styles.header, "mb-20")}>
                 <div className="text-left">
-                    {/* <div className="text-xs uppercase tracking-widest mb-2">
-                        Paris, France
-                    </div> */}
                     <hgroup className={cn("text-[3.5rem] text-primary font-extrabold mb-5 max-h-[2lh]")}>
                         <h3>
                             andry nirina –
@@ -102,16 +99,9 @@ const Index = ({ posts }: { posts: WordPressPost[]}) => {
                             développeur web
                         </h3>
                     </hgroup>
-                    <div className="text-[20px] mt-5 md:max-w-[40ch]">
+                    <div className="text-md mt-0 md:mt-5 md:max-w-[40ch]">
                         Ceci est mon blog. J&apos;y parle de développement web, de bricolage, de musique, de choses et d&apos;autres.
                     </div>
-                    {/* <div className="flex justify-center items-center gap-8 mt-3 text-xs">
-                        <span>Samedi 20 Décembre 2025</span>
-                        <span className="border-x border-black px-3">
-                            Édition Matinale
-                        </span>
-                        <span>Prix: 2 Francs</span>
-                    </div> */}
                 </div>
             </header>
 
