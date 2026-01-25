@@ -13,8 +13,8 @@ import { cn } from '@/lib/utils';
 
 const geist = Geist_Mono({ subsets: ['latin'], weight: '600' })    
 
-const CustomTypingAnimation  = ({ words, ...props }: { words: string[] }) => {
-    return <TypingAnimation words={words} {...props} />
+const CustomTypingAnimation  = ({ words, className, ...props }: { words: string[], className: string }) => {
+    return <TypingAnimation words={words} {...props} className={className} />
 }
 
 export default function Hero({ className }: { className: string }) {
@@ -25,8 +25,8 @@ export default function Hero({ className }: { className: string }) {
     return (
         <div className={ cn(styles.hero, geist.className)}>
             <section className={ styles.section}>
-                <div className="w-full h-fit text-3xl md:text-5xl font-light my-2">{dictionary[lang]['hero']['intro'][0]}<span className="lg:font-bold text-primary">{dictionary[lang]['hero']['intro'][1]}</span></div>
-                <div className="w-full h-fit text-3xl md:text-5xl font-light my-2">JS <span className="text-primary">|</span> React <span className="text-primary">|</span> Next.js</div>
+                <div className="w-full h-fit text-3xl md:text-4xl font-light my-2">{dictionary[lang]['hero']['intro'][0]}<span className="lg:font-bold text-primary">{dictionary[lang]['hero']['intro'][1]}</span></div>
+                <div className="w-full h-fit text-3xl md:text-4xl font-light my-2">JS <span className="text-primary">|</span> React <span className="text-primary">|</span> Next.js</div>
                 <CustomTypingAnimation className={styles.typing_animation} words={dictionary[lang]['hero']['typing']}
                     loop={true}
                     delay={1000}
