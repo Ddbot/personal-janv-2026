@@ -84,12 +84,15 @@ export default function Navbar({ className } : { className: string}) {
             </Link>
             <div className="flex flex-row flex-nowrap items-center gap-0 lg:gap-4">
                 <SettingsSheet className="md:w-9 md:h-9 aspect-square">
-                    <LanguageSelectionItem />
-                    <ThemeSelectionItem />
-                    <ChatSelectionItem title={dictionary[lang].launch_chat} />
-                    <MailSelectionItem title={dictionary[lang].send_email} />
-                    <DownloadCVItem title={dictionary[lang].download_cv} />
-                    {user &&
+                    { !pathname.startsWith('/blog') && <LanguageSelectionItem />}
+                        <ThemeSelectionItem />
+                    {!pathname.startsWith('/blog') && <>
+                        <ChatSelectionItem title={dictionary[lang].launch_chat} />
+                        <MailSelectionItem title={dictionary[lang].send_email} />
+                        <DownloadCVItem title={dictionary[lang].download_cv} />
+                        </>
+                    }
+                    {user && !pathname.startsWith('/blog') && 
                         <Item variant='outline' className="h-fit min-h-20">
                             <ItemContent>
                                 <ItemTitle>
