@@ -13,10 +13,11 @@ import {
 import { Calendar, User } from 'lucide-react';
 import { decodeHtmlEntities } from '@/lib/utils';
 import Link from 'next/link';
-import { Playwrite_FR_Trad } from 'next/font/google';
+import { Playwrite_FR_Trad, Geist_Mono } from 'next/font/google';
 import { cn } from '@/lib/utils';
 
 const playwrite = Playwrite_FR_Trad({ variable:'--font-sans'})
+const geist_mono = Geist_Mono({ variable:'--font-mono' })
 
 interface WordPressPost {
   id: number;
@@ -50,7 +51,7 @@ const Index = ({ posts }: { posts: WordPressPost[]}) => {
 
     const ArticleCard = ({ article }: { article: WordPressPost }) => (<Link 
             href={`/blog/${article.slug}`} 
-            className="hover:opacity-80 transition m-0"
+            className={cn("hover:opacity-80 transition m-0", geist_mono.className)}
         >      
         <Card className="m-2 rounded-none border-transparent">
       <CardHeader>
