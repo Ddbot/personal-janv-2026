@@ -385,11 +385,14 @@ function handleClick_(e) {
 			className: 'row-start-2 lg:col-start-3 col-span-3 lg:col-span-1',
 			background: (
 				// <SpeedTyperContainer className="absolute top-4 right-2 h-[300px] w-full scale-75 border-none [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-90" />
-				<Image
-					src={bg}
-					alt="speed typer"
-					className="absolute top-[25%] lg:-top-8 lg:right-2 w-full scale-75 border-none mask-[linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-90"
+                <div className="relative">
+                    <Image
+                        src={bg}
+                        alt="speed typer"
+                        className={styles.speed_typer_image}
+					// className="absolute top-[25%] lg:-top-8 lg:right-2 w-full scale-75 border-none mask-[linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-90"
 				/>
+				</div>
 			),
 		},
 		{

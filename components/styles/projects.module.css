@@ -113,6 +113,23 @@
     }
 }
 
+.speed_typer_container {
+    position: relative;
+    background-color: #ffffff00;
+}
+
+.speed_typer_image {
+    /* 'absolute top-0 left-0 right-0 bottom-0' */
+    position: absolute;
+    inset: 0;
+
+    /* filter: invert(1);
+    mix-blend-mode:hard-light; */
+
+    filter: invert(.25);
+    mix-blend-mode:hard-light;
+}
+
 @keyframes popup_container {
     0% {
         transform: translateY(0%) scaleX(0);
