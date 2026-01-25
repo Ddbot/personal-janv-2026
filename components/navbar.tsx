@@ -15,11 +15,11 @@ import Image from 'next/image';
 import { Sun, Moon } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import ThemeSelectionItem from "./theme-selection-item";
-import LanguageSelectionItem from "./language-selection-item";
-import ChatSelectionItem from './chat-selection-item';
-import MailSelectionItem from './mail-selection-item';
-import DownloadCVItem from './download-cv-item';
+import ThemeSelectionItem from "./settings-selection-items/theme-selection-item";
+import LanguageSelectionItem from "./settings-selection-items/language-selection-item";
+import ChatSelectionItem from './settings-selection-items/chat-selection-item';
+import MailSelectionItem from './settings-selection-items/mail-selection-item';
+import DownloadCVItem from './settings-selection-items/download-cv-item';
 
 export default function Navbar({ className } : { className: string}) {
     const router = useRouter();

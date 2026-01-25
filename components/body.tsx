@@ -18,7 +18,6 @@ function Body({ children }: { children: React.ReactNode }) {
             <div className="flex flex-col snap-y snap-mandatory">
 
                 <Navbar className={cn(
-                    // isScrolling && styles.isScrolling,
                     styles.navbar
                 )} />
                 {children}

@@ -1,5 +1,5 @@
 
-import LightThemeSwitchIllustration from './assets/LightThemeSwitchIllustration';
+import LightThemeSwitchIllustration from '../assets/LightThemeSwitchIllustration';
 import { Item, ItemActions, ItemContent, ItemDescription, ItemTitle } from "@/components/ui/item";
 import { useCallback, useRef, use } from "react";
 import { ThemeContext } from "@/contexts/ThemeContext";
