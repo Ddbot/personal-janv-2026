@@ -23,6 +23,9 @@ import styles_bento from './styles/bento-grid.module.css';
 import gsap from 'gsap';
 import ProjectsContactCardContent from './projects-contact-card-content';
 import { useRouter } from 'next/navigation';
+import { Geist_Mono } from 'next/font/google';
+
+const geist = Geist_Mono({ subsets: ['latin'], weight: ['200','400'] })    
 
 const Card = (props) => {
     return <BentoCard {...props} />;
@@ -448,7 +451,8 @@ function handleClick_(e) {
 			<BentoGrid
 				ref={containerRef}
 				className={cn(
-					styles_bento.container,
+                    styles_bento.container,
+                    geist.className
 					// 'lg:p-32 lg:pb-0',
 				)}
 				id="projects">
