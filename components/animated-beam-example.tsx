@@ -54,64 +54,64 @@ export default function AnimatedBeamMultipleOutputDemo({
       )}
       ref={containerRef}
     >
-      <div className="flex size-full max-w-lg flex-row items-stretch justify-between gap-0">
-        <div className="flex flex-col justify-center">
-          <Circle ref={usersRef}>
-            <Icons.users />
-          </Circle>
-        </div>
-        <div className="flex flex-col justify-center">
-          <Circle ref={trelloRef} className="size-16">
-            <Icons.trello />
-          </Circle>
-        </div>
-        <div className="flex flex-col justify-center gap-2">
-          <Circle ref={googleDriveRef}>
-            <Icons.googleDrive />
-          </Circle>
-          <Circle ref={teamsRef}>
-            <Icons.teams />
-          </Circle>
-              </div>
+        <div className="flex size-full max-w-lg flex-row items-stretch justify-between gap-0">
             <div className="flex flex-col justify-center">
-          <Circle ref={clientRef} className="size-16">
-            <Icons.user />
-          </Circle>
+                <Circle ref={usersRef}>
+                <Icons.users />
+                </Circle>
+            </div>
+            <div className="flex flex-col justify-center">
+                <Circle ref={trelloRef} className="size-16">
+                <Icons.trello />
+                </Circle>
+            </div>
+            <div className="flex flex-col justify-center gap-2">
+                <Circle ref={googleDriveRef}>
+                <Icons.googleDrive />
+                </Circle>
+                <Circle ref={teamsRef}>
+                <Icons.teams />
+                </Circle>
+            </div>
+            <div className="flex flex-col justify-center">
+                <Circle ref={clientRef} className="size-16">
+                <Icons.user />
+                </Circle>
+            </div>
         </div>
-      </div>
 
-          {/* AnimatedBeams */}
-                <AnimatedBeam
-        containerRef={containerRef}
-        toRef={clientRef}
-        fromRef={googleDriveRef}
-        duration={3}
-        reverse={isReversed}
-      />
-      <AnimatedBeam
-        containerRef={containerRef}
-        fromRef={googleDriveRef}
-              toRef={trelloRef}
-              reverse={isReversed}
-        duration={3}
-      />
-      <AnimatedBeam
-        containerRef={containerRef}
-        fromRef={trelloRef}
-        toRef={usersRef}
-              duration={3}
-            //   delay={3}
-              reverse={isReversed}
-          />
-    <AnimatedBeam
-        containerRef={containerRef}
-        fromRef={teamsRef}
-        toRef={trelloRef}
-        duration={3}
-        reverse={isReversed}
-        gradientStartColor={!isReversed ? "#ffaa40" : "transparent"}
-        gradientStopColor={!isReversed ? "#9c40ff" : "transparent"}
-      />
+        {/* AnimatedBeams */}
+        <AnimatedBeam
+            containerRef={containerRef}
+            toRef={clientRef}
+            fromRef={googleDriveRef}
+            duration={3}
+            reverse={isReversed}
+        />
+        <AnimatedBeam
+            containerRef={containerRef}
+            fromRef={googleDriveRef}
+            toRef={trelloRef}
+            reverse={isReversed}
+            duration={3}
+            />
+        <AnimatedBeam
+            containerRef={containerRef}
+            fromRef={trelloRef}
+            toRef={usersRef}
+                duration={3}
+                //   delay={3}
+                reverse={isReversed}
+            />
+        <AnimatedBeam
+            containerRef={containerRef}
+            fromRef={teamsRef}
+            toRef={trelloRef}
+            duration={3}
+            reverse={isReversed}
+            gradientStartColor={!isReversed ? "#ffaa40" : "transparent"}
+            gradientStopColor={!isReversed ? "#9c40ff" : "transparent"}
+        />
     </div>
   )
 }
