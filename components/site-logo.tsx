@@ -1,18 +1,27 @@
-import { Geist } from "next/font/google";
-const geist = Geist({ subsets: ['latin'], weight: '600' });
+import { Geist, Playwrite_FR_Trad } from "next/font/google";
+const geist = Geist({ subsets: ['latin'], weight: ['100','200','600'] });
+const playwrite = Playwrite_FR_Trad({ weight: '100' });
 import { cn } from '@/lib/utils';
 
-const Logo = () => {
-    return (
-        // <Image src={`/logo-${theme}.png`} alt="Logo" width={48} height={48} />
-        <h1 className={cn(
+const Logo = ({ title }: { title: string }) => {
+    return  title === "andry" ? <h1 className={cn(
             geist.className,
-            "text-5xl font-bold tracking-tight text-primary"
+            "text-4xl font-bold tracking-tight text-primary"
         )} style={{
             textBoxTrim: 'trim-both',
-            transform: 'translateY(-20px)'
-        }}>andry</h1>
-    )
-}
+        }}>{title}</h1> : <h1 className={cn(
+                geist.className,
+                "text-4xl font-bold tracking-tight text-primary"
+            )} style={{
+                textBoxTrim: 'trim-both',
+            }}>
+                <div>
+                    <span>andry</span>
+                    <span className={"font-extralight text-foreground"}> – </span>
+                    <span className={"font-extralight text-foreground"}>le </span>
+                    <span className={"font-extralight text-foreground"}>blog</span>
+                </div>
+            </h1>
+        }
 
 export default Logo
