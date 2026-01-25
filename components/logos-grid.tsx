@@ -20,25 +20,25 @@ const initialSquares: [x: number, y: number][] = [
     [11, 12], [6, 12],
     [7, 2], [11, 6],
     [9, 12], [1, 7]
-].map(([x, y]) => [x+17, y-1] as [number, number]);
+].map(([x, y]) => [x+2, y-1] as [number, number]);
 
 const LogosGrid = ({ className } : { className: string }) => {
     const ref = useRef<SVGSVGElement>(null)
-    useGSAP(() => {        
+    useGSAP(() => {
         const q = gsap.utils.selector(ref);
         const images = q('image');
-        images.forEach((img, i) => {            
+        images.forEach((img, i) => {
             gsap.to(img, {
                 scrollTrigger: {
                     trigger: img,
                     start: "top 50%",
                     scrub: true,
-                    toggleActions: "play pause resume reset" 
+                    toggleActions: "play pause resume reset"
                 },
                 opacity: 0,
             });
         })
-    }, { scope: ref })
+    }, { scope: ref });
 
     useGSAP(() => {
         const target = ref.current;
@@ -47,18 +47,20 @@ const LogosGrid = ({ className } : { className: string }) => {
                 trigger: target,
                 start: "top 50%",
                 scrub: true,
-                toggleActions: "play pause resume reset" 
+                toggleActions: "play pause resume reset"
             },
             opacity: 0,
             scale: 1.225,
             transform: 'skewY(0)'
         });
-    }, { scope: ref })
+    }, { scope: ref });
+
     return <GridPattern   
             ref={ref}    
             className={cn(
                 styles.container,
-                "mask-[radial-gradient(300px_circle_at_65%_33%,black,white,transparent)]",
+                "w-1/2 h-full",
+                "mask-[radial-gradient(300px_circle_at_50%_33%,black,white,transparent)]",                
                 className,
         )}              
         squares={initialSquares}            

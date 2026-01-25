@@ -7,6 +7,7 @@
     place-self: flex-start;
     align-self: flex-start;
     justify-self: flex-start;
+
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -26,7 +27,7 @@
     /* lg:pl-20 lg:pt-20 lg:gap-4" */
     transform-style: preserve-3d;
     perspective: 2000px; 
-    width: 100%;
+    width: 50%;
     height: 100%;
 
     display: flex;
@@ -39,8 +40,6 @@
     padding-left: 5rem;
     padding-top: 5rem;
     gap: 1rem;
-
-
 
     @media screen and (min-width: 768px) {
         animation: fadeOut linear both;

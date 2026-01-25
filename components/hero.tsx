@@ -13,8 +13,8 @@ import { cn } from '@/lib/utils';
 
 const geist = Geist_Mono({ subsets: ['latin'], weight: '600' })    
 
-const CustomTypingAnimation  = (props: React.ComponentPropsWithoutRef<'div'>) => {
-    return <TypingAnimation {...props} />
+const CustomTypingAnimation  = ({ words, ...props }: { words: string[] }) => {
+    return <TypingAnimation words={words} {...props} />
 }
 
 export default function Hero({ className }: { className: string }) {
@@ -34,7 +34,7 @@ export default function Hero({ className }: { className: string }) {
                     cursorStyle="block"
                     blinkCursor={false}
                 />
-                <div className="lg:w-1/2 lg:-translate-x-20 flex flex-row justify-end lg:gap-4 lg:p-8 lg:pb-0 lg:pr-20">
+                <div className="w-full flex justify-end gap-8">
                     <Button variant={"outline"}>
                         <Link href="#projects">
                             {dictionary[lang]['hero']['more']}
