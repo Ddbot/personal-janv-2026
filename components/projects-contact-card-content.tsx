@@ -17,7 +17,7 @@ const Ornament = ({ target, text }: { target: string; text: string }) => {
     const ref = useRef<HTMLDivElement>(null);
 
     return <div ref={ref} className={styles.ornament}>        
-        {text === target ? <><span>\</span><span>|</span><span>/</span></> : <span></span>}
+        {text === target ? <><span>\</span><span>|</span><span>/</span></> : <><span></span><span></span><span></span></>}
     </div>
 }
 

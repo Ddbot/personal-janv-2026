@@ -99,11 +99,11 @@
     top: 0;
     left: 0;
     
-    *:hover > & {
+    *:hover > &  {
         animation-name: popup_container;
         animation-duration: 175ms;
         animation-timing-function: linear(0, 0.415 5.8%, 0.725 12.1%, 0.936 19%, 1.009 22.8%, 1.061 26.9%, 1.101 32.9%, 1.109 40%, 1.097 46.2%, 1.039 63.2%, 1.016 72.9%, 1.003 84%, 1);
-        animation-delay: 0;
+        animation-delay: .18s;
         animation-iteration-count: 1;
         animation-direction: normal;
         animation-fill-mode: both;
