@@ -56,8 +56,8 @@ const Container = ({ className }) => {
 					'Des compétences diverses et variées',
 					'Mesurez votre vitesse de frappe !',
 					"Une app pour augmenter la productivité d'une content farm ",
-					'Une app mobile pour suivre la croissance et les données vitales de votre nouveau né',
-					'Echanger, vendre, partager, se rendre service: tout ce qui se passe dans ma rue',
+					'Une app mobile pour suivre la croissance de bébé',
+					'Ventes, partage, services: tout ce qui se passe dans votre rue',
 					<ProjectsContactCardContent
 						key="contact"
 						className={cn(styles_bento.animate_messages)}
@@ -394,7 +394,7 @@ function handleClick_(e) {
 		},
 		{
 			Icon: Share2Icon,
-			name: 'Trello to Google Apps Script',
+			name: 'Trello <=> Google Apps',
 			description: dictionary[lang]['features']['description'][2],
 			href: '/blog/api-google-drive-trello-supabase',
 			cta: dictionary[lang]['cta'],
