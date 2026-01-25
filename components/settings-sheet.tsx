@@ -13,7 +13,7 @@ import {
 import { SlidersHorizontal } from "lucide-react"
 import { use } from 'react';
 import { LangContext } from '@/contexts/LangContext';
-import styles from './styles/contact-picker.module.css';
+import styles from './styles/settings-sheet.module.css';
 
 import { cn } from '@/lib/utils'
 
