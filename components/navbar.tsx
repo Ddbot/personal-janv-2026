@@ -17,13 +17,8 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ThemeSelectionItem from "./theme-selection-item";
 import LanguageSelectionItem from "./language-selection-item";
-
-const languages: Lang[] = ["fr", "gb", "de"];
-const languageFull: Record<Lang, string>= {
-    fr: "Français",
-    gb: "English",
-    de: "Deutsch"
-}
+import ChatSelectionItem from './chat-selection-item';
+import MailSelectionItem from './mail-selection-item';
 
 export default function Navbar({ className } : { className: string}) {
     const router = useRouter();
@@ -130,26 +125,8 @@ export default function Navbar({ className } : { className: string}) {
                 <ContactPicker className="md:w-9 md:h-9 aspect-square">
                     <LanguageSelectionItem />
                     <ThemeSelectionItem />
-                    <Item variant='outline' className="h-fit min-h-20 cursor-pointer" onClick={() => router.push('/contact?type=chat')}>
-                        <ItemContent>
-                            <ItemTitle>
-                                {dictionary[lang].launch_chat}
-                            </ItemTitle>
-                        </ItemContent>
-                        <ItemActions>
-                            <MessageCircle />
-                        </ItemActions>
-                    </Item>
-                    <Item variant='outline' className="h-fit min-h-20 cursor-pointer hover:inset-shadow-primary-foreground" onClick={() => router.push('/contact?type=mail')}>
-                        <ItemContent>
-                            <ItemTitle>
-                                {dictionary[lang].send_email}
-                            </ItemTitle>
-                        </ItemContent>
-                        <ItemActions>
-                            <Mail />                                                    
-                        </ItemActions>
-                    </Item>
+                    <ChatSelectionItem title={dictionary[lang].launch_chat} />
+                    <MailSelectionItem title={dictionary[lang].send_email} />
                     <Item variant='outline' className="h-fit min-h-20">
                         <ItemContent>
                             <ItemTitle>
