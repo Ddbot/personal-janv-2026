@@ -7,7 +7,7 @@ import { LangContext, Lang } from "@/contexts/LangContext";
 import gsap from "gsap";
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
-import styles from './styles/language-selection-item.module.css';
+import styles from '../styles/language-selection-item.module.css';
 
 const dictionary = {
     fr: {

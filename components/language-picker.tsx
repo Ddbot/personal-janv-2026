@@ -2,9 +2,8 @@ import { use } from 'react'
 import { FloatingPanelRoot, FloatingPanelTrigger, FloatingPanelContent, FloatingPanelBody, FloatingPanelFooter, FloatingPanelCloseButton } from "./ui/floating-panel"
 import { Languages } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
-import styles from "./language-picker.module.css"
+import styles from "./styles/language-picker.module.css"
 import { cn } from "@/lib/utils"
-import { Button } from "./ui/button"
 import Image from "next/image"
 import { LangContext, Lang } from "@/contexts/LangContext"
 
