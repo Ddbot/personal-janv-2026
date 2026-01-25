@@ -13,6 +13,10 @@ import {
 import { Calendar, User } from 'lucide-react';
 import { decodeHtmlEntities } from '@/lib/utils';
 import Link from 'next/link';
+import { Playwrite_FR_Trad } from 'next/font/google';
+import { cn } from '@/lib/utils';
+
+const playwrite = Playwrite_FR_Trad({ variable:'--font-sans'})
 
 interface WordPressPost {
   id: number;
@@ -42,7 +46,7 @@ const Index = ({ posts }: { posts: WordPressPost[]}) => {
             });
         }
 		return cols;
-	}, [posts]);
+    }, [posts]);
 
     const ArticleCard = ({ article }: { article: WordPressPost }) => (<Link 
             href={`/blog/${article.slug}`} 
@@ -90,20 +94,20 @@ const Index = ({ posts }: { posts: WordPressPost[]}) => {
 							Paris, France
 						</div> */}
 						<h1
-							className="text-6xl mb-2 text-primary"
+							className={cn(playwrite.className, "text-4xl mb-8 text-primary")}
                         >
-							Mon blog
+							Le blog
 						</h1>
 						<div className="text-sm italic">
 							Mon pense-bête, mon bloc-notes, mon journal
 						</div>
-						<div className="flex justify-center items-center gap-8 mt-3 text-xs">
+						{/* <div className="flex justify-center items-center gap-8 mt-3 text-xs">
 							<span>Samedi 20 Décembre 2025</span>
-							{/* <span className="border-x border-black px-3">
+							<span className="border-x border-black px-3">
 								Édition Matinale
 							</span>
-							<span>Prix: 2 Francs</span> */}
-						</div>
+							<span>Prix: 2 Francs</span>
+						</div> */}
 					</div>
 				</div>
 			</header>
