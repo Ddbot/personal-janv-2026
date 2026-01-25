@@ -7,7 +7,7 @@ const Logo = () => {
         // <Image src={`/logo-${theme}.png`} alt="Logo" width={48} height={48} />
         <h1 className={cn(
             geist.className,
-            "text-6xl font-bold tracking-tight text-primary"
+            "text-5xl font-bold tracking-tight text-primary"
         )} style={{
             textBoxTrim: 'trim-both',
             transform: 'translateY(-20px)'
