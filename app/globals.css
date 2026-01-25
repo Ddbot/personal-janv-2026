@@ -89,8 +89,8 @@ body {
 :root {
 --row-height: 22rem;
 --col-width: var(--row-height);
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.13 0.028 261.692);
+  --background: #f9f9f9;
+  --foreground: #282828;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.13 0.028 261.692);
   --popover: oklch(1 0 0);
