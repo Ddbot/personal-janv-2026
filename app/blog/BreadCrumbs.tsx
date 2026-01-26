@@ -1,3 +1,5 @@
+"use client";
+import { useState } from 'react';
 import Link from "next/link"
 import {
   Breadcrumb,
@@ -12,13 +14,16 @@ import { Button } from "@/components/ui/button"
 import { cn } from '@/lib/utils';
 import styles from './styles.module.css';
 
+type Category = 'dev' | 'frontend' | 'diy' | 'music';
+
 function Separator() {
     return  <BreadcrumbSeparator>/</BreadcrumbSeparator>
 }
 
 export default function Breadcrumbs({ className } : { className: string }) {
+    const [currentPath, setCurrentPath] = useState<string[]>([]);
   return (
-    <Breadcrumb className={className    }>
+    <Breadcrumb className={className}>
     <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
