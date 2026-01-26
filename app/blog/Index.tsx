@@ -14,12 +14,14 @@ import {
 import { Calendar, User } from 'lucide-react';
 import { decodeHtmlEntities } from '@/lib/utils';
 import Link from 'next/link';
-import { Playwrite_FR_Trad, Geist_Mono } from 'next/font/google';
+import { Geist, Geist_Mono } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import styles from './styles.module.css';
+import { tags_list } from './constants';
+import Image from 'next/image';
 
-const playwrite = Playwrite_FR_Trad({ variable:'--font-sans'})
-const geist_mono = Geist_Mono({ variable:'--font-mono', weight: ['300','900'] })
+const geist = Geist({ variable: '--font-variable' })
+const geist_mono = Geist_Mono({ variable: '--font-mono', weight: ['300', '900'] })
 
 export interface WordPressPost {
   id: number;
@@ -39,53 +41,47 @@ export interface WordPressPost {
   };
 }
 
-const Index = ({ posts }: { posts: WordPressPost[]}) => {
-	// Organize articles into 4 columns for masonry layout
-	const columns = useMemo(() => {
-        const cols: WordPressPost[][] = [[], [], []];
-        if (posts && posts.length > 0) {
-            posts.forEach((post, index) => {
-                cols[index % 3].push(post);
-            });
-        }
-		return cols;
-    }, [posts]);
+const Index = ({ posts }: { posts: WordPressPost[] }) => {
+    const ArticleCard = ({ article }: { article: WordPressPost }) => {
+        const tags: string[] = article.tags.map((tag) => {
+            return tags_list[String(tag)].name
+        });
 
-    const ArticleCard = ({ article }: { article: WordPressPost }) => (<Link 
-            href={`/blog/${article.slug}`} 
-            className={cn("aspect-square", geist_mono.className)}
-        >      
+        return <Link
+        href={`/blog/${article.slug}`}
+        className={cn( geist_mono.className)}
+    >
         <Card className={cn(styles.articles_list_card, "m-2 rounded-none border-transparent")}>
-      <CardHeader>
-        <CardTitle>{decodeHtmlEntities(article.title.rendered)}</CardTitle>
-        <CardDescription>
+            <CardHeader>
+                    <CardTitle className={ cn(geist.className, "font-extrabold") }>{decodeHtmlEntities(article.title.rendered)}</CardTitle>
+                <CardDescription>
                     <span>
-                    {article.categories.toString()}
+                        {article.categories.toString()}
                     </span>
-			<div className="flex flex-col gap-1 text-xs text-gray-600 mb-3 border-t border-gray-300 pt-2">
-				<div className="flex items-center gap-1">
-					<User size={12} />
-					<span className="italic">{article.author}</span>
-				</div>
-				<div className="flex items-center gap-1">
-					<Calendar size={12} />
-					<span>{article.date}</span>
-				</div>
-			</div>
-        </CardDescription>
-        {/* <CardAction>
+                    <div className="flex flex-col gap-1 text-xs text-gray-600 mb-3 border-t border-gray-300 pt-2">
+                        <div className="flex items-center gap-1">
+                            <User size={12} />
+                            <span className="italic">{article.author}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                            <Calendar size={12} />
+                            <span>{article.date}</span>
+                        </div>
+                    </div>
+                </CardDescription>
+                {/* <CardAction>
           <Button variant="link">Sign Up</Button>
         </CardAction> */}
-      </CardHeader>
-      <CardContent>
-            <p dangerouslySetInnerHTML={{ __html: article.excerpt.rendered }} />
-      </CardContent>
-      <CardFooter className="flex-col gap-2">
-<div className="text-center mt-3 text-xs">◆◆◆</div>
-      </CardFooter>
+            </CardHeader>
+            <CardContent>
+                <p dangerouslySetInnerHTML={{ __html: article.excerpt.rendered }} />
+            </CardContent>
+            <CardFooter className='justify-self-end w-full flex justify-end'>{tags.map(tag => {
+                    return tag !== 'dev' ? <Image src={`${tag}_logo.svg`} width={32} height={32} alt={tag} key={tag} className='mx-1 bg-foreground aspect-square rounded-full p-1'/> : null
+                }) }</CardFooter>
         </Card>
     </Link>
-	);
+};
 
 	return (
 		<div className="min-h-screen">
