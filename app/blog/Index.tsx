@@ -53,9 +53,9 @@ const Index = ({ posts }: { posts: WordPressPost[]}) => {
 
     const ArticleCard = ({ article }: { article: WordPressPost }) => (<Link 
             href={`/blog/${article.slug}`} 
-            className={cn("hover:opacity-80 transition m-0", geist_mono.className)}
+            className={cn("aspect-square", geist_mono.className)}
         >      
-        <Card className="m-2 rounded-none border-transparent">
+        <Card className={cn(styles.articles_list_card, "m-2 rounded-none border-transparent")}>
       <CardHeader>
         <CardTitle>{decodeHtmlEntities(article.title.rendered)}</CardTitle>
         <CardDescription>
@@ -108,13 +108,12 @@ const Index = ({ posts }: { posts: WordPressPost[]}) => {
 
 			{/* Contenu principal */}
 			<main
-				className="w-full px-8 py-8 bg-white"
-                style={{ maxHeight: '100dvh', overflow: 'auto' }}>
+				className="w-full px-8 py-8 bg-white">
                 <Breadcrumbs className="w-full ml-2 mb-8" posts={posts} />
                 
 				{/* Masonry layout avec 3 colonnes */}
-				<div className="flex gap-1">
-					{columns.map((column, colIndex) => (
+				{/* <div className="flex gap-1"> */}
+					{/* {columns.map((column, colIndex) => (
 						<div key={colIndex} className="flex-1 flex flex-col gap-0">
 							{column.map((article,i) => (
                                 <ArticleCard key={i}
@@ -122,8 +121,17 @@ const Index = ({ posts }: { posts: WordPressPost[]}) => {
                                     />
                                 ))}
 						</div>
-					))}
-				</div>
+					))} */}
+
+						<div className={styles.articles_list}>
+							{posts.map((article,i) => (
+                                <ArticleCard key={i}
+                                    article={article}
+                                    />
+                            ))}
+						</div>
+					{/* ))} */}
+				{/* </div> */}
 			</main>
 
 			{/* Pied de page */}

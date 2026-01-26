@@ -36,7 +36,7 @@ export default function Breadcrumbs({ className, posts } : { className: string ,
     }
     return (
     <Breadcrumb className={className}>
-        <BreadcrumbList className={styles.list}>
+        <BreadcrumbList className={styles.breadcrumb_list}>
             <BreadcrumbItem>
                 <BreadcrumbLink asChild>
                     <Link href="#" data-category="all" onClick={handleClick}><span className={cn("font-bold", currentCategory === 'all' && styles.underlined)}>Tout</span></Link>
