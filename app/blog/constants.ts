@@ -1,13 +1,12 @@
-import { Category } from "./Index";
+import { FilteredCategory } from "./Index";
 type Tag = {
     name: string;
 }
 
-const categories_list: Record<Category, number | number[]> = {
-    all: [6504, 6460, 4315],
-    dev: 6504,
-    diy: 6460,
-    musique: 4315
+const categories_list: Record<FilteredCategory, number> = {
+    "dev": 6504,
+    "diy": 6460,
+    "musique": 4315
 }
 
 const tags_list: Record<string, Tag> = {
