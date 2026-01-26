@@ -108,7 +108,7 @@ const Index = ({ posts }: { posts: WordPressPost[]}) => {
 
 			{/* Contenu principal */}
 			<main
-				className="w-full px-8 py-8 border-4 bg-white"
+				className="w-full px-8 py-8 bg-white"
                 style={{ maxHeight: '100dvh', overflow: 'auto' }}>
             <Breadcrumbs className="w-full ml-2 mb-8"/>
                 

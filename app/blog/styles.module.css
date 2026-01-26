@@ -12,3 +12,60 @@
     text-underline-offset: .6rem;
     text-decoration: underline;
 }
+
+.list {
+    & > li {   
+        & > a {
+            position: relative;
+            & + div {
+            position: absolute;
+            position-area: top right;     
+            transform: translate(12.5%, 50%);
+        }  
+        }   
+        &:nth-of-type(1) {
+            & > a  { 
+                anchor-name: --all;                
+                & + div {  
+                    position-anchor: --all;
+                }
+            }
+        }        
+
+        &:nth-of-type(3) {
+            & > a  { 
+                anchor-name: --dev;                
+                & + div {  
+                    position-anchor: --dev;
+                }
+            }
+        }        
+
+        &:nth-of-type(5) {
+            & > a  {                 
+                anchor-name: --frontend;
+                & + div {  
+                    position-anchor: --frontend;
+                }
+            }
+        }        
+
+        &:nth-of-type(7) {
+            & > a  {                 
+                anchor-name: --diy;
+                & + div {  
+                    position-anchor: --diy;
+                }
+            }
+        } 
+        
+        &:nth-of-type(9) {
+            & > a  {                 
+                anchor-name: --music;
+                & + div {  
+                    position-anchor: --music;
+                }
+            }
+        }         
+    }
+}
