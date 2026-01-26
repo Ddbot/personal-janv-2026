@@ -101,7 +101,9 @@
 
     /* margin: 2rem; */
     border-radius: 0;
-    border: 0px solid var(--primary);
+    /* border: 0px solid var(--primary); */
+
+    background-color: var(--background);
 
     scale: 1;
     opacity: 1;
@@ -116,8 +118,7 @@
 
     &:hover {
         animation: fadeIn .2s ease-in-out 0s 1 normal forwards;
-        /* scale: .85;
-        opacity: 1; */
+        /* background-color: color-mix(in srgb, var(--background), transparent 0%); */
     }
 }
 
@@ -126,7 +127,7 @@
     position: absolute;
     inset: 0;
     border-style:  solid;
-    border-color:  var(--primary);
+    /* border-color:  var(--primary); */
     border-width: calc((100dvw - 2ch) / 2);
 
     /* transition: border .2s ease-in-out; */
@@ -134,7 +135,7 @@
 
     .articles_list_card:hover & {
         border-width: 0;
-        border-color: transparent;
+        /* border-color: transparent; */
     }
 }
 

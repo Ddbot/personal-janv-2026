@@ -1,6 +1,8 @@
 "use client";
 
-import React, { useState, useMemo, ViewTransition } from 'react';
+import React, { useState, ViewTransition, use } from 'react';
+import { ThemeContext } from '@/contexts/ThemeContext';
+
 import Breadcrumbs from './BreadCrumbs';
 import {
   Card,
@@ -20,6 +22,8 @@ import styles from './styles.module.css';
 import { tags_list } from './constants';
 import Image from 'next/image';
 import { categories_list } from './constants';
+import { cards_palette } from './constants';
+import gsap from 'gsap';
 
 const geist = Geist({ variable: '--font-variable' })
 const geist_mono = Geist_Mono({ variable: '--font-mono', weight: ['300', '900'] })
@@ -48,6 +52,7 @@ export interface WordPressPost {
 const Index = ({ posts }: { posts: WordPressPost[] }) => {
     const [currentCategory, setCurrentCategory]: [currentCategory: Category, setCurrentCategory: Dispatch<React.SetStateAction<Category>>] = useState<Category>('all');    
     const [sortedPosts, setSortedPosts] = useState<WordPressPost[]>(posts);
+    const { theme } = use(ThemeContext);
 
     function handleClick(e: React.MouseEvent<HTMLAnchorElement>) {
         e.preventDefault();
@@ -60,18 +65,24 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
         }
     }
     
-    const ArticleCard = ({ article }: { article: WordPressPost }) => {
+    const ArticleCard = ({ article, index }: { article: WordPressPost, index: number }) => {
         const tags: string[] = article.tags.map((tag) => {
             return tags_list[String(tag)].name
         });
+
+        const border_color: any = gsap.utils.wrap(cards_palette[theme], index);
         
         return <Link
         href={`/blog/${article.slug}`}
         className={cn( geist_mono.className)}
     >
-        <Card className={cn(styles.articles_list_card)}>
+            <Card className={cn(styles.articles_list_card)} style={{
+            borderColor: border_color
+        }}>
             {/* IMAGE de cover */}
-            <div className={styles.coverImage}></div>
+            <div className={styles.coverImage} style={{
+            borderColor: border_color
+        }}></div>
             <CardHeader className='h-32'>
                 <CardTitle className={ cn(geist.className, "font-extrabold", 'max-h-[3lh] h-[3lh]') }>{decodeHtmlEntities(article.title.rendered)}</CardTitle>
                 <CardDescription className="h-24">
@@ -131,6 +142,7 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
                             <ViewTransition key={i}>
                                 <ArticleCard
                                     article={article}
+                                    index={i}
                                     />
                             </ViewTransition>
                         ))}
@@ -141,13 +153,13 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
 			<footer className="bg-black text-white py-4 mt-12">
 				<div className="max-w-7xl mx-auto px-4 text-center">
 					<div className="text-sm">
-						{/* <p className="mb-1">
+						<p className="mb-1">
 							Bureau de Rédaction: 12 Boulevard des Capucines,
 							Paris
 						</p>
 						<p className="text-xs opacity-75">
 							Télégramme: LECOURRIER - Téléphone: GUTENBERG 45-67
-						</p> */}
+						</p>
 					</div>
 				</div>
 			</footer>
