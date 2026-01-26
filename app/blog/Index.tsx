@@ -143,15 +143,15 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
 			<main
 				className="w-full px-8 py-8 bg-white">
                 <Breadcrumbs className="w-full ml-2 mb-8" posts={posts} handleClick={handleClick} currentCategory={currentCategory}/>
-                <ViewTransition>
                     <div className={styles.articles_list}>
                         {sortedPosts.map((article,i) => (
-                            <ArticleCard key={i}
-                                article={article}
-                                />
+                            <ViewTransition key={i}>
+                                <ArticleCard
+                                    article={article}
+                                    />
+                            </ViewTransition>
                         ))}
                     </div>
-                </ViewTransition>
 			</main>
 
 			{/* Pied de page */}
