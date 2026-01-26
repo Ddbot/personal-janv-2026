@@ -24,6 +24,8 @@ import { categories_list } from './constants';
 const geist = Geist({ variable: '--font-variable' })
 const geist_mono = Geist_Mono({ variable: '--font-mono', weight: ['300', '900'] })
 
+export type Category = 'all' | 'dev' | 'diy' | 'musique';
+
 export interface WordPressPost {
   id: number;
   slug: string;
@@ -43,6 +45,20 @@ export interface WordPressPost {
 }
 
 const Index = ({ posts }: { posts: WordPressPost[] }) => {
+    const [currentCategory, setCurrentCategory]: [currentCategory: Category, setCurrentCategory: Dispatch<React.SetStateAction<Category>>] = useState<Category>('all');    
+    const [sortedPosts, setSortedPosts] = useState<WordPressPost[]>(posts);
+
+    function handleClick(e: React.MouseEvent<HTMLAnchorElement>) {
+        e.preventDefault();
+        setCurrentCategory(e.currentTarget.dataset.category as Category);        
+        if(e.currentTarget.dataset.category === 'all') {
+            setSortedPosts(posts);
+            return
+        } else {
+            setSortedPosts(posts.filter(post => post.categories.includes(categories_list[e.currentTarget.dataset.category as Category])));
+        }
+    }
+    
     const ArticleCard = ({ article }: { article: WordPressPost }) => {
         const tags: string[] = article.tags.map((tag) => {
             return tags_list[String(tag)].name
@@ -84,7 +100,25 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
                 }) }</CardFooter>
         </Card>
     </Link>
-};
+    };
+    
+    // function sortAndCountTags(tagsArray: number[], query: Category) {
+//     const sortedTags = tagsArray.sort((a, b) => a - b);
+    
+//     switch ((query)) {
+//         case 'all':
+//             return sortedTags.length;
+//         case 'frontend':
+//             return sortedTags.filter(tag => {
+//                 return tags_list[tag].name === 'frontend';
+//             }).length;
+//         default:
+//             return sortedTags.filter(tag => {
+//                 return tags_list[tag].name === query;
+//             })
+//             break;
+//     }
+// }
 
 	return (
 		<div className="min-h-screen">
@@ -108,10 +142,10 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
 			{/* Contenu principal */}
 			<main
 				className="w-full px-8 py-8 bg-white">
-                <Breadcrumbs className="w-full ml-2 mb-8" posts={posts} />
+                <Breadcrumbs className="w-full ml-2 mb-8" posts={posts} handleClick={handleClick} currentCategory={currentCategory}/>
                 <ViewTransition>
                     <div className={styles.articles_list}>
-                        {posts.map((article,i) => (
+                        {sortedPosts.map((article,i) => (
                             <ArticleCard key={i}
                                 article={article}
                                 />

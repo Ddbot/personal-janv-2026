@@ -1,8 +1,10 @@
+import { Category } from "./Index";
 type Tag = {
     name: string;
 }
 
-const categories_list = {
+const categories_list: Record<Category, number | number[]> = {
+    all: [6504, 6460, 4315],
     dev: 6504,
     diy: 6460,
     musique: 4315
