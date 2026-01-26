@@ -91,7 +91,7 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
                     </div> */}
                 </CardDescription>
             </CardHeader>
-            <CardContent className={styles.CardContent}>
+            <CardContent className={styles.cardContent}>
                 <p dangerouslySetInnerHTML={{ __html: article.excerpt.rendered }} className={styles.excerpt}/>
             </CardContent>
             <CardFooter className={styles.cardFooter}>{
