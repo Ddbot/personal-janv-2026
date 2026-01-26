@@ -264,12 +264,14 @@
 
 @keyframes animate_tech_logos {
     0% {
-        transform: translate(-2ch, 0);
+        /* transform: translate(-2ch, 0); */
+        transform: translate(0, -2ch);
         margin-left: .75rem;
-        opacity: 1;
+        opacity: 0;
     }
 
     100% {
+        /* transform: translate(0, 0); */
         transform: translate(0, 0);
         margin-left: .75rem;
         opacity: 1;

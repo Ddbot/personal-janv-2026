@@ -78,7 +78,7 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
     >
         <Card className={cn(styles.articles_list_card)} style={{
                 backgroundColor: border_color,
-            borderColor: border_color,
+                borderColor: border_color,
                 "--border-color": border_color,
             "--background-color": border_color
         }}>
