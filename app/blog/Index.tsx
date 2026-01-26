@@ -105,7 +105,7 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
         </CardAction> */}
             </CardHeader>
             <CardContent>
-                <p dangerouslySetInnerHTML={{ __html: article.excerpt.rendered }} />
+                <p dangerouslySetInnerHTML={{ __html: article.excerpt.rendered }} className='text-pretty'/>
             </CardContent>
             <CardFooter className={styles.card_footer}>{tags.map(tag => {
                 return tag !== 'dev' ? <div className={cn(styles.pill)} key={tag}><Image src={`${tag}_logo.svg`} width={ 20 } height={ 20 } alt={tag} key={tag} className='bg-white aspect-square rounded-full'/></div> : null
