@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, ViewTransition } from 'react';
 import Breadcrumbs from './BreadCrumbs';
 import {
   Card,
@@ -89,7 +89,7 @@ const Index = ({ posts }: { posts: WordPressPost[]}) => {
 
 	return (
 		<div className="min-h-screen">
-			{/* En-tête du journal */}
+			{/* En-tête du blog */}
 			<header className={cn(styles.header, "mb-20")}>
                 <div className="text-left">
                     <hgroup className={cn("text-[3.5rem] text-foreground font-extrabold mb-5 max-h-[2lh]")}>
@@ -110,6 +110,7 @@ const Index = ({ posts }: { posts: WordPressPost[]}) => {
 			<main
 				className="w-full px-8 py-8 bg-white">
                 <Breadcrumbs className="w-full ml-2 mb-8" posts={posts} />
+                <ViewTransition>
                     <div className={styles.articles_list}>
                         {posts.map((article,i) => (
                             <ArticleCard key={i}
@@ -117,6 +118,7 @@ const Index = ({ posts }: { posts: WordPressPost[]}) => {
                                 />
                         ))}
                     </div>
+                </ViewTransition>
 			</main>
 
 			{/* Pied de page */}

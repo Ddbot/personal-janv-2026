@@ -1,5 +1,6 @@
-import parse, { domToReact } from 'html-react-parser';
+import { ViewTransition } from 'react';
 import Image from 'next/image';
+import parse, { domToReact } from 'html-react-parser';
 import Link from 'next/link';
 import { decodeHtmlEntities } from '@/lib/utils';
 
@@ -100,20 +101,21 @@ export default async function PostPage({ params }) {
 	const post = await getPost((await params).slug);
 	console.log('Post: ', post);
 	return (
-		<article className="p-8">
-			<h1
-				className="flex items-center justify-center scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance"
-				style={{
-					minHeight: '40dvh',
-					backgroundImage: `url(${post.jetpack_featured_media_url})`,
-					backgroundSize: 'cover',
-                }}
-            >
-                {/* <AnimatedBeamMultipleOutputDemo /> */}
-				{decodeHtmlEntities(post.title.rendered)}
-			</h1>
-			{/* <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} /> */}
-			{parseContent(post.content.rendered)}
-		</article>
+		<ViewTransition>
+			<article className="p-8">
+				<h1
+					className="flex items-center justify-center scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance"
+					style={{
+						minHeight: '40dvh',
+						backgroundImage: `url(${post.jetpack_featured_media_url})`,
+						backgroundSize: 'cover',
+					}}>
+					{/* <AnimatedBeamMultipleOutputDemo /> */}
+					{decodeHtmlEntities(post.title.rendered)}
+				</h1>
+				{/* <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} /> */}
+				{parseContent(post.content.rendered)}
+			</article>
+		</ViewTransition>
 	);
 }
