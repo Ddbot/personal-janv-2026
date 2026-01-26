@@ -77,18 +77,18 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
         className={cn( geist_mono.className)}
     >
         <Card className={cn(styles.articles_list_card)} style={{
-            borderColor: border_color
+                backgroundColor: border_color,
+            borderColor: border_color,
+                "--border-color": border_color,
+            "--background-color": border_color
         }}>
             {/* IMAGE de cover */}
             <div className={styles.coverImage} style={{
-                borderColor: border_color
             }}>
             </div>
             <CardHeader className={styles.cardHeader}>
                 <CardTitle className={ cn(geist.className, styles.cardTitle) }>{decodeHtmlEntities(article.title.rendered)}</CardTitle>
                 <CardDescription className={styles.cardDescription}>
-                    {/* <div className="h-full flex flex-col gap-1 text-xs mb-3 border-t border-gray-300 pt-2">
-                    </div> */}
                 </CardDescription>
             </CardHeader>
             <CardContent className={styles.cardContent}>
