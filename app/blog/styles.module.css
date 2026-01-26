@@ -7,3 +7,8 @@
         text-box-trim: trim-both;
     }
 }
+
+.underlined {
+    text-underline-offset: .6rem;
+    text-decoration: underline;
+}

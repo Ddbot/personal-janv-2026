@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from 'react';
+import Breadcrumbs from './BreadCrumbs';
 import {
   Card,
   CardAction,
@@ -105,15 +106,12 @@ const Index = ({ posts }: { posts: WordPressPost[]}) => {
                 </div>
             </header>
 
-			{/* Ligne décorative */}
-			{/* <div className="bg-[--chart-2] h-1"></div>
-			<div className="bg-[--chart-1] h-2"></div>
-			<div className="bg-[--chart-2] h-0.5"></div> */}
-
 			{/* Contenu principal */}
 			<main
 				className="w-full px-8 py-8 border-4 bg-white"
-				style={{ maxHeight: '100dvh', overflow: 'auto' }}>
+                style={{ maxHeight: '100dvh', overflow: 'auto' }}>
+            <Breadcrumbs className="w-full ml-2 mb-4"/>
+                
 				{/* Masonry layout avec 3 colonnes */}
 				<div className="flex gap-1">
 					{columns.map((column, colIndex) => (
