@@ -76,40 +76,31 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
         href={`/blog/${article.slug}`}
         className={cn( geist_mono.className)}
     >
-            <Card className={cn(styles.articles_list_card)} style={{
+        <Card className={cn(styles.articles_list_card)} style={{
             borderColor: border_color
         }}>
             {/* IMAGE de cover */}
             <div className={styles.coverImage} style={{
-            borderColor: border_color
-        }}></div>
-            <CardHeader className='h-32'>
-                <CardTitle className={ cn(geist.className, "font-extrabold", 'max-h-[3lh] h-[3lh]') }>{decodeHtmlEntities(article.title.rendered)}</CardTitle>
-                <CardDescription className="h-24">
-                    {/* <span>
-                        {article.categories.toString()}
-                    </span> */}
-                    <div className="h-full flex flex-col gap-1 text-xs text-gray-600 mb-3 border-t border-gray-300 pt-2">
-                        {/* <div className="flex items-center gap-1">
-                            <User size={12} />
-                            <span className="italic">{article.author}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                            <Calendar size={12} />
-                            <span>{article.date}</span>
-                        </div> */}
-                    </div>
+                borderColor: border_color
+            }}>
+            </div>
+            <CardHeader className={styles.cardHeader}>
+                <CardTitle className={ cn(geist.className, styles.cardTitle) }>{decodeHtmlEntities(article.title.rendered)}</CardTitle>
+                <CardDescription className={styles.cardDescription}>
+                    {/* <div className="h-full flex flex-col gap-1 text-xs mb-3 border-t border-gray-300 pt-2">
+                    </div> */}
                 </CardDescription>
-                {/* <CardAction>
-          <Button variant="link">Sign Up</Button>
-        </CardAction> */}
             </CardHeader>
-            <CardContent>
-                <p dangerouslySetInnerHTML={{ __html: article.excerpt.rendered }} className='text-pretty'/>
+            <CardContent className={styles.CardContent}>
+                <p dangerouslySetInnerHTML={{ __html: article.excerpt.rendered }} className={styles.excerpt}/>
             </CardContent>
-            <CardFooter className={styles.card_footer}>{tags.map(tag => {
-                return tag !== 'dev' ? <div className={cn(styles.pill)} key={tag}><Image src={`${tag}_logo.svg`} width={ 20 } height={ 20 } alt={tag} key={tag} className='bg-white aspect-square rounded-full'/></div> : null
-                }) }</CardFooter>
+            <CardFooter className={styles.cardFooter}>{
+                    tags.map(tag => {
+                        return tag !== 'dev' ? <div className={cn(styles.pill)} key={tag}>
+                            <Image src={`${tag}_logo.svg`} width={20} height={20} alt={tag} key={tag} className='bg-white aspect-square rounded-full' /></div> : null
+                    })
+                }
+            </CardFooter>
         </Card>
     </Link>
     };
@@ -137,16 +128,16 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
 			<main
 				className="w-full px-8 py-8 bg-white">
                 <Breadcrumbs className="w-full ml-2 mb-8" posts={posts} handleClick={handleClick} currentCategory={currentCategory}/>
-                    <div className={styles.articles_list}>
-                        {sortedPosts.map((article,i) => (
-                            <ViewTransition key={i}>
-                                <ArticleCard
-                                    article={article}
-                                    index={i}
-                                    />
-                            </ViewTransition>
-                        ))}
-                    </div>
+                <div className={styles.articles_list}>
+                    {sortedPosts.map((article,i) => (
+                        <ViewTransition key={i}>
+                            <ArticleCard
+                                article={article}
+                                index={i}
+                                />
+                        </ViewTransition>
+                    ))}
+                </div>
 			</main>
 
 			{/* Pied de page */}
