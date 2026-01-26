@@ -97,7 +97,7 @@
         flex-flow: column;
         justify-content: flex-start;
 
-        transform-origin: center;
+        transform-origin: center center;
 
         border-radius: 0;        
 
@@ -115,14 +115,16 @@
                 container-type: inline-size;   
                 height: calc(var(--spacing) * 32);
                 z-index: 2;
+                animation: animate_header .125s linear 0s 1 forwards;
             }
 
-            .cardContent {                
-                visibility: visible;                
+            .pill {                
+                animation: animate_tech_logos .125s ease-in-out calc(.05s * sibling-index()) 1 forwards;
             }
 
             .cardDescription {
-                visibility: visible;
+                /* visibility: visible; */
+                opacity: 1;
                 height: 100%;
                 border-top: 1px solid var(--color-gray-300);
                 padding-top: .5rem;
@@ -153,7 +155,7 @@
             display: flex;
             flex-flow: column;
             justify-content: start;
-            align-items: center;
+            align-items: start;
             
 
             div {
@@ -161,18 +163,15 @@
                 width: 100%;
                 height: auto;
 
-                text-align: center;
+                /* text-align: center; */
+                margin-left: 2ch;
 
                 font-size: clamp(1vw,1.2rem,1.4rem);
             }
         }   
 
         &:not(:hover) :is(.cardDescription,.cardContent,.cardFooter,.excerpt){
-            /* display: none; */
-            /* height: 0px; */
-            visibility: hidden;
-            /* font-size: 0; */
-            /* transition: font-size .2s ease-in-out 0s 1 normal forwards; */
+            opacity: 0;
         }
 
         .cardTitle {
@@ -181,19 +180,12 @@
             height: 3lh;
         }
 
-        .cardDescription {
-            /* & > div { */
-                visibility: hidden;
-            /* } */
-            /* height: calc(var(--spacing) * 24); */                
-        }  
-
         .cardContent {
             container-name: card-content;
             container-type: inline-size;    
 
-            width: 100%;
-            height: 100%;
+            /* width: 100%;
+            height: 100%; */
         }
 
         .excerpt {
@@ -237,6 +229,12 @@
 .pill {
     margin-left: .75rem;
     border-radius: 100%;
+    opacity: 0;
+    @starting-style {
+        transform: translate(-2ch, 0);
+        margin-left: 0;
+        opacity: 0;
+    }
 }
 
 @keyframes fadeIn {
@@ -249,5 +247,43 @@
         border-width: 2ch;
         border-color: var(--border-color);
         background-color: var(--background);        
+    }
+}
+
+@keyframes animate_header {
+ 0% {
+    margin-block-start: 40%;
+    margin-left: 2ch;
+ }   
+
+ 100% {
+    margin-block-start: 0;
+    margin-left: 0;
+ }   
+}
+
+@keyframes animate_content {
+    0% {
+        opacity: 0;
+        transform: translateY(-1rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes animate_tech_logos {
+    0% {
+        transform: translate(-2ch, 0);
+        margin-left: .75rem;
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(0, 0);
+        margin-left: .75rem;
+        opacity: 1;
     }
 }

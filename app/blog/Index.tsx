@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, ViewTransition, use } from 'react';
-import { ThemeContext } from '@/contexts/ThemeContext';
+import { ThemeContext, Theme } from '@/contexts/ThemeContext';
 
 import Breadcrumbs from './BreadCrumbs';
 import {
@@ -52,7 +52,7 @@ export interface WordPressPost {
 const Index = ({ posts }: { posts: WordPressPost[] }) => {
     const [currentCategory, setCurrentCategory]: [currentCategory: Category, setCurrentCategory: Dispatch<React.SetStateAction<Category>>] = useState<Category>('all');    
     const [sortedPosts, setSortedPosts] = useState<WordPressPost[]>(posts);
-    const { theme } = use(ThemeContext);
+    const { theme }: { theme: Theme }= use(ThemeContext);
 
     function handleClick(e: React.MouseEvent<HTMLAnchorElement>) {
         e.preventDefault();
