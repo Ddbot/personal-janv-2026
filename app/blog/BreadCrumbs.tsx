@@ -17,7 +17,7 @@ import styles from './styles.module.css';
 type Category = 'all' | 'dev' | 'frontend' | 'diy' | 'music';
 
 function Separator() {
-    return  <BreadcrumbSeparator>/</BreadcrumbSeparator>
+    return <BreadcrumbSeparator className={"mx-3"}>/</BreadcrumbSeparator>
 }
 
 export default function Breadcrumbs({ className } : { className: string }) {
@@ -30,16 +30,16 @@ export default function Breadcrumbs({ className } : { className: string }) {
     return (
     <Breadcrumb className={className}>
         <BreadcrumbList>
-            <BreadcrumbItem>
+        <BreadcrumbItem>
         <BreadcrumbLink asChild>
         <Link href="#" data-category="all" onClick={handleClick}><span className={cn("font-bold", currentCategory === 'all' && styles.underlined)}>Tout</span></Link>
         </BreadcrumbLink>
         </BreadcrumbItem>
         <Separator />
         <BreadcrumbItem>
-        <BreadcrumbLink asChild>
-        <Link href="#" data-category="dev" onClick={handleClick}><span className={cn("font-bold", currentCategory === 'dev' && styles.underlined)}>Dev</span></Link>
-        </BreadcrumbLink>
+            <BreadcrumbLink asChild>
+                <Link href="#" data-category="dev" onClick={handleClick}><span className={cn("font-bold", currentCategory === 'dev' && styles.underlined)}>Dev</span></Link>
+            </BreadcrumbLink>
         </BreadcrumbItem>
         <Separator />
         {/* <BreadcrumbItem>
