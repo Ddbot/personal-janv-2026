@@ -51,7 +51,9 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
         href={`/blog/${article.slug}`}
         className={cn( geist_mono.className)}
     >
-        <Card className={cn(styles.articles_list_card, "m-2 rounded-none border-transparent")}>
+        <Card className={cn(styles.articles_list_card)}>
+            {/* IMAGE de cover */}
+            <div className={styles.coverImage}></div>
             <CardHeader className='h-32'>
                 <CardTitle className={ cn(geist.className, "font-extrabold", 'max-h-[3lh] h-[3lh]') }>{decodeHtmlEntities(article.title.rendered)}</CardTitle>
                 <CardDescription className="h-24">
@@ -77,7 +79,7 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
                 <p dangerouslySetInnerHTML={{ __html: article.excerpt.rendered }} />
             </CardContent>
             <CardFooter className={styles.card_footer}>{tags.map(tag => {
-                return tag !== 'dev' ? <div className={cn(styles.pill)}><Image src={`${tag}_logo.svg`} width={ 20 } height={ 20 } alt={tag} key={tag} className='bg-white aspect-square rounded-full'/></div> : null
+                return tag !== 'dev' ? <div className={cn(styles.pill)} key={tag}><Image src={`${tag}_logo.svg`} width={ 20 } height={ 20 } alt={tag} key={tag} className='bg-white aspect-square rounded-full'/></div> : null
                 }) }</CardFooter>
         </Card>
     </Link>
