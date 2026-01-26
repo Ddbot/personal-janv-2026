@@ -44,49 +44,41 @@ export default function Breadcrumbs({ className, posts, handleClick, currentCate
     <Breadcrumb className={className}>
         <BreadcrumbList className={styles.breadcrumb_list}>
             <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                    <Link href="#" data-category="all" onClick={handleClick}><span className={cn("font-bold", currentCategory === 'all' && styles.underlined)}>Tout</span></Link>
+                <BreadcrumbLink asChild style={{ "--anchor-name": '--all' }}>
+                        <Link href="#" data-category="all" onClick={handleClick}>
+                            <span className={cn("font-bold", currentCategory === 'all' && styles.underlined)}>Tout</span></Link>
                 </BreadcrumbLink>
-                <Badge posts={posts} query="all" />
+                <Badge posts={posts} query="all" style={{  "--anchor-name": '--all' }}/>
             </BreadcrumbItem>
             
             <Separator />
             
             <BreadcrumbItem>
-                <BreadcrumbLink asChild>
+                <BreadcrumbLink asChild style={{ "--anchor-name": '--dev' }}>
                     <Link href="#" data-category="dev" onClick={handleClick}><span className={cn("font-bold", currentCategory === 'dev' && styles.underlined)}>Dev</span></Link>
                 </BreadcrumbLink>
-                <Badge posts={posts} query='dev' />
-            </BreadcrumbItem>
-            
-            <Separator />
-            
-            {/* <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                <Link href="#" data-category="frontend" onClick={handleClick}><span className={cn("font-bold", currentCategory === 'frontend' && styles.underlined)}>Front End</span></Link>
-                </BreadcrumbLink>
-                <Badge posts={posts} />
-            </BreadcrumbItem> */}
-            
-            {/* <Separator /> */}
-            
-            <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                <Link href="#" data-category="diy" onClick={handleClick}><span className={cn("font-bold", currentCategory === 'diy' && styles.underlined)}>Bricolage</span></Link>
-                </BreadcrumbLink>
-                <Badge posts={posts} query='diy' />
+                <Badge posts={posts} query='dev' style={{  "--anchor-name": '--dev' }} />
             </BreadcrumbItem>
             
             <Separator />
             
             <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                <Link href="#" data-category="musique" onClick={handleClick}><span className={cn("font-bold", currentCategory === 'musique' && styles.underlined)}>
-                    Musique
-                    </span>
-                </Link>
+                <BreadcrumbLink asChild style={{ "--anchor-name": '--diy' }}>
+                    <Link href="#" data-category="diy" onClick={handleClick}><span className={cn("font-bold", currentCategory === 'diy' && styles.underlined)}>Bricolage</span></Link>
                 </BreadcrumbLink>
-                <Badge posts={posts} query='musique' />
+                <Badge posts={posts} query='diy' style={{  "--anchor-name": '--diy' }} />
+            </BreadcrumbItem>
+            
+            <Separator />
+            
+            <BreadcrumbItem>
+                <BreadcrumbLink asChild style={{ "--anchor-name": '--music' }}>
+                    <Link href="#" data-category="musique" onClick={handleClick}><span className={cn("font-bold", currentCategory === 'musique' && styles.underlined)}>
+                        Musique
+                        </span>
+                    </Link>
+                </BreadcrumbLink>
+                <Badge posts={posts} query='musique' style={{  "--anchor-name": '--music' }} />
             </BreadcrumbItem>
         </BreadcrumbList>
     </Breadcrumb>
