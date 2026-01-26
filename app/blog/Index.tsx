@@ -25,6 +25,7 @@ const geist = Geist({ variable: '--font-variable' })
 const geist_mono = Geist_Mono({ variable: '--font-mono', weight: ['300', '900'] })
 
 export type Category = 'all' | 'dev' | 'diy' | 'musique';
+export type FilteredCategory = Omit<Category, 'all'>;
 
 export interface WordPressPost {
   id: number;
@@ -55,7 +56,7 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
             setSortedPosts(posts);
             return
         } else {
-            setSortedPosts(posts.filter(post => post.categories.includes(categories_list[e.currentTarget.dataset.category as Category])));
+            setSortedPosts(posts.filter(post => post.categories.includes(categories_list[e.currentTarget.dataset.category as FilteredCategory])));
         }
     }
     
@@ -101,24 +102,6 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
         </Card>
     </Link>
     };
-    
-    // function sortAndCountTags(tagsArray: number[], query: Category) {
-//     const sortedTags = tagsArray.sort((a, b) => a - b);
-    
-//     switch ((query)) {
-//         case 'all':
-//             return sortedTags.length;
-//         case 'frontend':
-//             return sortedTags.filter(tag => {
-//                 return tags_list[tag].name === 'frontend';
-//             }).length;
-//         default:
-//             return sortedTags.filter(tag => {
-//                 return tags_list[tag].name === query;
-//             })
-//             break;
-//     }
-// }
 
 	return (
 		<div className="min-h-screen">
