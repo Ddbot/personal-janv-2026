@@ -12,7 +12,7 @@ const categories_list: Record<FilteredCategory, number> = {
 
 export const cards_palette: Record<Theme, string[]> = {
     light: ["#072448","#54d2d2","#ffcb00","#f8aa4b","#ff6150"],
-    dark: ["#473107", "#D18254", "#000CFF", "#4ABFF7", "#4FFFA3"]
+    dark: ["#005078", "#007f91", "#69578a", "#81d87c", "#f9f871"]
 }
 
 const tags_list: Record<string, Tag> = {
