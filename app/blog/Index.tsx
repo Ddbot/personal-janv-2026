@@ -110,7 +110,7 @@ const Index = ({ posts }: { posts: WordPressPost[]}) => {
 			<main
 				className="w-full px-8 py-8 border-4 bg-white"
                 style={{ maxHeight: '100dvh', overflow: 'auto' }}>
-            <Breadcrumbs className="w-full ml-2 mb-4"/>
+            <Breadcrumbs className="w-full ml-2 mb-8"/>
                 
 				{/* Masonry layout avec 3 colonnes */}
 				<div className="flex gap-1">
