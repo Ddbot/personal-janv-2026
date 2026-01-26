@@ -92,7 +92,7 @@ const Index = ({ posts }: { posts: WordPressPost[]}) => {
 			{/* En-tête du journal */}
 			<header className={cn(styles.header, "mb-20")}>
                 <div className="text-left">
-                    <hgroup className={cn("text-[3.5rem] text-primary font-extrabold mb-5 max-h-[2lh]")}>
+                    <hgroup className={cn("text-[3.5rem] text-foreground font-extrabold mb-5 max-h-[2lh]")}>
                         <h3>
                             andry nirina –
                         </h3>
@@ -110,28 +110,13 @@ const Index = ({ posts }: { posts: WordPressPost[]}) => {
 			<main
 				className="w-full px-8 py-8 bg-white">
                 <Breadcrumbs className="w-full ml-2 mb-8" posts={posts} />
-                
-				{/* Masonry layout avec 3 colonnes */}
-				{/* <div className="flex gap-1"> */}
-					{/* {columns.map((column, colIndex) => (
-						<div key={colIndex} className="flex-1 flex flex-col gap-0">
-							{column.map((article,i) => (
-                                <ArticleCard key={i}
-                                    article={article}
-                                    />
-                                ))}
-						</div>
-					))} */}
-
-						<div className={styles.articles_list}>
-							{posts.map((article,i) => (
-                                <ArticleCard key={i}
-                                    article={article}
-                                    />
-                            ))}
-						</div>
-					{/* ))} */}
-				{/* </div> */}
+                    <div className={styles.articles_list}>
+                        {posts.map((article,i) => (
+                            <ArticleCard key={i}
+                                article={article}
+                                />
+                        ))}
+                    </div>
 			</main>
 
 			{/* Pied de page */}
