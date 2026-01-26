@@ -152,7 +152,7 @@
                 height: auto;
 
                 /* text-align: center; */
-                margin-left: 2ch;
+                margin-left: 1ch;
 
                 font-size: clamp(1vw,1.2rem,1.4rem);
             }
