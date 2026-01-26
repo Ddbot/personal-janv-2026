@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { cn } from '@/lib/utils';
 import styles from './styles.module.css';
+import { WordPressPost } from './Index';
 
 type Category = 'all' | 'dev' | 'frontend' | 'diy' | 'music';
 
@@ -20,13 +21,13 @@ function Separator() {
     return <BreadcrumbSeparator className={"mx-6"}>/</BreadcrumbSeparator>
 }
 
-function Badge({ nb }: { nb: number }) {
+function Badge({ posts }: { posts: WordPressPost[] }) {
     return <div className='absolute'>
-        <span className='bg-primary border-2 text-[10px] text-foreground p-1 rounded-full'>{nb}</span>
+        <span className='bg-primary text-[10px] text-foreground aspect-square rounded-full p-1'>{ posts ? posts.length : 0 }</span>
     </div>
 }
 
-export default function Breadcrumbs({ className } : { className: string }) {
+export default function Breadcrumbs({ className, posts } : { className: string , posts: WordPressPost[] | []}) {
     const [currentCategory, setCurrentCategory]: [currentCategory: Category, setCurrentCategory: Dispatch<React.SetStateAction<Category>>] = useState<Category>('all');
     
     function handleClick(e: React.MouseEvent<HTMLAnchorElement>) {
@@ -40,7 +41,7 @@ export default function Breadcrumbs({ className } : { className: string }) {
                 <BreadcrumbLink asChild>
                     <Link href="#" data-category="all" onClick={handleClick}><span className={cn("font-bold", currentCategory === 'all' && styles.underlined)}>Tout</span></Link>
                 </BreadcrumbLink>
-                <Badge nb={10} />
+                <Badge posts={posts} />
             </BreadcrumbItem>
             
             <Separator />
@@ -49,7 +50,7 @@ export default function Breadcrumbs({ className } : { className: string }) {
                 <BreadcrumbLink asChild>
                     <Link href="#" data-category="dev" onClick={handleClick}><span className={cn("font-bold", currentCategory === 'dev' && styles.underlined)}>Dev</span></Link>
                 </BreadcrumbLink>
-                <Badge nb={10} />
+                <Badge posts={posts} />
             </BreadcrumbItem>
             
             <Separator />
@@ -58,7 +59,7 @@ export default function Breadcrumbs({ className } : { className: string }) {
                 <BreadcrumbLink asChild>
                 <Link href="#" data-category="frontend" onClick={handleClick}><span className={cn("font-bold", currentCategory === 'frontend' && styles.underlined)}>Front End</span></Link>
                 </BreadcrumbLink>
-                <Badge nb={10} />
+                <Badge posts={posts} />
             </BreadcrumbItem>
             
             <Separator />
@@ -67,7 +68,7 @@ export default function Breadcrumbs({ className } : { className: string }) {
                 <BreadcrumbLink asChild>
                 <Link href="#" data-category="diy" onClick={handleClick}><span className={cn("font-bold", currentCategory === 'diy' && styles.underlined)}>Bricolage</span></Link>
                 </BreadcrumbLink>
-                <Badge nb={10} />
+                <Badge posts={posts} />
             </BreadcrumbItem>
             
             <Separator />
@@ -79,7 +80,7 @@ export default function Breadcrumbs({ className } : { className: string }) {
                     </span>
                 </Link>
                 </BreadcrumbLink>
-                <Badge nb={10} />
+                <Badge posts={posts} />
             </BreadcrumbItem>
         </BreadcrumbList>
     </Breadcrumb>

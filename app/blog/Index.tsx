@@ -21,7 +21,7 @@ import styles from './styles.module.css';
 const playwrite = Playwrite_FR_Trad({ variable:'--font-sans'})
 const geist_mono = Geist_Mono({ variable:'--font-mono', weight: ['300','900'] })
 
-interface WordPressPost {
+export interface WordPressPost {
   id: number;
   slug: string;
   link: string;
@@ -110,7 +110,7 @@ const Index = ({ posts }: { posts: WordPressPost[]}) => {
 			<main
 				className="w-full px-8 py-8 bg-white"
                 style={{ maxHeight: '100dvh', overflow: 'auto' }}>
-            <Breadcrumbs className="w-full ml-2 mb-8"/>
+                <Breadcrumbs className="w-full ml-2 mb-8" posts={posts} />
                 
 				{/* Masonry layout avec 3 colonnes */}
 				<div className="flex gap-1">
