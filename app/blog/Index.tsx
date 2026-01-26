@@ -19,6 +19,7 @@ import { cn } from '@/lib/utils';
 import styles from './styles.module.css';
 import { tags_list } from './constants';
 import Image from 'next/image';
+import { categories_list } from './constants';
 
 const geist = Geist({ variable: '--font-variable' })
 const geist_mono = Geist_Mono({ variable: '--font-mono', weight: ['300', '900'] })
@@ -46,7 +47,7 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
         const tags: string[] = article.tags.map((tag) => {
             return tags_list[String(tag)].name
         });
-
+        
         return <Link
         href={`/blog/${article.slug}`}
         className={cn( geist_mono.className)}

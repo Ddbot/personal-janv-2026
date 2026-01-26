@@ -2,6 +2,12 @@ type Tag = {
     name: string;
 }
 
+const categories_list = {
+    dev: 6504,
+    diy: 6460,
+    musique: 4315
+}
+
 const tags_list: Record<string, Tag> = {
     "696297179": {
         name: "apps_script"
@@ -40,4 +46,4 @@ const tags_list: Record<string, Tag> = {
     }
 }
 
-export { tags_list };
+export { tags_list, categories_list };
