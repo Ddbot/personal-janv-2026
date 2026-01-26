@@ -93,5 +93,18 @@
 
     display: flex;
     flex-flow: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+}
+
+.card_footer {
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.pill {
+    margin-left: .75rem;
+    border-radius: 100%;
+    box-shadow: inset 10px 10px 0 red;
 }

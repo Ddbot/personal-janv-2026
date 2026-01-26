@@ -52,21 +52,21 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
         className={cn( geist_mono.className)}
     >
         <Card className={cn(styles.articles_list_card, "m-2 rounded-none border-transparent")}>
-            <CardHeader>
-                    <CardTitle className={ cn(geist.className, "font-extrabold") }>{decodeHtmlEntities(article.title.rendered)}</CardTitle>
-                <CardDescription>
-                    <span>
+            <CardHeader className='h-32'>
+                <CardTitle className={ cn(geist.className, "font-extrabold", 'max-h-[3lh] h-[3lh]') }>{decodeHtmlEntities(article.title.rendered)}</CardTitle>
+                <CardDescription className="h-24">
+                    {/* <span>
                         {article.categories.toString()}
-                    </span>
-                    <div className="flex flex-col gap-1 text-xs text-gray-600 mb-3 border-t border-gray-300 pt-2">
-                        <div className="flex items-center gap-1">
+                    </span> */}
+                    <div className="h-full flex flex-col gap-1 text-xs text-gray-600 mb-3 border-t border-gray-300 pt-2">
+                        {/* <div className="flex items-center gap-1">
                             <User size={12} />
                             <span className="italic">{article.author}</span>
                         </div>
                         <div className="flex items-center gap-1">
                             <Calendar size={12} />
                             <span>{article.date}</span>
-                        </div>
+                        </div> */}
                     </div>
                 </CardDescription>
                 {/* <CardAction>
@@ -76,8 +76,8 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
             <CardContent>
                 <p dangerouslySetInnerHTML={{ __html: article.excerpt.rendered }} />
             </CardContent>
-            <CardFooter className='justify-self-end w-full flex justify-end'>{tags.map(tag => {
-                    return tag !== 'dev' ? <Image src={`${tag}_logo.svg`} width={32} height={32} alt={tag} key={tag} className='mx-1 bg-foreground aspect-square rounded-full p-1'/> : null
+            <CardFooter className={styles.card_footer}>{tags.map(tag => {
+                return tag !== 'dev' ? <div className={cn(styles.pill)}><Image src={`${tag}_logo.svg`} width={ 20 } height={ 20 } alt={tag} key={tag} className='bg-white aspect-square rounded-full'/></div> : null
                 }) }</CardFooter>
         </Card>
     </Link>
