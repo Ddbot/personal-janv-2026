@@ -88,7 +88,7 @@ function parseContent(html) {
             }  
             if (node.name === 'section') {
 				return (
-					<section>
+					<section className='bg-green-500'>
 						{domToReact(node.children)}
 					</section>
 				);

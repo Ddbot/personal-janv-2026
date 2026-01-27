@@ -52,27 +52,42 @@
         /* list-style-type: none;
         list-style-position: inside; */
         width: max-content;
+        line-height: 2;
     }
 
     & li {
         max-width: calc(750px - 4rem);   
         font-size: 1.05rem;
-        line-height: 1.72;
+        /* line-height: 1.72; */
         font-weight: 300;  
-        text-indent: 1.5rem;
+        text-indent: 2.5rem;
         position: relative;
 
-        &::before {            
-            content: counter(list-item) ".";
+        &::before, &::after {            
+            content: counter(list-item) ". ";
             position: absolute;
             text-align: right;
-            left: -2ch;  
+            left: -1.8ch;  
             top: -.1rem;        /* Adjust this value so that it appears where you want. */
-            width: 3ch;
-            font-size: 1.05em;  
+            /* width: 6ch; */
+            font-size: 1em;  
             
             display: flex;/* Adjust this value so that it appears what size you want. */
             justify-content: start;
+
+            /* background-color: red; */
+        }
+
+        &::after {
+            content: "";
+            left: calc(-0.33ch + 1rem);  
+            top: 0.25ch;  
+            background-color: var(--primary);
+            z-index: -1;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 100%;
+            /* padding: 1px; */
         }
     }
 
@@ -108,6 +123,11 @@
         border-radius: 8px;
         padding: 1rem;
         background-color: color-mix(in srgb, var(--primary) 10%, #ffffff00);
+
+        & > p {
+            margin-bottom: 1rem;
+        }
+  
     }
 }
 
