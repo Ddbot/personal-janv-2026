@@ -126,7 +126,7 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
 
 			{/* Contenu principal */}
 			<main
-				className="w-full px-8 py-8 bg-white">
+				className={styles.main}>
                 <Breadcrumbs className="w-full ml-2 mb-8" posts={posts} handleClick={handleClick} currentCategory={currentCategory}/>
                 <div className={styles.articles_list}>
                     {sortedPosts.map((article,i) => (
@@ -141,9 +141,9 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
 			</main>
 
 			{/* Pied de page */}
-			<footer className="bg-transparent text-white py-4 mt-12">
+			<footer className="dark:bg-black dark:text-foreground bg-white text-foreground py-4">
 				<div className="ml-2 mr-5 px-4">
-					<div className="text-sm">		
+					<div className="text-sm pb-8">		
 						<p className="w-full h-8 opacity-75 flex flex-row flex-nowrap justify-end align-center p-0 ml-auto">
                             <Mail size='icon' className="self-center w-5 h-5 mr-2 p-0" />
                             <div className='self-center'><a className="text-[1rem]" href="mailto:contact@andry.online">contact@andry.online</a></div>
@@ -155,4 +155,4 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
 	);
 };
 
-export default Index;
+export default Index;   

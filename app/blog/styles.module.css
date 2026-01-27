@@ -8,6 +8,15 @@
     }
 }
 
+.main {
+    /* "w-full px-8 py-8 bg-white" */
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    :global(.dark) & {background: linear-gradient(to bottom, var(--background), black);}
+    :global(.light) & {background: linear-gradient(to bottom, var(--background), white);}
+}
+
 .underlined {
     text-underline-offset: .6rem;
     text-decoration: underline;
