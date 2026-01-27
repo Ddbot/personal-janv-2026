@@ -13,7 +13,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Calendar, User } from 'lucide-react';
+import { Calendar, User, Mail } from 'lucide-react';
 import { decodeHtmlEntities } from '@/lib/utils';
 import Link from 'next/link';
 import { Geist, Geist_Mono } from 'next/font/google';
@@ -141,15 +141,12 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
 			</main>
 
 			{/* Pied de page */}
-			<footer className="bg-black text-white py-4 mt-12">
-				<div className="max-w-7xl mx-auto px-4 text-center">
-					<div className="text-sm">
-						<p className="mb-1">
-							Bureau de Rédaction: 12 Boulevard des Capucines,
-							Paris
-						</p>
-						<p className="text-xs opacity-75">
-							Télégramme: LECOURRIER - Téléphone: GUTENBERG 45-67
+			<footer className="bg-transparent text-white py-4 mt-12">
+				<div className="ml-2 mr-5 px-4">
+					<div className="text-sm">		
+						<p className="w-full h-8 opacity-75 flex flex-row flex-nowrap justify-end align-center p-0 ml-auto">
+                            <Mail size='icon' className="self-center w-5 h-5 mr-2 p-0" />
+                            <div className='self-center'><a className="text-[1rem]" href="mailto:contact@andry.online">contact@andry.online</a></div>
 						</p>
 					</div>
 				</div>
