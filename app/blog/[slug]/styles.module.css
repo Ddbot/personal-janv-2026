@@ -1,0 +1,123 @@
+.main {
+    /* 'flex flex-col justify-around items-center'    */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: start;
+
+
+    max-width: 750px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);    
+
+    & > article > h1 {
+        width: calc(750px - 4rem);   
+        font-size: 2.25rem;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-block: 2rem;
+        color: var(--text-primary);
+        letter-spacing: -0.025em;
+        text-align: left;
+
+        & > * {
+            display: none;
+        }
+
+    }
+
+    & > article > h2 {
+        width: calc(750px - 4rem);
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin-top: 3rem;
+        margin-bottom: 1.25rem;
+        color: var(--text-primary);
+        padding-bottom: 0.75rem;
+        border-bottom: 2px solid var(--foreground);            
+    }
+
+    & > article > h3 {
+        width: calc(750px - 4rem);   
+        font-size: 1.35rem;
+        font-weight: 600;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: var(--text-primary);
+        }    
+
+    & ol {
+        /* list-style-type: none;
+        list-style-position: inside; */
+        width: max-content;
+    }
+
+    & li {
+        max-width: calc(750px - 4rem);   
+        font-size: 1.05rem;
+        line-height: 1.72;
+        font-weight: 300;  
+        text-indent: 1.5rem;
+        position: relative;
+
+        &::before {            
+            content: counter(list-item) ".";
+            position: absolute;
+            text-align: right;
+            left: -2ch;  
+            top: -.1rem;        /* Adjust this value so that it appears where you want. */
+            width: 3ch;
+            font-size: 1.05em;  
+            
+            display: flex;/* Adjust this value so that it appears what size you want. */
+            justify-content: start;
+        }
+    }
+
+            /* Code blocks */
+    & pre {
+        /* background-color: var(--code-bg); */
+        background-color: black;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        overflow-x: auto;
+        box-shadow: var(--shadow-sm);
+        font-size: 0.72rem;
+    }        
+    
+    & code, & p code, & li code {
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        background-color: var(--code-bg);
+        
+        line-height: 1.6;
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        font-size: 0.72rem;
+        /* color: #c7254e; */
+        color: var(--primary);
+    }
+
+    & section {
+         /* className="w-fit border-4 p-4" */
+        width: fit-content;
+        border: 2px solid var(--primary);
+        border-radius: 8px;
+        padding: 1rem;
+        background-color: color-mix(in srgb, var(--primary) 10%, #ffffff00);
+    }
+}
+
+.p { 
+    width: calc(750px - 4rem);   
+    /* max-width: 70ch; */
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    overflow-wrap: break-word;
+    word-break: break-word;
+        /* hyphens: auto; */
+}   

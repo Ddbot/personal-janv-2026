@@ -3,6 +3,11 @@ import Image from 'next/image';
 import parse, { domToReact } from 'html-react-parser';
 import Link from 'next/link';
 import { decodeHtmlEntities } from '@/lib/utils';
+import styles from './styles.module.css';
+import { cn } from '@/lib/utils';
+import { Geist } from 'next/font/google';
+
+const geist = Geist({ variable: '--font-variable' })
 
 function parseContent(html) {
 	return parse(html, {
@@ -34,29 +39,29 @@ function parseContent(html) {
 						</Link>
 					);
 				}
-			}
+            }
 
 			// Replace <h2> with custom component
-			if (node.name === 'h2') {
-				return (
-					<h2 className="text-3xl font-bold mt-8 mb-4">
-						{node.children[0]?.data}
-					</h2>
-				);
-			}
-
 			if (node.name === 'h3') {
 				return (
-					<h3 className="text-2xl font-medium mt-6 mb-2">
+					<h3 className="text-3xl font-bold mt-8 mb-4">
 						{node.children[0]?.data}
 					</h3>
 				);
 			}
 
-            if (node.name === 'p') {
-                console.log('P: ', Object.keys(node), node.attribs);
+			if (node.name === 'h4') {
 				return (
-					<p className="max-w-4xl">
+					<h4 className="text-2xl font-medium mt-6 mb-2">
+						{node.children[0]?.data}
+					</h4>
+				);
+			}
+
+            if (node.name === 'p') {
+                // console.log('P: ', Object.keys(node), node.attribs);
+				return (
+					<p className={styles.p}>
 						{node.children
 							.map((child) => {
 								return child?.data;
@@ -64,7 +69,30 @@ function parseContent(html) {
 							.join(' ')}
 					</p>
 				);
-			}
+            }
+            if (node.name === 'ol') {
+				return (
+					<ol>
+						{domToReact(node.children)}
+					</ol>
+				);				
+			}              
+            if (node.name === 'li') {
+				return (<li className='text-md'>
+                    {node.children
+                        .map((child) => {
+                            return child?.data;
+                        })
+                        .join(' ')}
+                </li>);			
+            }  
+            if (node.name === 'section') {
+				return (
+					<section>
+						{domToReact(node.children)}
+					</section>
+				);
+			}              
 
 			// Code blocks
 			if (node.name === 'pre' && node.children[0]?.name === 'code') {
@@ -80,7 +108,7 @@ function parseContent(html) {
 
 function CodeBlock({ children, language }) {
 	return (
-		<pre className="bg-gray-900 text-white p-4 rounded-lg overflow-x-auto max-w-3xl my-8">
+		<pre className="h-full bg-gray-900 text-white p-4 rounded-lg overflow-x-auto max-w-[750px] my-8">
 			<code className={`language-${language}`}>{children}</code>
 		</pre>
 	);
@@ -102,20 +130,12 @@ export default async function PostPage({ params }) {
 	console.log('Post: ', post);
 	return (
 		<ViewTransition>
-			<article className="p-8">
-				<h1
-					className="flex items-center justify-center scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance"
-					style={{
-						minHeight: '40dvh',
-						backgroundImage: `url(${post.jetpack_featured_media_url})`,
-						backgroundSize: 'cover',
-					}}>
-					{/* <AnimatedBeamMultipleOutputDemo /> */}
-					{decodeHtmlEntities(post.title.rendered)}
-				</h1>
-				{/* <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} /> */}
-				{parseContent(post.content.rendered)}
-			</article>
+            <main className={cn(styles.main, geist.className)}>
+                <article>
+                    <h1>{decodeHtmlEntities(post.title.rendered)}</h1>
+                    {parseContent(post.content.rendered)}
+                </article>				
+			</main>
 		</ViewTransition>
 	);
 }

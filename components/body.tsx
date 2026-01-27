@@ -16,14 +16,12 @@ function Body({ children }: { children: React.ReactNode }) {
 
     return <body className={`${geistMono.variable} antialiased p-0`}>
         <Providers>
-            <div className="flex flex-col snap-y snap-mandatory">
-
+            <div className={cn("flex flex-col snap-y snap-mandatory")}>
                 <Navbar className={cn(
-                    styles.navbar,
-                    !pathname.startsWith('/blog') ? 'sticky' : 'static'
+                    styles.navbar
                 )} />
                 {children}
-                </div>
+            </div>
         </Providers>
     </body>
 }

@@ -76,7 +76,7 @@ export default function Navbar({ className } : { className: string}) {
     }, [router, setUser, setLoading, pathname]);
     
     return (
-        <div className={cn(
+        <header className={cn(
             className
         )}>
             <Link href='/'>                
@@ -110,6 +110,6 @@ export default function Navbar({ className } : { className: string}) {
                     }               
                 </SettingsSheet>
             </div>
-        </div>
+        </header>
     )
 };

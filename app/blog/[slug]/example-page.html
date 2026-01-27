@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synchroniser Google Drive & l'API de TRELLO avec Apps Script et Supabase | andry - le blog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1e40af;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --background: #ffffff;
+            --background-alt: #f9fafb;
+            --border-color: #e5e7eb;
+            --code-bg: #f3f4f6;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background-color: var(--background-alt);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--background);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .menu-icon {
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .menu-icon span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: var(--text-primary);
+            margin: 5px 0;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 750px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        article {
+            background-color: var(--background);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+            letter-spacing: -0.025em;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-top: 3rem;
+            margin-bottom: 1.25rem;
+            color: var(--text-primary);
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        h3 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        h1, h2, h3, h4 {
+            /* border-bottom: 2px solid var(--primary); */
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        /* Code blocks */
+        pre {
+            background-color: var(--code-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            box-shadow: var(--shadow-sm);
+        }
+
+        code {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        p code, li code {
+            background-color: var(--code-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #c7254e;
+        }
+
+        /* Images */
+        .image-container {
+            margin: 2.5rem 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+        }
+
+        .image-caption {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+            line-height: 1.7;
+        }
+
+        /* Callout boxes */
+        .callout {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--primary-color);
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+            border-radius: 6px;
+        }
+
+        .callout p {
+            margin-bottom: 0;
+        }
+
+        /* Section divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border-color), transparent);
+            margin: 3rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            article {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+            }
+
+            main {
+                margin: 1.5rem auto;
+                padding: 0 1rem;
+            }
+        }
+
+        /* Conclusion section */
+        .conclusion {
+            background-color: var(--background-alt);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 3rem;
+        }
+
+        .conclusion h2 {
+            border-bottom: none;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="/" class="logo">
+                andry <span>- le blog</span>
+            </a>
+            <div class="menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <article>
+            <h1>Synchroniser Google Drive & l'API de TRELLO avec Apps Script et Supabase</h1>
+
+            <p>Bon le truc cool ça sera que je créer une structure de base, où chaque dossier client de Google Drive se lie directement à des cartes dans Trello. Chaque modification dans Google Drive — que ce soit des updates de fichiers, nouveaux uploads ou réorganisations — est détectée en temps réel et déclenche automatiquement des mises à jour dans Trello. Le tout est orchestré via Apps Script pour Google Drive et via une gestion complète de l'API de Trello. Ce qui rend ce projet unique, c'est qu'on va intégrer Supabase pour stocker les paires de liens.</p>
+
+            <h2>1. Ma Solution</h2>
+
+            <p>Ce qui existe de base? J'ai une structure dans Google Drive qui est comme ça:</p>
+
+            <pre><code>Grand Dossier "VIP"
+└── Sous-dossier Client "NOM_CLIENT"
+    ├── Fichier 1
+    ├── Fichier 2
+    └── Sous-dossier projet</code></pre>
+
+            <p>De ce Dossier de CLIENT naît une carte dans une liste Trello de mon choix (je mettrais bien une catégorie « À démarrer » déjà où ça commence à s'empiler en attendant la gestion de tâche, mais ça déjà je gère après, dans le flux normal de tâche).</p>
+
+            <p>Bon à chaque fois qu'on crée un SOUS-DOSSIER CLIENT (un numéro à un dossier du GRAND VIP), alors ça créé automatiquement sa carte dans Trello avec son lien Google Drive.</p>
+
+            <h2>2. LE Résultat</h2>
+
+            <p>Globalement c'est continuer lequel de 3 choix couplant :</p>
+
+            <pre><code>console.log(dossierId.link != (undefined || null));  // Le dossier</code></pre>
+
+            <p>En cliquant ici Nom de la carte depuis le JSON:</p>
+
+            <pre><code>console.log('Nom de la carte depuis le JSON:', card.name);</code></pre>
+
+            <p>On arrive direct dans Google Drive et on récupère son contenu complet du dossier client là:</p>
+
+            <div class="image-container">
+                <img src="https://via.placeholder.com/800x400/e8f5e9/2e7d32?text=Google+Drive+Spreadsheet+Screenshot" alt="Capture d'écran du tableau Google Drive">
+                <p class="image-caption">Vue du tableau de synchronisation dans Google Drive</p>
+            </div>
+
+            <p>Ensuite on fait « let's check the fetched data »: (liste de callback). Par ce script Trello on créé plein alors l'id réel de ce de la carte de Trello, le Nom de chaque client, le lien de chaque dossier GoogleDrive ici etc donc l'accès aux fichiers de chacun de mes clients potentiel. De là le dossier où est stocké les fichiers de ses différents projets etc, où sera ses travaux en cours peut prendre son essor après. Excellent.</p>
+
+            <div class="callout">
+                <p><strong>Note importante :</strong> Assurez-vous que les permissions d'accès à Google Drive et Trello sont correctement configurées avant de déployer le script.</p>
+            </div>
+
+            <div class="image-container">
+                <img src="https://via.placeholder.com/800x600/f3e5f5/7b1fa2?text=Trello+Board+View" alt="Vue du tableau Trello">
+                <p class="image-caption">Interface du tableau Trello synchronisé</p>
+            </div>
+
+            <p>3 à gérer pour ce module (qui, dans chaque code liant l'id des events.CHANGE du log à droite).</p>
+
+            <h2>3. LA STACK</h2>
+
+            <p>Apps Script pour google drive, car le déclencheur webhook à garder ici. car les events API en mode push existent pour que ce soit pas trop sale avec des intervalles de latence pour l'actualité de ce qui se passe et de ce qu'on est censés savoir si ça bouge.</p>
+
+            <pre><code>// Config
+const TRELLO_API_KEY = 'your_trello_api_key';
+const TRELLO_TOKEN = 'your_trello_token';</code></pre>
+
+            <pre><code>// Exemple
+const BOARD_ID = 'your_board_id';</code></pre>
+
+            <p>On sait donc qu'un lien de boards se termine comme ça quand on l'observe en barre du navigateur ainsi avec l'ID visible:</p>
+
+            <h2>4. LES DIFFICULTÉS</h2>
+
+            <p>Dans cette version default Trello à très bien sait les actualité des modifs qu'on a faites de Trello.</p>
+
+            <div class="section-divider"></div>
+
+            <p>Mais donc problème ainsi que c'est ici qu'est encore défaillant l'héritage via les deux champs synchrone de <code>modifiedDate</code> et un <code>modifiedTime</code> sur les métadonnées des répertoire dans Google Drive.</p>
+
+            <p>J'en ai tiré profit <code>createdTime</code>, <code>modifiedTime</code>, <code>viewedByMeTime</code>. Et voilà finalement ce qu'on considère de CHACUN de nos événements :</p>
+
+            <pre><code>function checkDriveChanges() {
+  const folder = DriveApp.getFolderById('FOLDER_ID');
+  const files = folder.getFiles();
+  
+  while (files.hasNext()) {
+    const file = files.next();
+    // Process file changes
+  }
+}</code></pre>
+
+            <p>Enfin je dis qu'on code au douce, là aussi des erreurs CORS ont pu mettre des blocks et des cas où une mise à jour Trello résultait à 401 Unauthorized ou 403 Forbidden selon le setup d'être configuré dans paramètres du compte. Dans développeur de paramètre de sécurité on renseigne l'application, fait le premier call depuis postman dans ton URL (« générer des mots de user token », puis met ton Application et les Scopes configurées de lecture « Read » et Écriture « Write » qu'il te faut à chaque fois).</p>
+
+            <p>Trello n'utilise pas de webhooks de retour selon ce où j'ajoute une extension, où elle ne se met pas à réagir à mes call, mes tests de nouvelles cartes etc. Google ne te force pas dans ce cas Drive vers Supabase avec un setup plus minimal.</p>
+
+            <p>Les webhooks sont limités, dans leurs nombre. Celle relative au Google drive peut dans son quota recevoir et cibler à un maxi voulu.</p>
+
+            <div class="section-divider"></div>
+
+            <div class="conclusion">
+                <h2>CONCLUSION</h2>
+
+                <p>C'est ici qu'on se retrouve dans le résultat le plus impactant en étant parvenu jusque dans cette construction logique qui part d'un montage dans Google Drive de notre données qui descend la pente doucement et au bon rythme même aux codes clients afin de lui permettre d'en être coutumier jusqu'au fonctionnement dans Trello en carte donc qui le pointe à droite où c'est rédigé à droite et dont son champ complète à souhait précis et à jour pour la référence organisationnelle des projets. Vraiment super pratique pour garder en visibilité ce qui me concerne sans tout perde de vue, et en bon ordre synchronisé parce que là automatisé (ce qui prend du cran : pour rester efficient sur ce qu'on exécute plutôt par rapport au temps qu'on passe, il faut vraiment rester disponible aux tâches prio centrales métiers et pas qu'on soit sans cesse épuisé mentalement sur des tâches répétitives).</p>
+            </div>
+        </article>
+    </main>
+</body>
+</html>
