@@ -150,7 +150,7 @@
 
     & aside {
         position: fixed;
-        top: 33%;
+        top: calc(var(--spacing) * 46);
         /* bottom: 0; */
         left: 0;
         
@@ -165,7 +165,6 @@
         align-items: center;
 
         padding: 1rem;
-        border: 1px solid red;
 
         & h5 {
             margin: 0;
@@ -180,6 +179,7 @@
         & ul {
             /* width: calc(750px - 6em);    */
                 text-wrap: pretty;
+                padding: 1rem;
 
             & > li {
                 margin-block: 1rem;                
@@ -187,6 +187,9 @@
                 line-height: 1.2;
                 font-weight: 300;  
                 position: relative;
+                &:nth-of-type(1) {
+                    font-weight: 800;
+                }
                 &:nth-of-type(2) {
                     font-weight: 800;
                 font-size: 1.15rem;
