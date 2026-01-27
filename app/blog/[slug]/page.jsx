@@ -126,15 +126,25 @@ async function getPost(slug) {
 }
 
 export default async function PostPage({ params }) {
-	const post = await getPost((await params).slug);
-    // console.log('Post: ', parseContent(post.content.rendered).filter(el => el.type === 'aside')[0]);
+    const post = await getPost((await params).slug);
+    const aside_menu = parseContent(post.content.rendered).filter(el => el.type === 'h2').map(el => el.props.children);
+    console.log('Post: ', aside_menu);
 	return (
 		<ViewTransition>
-            <main className={cn(styles.main, geist.className)}>
-                <article>
-                    <h1>{decodeHtmlEntities(post.title.rendered)}</h1>                    
-                    {parseContent(post.content.rendered)}
-                </article>				
+			<main className={cn(styles.main, geist.className)}>
+				<article>
+					<h1>{decodeHtmlEntities(post.title.rendered)}</h1>
+					<aside>
+                        <ul>
+                            <li>TABLE DES MATIÈRES</li>
+                            <li>Introduction</li>
+							{aside_menu.map((el, index) => (
+								<li key={index}>{el}</li>
+							))}
+						</ul>
+					</aside>
+					{parseContent(post.content.rendered)}
+				</article>
 			</main>
 		</ViewTransition>
 	);
