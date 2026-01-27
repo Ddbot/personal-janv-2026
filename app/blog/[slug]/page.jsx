@@ -108,7 +108,7 @@ function parseContent(html) {
 
 function CodeBlock({ children, language }) {
 	return (
-		<pre className="h-full bg-gray-900 text-white p-4 rounded-lg overflow-x-auto max-w-[750px] my-8">
+		<pre className={styles.CodeBlock}>
 			<code className={`language-${language}`}>{children}</code>
 		</pre>
 	);
@@ -127,12 +127,12 @@ async function getPost(slug) {
 
 export default async function PostPage({ params }) {
 	const post = await getPost((await params).slug);
-	console.log('Post: ', post);
+    // console.log('Post: ', parseContent(post.content.rendered).filter(el => el.type === 'aside')[0]);
 	return (
 		<ViewTransition>
             <main className={cn(styles.main, geist.className)}>
                 <article>
-                    <h1>{decodeHtmlEntities(post.title.rendered)}</h1>
+                    <h1>{decodeHtmlEntities(post.title.rendered)}</h1>                    
                     {parseContent(post.content.rendered)}
                 </article>				
 			</main>

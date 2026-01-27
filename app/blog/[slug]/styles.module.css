@@ -57,6 +57,10 @@
 
     & li {
         max-width: calc(750px - 4rem);   
+        text-wrap: pretty;
+    }
+
+    & section li {          
         font-size: 1.05rem;
         /* line-height: 1.72; */
         font-weight: 300;  
@@ -69,13 +73,10 @@
             text-align: right;
             left: -1.8ch;  
             top: -.1rem;        /* Adjust this value so that it appears where you want. */
-            /* width: 6ch; */
             font-size: 1em;  
             
             display: flex;/* Adjust this value so that it appears what size you want. */
             justify-content: start;
-
-            /* background-color: red; */
         }
 
         &::after {
@@ -93,7 +94,7 @@
 
             /* Code blocks */
     & pre {
-        /* background-color: var(--code-bg); */
+        max-width: calc(750px - 4rem);   
         background-color: black;
         border: 1px solid var(--border-color);
         border-radius: 8px;
@@ -105,6 +106,7 @@
     }        
     
     & code, & p code, & li code {
+        max-width: calc(750px - 4rem);   
         font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
         background-color: var(--code-bg);
         
@@ -129,6 +131,48 @@
         }
   
     }
+
+    & aside {
+        position: fixed;
+        top: 33%;
+        /* bottom: 0; */
+        right: 0;
+        
+        font-size: calc(1rem * .88);
+        max-width: calc((100% - 750px) / 2 - 1rem );
+        width: 100%;
+        padding:calc(var(--spacing) * 4) ;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        & h5 {
+            margin: 0;
+            font-weight: 500;
+            text-transform: uppercase;
+
+            margin-bottom: 1.5rem;
+
+            font-size: 1.15rem;
+        }
+
+        & ul {
+            & > li {
+                margin-block: 1rem;                
+                font-size: 1.05rem;
+                line-height: 1.2;
+                font-weight: 300;  
+                position: relative;
+                &:first-of-type {
+            font-weight: 800;
+        font-size: 1.15rem;
+        color: var(--accent-3);
+        }
+            }
+        }
+    }
 }
 
 .p { 
@@ -141,3 +185,16 @@
     word-break: break-word;
         /* hyphens: auto; */
 }   
+
+
+.CodeBlock {
+    max-width: calc(750px - 4rem);
+    /* h-full bg-gray-900 text-white p-4 rounded-lg overflow-x-auto max-w-[750px] my-8 */
+    height: 100%;
+    background-color: #101828;
+    color: white;
+    padding: 1.5rem;
+    margin-block: 2rem;
+    border-radius: 8px;
+    overflow-x: auto;
+}
