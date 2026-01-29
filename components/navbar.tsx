@@ -79,7 +79,7 @@ export default function Navbar({ className } : { className: string}) {
         <header className={cn(
             className
         )}>
-            <Link href='/'>                
+            <Link href={pathname.startsWith('/blog') ? '/blog' : '/'}>                
                 <Logo title={ !pathname.startsWith('/blog') ? "andry" : "le blog d'Andry"} />
             </Link>
             <div className="self-center flex flex-row flex-nowrap items-center gap-0 lg:gap-4">
