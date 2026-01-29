@@ -6,12 +6,14 @@ import { decodeHtmlEntities } from '@/lib/utils';
 import styles from './styles.module.css';
 import { cn } from '@/lib/utils';
 import { Geist } from 'next/font/google';
+import TableOfContents from './TableOfContent'; 
 
-const geist = Geist({ variable: '--font-variable' })
+const geist = Geist({ variable: '--font-variable' });
+const h2s = [];
 
-function parseContent(html) {
+function parseContent(html) {    
 	return parse(html, {
-		replace: (node) => {
+		replace: (node,i) => {
 			// Replace <img> tags with Next.js Image
 			if (node.name === 'img') {
 				const { src, alt, width, height } = node.attribs;
@@ -28,23 +30,36 @@ function parseContent(html) {
 
 			// Replace <a> tags with Next.js Link (for internal links)
 			if (node.name === 'a') {
-				const { href, ...props } = node.attribs;
-				const isInternal =
-					href?.startsWith('/') || href?.includes('your-domain.com');
+                const { ...props } = node.attribs;
+                const href = node.attribs.href ?? null;
+				const isInternal = href?.startsWith('#') || href?.includes('/local');
 
-				if (isInternal) {
-					return (
-						<Link href={href} {...props}>
-							{node.children[0]?.data || ''}
-						</Link>
-					);
-				}
-            }
+                return isInternal ? (
+                    <Link href={href} {...props}>
+                        {node.children[0]?.data || ''}
+                    </Link>
+                ) : (
+                    <a href='#' {...props}>
+                        {node.children[0]?.data || ''}
+                    </a>
+                );
+			}
 
-			// Replace <h2> with custom component
+            if (node.name === 'h2') {
+                console.log('H2 attribs: ', node.attribs, ' Index: ', i);
+                h2s.push(i);
+                // node.attribs.id = `h2_`;
+				return (
+                    <h2 id={`h2_${i}`}>
+						{node.children[0]?.data}
+					</h2>
+				);
+			}            
+
+			// Replace <h3> with custom component
 			if (node.name === 'h3') {
 				return (
-					<h3 className="text-3xl font-bold mt-8 mb-4">
+					<h3>
 						{node.children[0]?.data}
 					</h3>
 				);
@@ -59,9 +74,9 @@ function parseContent(html) {
 			}
 
             if (node.name === 'p') {
-                // console.log('P: ', Object.keys(node), node.attribs);
+                const { ...props } = node.attribs;
 				return (
-					<p className={styles.p}>
+					<p className={styles.p} {...props}>
 						{node.children
 							.map((child) => {
 								return child?.data;
@@ -70,17 +85,26 @@ function parseContent(html) {
 					</p>
 				);
             }
-            if (node.name === 'ol') {
+
+            if (node.name === 'nav') {
+				return (<nav>{domToReact(node.children)}</nav>);
+            }  
+            
+            if (node.name === 'ul') {
 				return (
-					<ol>
+					<ul>
 						{domToReact(node.children)}
-					</ol>
+					</ul>
 				);				
-			}              
+            }   
+            if (node.name === 'ol') {
+				return <ol>{domToReact(node.children)}</ol>;
+			}               
             if (node.name === 'li') {
 				return (<li className='text-md'>
                     {node.children
                         .map((child) => {
+                            console.log('LI: ', Object.keys(child), child, child.attribs);
                             return child?.data;
                         })
                         .join(' ')}
@@ -127,22 +151,26 @@ async function getPost(slug) {
 
 export default async function PostPage({ params }) {
     const post = await getPost((await params).slug);
-    const aside_menu = parseContent(post.content.rendered).filter(el => el.type === 'h2').map(el => el.props.children);
-    console.log('Post: ', aside_menu);
+    const nav_menu = parseContent(post.content.rendered)
+        .filter((el) => el.type === 'h2')
+        .map((el,index) => {
+            return (
+				<li key={index} className={styles.nav_menu}>
+					<a
+                        {...el.props}
+                        id={`link-${el.props.id}`}
+                        href={`#${el.props.id}`}>
+						{el.props.children}
+					</a>
+				</li>
+			);			
+		});
 	return (
 		<ViewTransition>
 			<main className={cn(styles.main, geist.className)}>
 				<article>
 					<h1>{decodeHtmlEntities(post.title.rendered)}</h1>
-					<aside>
-                        <ul>
-                            <li>TABLE DES MATIÈRES</li>
-                            <li>Introduction</li>
-							{aside_menu.map((el, index) => (
-								<li key={index}>{el}</li>
-							))}
-						</ul>
-					</aside>
+                    <TableOfContents items={nav_menu} />
 					{parseContent(post.content.rendered)}
 				</article>
 			</main>

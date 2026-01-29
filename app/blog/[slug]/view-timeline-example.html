@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scroll-driven Table of Contents</title>
+<style>
+  body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  main {
+    max-width: 800px;
+  }
+
+  section {
+    min-height: 60vh;
+    margin-bottom: 4rem;
+    padding: 2rem;
+    background: #f0f0f0;
+    border-radius: 8px;
+  }
+
+  aside {
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+  }
+
+  nav ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  nav a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #666;
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    font-weight: 400;
+    transition: all 0.3s;
+  }
+
+  nav a.active {
+    color: #6366f1;
+    border-left-color: #6366f1;
+    font-weight: 600;
+  }
+
+</style>
+</head>
+<body>
+
+<main>
+  <section id="intro">
+    <h2>Introduction</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <p>More content here...</p>
+  </section>
+
+  <section id="vertical">
+    <h2>Only vertical margins collapse</h2>
+    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <p>More content here...</p>
+  </section>
+
+  <section id="adjacent">
+    <h2>Only adjacent elements collapse</h2>
+    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+    <p>More content here...</p>
+  </section>
+
+  <section id="bigger">
+    <h2>The bigger margin wins</h2>
+    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>More content here...</p>
+  </section>
+
+  <section id="nesting">
+    <h2>Nesting doesn't prevent collapsing</h2>
+    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+    <p>More content here...</p>
+  </section>
+</main>
+
+<aside>
+  <h3>Table of Contents</h3>
+  <nav>
+    <ul>
+      <li><a href="#intro">Introduction</a></li>
+      <li><a href="#vertical">Only vertical margins collapse</a></li>
+      <li><a href="#adjacent">Only adjacent elements collapse</a></li>
+      <li><a href="#bigger">The bigger margin wins</a></li>
+      <li><a href="#nesting">Nesting doesn't prevent collapsing</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<script>
+// Using Intersection Observer (the reliable way)
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('nav a');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Remove active class from all links
+      navLinks.forEach(link => link.classList.remove('active'));
+      
+      // Add active class to corresponding link
+      const activeLink = document.querySelector(`nav a[href="#${entry.target.id}"]`);
+      if (activeLink) {
+        activeLink.classList.add('active');
+      }
+    }
+  });
+}, {
+  threshold: 0.5, // Trigger when 50% of section is visible
+//   rootMargin: '-20% 0px -60% 0px' 
+  // Adjust these values for better triggering
+});
+
+sections.forEach(section => observer.observe(section));
+</script>
+
+</body>
+</html>
