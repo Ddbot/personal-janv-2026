@@ -76,7 +76,7 @@ function parseContent(html) {
             if (node.name === 'p') {
                 const { ...props } = node.attribs;
 				return (
-					<p className={styles.p} {...props}>
+					<p className={styles.p}>
 						{node.children
 							.map((child) => {
 								return child?.data;
@@ -151,6 +151,7 @@ async function getPost(slug) {
 
 export default async function PostPage({ params }) {
     const post = await getPost((await params).slug);
+    console.log('Whats in a post: ', post.jetpack_featured_media_url);
     const nav_menu = parseContent(post.content.rendered)
         .filter((el) => el.type === 'h2')
         .map((el,index) => {
@@ -171,6 +172,8 @@ export default async function PostPage({ params }) {
 				<article>
 					<h1>{decodeHtmlEntities(post.title.rendered)}</h1>
                     <TableOfContents items={nav_menu} />
+                    {/* <Image src={post.jetpack_featured_media_url} alt={post.title.rendered} width={400} height={400} className={styles.featuredImage} /> */}
+                    <span className='clear-both'></span>
 					{parseContent(post.content.rendered)}
 				</article>
 			</main>

@@ -242,6 +242,13 @@
     overflow-x: auto;
 }
 
+.featuredImage {
+    float: left;
+  shape-outside: url(/marseille.png); /* text wraps around a circle */
+  clip-path: url(/marseille.png); /* visually clips the image to match */
+  margin: 0 40px 40px -20px;
+}
+
 @keyframes animate-it {
     0% {
         /* color: var(--foreground); */
