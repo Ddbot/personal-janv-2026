@@ -19,7 +19,7 @@ import { categories_list, tags_list } from './constants';
 
 
 function Separator() {
-    return <BreadcrumbSeparator className={"mx-4 md:mx-6"}>/</BreadcrumbSeparator>
+    return <BreadcrumbSeparator className={"mx-2 md:mx-6"}>/</BreadcrumbSeparator>
 }
 
 function Badge({ posts, query }: { posts: WordPressPost[] | [], query: Category }) {
