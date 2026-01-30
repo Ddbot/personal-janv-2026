@@ -115,6 +115,7 @@
 
             transition: background-position 1s linear;
         }
+
         &:hover {
             justify-content: flex-start;
             &:after {
@@ -228,7 +229,7 @@
 
 .pill {
     margin-left: .75rem;
-    border-radius: 100%;
+    /* border-radius: 100%; */
     opacity: 0;
     @starting-style {
         transform: translate(-2ch, 0);
