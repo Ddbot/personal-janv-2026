@@ -4,7 +4,7 @@ import { useGSAP } from '@gsap/react';
 
 const SvgComponent = ({ className, ...props }: { className: string }, ref: React.Ref<SVGSVGElement>) => {
   return (
-	<svg
+	true ? null : <svg
 		xmlns="http://www.w3.org/2000/svg"
 		// width={800}
 		// height={800}
