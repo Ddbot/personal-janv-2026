@@ -51,7 +51,7 @@ export default function Skills() {
 				time: 'depuis 15 ans',
 				icon: '🗞️',
 				color: '#1E86FF00',
-				className: 'inset-shadow-[1rem] shadow-black',
+				className: '',
 			},
 			{
 				name: 'Rédaction & Copywriting',
@@ -158,73 +158,74 @@ export default function Skills() {
 		],
 	};   
     
-    useGSAP(() => {
-        const q = gsap.utils.selector(ref.current);
-        tlRef.current = gsap.timeline({
-            defaults: {
-                duration: 1,
-                ease: 'power2.out',
-            },
-        });
-        const timeline = tlRef.current;
-        timeline.from(q('figure'), {
-            opacity: 0,
-            y: 100,
-            transform: 'rotateX(-7deg)',
-            ease: 'power4.out',
-            stagger: {
-                amount: 0.25
-            },
-        });
-    }, { scope: ref });
+//     useGSAP(() => {
+//         const q = gsap.utils.selector(ref.current);
+//         tlRef.current = gsap.timeline({
+//             defaults: {
+//                 duration: 1,
+//                 ease: 'power2.out',
+//             },
+//         });
+//         const timeline = tlRef.current;
+//         timeline.from(q('figure'), {
+//             opacity: 0,
+//             y: 100,
+//             transform: 'rotateX(-7deg)',
+//             ease: 'power4.out',
+//             stagger: {
+//                 amount: 0.25
+//             },
+//         });
+//     }, { scope: ref });
 
-    useGSAP(() => {
-        const q = gsap.utils.selector(ref);
-        const tl = gsap.timeline({
-			defaults: {
-				repeat: -1,
-				yoyo: true,
-                ease: 'none',
-                duration: 10
-			},
-		});
-        const circles = q('circle');
-        if (!circles.length) return;
+//     useGSAP(() => {
+//         const q = gsap.utils.selector(ref);
+//         const tl = gsap.timeline({
+// 			defaults: {
+// 				repeat: -1,
+// 				yoyo: true,
+//                 ease: 'none',
+//                 duration: 10
+// 			},
+// 		});
+//         const circles = q('circle');
+//         if (!circles.length) return;
 
-        const targets = gsap.utils.shuffle(circles);
+//         const targets = gsap.utils.shuffle(circles);
         
-        targets.forEach((t, index) => { 
-            const initialColor = gsap.utils.random(cards_palette[theme], true);
+//         targets.forEach((t, index) => { 
+//             const initialColor = gsap.utils.random(cards_palette[theme], true);
 
-            tl.from(t, {
-                fill: initialColor,
-                duration: 10,
-                ease: 'power2.out',
-            }, '<');
-        });
+//             tl.from(t, {
+//                 fill: initialColor,
+//                 duration: 10,
+//                 ease: 'power2.out',
+//             }, '<');
+//         });
             
-        tl.to(targets, {
-			attr: {
-				r: 16,
-			},
-			opacity: 0.5,
-			stagger: {
-				amount: 30,
-				grid: [13, 13],
-				from: 84,
-				ease: 'power2.inOut',
-				yoyo: true,
-				repeat: -1,
-			},
-        })         
-  }, { dependencies: [theme], scope: ref });
+//         tl.to(targets, {
+// 			attr: {
+// 				r: 16,
+// 			},
+// 			opacity: 0.5,
+// 			stagger: {
+// 				amount: 30,
+// 				grid: [13, 13],
+// 				from: 84,
+// 				ease: 'power2.inOut',
+// 				yoyo: true,
+// 				repeat: -1,
+// 			},
+//         })         
+//   }, { dependencies: [theme], scope: ref });
 
     return (
-        <BentoGrid
-			className={cn(
-				styles.container,
-			)}>
-            {dictionary[lang].map((f, idx) => {
+        // <BentoGrid
+		// 	className={cn(
+		// 		styles.container,
+		// 	)}>
+        // {
+            dictionary[lang].map((f, idx) => {
                 return (
 					<ViewTransition key={idx}>
 						<figure
@@ -263,7 +264,8 @@ export default function Skills() {
 						</figure>
 					</ViewTransition>
 				);
-            })}
-		</BentoGrid>
+            })
+        // }
+		// </BentoGrid>
 	);
 }
