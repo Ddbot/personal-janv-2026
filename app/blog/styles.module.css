@@ -117,7 +117,7 @@
 
             z-index: -1;
 
-            transition: all 1s linear;
+            transition: all .2s linear;
         }
 
         &::after {
@@ -136,15 +136,14 @@
         &:hover {
             justify-content: flex-start;
             &::after {
-                animation: fadeIn .2s ease-in-out 0s 1 normal forwards;                   
+                animation: slide_bg_image_down .2s ease-in-out 0s 1 normal forwards;                   
             }
 
             .cardHeader {
                 container-name: header;
                 container-type: inline-size;   
                 height: calc(var(--spacing) * 32);
-                z-index: 2;
-                animation: animate_header .2s linear forwards;
+                z-index: 2;                
                 font-weight: bold;
 
                 @media screen and (orientation: portrait) {
@@ -163,6 +162,7 @@
                 height: 100%;
                 border-top: 1px solid var(--color-gray-300);
                 padding-top: .5rem;
+                transform: translate(0, 0);
             }            
         }
 
@@ -181,7 +181,7 @@
                 width: 100%;
                 height: auto;
 
-                font-size: 1.72rem;
+                font-size: 1rem;
             }
 
             @media screen and (orientation: portrait) {
@@ -196,6 +196,7 @@
 
         &:not(:hover) :is(.cardDescription,.cardContent,.cardFooter,.excerpt){
             opacity: 0;
+            transition: all .2s linear;
         }
 
         .cardTitle {
@@ -218,7 +219,14 @@
 
             width: 100%;
             height: 100%;
-            opacity: 1;
+            opacity: 1;           
+            
+            transition: all .2s linear;
+
+            @starting-style {
+                transform: translate(0, -50%);
+                opacity: 0;
+            }
         }
 
         .excerpt {
@@ -269,7 +277,7 @@
     }
 }
 
-@keyframes fadeIn {
+@keyframes slide_bg_image_down {
     0% {
         /* border-width: 0; */
         /* border-color: var(--borderColor); */

@@ -91,12 +91,13 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
             <CardContent className={styles.cardContent}>
                 <p dangerouslySetInnerHTML={{ __html: article.excerpt.rendered }} className={styles.excerpt}/>
             </CardContent>
-            <CardFooter className={styles.cardFooter}>{
-                    tags.map(tag => {
-                        return tag !== 'dev' ? <div className={cn(styles.pill)} key={tag}>
-                            <Image src={`${tag}_logo.svg`} width={20} height={20} alt={tag} key={tag} className={cn('bg-white aspect-square')} /></div> : null
-                    })
-                }
+                <CardFooter className={styles.cardFooter}>
+                    {
+                        tags.map(tag => {
+                            return tag !== 'dev' ? <div className={cn(styles.pill)} key={tag}>
+                                <Image src={`${tag}_logo.svg`} width={20} height={20} alt={tag} key={tag} className={cn('bg-white aspect-square')} /></div> : null
+                        })
+                    }
             </CardFooter>
         </Card>
     </Link></ViewTransition>
