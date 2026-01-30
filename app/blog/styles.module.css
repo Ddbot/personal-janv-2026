@@ -112,6 +112,7 @@
             inset: 2.5%;
             background-image: var(--background-image-url);
             background-color: var(--backgroundColor);
+            filter: blur(20px);
         }
 
         &::before {
@@ -131,6 +132,8 @@
                 container-type: inline-size;   
                 height: calc(var(--spacing) * 32);
                 z-index: 2;
+                animation: animate_header .2s linear forwards;
+                font-weight: bold;
             }
 
             .pill {                
@@ -151,12 +154,14 @@
             container-name: header;
             container-type: inline-size;       
             z-index: 2;
-            margin-block-start: 40%;
+            /* margin-block-start: 40%; */
 
             display: flex;
             flex-flow: column;
             justify-content: start;
             align-items: start;
+
+            /* background-color: var(--backgroundColor); */
             
 
             div {
@@ -165,9 +170,10 @@
                 height: auto;
 
                 /* text-align: center; */
-                margin-left: 1ch;
+                /* margin-left: 1ch; */
 
-                font-size: clamp(1vw,1.2rem,1.4rem);
+                /* font-size: clamp(1vw,1.2rem,1.4rem); */
+                font-size: 1.72rem;
             }
         }   
 
@@ -176,9 +182,16 @@
         }
 
         .cardTitle {
+            width: fit-content;
             font-weight: bold;
+            /* font-size: 2.4rem; */
             max-height: 3lh;
             height: 3lh;
+            & > span {
+                padding: .25rem;
+                background-color: color-mix(in srgb, var(--background), transparent 10%);
+            }
+            /* mix-blend-mode: screen; */
         }
 
         .cardContent {
@@ -267,12 +280,10 @@
 @keyframes animate_header {
  0% {
     margin-block-start: 40%;
-    margin-left: 2ch;
  }   
 
  100% {
     margin-block-start: 0;
-    margin-left: 0;
  }   
 }
 

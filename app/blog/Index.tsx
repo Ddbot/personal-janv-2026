@@ -84,7 +84,7 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
                 "--background-image-url": `url(${ article.jetpack_featured_media_url })`,
         }}>
             <CardHeader className={styles.cardHeader}>
-                <CardTitle className={ cn(geist.className, styles.cardTitle) }>{decodeHtmlEntities(article.title.rendered)}</CardTitle>
+                <CardTitle className={ cn(geist.className, styles.cardTitle) }><span>{decodeHtmlEntities(article.title.rendered)}</span></CardTitle>
                 <CardDescription className={styles.cardDescription}>
                 </CardDescription>
             </CardHeader>
