@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button"
 import { cn } from '@/lib/utils';
 import styles from './styles.module.css';
 import { WordPressPost, Category } from './Index';
-import { categories_list, tags_list } from './constants';
+import { categories_list } from '@/lib/constants';
 
 
 

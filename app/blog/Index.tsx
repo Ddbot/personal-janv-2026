@@ -19,10 +19,8 @@ import Link from 'next/link';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import styles from './styles.module.css';
-import { tags_list } from './constants';
 import Image from 'next/image';
-import { categories_list } from './constants';
-import { cards_palette } from './constants';
+import { tags_list, cards_palette, categories_list } from '@/lib/constants';
 import gsap from 'gsap';
 
 const geist = Geist({ variable: '--font-variable' })

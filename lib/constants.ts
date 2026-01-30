@@ -1,10 +1,9 @@
-import { FilteredCategory } from "./Index";
+import { FilteredCategory } from "../app/blog/Index";
 type Theme = "light" | "dark";
 type Tag = {
     name: string;
 }
-
-const categories_list: Record<FilteredCategory, number> = {
+export const categories_list: Record<FilteredCategory, number> = {
     "dev": 6504,
     "diy": 6460,
     "musique": 4315
@@ -15,7 +14,7 @@ export const cards_palette: Record<Theme, string[]> = {
     dark: ["#005078", "#007f91", "#69578a", "#81d87c", "#f9f871"]
 }
 
-const tags_list: Record<string, Tag> = {
+export const tags_list: Record<string, Tag> = {
     "696297179": {
         name: "apps_script"
     },
@@ -52,5 +51,3 @@ const tags_list: Record<string, Tag> = {
         name: "wordpress"
     }
 }
-
-export { tags_list, categories_list };
