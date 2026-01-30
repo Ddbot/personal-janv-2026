@@ -74,7 +74,7 @@
 
         grid-column: span 1;
         grid-row: span 1;
-        /* padding: 0; */
+
         margin: 0;
 
         width: 100%;
@@ -95,20 +95,11 @@
         &::after, &::before {
             content: '';
             position: absolute;
-            /* background-color: var(--backgroundColor); */
-            
-            /* background-size: 24dvh 24dvh; */
+
             background-size: cover;
-            /* background-size: contain; */
             background-position-x: center;
-            /* background-position-y: 12.5%; */
             background-repeat: no-repeat;
-
-            /* mix-blend-mode: darken; */
             background-blend-mode:luminosity;
-
-            /* mask: polygon(81% 82%, 91% 75%, 84% 58%, 96% 47%, 94% 28%, 85% 17%, 65% 2%, 24% 20%, 30% 37%, 9% 51%, 10% 68%, 12% 84%, 54% 90%, 70% 88%, 54% 90%); */
-            /* clip-path: polygon(50% 0%, 0% 100%, 100% 100%); */
 
             opacity: 1;
 
@@ -121,14 +112,12 @@
             inset: 2.5%;
             background-image: var(--background-image-url);
             background-color: var(--backgroundColor);
-            /* clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 25% 100%, 100% 100%, 100% 0%); */
         }
 
         &::before {
             inset: 0rem;
             z-index: -2;
-            background-color: var(--backgroundColor);
-            /* clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%); */
+            transition: inset 2s linear;
         }
 
         &:hover {
@@ -137,19 +126,11 @@
                 animation: fadeIn .2s ease-in-out 0s 1 normal forwards;                   
             }
 
-            &::before {
-                animation: animate_inset_ 2s ease-in-out 0s 1 normal forwards;   
-                /* clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%); */
-            }
-            /* background-color: var(--border-color); */
-            /* border-color: var(--border-color); */
             .cardHeader {
                 container-name: header;
                 container-type: inline-size;   
                 height: calc(var(--spacing) * 32);
                 z-index: 2;
-
-                /* animation: animate_header .125s linear 0s 1 forwards; */
             }
 
             .pill {                
@@ -320,16 +301,5 @@
         transform: translate(0, 0);
         /* margin-left: .75rem; */
         opacity: 1;
-    }
-}
-
-@keyframes animate_inset {
-    0% {
-        inset: 0;
-        clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
-    }
-    100% {
-        inset: 2rem;
-        clip-path: polygon(2.5% 2.5%, 97.5% 2.5%, 97.5% 97.5%, 2.5% 97.5%);
     }
 }
