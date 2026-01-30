@@ -1,18 +1,20 @@
 'use client';
 import { Fragment, use, useRef, ViewTransition } from 'react';
 import { LangContext } from '@/contexts/LangContext';
+import { ThemeContext } from '@/contexts/ThemeContext';
 import { cn } from '@/lib/utils';
 import { BentoGrid } from '@/components/ui/bento-grid';
 import styles from './styles.module.css';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react'
 import PatternComponent from './[components]/PatternComponent';
+import { cards_palette } from '@/lib/constants';
 
 export default function Skills() {
-    const { lang } = use(LangContext);   
+    const { lang } = use(LangContext); 
+    const { theme } = use(ThemeContext);
     const ref = useRef(null);
     const tlRef = useRef(null);  
-    const colors = ['#00C9A780', '#FFB80080', '#FF3D7180','#1E86FF'];
 
     const dictionary = {
 		fr: [
@@ -22,7 +24,7 @@ export default function Skills() {
 					'Je maîtrise parfaitement les technologies Front End et CSS et me tient constamment informé de leurs évolutions',
 				time: 'depuis 9 ans',
 				icon: '💸',
-				color: '#00C9A780',
+				color: cards_palette[theme][0],
 				className: '',
 			},
 			{
@@ -31,16 +33,16 @@ export default function Skills() {
 					'Je me suis familiarisé avec les technologies back-end et serveur. Mon parcours en développement web a débuté avec Ruby on Rails.',
 				time: 'depuis 5 ans',
 				icon: '👤',
-				color: '#FFB80080',
+				color: cards_palette[theme][1],
 				className: '',
 			},
 			{
 				name: 'Full Stack',
 				description:
-					"En tant que jeune entrepreneur, je me suis familiarisé avec les technologies SaaS, PostgreSQL, Firebase, les services Amazon, etc. Je suis toujours prêt à explorer de nouveaux domaines, et l'IA facilite grandement cette démarche.",
+					"Je me suis familiarisé avec les technologies SaaS, PostgreSQL, Firebase, les services Amazon, etc. Je suis toujours prêt à explorer de nouveaux domaines, et l'IA facilite grandement cette démarche.",
 				time: 'depuis 5 ans',
 				icon: '💬',
-				color: '#FF3D7180',
+				color: cards_palette[theme][2],
 				className: '',
 			},
 			{
@@ -49,7 +51,7 @@ export default function Skills() {
 				time: 'depuis 15 ans',
 				icon: '🗞️',
 				color: '#1E86FF00',
-				className: ''
+				className: 'inset-shadow-[1rem] shadow-black',
 			},
 			{
 				name: 'Rédaction & Copywriting',
@@ -57,7 +59,7 @@ export default function Skills() {
 					"Je suis rédacteur-concepteur pour divers sites web spécialisés en technologie tels que Tom's Guide, 01Net ou Phonandroid.",
 				time: 'depuis 15 ans',
 				icon: '🗞️',
-				color: '#1E86FF00',
+				color: cards_palette[theme][3],
 				className: 'dark:text-white border-2 border-chart-4',
 			},
 			{
@@ -66,7 +68,7 @@ export default function Skills() {
 					"J'ai travaillé dans le secteur de la traduction et j'ai l'habitude de traduire et/ou de rédiger du contenu technique.",
 				time: 'depuis 15 ans',
 				icon: '🗞️',
-				color: '#1E86FF80',
+				color: cards_palette[theme][4],
 				className: 'dark:text-white',
 			},
 		],
@@ -77,7 +79,7 @@ export default function Skills() {
 					'I master perfectly the Front End technologies and keep myself constantly informed of their evolutions',
 				time: '9y ago',
 				icon: '🗞️',
-				color: '#1E86FF',
+				color: cards_palette[theme][0],
 			},
 			{
 				name: 'Back End',
@@ -192,7 +194,7 @@ export default function Skills() {
         const targets = gsap.utils.shuffle(circles);
         
         targets.forEach((t, index) => { 
-            const initialColor = gsap.utils.random(colors, true);
+            const initialColor = gsap.utils.random(cards_palette[theme], true);
 
             tl.from(t, {
                 fill: initialColor,
@@ -215,7 +217,7 @@ export default function Skills() {
 				repeat: -1,
 			},
         })         
-  }, { scope: ref });
+  }, { dependencies: [theme], scope: ref });
 
     return (
         <BentoGrid
@@ -226,16 +228,21 @@ export default function Skills() {
                 return (
 					<ViewTransition key={idx}>
 						<figure
-							style={{ backgroundColor: f.color }}
+							style={{
+								backgroundColor:
+                                    f.color
+							}}
 							className={cn(
-								f.className,
-								styles.figure,
+                                styles.figure,
 								'relative',
+								f.className,
+                                idx === 3 ? 'p-0' : 'p-8',
+                                idx === 0 && "text-white"
 							)}
 							onClick={() => console.log(f.description)}>
 							{idx !== 3 ? (
 								<Fragment key={idx}>
-									<div className="flex flex-row items-start gap-4 lg:h-[10dvh]">
+									<div className={cn("flex flex-row items-start gap-4 lg:h-[10dvh]")}>
 										<div className="flex flex-col">
 											<figcaption className="text-xl font-medium dark:text-white">
 												{f.name}
@@ -250,7 +257,7 @@ export default function Skills() {
 								<PatternComponent
 									ref={ref}
 									key={idx}
-									className="w-full h-full col-start-1 col-end-2"
+									className={styles.PatternComponent}
 								/>
 							)}
 						</figure>
