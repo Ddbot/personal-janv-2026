@@ -71,21 +71,18 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
         });
 
         const border_color: any = gsap.utils.wrap(cards_palette[theme], index);
+
+        console.log('Un article: ', article);
         
-        return <Link
+        return <ViewTransition><Link
         href={`/blog/${article.slug}`}
         className={cn( geist_mono.className)}
     >
         <Card className={cn(styles.articles_list_card)} style={{
-                backgroundColor: border_color,
-                borderColor: border_color,
-                "--border-color": border_color,
-            "--background-color": border_color
+                "--backgroundColor": border_color,
+                "--borderColor": border_color,
+                "--background-image-url": `url(${ article.jetpack_featured_media_url })`,
         }}>
-            {/* IMAGE de cover */}
-            <div className={styles.coverImage} style={{
-            }}>
-            </div>
             <CardHeader className={styles.cardHeader}>
                 <CardTitle className={ cn(geist.className, styles.cardTitle) }>{decodeHtmlEntities(article.title.rendered)}</CardTitle>
                 <CardDescription className={styles.cardDescription}>
@@ -102,10 +99,10 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
                 }
             </CardFooter>
         </Card>
-    </Link>
+    </Link></ViewTransition>
     };
 
-	return (
+	return (<ViewTransition>
 		<div className="min-h-screen">
 			{/* En-tête du blog */}
 			<header className={cn(styles.header, "mb-20")}>
@@ -154,7 +151,7 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
 					</div>
 				</div>
 			</footer>
-		</div>
+		</div></ViewTransition>
 	);
 };
 
