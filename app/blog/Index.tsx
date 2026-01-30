@@ -105,7 +105,7 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
 	return (<ViewTransition>
 		<div className="min-h-screen">
 			{/* En-tête du blog */}
-			<header className={cn(styles.header, "mb-20")}>
+			<header className={cn(styles.header, "mb-0 md:mb-20")}>
                 <div className="text-left">
                     <hgroup className={cn("text-[3.5rem] text-foreground font-extrabold mb-5 max-h-[2lh]")}>
                         <h3>
