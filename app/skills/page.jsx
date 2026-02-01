@@ -225,39 +225,43 @@ export default function Skills() {
 		// 		styles.container,
 		// 	)}>
         // {
+        <div className={cn(
+				styles.container,
+			)}>{
             dictionary[lang].map((f, idx) => {
                 return (
-					<ViewTransition key={idx}>
-						<figure
-							style={{
-								backgroundColor:
+                    <ViewTransition key={idx}>
+                        <figure
+                            style={{
+                                backgroundColor:
                                     f.color
-							}}
-							className={cn(
-                                styles.figure,
-								'relative',
-								f.className,
+                            }}
+                            className={cn(
+                                'relative',
+                                f.className,
                                 // idx === 3 ? 'p-0' : 'p-8',
                                 idx === 0 && "text-white",
-                                idx === 3 && "hidden"
-							)}
-							onClick={() => console.log(f.description)}>
-								<Fragment key={idx}>
-									<div className={cn("flex flex-row items-start gap-4")}>
-										<div className="flex flex-col">
-											<figcaption className="text-xl font-medium dark:text-white">
-												{f.name}
-											</figcaption>
-										</div>
-									</div>
-									<blockquote className="mt-2">
-										{f.description}
-									</blockquote>
-								</Fragment>
-						</figure>
-					</ViewTransition>
-				);
+                                idx === 3 && "hidden",
+                                styles.figure,
+                            )}
+                            onClick={() => console.log(f.description)}>
+                            <Fragment key={idx}>
+                                <div className={cn("flex flex-row items-start gap-0")}>
+                                    <div className="flex flex-col">
+                                        <figcaption className="text-xl font-medium dark:text-white">
+                                            {f.name}
+                                        </figcaption>
+                                    </div>
+                                </div>
+                                <blockquote className="mt-0">
+                                    {f.description}
+                                </blockquote>
+                            </Fragment>
+                        </figure>
+                    </ViewTransition>
+                );
             })
+        }</div>
         // }
 		// </BentoGrid>
 	);
