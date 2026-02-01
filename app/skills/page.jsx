@@ -237,13 +237,13 @@ export default function Skills() {
                                 styles.figure,
 								'relative',
 								f.className,
-                                idx === 3 ? 'p-0' : 'p-8',
-                                idx === 0 && "text-white"
+                                // idx === 3 ? 'p-0' : 'p-8',
+                                idx === 0 && "text-white",
+                                idx === 3 && "hidden"
 							)}
 							onClick={() => console.log(f.description)}>
-							{idx !== 3 ? (
 								<Fragment key={idx}>
-									<div className={cn("flex flex-row items-start gap-4 lg:h-[10dvh]")}>
+									<div className={cn("flex flex-row items-start gap-4")}>
 										<div className="flex flex-col">
 											<figcaption className="text-xl font-medium dark:text-white">
 												{f.name}
@@ -254,13 +254,6 @@ export default function Skills() {
 										{f.description}
 									</blockquote>
 								</Fragment>
-							) : (
-								<PatternComponent
-									ref={ref}
-									key={idx}
-									className={styles.PatternComponent}
-								/>
-							)}
 						</figure>
 					</ViewTransition>
 				);
