@@ -1,25 +1,42 @@
 "use client"; 
 
-import { createContext, useState, useEffect, memo, Dispatch, SetStateAction } from "react";
-const ThemeContext: React.Context<Theme> = createContext('light' as Theme);
+import { createContext, useState, useEffect, memo } from "react";
+
 export type Theme = "light" | "dark";
 
+export interface ThemeContextType {
+  theme: Theme | null;
+  toggleTheme: () => void;
+  isLoaded: boolean;
+}
+
+const ThemeContext: React.Context<ThemeContextType> = createContext({
+  theme: null,
+  toggleTheme: () => {},
+  isLoaded: false
+} as ThemeContextType);
+
+
 const ThemeProvider = memo(({ children } : { children: React.ReactNode }) => {
-    const [theme, setTheme] = useState<SetStateAction<Theme>>('light');
+    const [theme, setTheme] = useState<Theme | null>(null);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        const changeTheme = async (s: Theme) => {
-            setTheme(s);
-        }
-		const root = window.document.documentElement;
-		root.classList.remove('light', 'dark');
-		
-		const storedTheme = localStorage.getItem('theme') ?? 'light';
-		root.classList.add(storedTheme as Theme);
-		changeTheme(storedTheme as Theme);
-	}, []);
+        const initializeTheme = () => {
+            const root = window.document.documentElement;
+            root.classList.remove('light', 'dark');
+            
+            const storedTheme = localStorage.getItem('theme') ?? 'light';
+            root.classList.add(storedTheme as Theme);
+            setTheme(storedTheme as Theme);
+            setIsLoaded(true);
+        };
+        
+        initializeTheme();
+    }, []);
 
 	const toggleTheme = () => {
+		if (!theme) return;
 		const newTheme = theme === 'light' ? 'dark' : 'light';
 		setTheme(newTheme);
 		localStorage.setItem('theme', newTheme);
@@ -30,8 +47,8 @@ const ThemeProvider = memo(({ children } : { children: React.ReactNode }) => {
 	};
 
 	return (
-		<ThemeContext.Provider value={{ theme, toggleTheme }}>
-			{children}
+		<ThemeContext.Provider value={{ theme, toggleTheme, isLoaded }}>
+			{isLoaded ? children : null}
 		</ThemeContext.Provider>
 	);
 });
