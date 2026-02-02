@@ -73,7 +73,7 @@ const BentoCard = ({
         <h3 className="text-xl font-semibold text-neutral-700 dark:text-neutral-300">
           {name}
         </h3>
-        <div className={`max-w-lg ${Icon === Phone ? 'text-background' : 'text-neutral-400' } font-extralight`}>{description}</div>
+        <div className={`max-w-lg ${Icon === Phone ? 'text-background' : 'text-[--foreground]/100' } font-extralight`}>{description}</div>
       </div>
 
       { Icon !== Empty && <div

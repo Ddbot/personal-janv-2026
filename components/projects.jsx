@@ -17,7 +17,8 @@ import AnimatedBeamMultipleOutputDemo from "@/components/animated-beam-example"
 import { BentoCard, BentoGrid } from "@/components/ui/bento-grid"
 import { Marquee } from "@/components/ui/marquee"
 
-import bg from "@/public/speed_typer.png"
+import bg_speed_typer from "@/public/speed_typer.png"
+// import bg_ma_rue from '@/public/test_rue.png';
 import Image from 'next/image'
 import styles from './styles/projects.module.css';
 import styles_bento from './styles/bento-grid.module.css';
@@ -26,6 +27,7 @@ import ProjectsContactCardContent from './projects-contact-card-content';
 import { useRouter } from 'next/navigation';
 import { Geist_Mono } from 'next/font/google';
 import { cards_palette } from '@/lib/constants';
+import MaRue from '@/components/MaRue';
 
 const geist = Geist_Mono({ subsets: ['latin'], weight: ['200','400'] })    
 
@@ -305,8 +307,8 @@ const Container = ({ className }) => {
 			Icon: PocketKnife,
 			name: 'Skills',
 			description: dictionary[lang]['features']['description'][0],
-            href: '/skills',
-            href: '/skills',
+			href: '/skills',
+			href: '/skills',
 			cta: dictionary[lang]['cta'],
 			className: 'col-span-3 lg:col-span-1 origin-top-left',
 			background: (
@@ -322,8 +324,8 @@ const Container = ({ className }) => {
 									'border-gray-950/10 bg-gray-950/1 hover:bg-gray-950/5',
 									'dark:border-gray-50/10 dark:bg-gray-50/10 dark:hover:bg-gray-50/15',
 									'transform-gpu blur-[1px] transition-all duration-300 ease-out hover:blur-none',
-                                )}
-                                data-name="skills"
+								)}
+								data-name="skills"
 								onClick={() => {}}>
 								<div className="flex flex-row items-center gap-2">
 									<div className="flex flex-col">
@@ -352,7 +354,7 @@ const Container = ({ className }) => {
 				// <SpeedTyperContainer className="absolute top-4 right-2 h-[300px] w-full scale-75 border-none [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-90" />
 				<div className={styles.speed_typer_container}>
 					<Image
-						src={bg}
+						src={bg_speed_typer}
 						alt="speed typer"
 						className={styles.speed_typer_image}
 						// className="absolute top-[25%] lg:-top-8 lg:right-2 w-full scale-75 border-none mask-[linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-90"
@@ -393,7 +395,16 @@ const Container = ({ className }) => {
 			className: 'col-span-3 lg:col-span-1 lg:col-start-2 lg:row-start-1',
 			href: '#',
 			cta: dictionary[lang]['cta'],
-			background: <span></span>,
+			background: (
+				<div className="flex flex-col justify-end scale-75 -z-20">
+					{/* <Image
+						src={bg_ma_rue}
+						alt="ma rue"
+						className="absolute top-[25%] lg:right-2 w-full scale-75 border-none mask-[linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-90"
+					/> */}
+                    <MaRue className="absolute top-0 scale-75"/>
+				</div>
+			),
 		},
 		{
 			Icon: Empty,
