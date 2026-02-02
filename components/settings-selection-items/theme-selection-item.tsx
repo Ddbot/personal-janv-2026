@@ -6,7 +6,6 @@ import { ThemeContext } from "@/contexts/ThemeContext";
 import { LangContext } from "@/contexts/LangContext";
 import gsap from "gsap";
 import { cn } from "@/lib/utils";
-import LightThemeSwitchIllustration_alt from "./assets/LightThemeSwitchIllustration_alt";
 
 const dictionary = {
     fr: {
@@ -45,8 +44,7 @@ const ThemeSelectionItem = () => {
     const illuRef = useRef<SVGSVGElement | null>(null);
 
     const setIlluRef = useCallback((node: SVGSVGElement | null) => {
-        illuRef.current = node;
-        // if (node) console.log('illuRef: ', node);        
+        illuRef.current = node;            
     }, []);
 
     function handleClick(e: React.MouseEvent) {
@@ -109,10 +107,6 @@ const ThemeSelectionItem = () => {
                 .add(animateSun, 0);
         }
     }    
-
-    function handleHover(e: React.MouseEvent | React.PointerEvent) {
-        
-    }
 
     return <Item variant='outline' className="relative h-fit min-h-20 overflow-hidden cursor-pointer" onClick={handleClick} onPointerEnter={() => setIsHovered(true)} onPointerLeave={() => setIsHovered(false)}>
         <LightThemeSwitchIllustration ref={setIlluRef} theme={theme} />

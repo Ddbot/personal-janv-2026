@@ -149,7 +149,7 @@ const SvgComponent = (
                     <stop stopColor="#ffffff" offset="100%" />
                 </linearGradient>
                 <radialGradient id="earthGradient">
-                    <stop stopColor="#5a3f3780" offset="57%" />
+                    <stop stopColor="#072448" offset="57%" />
                     <stop stopColor="#1B9388" offset="100%" />
                 </radialGradient>
                 <filter id='inset-shadow'>
