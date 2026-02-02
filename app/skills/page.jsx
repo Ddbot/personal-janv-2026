@@ -234,7 +234,7 @@ export default function Skills() {
 						exit={styles.slideOut}>
 						<figure
 							style={{
-                                backgroundColor: f.color,
+								backgroundColor: f.color,
 							}}
 							className={cn(
 								'relative',
@@ -243,10 +243,19 @@ export default function Skills() {
 								idx === 0 && 'text-white',
 								idx === 3 && 'hidden',
 								styles.figure,
-                            )}
-                            data-name={f.name}
+							)}
+							data-name={f.name}
 							onClick={() => console.log(f.description)}>
 							<Fragment key={idx}>
+								<svg
+									viewBox="0 0 100 100"
+									className="absolute inset-0 -z-10">
+									<polygon
+										points="25,0 75,0 100,50 75,100 25,100 0,50"
+										fill="red"
+										fillOpacity={0}
+									/>
+								</svg>
 								{/* <div
 									className={cn(
 										'flex flex-row items-start gap-0',
