@@ -160,6 +160,12 @@
         }
     }
 
+    &:nth-child(5), &:nth-child(6){
+        :global(.dark) & {
+            color: var(--background);
+        }
+    }
+
     & > div:first-child {
         width: 100%;
         display: flex;
