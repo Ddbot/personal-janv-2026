@@ -17,7 +17,7 @@ const Ornament = ({ target, text }: { target: string; text: string }) => {
     const ref = useRef<HTMLDivElement>(null);
 
     return <div ref={ref} className={styles.ornament}>        
-        {text === target ? <><span>\</span><span>|</span><span>/</span></> : <><span></span><span></span><span></span></>}
+        {text === target ? <div><div>\</div><div>|</div><div>/</div></div> : <div className='inline-flex m-0 p-0 border-0'><div></div><div></div><div></div></div>}
     </div>
 }
 
@@ -32,7 +32,7 @@ const ProjectsContactCardContent = forwardRef<HTMLDivElement, ProjectsContactCar
 
     return (
         <div ref={ref} key="contact" className={cn(styles.ProjectsContactCardContent)}>
-            <Link href="/blog" className={cn('relative', styles.button)} data-icon="blog" onPointerEnter={handleHover}>
+            <Link href="/blog" className={cn(styles.button)} data-icon="blog" onPointerEnter={handleHover}>
                 <span className={cn(playwrite.className, 'text-background font-extrabold')}>
                     blog
                 </span>
