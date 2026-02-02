@@ -122,7 +122,7 @@ const Container = ({ className }) => {
 				{
 					name: 'Back End',
 					description:
-						'Je me suis familiarisé avec les technologies back-end et serveur. Mon parcours en développement web a débuté avec Ruby on Rails.',
+						"J'utilise fréquemment les technologies back-end et serveur. ",
 					time: 'depuis 5 ans',
 					icon: '👤',
 					color: cards_palette[theme][1],
@@ -189,7 +189,7 @@ const Container = ({ className }) => {
 				{
 					name: 'Back End',
 					description:
-						'I have accustomed myself to Back End & server technologies. My journey in web dev has begun with Ruby on Rails.',
+						'I have accustomed myself to Back End & server technologies.',
 					time: '5y ago',
 					icon: '🗞️',
 					color: cards_palette[theme][1],
@@ -261,7 +261,7 @@ const Container = ({ className }) => {
 				{
 					name: 'Back End',
 					description:
-						'Ich habe mich mit Backend- und Servertechnologien vertraut gemacht. Meine Reise in der Webentwicklung begann mit Ruby on Rails.',
+						'Ich habe mich mit Backend- und Servertechnologien vertraut gemacht.',
 					time: 'vor 5 Jahren',
 					icon: '🗞️',
 					color: cards_palette[theme][1],

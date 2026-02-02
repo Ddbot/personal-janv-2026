@@ -96,7 +96,7 @@ body {
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.13 0.028 261.692);
   /* --primary: oklch(0.60 0.10 185); */
-  --primary: #e99f44;
+  --primary: oklch(75.925% 0.13661 68.392);
   --primary-foreground: oklch(0.98 0.01 181);
   --secondary: oklch(0.967 0.001 286.375);
   --secondary-foreground: oklch(0.21 0.006 285.885);
@@ -125,7 +125,7 @@ body {
   scroll-behavior: smooth;
   --color-1: oklch(66.2% 0.225 25.9);
   --color-2: oklch(60.4% 0.26 302);
-  --color-20: hotpink;
+  --color-20: #ff69b4;
   --color-3: oklch(69.6% 0.165 251);
   --color-4: oklch(80.2% 0.134 225);
   --color-5: oklch(90.7% 0.231 133);

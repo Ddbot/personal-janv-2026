@@ -5,8 +5,17 @@ import { ThemeContext } from '@/contexts/ThemeContext';
 import { cn } from '@/lib/utils';
 import { BentoGrid } from '@/components/ui/bento-grid';
 import styles from './styles.module.css';
-
+import Image from 'next/image';
 import { cards_palette } from '@/lib/constants';
+import { Geist_Mono } from 'next/font/google';
+import Hexagone from './Hexagone';
+
+const geistMono = Geist_Mono({
+	weight: ['100', '200', '300', '400', '500', '600', '700', '900'],
+	subsets: ['latin'],
+	variable: '--font-mono',
+});
+
 
 export default function Skills() {
     const { lang } = use(LangContext); 
@@ -28,7 +37,7 @@ export default function Skills() {
 			{
 				name: 'Back End',
 				description:
-					'Je me suis familiarisé avec les technologies back-end et serveur. Mon parcours en développement web a débuté avec Ruby on Rails.',
+					"J'utilise fréquemment les technologies back-end et serveur. ",
 				time: 'depuis 5 ans',
 				icon: '👤',
 				color: cards_palette[theme][1],
@@ -61,7 +70,7 @@ export default function Skills() {
 				className: 'dark:text-white',
 			},
 			{
-				name: 'Traduction & SEO',
+				name: 'Traduction',
 				description:
 					"J'ai travaillé dans le secteur de la traduction et j'ai l'habitude de traduire et/ou de rédiger du contenu technique.",
 				time: 'depuis 15 ans',
@@ -82,7 +91,7 @@ export default function Skills() {
 			{
 				name: 'Back End',
 				description:
-					'I have accustomed myself to Back End & server technologies. My journey in web dev has begun with Ruby on Rails.',
+					'I have accustomed myself to Back End & server technologies.',
 				time: '5y ago',
 				icon: '🗞️',
 				color: cards_palette[theme][1],
@@ -104,7 +113,7 @@ export default function Skills() {
 				color: cards_palette[theme][3],
 			},
 			{
-				name: 'Translation & SEO',
+				name: 'Translation',
 				description:
 					"I've worked in the Translation sector and I'm used to translating and/or writing technical content.",
 				time: '15y ago',
@@ -124,7 +133,7 @@ export default function Skills() {
 			{
 				name: 'Back End',
 				description:
-					'Ich habe mich mit Backend- und Servertechnologien vertraut gemacht. Meine Reise in der Webentwicklung begann mit Ruby on Rails.',
+					'Ich habe mich mit Backend- und Servertechnologien vertraut gemacht.',
 				time: 'vor 5 Jahren',
 				icon: '🗞️',
 				color: cards_palette[theme][1],
@@ -138,7 +147,7 @@ export default function Skills() {
 				color: cards_palette[theme][2],
 			},
 			{
-				name: 'Editing & Copywriting',
+				name: 'Copywriting',
 				description:
 					"Ich habe für verschiedene Tech-Websites wie Tom's Guide, 01Net oder Phonandroid gearbeitet.",
 				time: 'vor 15 Jahren',
@@ -146,7 +155,7 @@ export default function Skills() {
 				color: cards_palette[theme][3],
 			},
 			{
-				name: 'Translation & SEO',
+				name: 'Translation',
 				description:
 					"Ich habe für verschiedene Tech-Websites wie Tom's Guide, 01Net oder Phonandroid gearbeitet.",
 				time: 'vor 15 Jahren',
@@ -243,33 +252,18 @@ export default function Skills() {
 								idx === 0 && 'text-white',
 								idx === 3 && 'hidden',
 								styles.figure,
+								geistMono.variable,
 							)}
 							data-name={f.name}
 							onClick={() => console.log(f.description)}>
 							<Fragment key={idx}>
-								<svg
-									viewBox="0 0 100 100"
-									className="absolute inset-0 -z-10">
-									<polygon
-										points="25,0 75,0 100,50 75,100 25,100 0,50"
-										fill="red"
-										fillOpacity={0}
-									/>
-								</svg>
-								{/* <div
-									className={cn(
-										'flex flex-row items-start gap-0',
-									)}>
-									<div className="flex flex-col">
-										<figcaption className="text-xl font-medium dark:text-white">
-											{f.name}
-										</figcaption>
-									</div>
-								</div> */}
 								<blockquote className={styles.blockquote}>
 									{f.description}
 								</blockquote>
 							</Fragment>
+							<Hexagone
+								className="absolute inset-l-16 -inset-t-16 -translate-y-4"
+							/>
 						</figure>
 					</ViewTransition>
 				);
