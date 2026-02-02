@@ -33,7 +33,7 @@ const ProjectsContactCardContent = forwardRef<HTMLDivElement, ProjectsContactCar
     return (
         <div ref={ref} key="contact" className={cn(styles.ProjectsContactCardContent)}>
             <Link href="/blog" className={cn('relative', styles.button)} data-icon="blog" onPointerEnter={handleHover}>
-                <span className={cn(playwrite.className, 'text-background')}>
+                <span className={cn(playwrite.className, 'text-background font-extrabold')}>
                     blog
                 </span>
                 <Ornament target="blog" text={text} />

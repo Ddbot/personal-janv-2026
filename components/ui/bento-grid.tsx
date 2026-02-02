@@ -75,10 +75,10 @@ const BentoCard = ({
                 Icon === Empty ? '' : 'lg:group-hover:-translate-y-10',
             Icon !== Empty && 'pointer-events-none ')}>
         <Icon className={cn("h-12 w-12 origin-left transform-gpu text-[#185551] dark:text-[#FFE5D8] transition-all duration-300 ease-in-out", Icon === Empty ? '' : 'group-hover:scale-75')} />
-        <h3 className="text-xl font-semibold text-neutral-700 dark:text-neutral-300">
+        <h3 className="text-xl font-semibold text-neutral-700 dark:text-neutral-300 uppercase">
           {name}
         </h3>
-        <div className={`max-w-lg ${Icon === Phone ? 'text-background' : 'text-foreground' } font-extralight`}>{description}</div>
+        <div className={`max-w-lg ${Icon === Phone ? 'text-background' : 'text-foreground' } font-thin`}>{description}</div>
       </div>
 
       { Icon !== Empty && <div
@@ -114,7 +114,7 @@ const BentoCard = ({
         className="pointer-events-auto p-0"
       >
         <Link href={href}>
-          {cta}
+         <span className="font-bold uppercase">{cta}</span>
           <ArrowRightIcon className="ms-2 h-4 w-4 rtl:rotate-180" />
         </Link>
       </Button>

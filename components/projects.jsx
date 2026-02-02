@@ -441,7 +441,7 @@ const Container = ({ className }) => {
 							{...feature}
 							className={cn(
 								styles.card,
-								feature.className,
+                                feature.className,
 								// 'h-dvh lg:h-auto lg:max-h-[44rem] lg:gap-0 m-4 lg:m-0 lg:aspect-auto',
                             )}                            
 						/>
