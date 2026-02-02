@@ -102,7 +102,7 @@ const ThemeSelectionItem = () => {
             }
 
             tl
-                .to(earth, earthAnimationVars[theme], 0)
+                .to(earth, earthAnimationVars[theme!], 0)
                 .add(animateMoon, 0)
                 .add(animateSun, 0);
         }

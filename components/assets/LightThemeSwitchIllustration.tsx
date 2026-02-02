@@ -79,7 +79,9 @@ const SvgComponent = (
             <path opacity="0.9" d="M336.762 37.2329C337.48 37.2329 338.062 36.6509 338.062 35.9329C338.062 35.215 337.48 34.6329 336.762 34.6329C336.044 34.6329 335.462 35.215 335.462 35.9329C335.462 36.6509 336.044 37.2329 336.762 37.2329Z" fill="white"/>
         </g>  }      
             {/* TERRE */}
-            <g id="earth">
+        <g id="earth" style={{
+                opacity: theme === "dark" ? 1 : 0
+            }}>
                 {/* BG TERRE */}
                 <circle cx={131.5 - 40} cy={132} r={108} fill="#072448" fillOpacity={1} stroke="#436f8f80" strokeWidth={2} />
 
@@ -92,17 +94,20 @@ const SvgComponent = (
         
         {/* MOON */}
         {/* <g id="moon" clipPath="url(#moon_clippath)" transform="translate(205,22) scale(.4)"> */}
-        <g id="moon" clipPath="url(#moon_clippath)">
+        <g id="moon" clipPath="url(#moon_clippath)" style={{
+            opacity: theme === 'dark' ? 0 : 1
+        }}>
             {/* <path d="M322.407 12.4981C323.341 12.2687 324.313 12.6477 324.875 13.4571V13.4581C325.41 14.2377 325.398 15.3026 324.842 16.0919C322.327 19.6437 320.981 23.8138 320.981 28.1563C320.982 39.6637 330.336 49.0186 341.844 49.0186C346.051 49.0186 350.095 47.7563 353.573 45.3907L353.907 45.1583C354.696 44.6014 355.762 44.5892 356.542 45.1241C357.301 45.6505 357.682 46.5386 357.538 47.4171L357.502 47.5928C354.313 60.531 342.758 69.5626 329.394 69.5626C313.432 69.5624 300.438 56.5677 300.438 40.6065C300.438 27.2418 309.469 15.6866 322.407 12.4981Z" fill="white" /> */}
             <path d="M333.9628 26.9992C334.3364 26.9075 334.7252 27.0591 334.95 27.3828V27.3832C335.164 27.6951 335.1592 28.121 334.9368 28.4368 333.9308 29.8575 333.3924 31.5255 333.3924 33.2625 333.3928 37.8655 337.1344 41.6074 341.7376 41.6074 343.4204 41.6074 345.038 41.1025 346.4292 40.1563L346.5628 40.0633C346.8784 39.8406 347.3048 39.8357 347.6168 40.0496 347.9204 40.2602 348.0728 40.6154 348.0152 40.9668L348.0008 41.0371C346.7252 46.2124 342.1032 49.825 336.7576 49.825 330.3728 49.825 325.1752 44.6271 325.1752 38.2426 325.1752 32.8967 328.7876 28.2746 333.9628 26.9992Z" fill="white" />
-            </g>        
+        </g>        
             
             {/* SUN */}
             <g id="sun" transform="translate(87,10.25) scale(.75 .75)" stroke="var(--accent-3)" style={{
             opacity: theme === 'light' ? 0 : 1,
-            fill: theme === "light" ? "transparent" : 'var(--accent-3)',
-            stroke: theme === "light" ? "transparent" : 'var(--accent-3)',
-            transformOrigin: `328.76px 39.9329px`
+                transform: theme === 'light' ? "translateY(-100%)" : "translateY(0%)",
+                fill: theme === "light" ? "transparent" : 'var(--accent-3)',
+                stroke: theme === "light" ? "transparent" : 'var(--accent-3)',
+                transformOrigin: `328.76px 39.9329px`
             }} >    
                 <circle cx="328.76" cy="39.9329" r="8.33333" fill="var(--accent-3)"/>
                 <path d="M328.76 19.0996V23.2662" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -135,18 +140,15 @@ const SvgComponent = (
                     <stop stopColor="oklch(95% .15 75 / 1)" offset="100%" />
                 </linearGradient>
                 <linearGradient id="skyGradient" x1="100%" y1="0%" x2="0%" y2="100%">
-                    {/* { theme === 'dark' ? <><stop stopColor="#2980b9" offset="0%"/>
-                        <stop stopColor="#6dd5fa" offset="25%" />
-                        <stop stopColor="#ffffff" offset="100%" />
-                    </> : <>
+                {theme === 'dark' ? <>
+                    <stop stopColor="#2980b9" offset="0%" />
+                    <stop stopColor="#6dd5fa" offset="25%" />
+                    <stop stopColor="#ffffff" offset="100%" />
+                </> : <>
                     <stop stopColor="#203A43" offset="0%" />
                     <stop stopColor="#0F2027" offset="25%" />
                     <stop stopColor="#2980b9" offset="100%" />
-                </>} */}
-
-                    <stop stopColor="#2980b9" offset="0%"/>
-                    <stop stopColor="#6dd5fa" offset="25%" />
-                    <stop stopColor="#ffffff" offset="100%" />
+                </>}
                 </linearGradient>
                 <radialGradient id="earthGradient">
                     <stop stopColor="#072448" offset="57%" />
