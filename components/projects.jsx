@@ -1,6 +1,7 @@
 "use client";
 import { use, useEffect, useRef, useState, ViewTransition } from 'react'
 import { LangContext } from '@/contexts/LangContext';
+import { ThemeContext } from '@/contexts/ThemeContext';
 // import { dictionary } from '@/lib/dictionary';
 import {
 	Baby,
@@ -24,6 +25,7 @@ import gsap from 'gsap';
 import ProjectsContactCardContent from './projects-contact-card-content';
 import { useRouter } from 'next/navigation';
 import { Geist_Mono } from 'next/font/google';
+import { cards_palette } from '@/lib/constants';
 
 const geist = Geist_Mono({ subsets: ['latin'], weight: ['200','400'] })    
 
@@ -37,10 +39,49 @@ const Empty = () => {
 
 const Container = ({ className }) => {    
     const { lang } = use(LangContext);
+    const { theme } = use(ThemeContext);
+
     const ref = useRef(null);
     const containerRef = useRef(null);
     const tl = useRef(null);
     const router = useRouter();
+
+    function animateGrid_(e) {
+        e.preventDefault();
+        // console.log('animateGrid', e.target.dataset.name);
+        const targets = Array.from(containerRef.current.children);
+        const cell = targets.shift();
+        const grid = containerRef.current;
+
+        if (e.target.dataset.name === 'skills') {
+
+            const tl = gsap.timeline({
+                onStart: () => {
+                    // console.log('onStart: ', targets);
+                },
+				onComplete: () => {
+					console.log('onComplete');
+					// router.push('/skills');
+				},
+			});
+            tl.to(grid, {
+                duration: 4,
+                gridTemplateColumns: "1fr 0px 0px",
+                gridTemplateRows: "1fr 0px",
+                ease: 'power2.inOut',
+            })
+                .to(targets, {
+                    border: 'none',
+                    scale: 0
+                }, '<')
+                .to(cell, {
+                    width: '100%',
+                    height: '100%',
+                    gridColumn: '1 / span 3',
+                    gridRow: '1 / span 2'
+                }, '<')
+        }
+    }
 
     const dictionary = {
 		fr: {
@@ -61,7 +102,7 @@ const Container = ({ className }) => {
 					<ProjectsContactCardContent
 						key="contact"
 						className={cn(styles_bento.animate_messages)}
-						fn={handleClick_}
+						fn={handleClick}
 						ref={ref}
 					/>,
 					'Si on se contactait ?',
@@ -71,10 +112,10 @@ const Container = ({ className }) => {
 				{
 					name: 'Front End',
 					description:
-						'Je maîtrise parfaitement les technologies Front End et CSS et me tient constamment informé de leurs évolutions',
+						'Maîtrise les technologies Front End et CSS et me tient constamment informé de leurs évolutions',
 					time: 'depuis 9 ans',
 					icon: '💸',
-					color: '#00C9A7',
+					color: cards_palette[theme][0],
 				},
 				{
 					name: 'Back End',
@@ -82,23 +123,23 @@ const Container = ({ className }) => {
 						'Je me suis familiarisé avec les technologies back-end et serveur. Mon parcours en développement web a débuté avec Ruby on Rails.',
 					time: 'depuis 5 ans',
 					icon: '👤',
-					color: '#FFB800',
+					color: cards_palette[theme][1],
 				},
 				{
 					name: 'Full Stack',
 					description:
-						"Je me suis familiarisé avec les technologies SaaS, PostgreSQL, Firebase, les services Amazon, etc. Je suis toujours prêt à explorer de nouveaux domaines, et l'IA facilite grandement cette démarche.",
+						"J'utilise PostgreSQL, Firebase avec Next.js. Toujours prêt à explorer de nouveaux domaines",
 					time: 'depuis 5 ans',
 					icon: '💬',
-					color: '#FF3D71',
+					color: cards_palette[theme][2],
 				},
 				{
-					name: 'Rédaction & Copywriting',
+					name: 'Rédaction',
 					description:
 						"Je suis rédacteur-concepteur pour divers sites web spécialisés en technologie tels que Tom's Guide, 01Net ou Phonandroid.",
 					time: 'depuis 15 ans',
 					icon: '🗞️',
-					color: '#1E86FF',
+					color: cards_palette[theme][3],
 				},
 				{
 					name: 'Traduction & SEO',
@@ -106,7 +147,7 @@ const Container = ({ className }) => {
 						"J'ai travaillé dans le secteur de la traduction et j'ai l'habitude de traduire et/ou de rédiger du contenu technique.",
 					time: 'depuis 15 ans',
 					icon: '🗞️',
-					color: '#1E86FF',
+					color: cards_palette[theme][4],
 				},
 			],
 		},
@@ -128,7 +169,7 @@ const Container = ({ className }) => {
 					<ProjectsContactCardContent
 						key="contact"
 						className={cn(styles_bento.animate_messages)}
-						fn={handleClick_}
+						fn={handleClick}
 						ref={ref}
 					/>,
 					"Let's get in touch!",
@@ -141,7 +182,7 @@ const Container = ({ className }) => {
 						'I master perfectly the Front End technologies and keep myself constantly informed of their evolutions',
 					time: '9y ago',
 					icon: '🗞️',
-					color: '#1E86FF',
+					color: cards_palette[theme][0],
 				},
 				{
 					name: 'Back End',
@@ -149,7 +190,7 @@ const Container = ({ className }) => {
 						'I have accustomed myself to Back End & server technologies. My journey in web dev has begun with Ruby on Rails.',
 					time: '5y ago',
 					icon: '🗞️',
-					color: '#1E86FF',
+					color: cards_palette[theme][1],
 				},
 				{
 					name: 'Full Stack',
@@ -157,7 +198,7 @@ const Container = ({ className }) => {
 						'As a budding entrepreneur, I have had to learn abour SaaS, PostGresQL, Firebase, Amazon Services and such. I am always willing to explore new domains, and AI makes this endeavour even easier.',
 					time: '5y ago',
 					icon: '🗞️',
-					color: '#1E86FF',
+					color: cards_palette[theme][2],
 				},
 				{
 					name: 'Editing & Copywriting',
@@ -165,7 +206,7 @@ const Container = ({ className }) => {
 						"I've long been an Editor Copywriter for various Tech web sites such as Tom's Guide, 01Net or Phonandroid.",
 					time: '15y ago',
 					icon: '🗞️',
-					color: '#1E86FF',
+					color: cards_palette[theme][3],
 				},
 				{
 					name: 'Translation & SEO',
@@ -173,7 +214,7 @@ const Container = ({ className }) => {
 						"I've worked in the Translation sector and I'm used to translating and/or writing technical content.",
 					time: '15y ago',
 					icon: '🗞️',
-					color: '#1E86FF',
+					color: cards_palette[theme][4],
 				},
 			],
 		},
@@ -200,7 +241,7 @@ const Container = ({ className }) => {
 					<ProjectsContactCardContent
 						key="contact"
 						className={cn(styles_bento.animate_messages)}
-						fn={handleClick_}
+						fn={handleClick}
 						ref={ref}
 					/>,
 					'Lass uns Kontakt aufnehmen!',
@@ -213,7 +254,7 @@ const Container = ({ className }) => {
 						'Ich beherrsche Front-End-Technologien perfekt und halte mich ständig über deren Weiterentwicklung auf dem Laufenden.',
 					time: 'vor 9 Jahren',
 					icon: '🗞️',
-					color: '#1E86FF',
+					color: cards_palette[theme][0],
 				},
 				{
 					name: 'Back End',
@@ -221,7 +262,7 @@ const Container = ({ className }) => {
 						'Ich habe mich mit Backend- und Servertechnologien vertraut gemacht. Meine Reise in der Webentwicklung begann mit Ruby on Rails.',
 					time: 'vor 5 Jahren',
 					icon: '🗞️',
-					color: '#1E86FF',
+					color: cards_palette[theme][1],
 				},
 				{
 					name: 'Full Stack',
@@ -229,7 +270,7 @@ const Container = ({ className }) => {
 						'Als angehender Unternehmer musste ich mich mit SaaS, PostgreSQL, Firebase, Amazon-Diensten und ähnlichem auseinandersetzen. Ich bin stets offen für neue Herausforderungen, und KI erleichtert mir diesen Weg zusätzlich.',
 					time: 'vor 5 Jahren',
 					icon: '🗞️',
-					color: '#1E86FF',
+					color: cards_palette[theme][2],
 				},
 				{
 					name: 'Editing & Copywriting',
@@ -237,7 +278,7 @@ const Container = ({ className }) => {
 						"Ich bin seit langer Zeit als Texter für verschiedene Tech-Websites wie Tom's Guide, 01Net oder Phonandroid tätig.",
 					time: 'vor 15 Jahren',
 					icon: '🗞️',
-					color: '#1E86FF',
+					color: cards_palette[theme][3],
 				},
 				{
 					name: 'Translation & SEO',
@@ -245,7 +286,7 @@ const Container = ({ className }) => {
 						"Ich bin seit langer Zeit als Texter für verschiedene Tech-Websites wie Tom's Guide, 01Net oder Phonandroid tätig.",
 					time: 'vor 15 Jahren',
 					icon: '🗞️',
-					color: '#1E86FF',
+					color: cards_palette[theme][4],
 				},
 			],
 		},
@@ -253,125 +294,49 @@ const Container = ({ className }) => {
 
     function handleClick(e) {
         e.preventDefault();
-        
-        const type = e.currentTarget.dataset.icon;
-
-        const mm = gsap.matchMedia();
-
-        mm.add("(max-width: 767px)", () => {
-            router.push('/contact?type=' + type);
-        })
-
-        mm.add("(min-width: 768px)", () => {
-            tl.current = gsap.timeline({
-                defaults: {
-                    duration: 0.1225,
-                    ease: 'power2.out',
-                },
-                onComplete: () => {
-                    router.push('/contact?type=' + type);
-                },
-            });
-
-            const timeline = tl.current;
-
-            gsap.set(containerRef.current, {
-                transformOrigin: 'center center 0px',
-                gridTemplateColumns: 'var(--col-width) var(--col-width) var(--col-width)',
-                gridTemplateRows: 'var(--row-height) var(--row-height)',
-                maxHeight: '44rem',
-                placeContent: 'end center',
-            });
-
-            const otherCards = Array.from(containerRef.current.children);
-            const contactCard = otherCards.pop();
-
-            gsap.set(otherCards.at(0), { transformOrigin: 'top left' });
-            gsap.set(otherCards.at(1), { transformOrigin: '<bottom right' });
-            gsap.set(otherCards.at(2), { transformOrigin: 'bottom left' });
-            gsap.set(otherCards.at(3), { transformOrigin: 'top right' });
-            gsap.set(otherCards.at(4), { transformOrigin: 'top center' });
-            gsap.set(contactCard, {
-                transformOrigin: 'top center 0px',
-                alignSelf: 'stretch',
-                maxHeight: '44rem',
-            });
-
-            timeline
-                .to(
-                    containerRef.current,
-                    {
-                        gridTemplateColumns: '0fr 1fr 0fr',
-                        gridTemplateRows: '0fr 44rem',
-                        ease: 'power2.out',
-                        gap: 0,
-                    },
-                    '<',
-                )
-                .to(
-                    otherCards,
-                    {
-                        scale: 0,
-                        opacity: 0,
-                        padding: 0,
-                        margin: 0,
-                        borderWidth: 0,
-                    },
-                    '<',
-                )
-                .to(
-                    contactCard.querySelectorAll('button'),
-                    {
-                        duration: .125,
-                        opacity: 0,
-                    },
-                    '<',
-                );
+        router.push({
+            pathname: '/contact',
+            query: { type: 'chat' },
         });
-    }
+    }    
 
-function handleClick_(e) {
-	e.preventDefault();
-	const type = e.currentTarget.dataset.icon;
-	router.push('/contact?type=' + type);
-}    
-
-    
-    
     const features = [
 		{
 			Icon: PocketKnife,
 			name: 'Skills',
 			description: dictionary[lang]['features']['description'][0],
-			href: '/skills',
+            href: '/skills',
+            href: '/skills',
 			cta: dictionary[lang]['cta'],
-			className: 'col-span-3 lg:col-span-1',
+			className: 'col-span-3 lg:col-span-1 origin-top-left',
 			background: (
 				<Marquee
 					pauseOnHover
-					className="absolute top-[50%] lg:top-10 [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] [--duration:20s]">
+					className="absolute top-[50%] lg:top-10 mask-[linear-gradient(to_top,transparent_40%,#000_100%)] [--duration:20s]">
 					{dictionary[lang]['skills'].map((f, idx) => (
-						<figure
-							key={idx}
-							style={{ backgroundColor: f.color }}
-							className={cn(
-								'relative w-32 cursor-pointer overflow-hidden rounded-xl border p-4',
-								'border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]',
-								'dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]',
-								'transform-gpu blur-[1px] transition-all duration-300 ease-out hover:blur-none',
-							)}
-							onClick={() => console.log(f.description)}>
-							<div className="flex flex-row items-center gap-2">
-								<div className="flex flex-col">
-									<figcaption className="text-sm font-medium dark:text-white">
-										{f.name}
-									</figcaption>
+						<ViewTransition key={idx} enter="slide-in">
+							<figure
+								style={{ backgroundColor: f.color }}
+								className={cn(
+									'relative w-32 cursor-pointer overflow-hidden rounded-xl border p-4',
+									'border-gray-950/10 bg-gray-950/1 hover:bg-gray-950/5',
+									'dark:border-gray-50/10 dark:bg-gray-50/10 dark:hover:bg-gray-50/15',
+									'transform-gpu blur-[1px] transition-all duration-300 ease-out hover:blur-none',
+                                )}
+                                data-name="skills"
+								onClick={() => {}}>
+								<div className="flex flex-row items-center gap-2">
+									<div className="flex flex-col">
+										<figcaption className="text-sm font-medium dark:text-white">
+											{f.name}
+										</figcaption>
+									</div>
 								</div>
-							</div>
-							<blockquote className="mt-2 text-xs">
-								{f.description}
-							</blockquote>
-						</figure>
+								<blockquote className="mt-2 text-xs">
+									{f.description}
+								</blockquote>
+							</figure>
+						</ViewTransition>
 					))}
 				</Marquee>
 			),
@@ -460,14 +425,14 @@ function handleClick_(e) {
 				)}
 				id="projects">
 				{features.map((feature, idx) => (
-					<ViewTransition key={idx}>
+					<ViewTransition key={idx} enter="slide-in" exit="slide-out">
 						<Card
 							{...feature}
 							className={cn(
 								styles.card,
 								feature.className,
 								// 'h-dvh lg:h-auto lg:max-h-[44rem] lg:gap-0 m-4 lg:m-0 lg:aspect-auto',
-							)}
+                            )}                            
 						/>
 					</ViewTransition>
 				))}

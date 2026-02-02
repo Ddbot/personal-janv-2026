@@ -14,7 +14,17 @@ const geistMono = Geist_Mono({
 function Body({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
 
-    return <body className={`${geistMono.variable} antialiased p-0`}>
+    return <body className={cn(`${geistMono.variable} antialiased p-0`)}>
+        <style>
+            {
+                pathname === '/skills' && `
+                    body {
+                        // background: url('/subway-lines.png');
+                        
+                    }
+                `
+            }
+        </style>
         <Providers>
             <div className={cn("flex flex-col snap-y snap-mandatory")}>
                 <Navbar className={cn(

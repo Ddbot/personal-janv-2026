@@ -5,9 +5,7 @@ import { ThemeContext } from '@/contexts/ThemeContext';
 import { cn } from '@/lib/utils';
 import { BentoGrid } from '@/components/ui/bento-grid';
 import styles from './styles.module.css';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react'
-import PatternComponent from './[components]/PatternComponent';
+
 import { cards_palette } from '@/lib/constants';
 
 export default function Skills() {
@@ -21,7 +19,7 @@ export default function Skills() {
 			{
 				name: 'Front End',
 				description:
-					'Je maîtrise parfaitement les technologies Front End et CSS et me tient constamment informé de leurs évolutions',
+					'Maîtrise des technologies Front End et CSS et me tient constamment informé de leurs évolutions',
 				time: 'depuis 9 ans',
 				icon: '💸',
 				color: cards_palette[theme][0],
@@ -39,7 +37,7 @@ export default function Skills() {
 			{
 				name: 'Full Stack',
 				description:
-					"Je me suis familiarisé avec les technologies SaaS, PostgreSQL, Firebase, les services Amazon, etc. Je suis toujours prêt à explorer de nouveaux domaines, et l'IA facilite grandement cette démarche.",
+					"J'utilise PostgreSQL, Firebase avec Next.js. Toujours prêt à explorer de nouveaux domaines",
 				time: 'depuis 5 ans',
 				icon: '💬',
 				color: cards_palette[theme][2],
@@ -54,13 +52,13 @@ export default function Skills() {
 				className: '',
 			},
 			{
-				name: 'Rédaction & Copywriting',
+				name: 'Rédaction',
 				description:
-					"Je suis rédacteur-concepteur pour divers sites web spécialisés en technologie tels que Tom's Guide, 01Net ou Phonandroid.",
+					"Je suis rédacteur-concepteur pour des sites tech tels que Tom's Guide, 01Net ou Phonandroid.",
 				time: 'depuis 15 ans',
 				icon: '🗞️',
 				color: cards_palette[theme][3],
-				className: 'dark:text-white border-2 border-chart-4',
+				className: 'dark:text-white',
 			},
 			{
 				name: 'Traduction & SEO',
@@ -87,7 +85,7 @@ export default function Skills() {
 					'I have accustomed myself to Back End & server technologies. My journey in web dev has begun with Ruby on Rails.',
 				time: '5y ago',
 				icon: '🗞️',
-				color: '#1E86FF',
+				color: cards_palette[theme][1],
 			},
 			{
 				name: 'Full Stack',
@@ -95,15 +93,15 @@ export default function Skills() {
 					'As a budding entrepreneur, I have had to learn abour SaaS, PostGresQL, Firebase, Amazon Services and such. I am always willing to explore new domains, and AI makes this endeavour even easier.',
 				time: '5y ago',
 				icon: '🗞️',
-				color: '#1E86FF',
+				color: cards_palette[theme][2],
 			},
 			{
 				name: 'Editing & Copywriting',
 				description:
-					"I've long been an Editor Copywriter for various Tech web sites such as Tom's Guide, 01Net or Phonandroid.",
+					"I've been an Editor for various Tech web sites such as Tom's Guide, 01Net or Phonandroid.",
 				time: '15y ago',
 				icon: '🗞️',
-				color: '#1E86FF',
+				color: cards_palette[theme][3],
 			},
 			{
 				name: 'Translation & SEO',
@@ -111,7 +109,7 @@ export default function Skills() {
 					"I've worked in the Translation sector and I'm used to translating and/or writing technical content.",
 				time: '15y ago',
 				icon: '🗞️',
-				color: '#1E86FF',
+				color: cards_palette[theme][4],
 			},
 		],
 		de: [
@@ -121,7 +119,7 @@ export default function Skills() {
 					'Ich beherrsche Front-End-Technologien perfekt und halte mich ständig über deren Weiterentwicklung auf dem Laufenden.',
 				time: 'vor 9 Jahren',
 				icon: '🗞️',
-				color: '#1E86FF',
+				color: cards_palette[theme][0],
 			},
 			{
 				name: 'Back End',
@@ -129,7 +127,7 @@ export default function Skills() {
 					'Ich habe mich mit Backend- und Servertechnologien vertraut gemacht. Meine Reise in der Webentwicklung begann mit Ruby on Rails.',
 				time: 'vor 5 Jahren',
 				icon: '🗞️',
-				color: '#1E86FF',
+				color: cards_palette[theme][1],
 			},
 			{
 				name: 'Full Stack',
@@ -137,23 +135,23 @@ export default function Skills() {
 					'Als angehender Unternehmer musste ich mich mit SaaS, PostgreSQL, Firebase, Amazon-Diensten und ähnlichem auseinandersetzen. Ich bin stets offen für neue Herausforderungen, und KI erleichtert mir diesen Weg zusätzlich.',
 				time: 'vor 5 Jahren',
 				icon: '🗞️',
-				color: '#1E86FF',
+				color: cards_palette[theme][2],
 			},
 			{
 				name: 'Editing & Copywriting',
 				description:
-					"Ich bin seit langer Zeit als Texter für verschiedene Tech-Websites wie Tom's Guide, 01Net oder Phonandroid tätig.",
+					"Ich habe für verschiedene Tech-Websites wie Tom's Guide, 01Net oder Phonandroid gearbeitet.",
 				time: 'vor 15 Jahren',
 				icon: '🗞️',
-				color: '#1E86FF',
+				color: cards_palette[theme][3],
 			},
 			{
 				name: 'Translation & SEO',
 				description:
-					"Ich bin seit langer Zeit als Texter für verschiedene Tech-Websites wie Tom's Guide, 01Net oder Phonandroid tätig.",
+					"Ich habe für verschiedene Tech-Websites wie Tom's Guide, 01Net oder Phonandroid gearbeitet.",
 				time: 'vor 15 Jahren',
 				icon: '🗞️',
-				color: '#1E86FF',
+				color: cards_palette[theme][4],
 			},
 		],
 	};   
@@ -220,49 +218,56 @@ export default function Skills() {
 //   }, { dependencies: [theme], scope: ref });
 
     return (
-        // <BentoGrid
-		// 	className={cn(
-		// 		styles.container,
-		// 	)}>
-        // {
-        <div className={cn(
+        <BentoGrid
+			className={cn(
 				styles.container,
-			)}>{
+			)}>        
+         {/* <div className={cn(
+		 		styles.container,
+         )}> */}
+            {
             dictionary[lang].map((f, idx) => {
                 return (
-                    <ViewTransition key={idx}>
-                        <figure
-                            style={{
-                                backgroundColor:
-                                    f.color
-                            }}
-                            className={cn(
-                                'relative',
-                                f.className,
-                                // idx === 3 ? 'p-0' : 'p-8',
-                                idx === 0 && "text-white",
-                                idx === 3 && "hidden",
-                                styles.figure,
+					<ViewTransition
+						key={idx}
+						enter={styles.slideIn}
+						exit={styles.slideOut}>
+						<figure
+							style={{
+                                backgroundColor: f.color,
+							}}
+							className={cn(
+								'relative',
+								f.className,
+								// idx === 3 ? 'p-0' : 'p-8',
+								idx === 0 && 'text-white',
+								idx === 3 && 'hidden',
+								styles.figure,
                             )}
-                            onClick={() => console.log(f.description)}>
-                            <Fragment key={idx}>
-                                <div className={cn("flex flex-row items-start gap-0")}>
-                                    <div className="flex flex-col">
-                                        <figcaption className="text-xl font-medium dark:text-white">
-                                            {f.name}
-                                        </figcaption>
-                                    </div>
-                                </div>
-                                <blockquote className="mt-0">
-                                    {f.description}
-                                </blockquote>
-                            </Fragment>
-                        </figure>
-                    </ViewTransition>
-                );
+                            data-name={f.name}
+							onClick={() => console.log(f.description)}>
+							<Fragment key={idx}>
+								{/* <div
+									className={cn(
+										'flex flex-row items-start gap-0',
+									)}>
+									<div className="flex flex-col">
+										<figcaption className="text-xl font-medium dark:text-white">
+											{f.name}
+										</figcaption>
+									</div>
+								</div> */}
+								<blockquote className={styles.blockquote}>
+									{f.description}
+								</blockquote>
+							</Fragment>
+						</figure>
+					</ViewTransition>
+				);
             })
-        }</div>
-        // }
-		// </BentoGrid>
+            }
+             {/* </div>
+         } */}
+		</BentoGrid>
 	);
 }
