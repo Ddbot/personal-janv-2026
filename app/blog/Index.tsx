@@ -59,7 +59,8 @@ const Index = ({ posts }: { posts: WordPressPost[] }) => {
             setSortedPosts(posts);
             return
         } else {
-            setSortedPosts(posts.filter(post => post.categories.includes(categories_list[e.currentTarget.dataset.category as FilteredCategory])));
+            const cat: string = e.currentTarget.dataset.category as string;
+            setSortedPosts(posts.filter(post => post.categories.includes(categories_list[cat] as number)));
         }
     }
     

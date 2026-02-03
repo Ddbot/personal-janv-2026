@@ -1,12 +1,11 @@
-import { FilteredCategory } from "../app/blog/Index";
 type Theme = "light" | "dark";
 type Tag = {
     name: string;
 }
-export const categories_list: Record<FilteredCategory, number> = {
-    "dev": 6504,
-    "diy": 6460,
-    "musique": 4315
+export const categories_list: Record<string, number> = {
+    'dev': 6504,
+    'diy': 6460,
+    'musique': 4315
 }
 
 export const cards_palette: Record<Theme, string[]> = {
