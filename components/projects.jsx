@@ -347,7 +347,7 @@ const Container = ({ className }) => {
 			Icon: Keyboard,
 			name: 'Speed Typer',
 			description: dictionary[lang]['features']['description'][1],
-			href: '/speed-typer',
+			href: '#',
 			cta: dictionary[lang]['cta'],
 			className: 'row-start-2 lg:col-start-3 col-span-3 lg:col-span-1',
 			background: (

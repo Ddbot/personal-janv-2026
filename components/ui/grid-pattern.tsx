@@ -42,7 +42,7 @@ export const GridPattern = forwardRef<SVGSVGElement, GridPatternProps>(({
             ref={ref}
             aria-hidden="true"
             className={cn(
-                "pointer-events-none h-full w-full fill-gray-400/30 stroke-foreground/50 skew-y-16",
+                "pointer-events-none h-full w-full fill-gray-400/100 stroke-foreground/100 skew-y-16",
                 className ?? ''
             )}
             {...props}
